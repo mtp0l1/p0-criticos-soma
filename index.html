@@ -306,6 +306,70 @@
   }
   .roadmap-item .badge{flex-shrink:0; margin-top:2px;}
   .roadmap-item p{margin:0; font-size:13.6px; color:var(--ink-soft); line-height:1.55; padding-top:2px;}
+
+  /* ---------- Sitemap cards (visão geral) ---------- */
+  .map-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:26px 0 34px;}
+  .map-card{
+    background:var(--card); border:1px solid var(--line); border-top:4px solid var(--accent); border-radius:var(--radius);
+    padding:24px 22px; box-shadow:var(--shadow); text-decoration:none; display:block;
+    transition:border-color .15s, transform .15s;
+  }
+  .map-card:hover{transform:translateY(-2px); border-color:var(--accent-line);}
+  .map-card.shared{border-top-color:var(--indigo);}
+  .map-card.existing{border-top-color:var(--teal);}
+  .map-card .map-chip{display:block; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--accent); margin-bottom:10px;}
+  .map-card.shared .map-chip{color:#3A3DBE;}
+  .map-card.existing .map-chip{color:#0B5C56;}
+  .map-card h3{font-size:16.5px; font-weight:800; color:var(--ink); margin-bottom:6px; line-height:1.3;}
+  .map-card p{font-size:12.8px; color:var(--muted); margin:0 0 16px; line-height:1.5;}
+  .map-card .map-stats{display:flex; gap:16px; flex-wrap:wrap;}
+  .map-card .map-stat strong{display:block; font-size:19px; color:var(--ink); font-weight:800; line-height:1.2;}
+  .map-card .map-stat span{font-size:11px; color:var(--muted);}
+  .map-card .map-cta{margin-top:16px; font-size:12px; font-weight:700; color:var(--accent);}
+  .map-card.shared .map-cta{color:#3A3DBE;}
+  .map-card.existing .map-cta{color:#0B5C56;}
+
+  /* ---------- Progressive disclosure inside scope panels ---------- */
+  .scope-panel > p + details.scope-detail{margin-top:12px;}
+  details.scope-detail summary{
+    cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:5px;
+    font-size:12px; font-weight:700; color:var(--indigo); user-select:none;
+  }
+  details.scope-detail summary::-webkit-details-marker{display:none;}
+  details.scope-detail summary::after{content:"▾"; font-size:9px; transition:transform .15s;}
+  details.scope-detail[open] summary::after{transform:rotate(180deg);}
+  details.scope-detail summary:hover{text-decoration:underline;}
+  .scope-detail-body{margin-top:10px; padding-top:10px; border-top:1px dashed var(--line);}
+  .scope-detail-body p{font-size:13.4px; color:var(--ink-soft); line-height:1.65; margin:0;}
+  .scope-detail-body p + p{margin-top:10px;}
+
+  /* ---------- Sidebar accordion (progressive disclosure) ---------- */
+  details.nav-scope{margin-bottom:6px;}
+  details.nav-scope summary{
+    cursor:pointer; list-style:none; display:flex; align-items:center; justify-content:space-between;
+    padding:9px 8px; border-radius:8px; margin-bottom:2px;
+  }
+  details.nav-scope summary .scope-chip{margin-top:0;}
+  details.nav-scope summary::-webkit-details-marker{display:none;}
+  details.nav-scope summary:hover{background:var(--slate-soft);}
+  details.nav-scope summary::after{content:"▾"; font-size:9px; color:var(--faint); transition:transform .15s; margin-left:8px;}
+  details.nav-scope[open] summary::after{transform:rotate(180deg);}
+
+  details.nav-item-details summary.navsub-toggle{
+    cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:4px;
+    padding:4px 8px; margin:0 0 2px 26px; font-size:10.8px; color:var(--faint); font-weight:600; user-select:none;
+  }
+  details.nav-item-details summary.navsub-toggle::-webkit-details-marker{display:none;}
+  details.nav-item-details summary.navsub-toggle::after{content:"▾"; font-size:8px; transition:transform .15s;}
+  details.nav-item-details[open] summary.navsub-toggle::after{transform:rotate(180deg);}
+  details.nav-item-details summary.navsub-toggle:hover{color:var(--ink-soft); text-decoration:underline;}
+  details.nav-item-details .navsub{margin-top:0;}
+
+  .toc-link{margin-bottom:10px; font-weight:700;}
+
+  @media (max-width: 980px){
+    .map-grid{grid-template-columns:1fr;}
+  }
 </style>
 </head>
 <body>
@@ -318,93 +382,127 @@
       <div>
         <div class="brand-name">So+ma</div>
         <div class="brand-sub">Auditoria de experiência</div>
-        <div class="scope-chip">Caso de uso: conta nova</div>
       </div>
     </div>
 
-    <div class="navgroup">
-      <a class="navlink" href="#resumo"><span class="n">01</span>Resumo executivo</a>
-    </div>
+    <a class="navlink toc-link" href="#resumo">Visão geral e mapa do documento</a>
 
-    <div class="navgroup">
-      <a class="navlink" href="#padroes"><span class="n">02</span>Padrões recorrentes</a>
-      <div class="navsub">
-        <a class="navlink" href="#padrao-navegacao">Navegação sem volta confiável</a>
-        <a class="navlink" href="#padrao-vazios">Estados vazios sem orientação</a>
-        <a class="navlink" href="#padrao-copy">Textos de sistema expostos</a>
-        <a class="navlink" href="#padrao-hierarquia">Repetição e hierarquia</a>
-        <a class="navlink" href="#padrao-pin-duplicado">Controles duplicados</a>
-        <a class="navlink" href="#padrao-nome-destino">Nome de tela x botão</a>
-        <a class="navlink" href="#padrao-emoticon">Emoticons e acessibilidade</a>
-      </div>
-    </div>
+    <details class="nav-scope" open>
+      <summary><span class="scope-chip">Conta nova</span></summary>
 
-    <div class="navgroup-title">Jornada do usuário</div>
-    <div class="navgroup">
-      <a class="navlink" href="#fluxo-cadastro"><span class="n">1</span>Cadastro e onboarding</a>
-      <a class="navlink" href="#fluxo-inicio"><span class="n">2</span>Início, convites, doações e saldo</a>
-      <a class="navlink" href="#fluxo-quiz"><span class="n">3</span>Quiz</a>
-      <a class="navlink" href="#fluxo-impacto"><span class="n">4</span>Meu impacto</a>
-      <a class="navlink" href="#fluxo-buscar"><span class="n">5</span>Buscar material</a>
-      <a class="navlink" href="#fluxo-recompensas"><span class="n">6</span>Minhas recompensas</a>
-      <a class="navlink" href="#fluxo-menu"><span class="n">7</span>Menu e perfil</a>
-    </div>
+      <div class="navgroup">
+        <a class="navlink" href="#resumo"><span class="n">01</span>Resumo executivo</a>
+      </div>
 
-    <div class="navgroup">
-      <a class="navlink" href="#textos"><span class="n">03</span>Revisão de textos</a>
-      <a class="navlink" href="#plano"><span class="n">04</span>Plano de ação</a>
-    </div>
+      <div class="navgroup">
+        <a class="navlink" href="#padroes"><span class="n">02</span>Padrões recorrentes</a>
+        <details class="nav-item-details">
+          <summary class="navsub-toggle">Ver os 7 padrões</summary>
+          <div class="navsub">
+            <a class="navlink" href="#padrao-navegacao">Navegação sem volta confiável</a>
+            <a class="navlink" href="#padrao-vazios">Estados vazios sem orientação</a>
+            <a class="navlink" href="#padrao-copy">Textos de sistema expostos</a>
+            <a class="navlink" href="#padrao-hierarquia">Repetição e hierarquia</a>
+            <a class="navlink" href="#padrao-pin-duplicado">Controles duplicados</a>
+            <a class="navlink" href="#padrao-nome-destino">Nome de tela x botão</a>
+            <a class="navlink" href="#padrao-emoticon">Emoticons e acessibilidade</a>
+          </div>
+        </details>
+      </div>
 
-    <div class="navgroup-title">Central de ajuda &middot; <span class="scope-chip shared mini">Ambos os casos de uso</span></div>
-    <div class="navgroup">
-      <a class="navlink" href="#faqs"><span class="n">05</span>Auditoria de conteúdo (FAQs)</a>
-      <div class="navsub">
-        <a class="navlink" href="#faq-instrucoes">Instruções sem estrutura de lista</a>
-        <a class="navlink" href="#faq-numeracao">Erro de numeração</a>
-        <a class="navlink" href="#faq-whatsapp">Resposta sem link real</a>
-        <a class="navlink" href="#faq-categorias">Categorias inconsistentes</a>
+      <div class="navgroup-title">Jornada do usuário (7 fluxos)</div>
+      <div class="navgroup">
+        <a class="navlink" href="#fluxo-cadastro"><span class="n">1</span>Cadastro e onboarding</a>
+        <a class="navlink" href="#fluxo-inicio"><span class="n">2</span>Início, convites, doações e saldo</a>
+        <a class="navlink" href="#fluxo-quiz"><span class="n">3</span>Quiz</a>
+        <a class="navlink" href="#fluxo-impacto"><span class="n">4</span>Meu impacto</a>
+        <a class="navlink" href="#fluxo-buscar"><span class="n">5</span>Buscar material</a>
+        <a class="navlink" href="#fluxo-recompensas"><span class="n">6</span>Minhas recompensas</a>
+        <a class="navlink" href="#fluxo-menu"><span class="n">7</span>Menu e perfil</a>
       </div>
-    </div>
 
-    <div class="navgroup-title">Caso de uso &middot; <span class="scope-chip existing mini">Conta existente com pontos</span></div>
-    <div class="navgroup">
-      <a class="navlink" href="#conta-existente"><span class="n">06</span>Início, convites, doações e saldo</a>
-      <div class="navsub">
-        <a class="navlink" href="#ce-navegacao">Navegação sem volta confiável</a>
-        <a class="navlink" href="#ce-header">Header não representa o trigger</a>
-        <a class="navlink" href="#ce-ondedoar">"Onde doar" sem conexão com as causas</a>
+      <div class="navgroup">
+        <a class="navlink" href="#textos"><span class="n">03</span>Revisão de textos</a>
+        <a class="navlink" href="#plano"><span class="n">04</span>Plano de ação</a>
       </div>
-      <a class="navlink" href="#ce-quiz"><span class="n">07</span>Quiz</a>
-      <div class="navsub">
-        <a class="navlink" href="#ce-quiz-percentual">Percentual do nível não atualiza</a>
-        <a class="navlink" href="#ce-quiz-modal-campeao">Modal com CTA fora da área visível</a>
-        <a class="navlink" href="#ce-quiz-modal-parabens">Modal sem forma rápida de fechar</a>
+    </details>
+
+    <details class="nav-scope">
+      <summary><span class="scope-chip shared">Central de ajuda</span></summary>
+      <div class="navgroup">
+        <a class="navlink" href="#faqs">Auditoria de conteúdo (FAQs)</a>
+        <details class="nav-item-details">
+          <summary class="navsub-toggle">Ver os 4 achados</summary>
+          <div class="navsub">
+            <a class="navlink" href="#faq-instrucoes">Instruções sem estrutura de lista</a>
+            <a class="navlink" href="#faq-numeracao">Erro de numeração</a>
+            <a class="navlink" href="#faq-whatsapp">Resposta sem link real</a>
+            <a class="navlink" href="#faq-categorias">Categorias inconsistentes</a>
+          </div>
+        </details>
       </div>
-      <a class="navlink" href="#ce-impacto"><span class="n">08</span>Meu impacto</a>
-      <div class="navsub">
-        <a class="navlink" href="#ce-impacto-navegacao">Retorno incorreto ao Início</a>
-        <a class="navlink" href="#ce-impacto-zerado">Métricas zeradas tratadas como dado real</a>
-        <a class="navlink" href="#ce-impacto-texto">Capitalização e formatação numérica</a>
+    </details>
+
+    <details class="nav-scope">
+      <summary><span class="scope-chip existing">Conta existente com pontos</span></summary>
+      <div class="navgroup-title">6 partes, uma por jornada</div>
+      <div class="navgroup">
+        <a class="navlink" href="#conta-existente"><span class="n">1</span>Início, convites, doações e saldo</a>
+        <details class="nav-item-details">
+          <summary class="navsub-toggle">Ver 3 achados</summary>
+          <div class="navsub">
+            <a class="navlink" href="#ce-navegacao">Navegação sem volta confiável</a>
+            <a class="navlink" href="#ce-header">Header não representa o trigger</a>
+            <a class="navlink" href="#ce-ondedoar">"Onde doar" sem conexão com as causas</a>
+          </div>
+        </details>
+        <a class="navlink" href="#ce-quiz"><span class="n">2</span>Quiz</a>
+        <details class="nav-item-details">
+          <summary class="navsub-toggle">Ver 3 achados</summary>
+          <div class="navsub">
+            <a class="navlink" href="#ce-quiz-percentual">Percentual do nível não atualiza</a>
+            <a class="navlink" href="#ce-quiz-modal-campeao">Modal com CTA fora da área visível</a>
+            <a class="navlink" href="#ce-quiz-modal-parabens">Modal sem forma rápida de fechar</a>
+          </div>
+        </details>
+        <a class="navlink" href="#ce-impacto"><span class="n">3</span>Meu impacto</a>
+        <details class="nav-item-details">
+          <summary class="navsub-toggle">Ver 3 achados</summary>
+          <div class="navsub">
+            <a class="navlink" href="#ce-impacto-navegacao">Retorno incorreto ao Início</a>
+            <a class="navlink" href="#ce-impacto-zerado">Métricas zeradas tratadas como dado real</a>
+            <a class="navlink" href="#ce-impacto-texto">Capitalização e formatação numérica</a>
+          </div>
+        </details>
+        <a class="navlink" href="#ce-buscar"><span class="n">4</span>Buscar material</a>
+        <details class="nav-item-details">
+          <summary class="navsub-toggle">Ver 3 achados</summary>
+          <div class="navsub">
+            <a class="navlink" href="#ce-buscar-navegacao">Navegação sem volta confiável</a>
+            <a class="navlink" href="#ce-buscar-incorreta">Busca retorna materiais incorretos</a>
+            <a class="navlink" href="#ce-buscar-hierarquia">Repetição, hierarquia e "Outros Nomes"</a>
+          </div>
+        </details>
+        <a class="navlink" href="#ce-recompensas"><span class="n">5</span>Minhas recompensas</a>
+        <details class="nav-item-details">
+          <summary class="navsub-toggle">Ver 2 achados</summary>
+          <div class="navsub">
+            <a class="navlink" href="#ce-recompensas-header">Headers inconsistentes entre telas</a>
+            <a class="navlink" href="#ce-recompensas-emoticon">Emoticon em "não há casas na cidade"</a>
+          </div>
+        </details>
+        <a class="navlink" href="#ce-menu"><span class="n">6</span>Menu e footer</a>
+        <details class="nav-item-details">
+          <summary class="navsub-toggle">Ver 4 achados</summary>
+          <div class="navsub">
+            <a class="navlink" href="#ce-menu-deletar">"Deletar conta" sem proteção</a>
+            <a class="navlink" href="#ce-menu-duplicado">Item duplicado no Histórico</a>
+            <a class="navlink" href="#ce-menu-cartao">"Meu cartão" sem contexto de uso</a>
+            <a class="navlink" href="#ce-menu-agrupamento">Menu sem agrupamento visual</a>
+          </div>
+        </details>
       </div>
-      <a class="navlink" href="#ce-buscar"><span class="n">09</span>Buscar material</a>
-      <div class="navsub">
-        <a class="navlink" href="#ce-buscar-navegacao">Navegação sem volta confiável</a>
-        <a class="navlink" href="#ce-buscar-incorreta">Busca retorna materiais incorretos</a>
-        <a class="navlink" href="#ce-buscar-hierarquia">Repetição, hierarquia e "Outros Nomes"</a>
-      </div>
-      <a class="navlink" href="#ce-recompensas"><span class="n">10</span>Minhas recompensas</a>
-      <div class="navsub">
-        <a class="navlink" href="#ce-recompensas-header">Headers inconsistentes entre telas</a>
-        <a class="navlink" href="#ce-recompensas-emoticon">Emoticon em "não há casas na cidade"</a>
-      </div>
-      <a class="navlink" href="#ce-menu"><span class="n">11</span>Menu e footer</a>
-      <div class="navsub">
-        <a class="navlink" href="#ce-menu-deletar">"Deletar conta" sem proteção</a>
-        <a class="navlink" href="#ce-menu-duplicado">Item duplicado no Histórico</a>
-        <a class="navlink" href="#ce-menu-cartao">"Meu cartão" sem contexto de uso</a>
-        <a class="navlink" href="#ce-menu-agrupamento">Menu sem agrupamento visual</a>
-      </div>
-    </div>
+    </details>
   </nav>
 
   <!-- ============ MAIN ============ -->
@@ -412,13 +510,12 @@
 
     <header class="hero">
       <div class="hero-kicker">Auditoria de experiência · App So+ma</div>
-      <div class="hero-scope">Caso de uso · Conta nova</div>
-      <h1>Uma jornada completa pela conta nova, do primeiro cadastro ao resgate de recompensas.</h1>
-      <p class="lede">Este material reúne, para quem está criando uma conta agora, os problemas críticos, os padrões que se repetem em várias partes do app e as oportunidades de melhoria encontradas ao percorrer essa jornada do início ao fim, com propostas de solução e critérios de aceite prontos para entrar em desenvolvimento.</p>
+      <h1>Da criação da conta ao uso recorrente: uma auditoria completa da experiência So+ma.</h1>
+      <p class="lede">Este material cobre os dois casos de uso do app (quem está criando uma conta agora e quem já usa o app com pontos acumulados) mais a Central de Ajuda, compartilhada entre os dois. Cada achado vem com proposta de solução e critério de aceite, prontos para entrar em desenvolvimento.</p>
       <div class="hero-meta">
-        <div><strong>Conta nova</strong>Caso de uso analisado</div>
+        <div><strong>2 casos de uso</strong>Conta nova e conta existente</div>
+        <div><strong>13 jornadas</strong>7 + 6, mapeadas por completo</div>
         <div><strong>Matheus Policarpo</strong>Análise de experiência</div>
-        <div><strong>7 fluxos</strong>Cadastro ao Menu</div>
         <div><strong>Agosto 2026</strong>Data da análise</div>
       </div>
     </header>
@@ -427,15 +524,56 @@
     <section id="resumo">
       <div class="section-kicker">Visão geral</div>
       <h2 class="section-title">Resumo executivo</h2>
-      <p class="section-intro">O app tem uma base sólida (onboarding gamificado, sistema de pontos, quiz educativo, doação de pontos e catálogo de recompensas), mas a experiência perde consistência nos detalhes: navegação que não volta para onde o usuário estava, estados vazios que não orientam o próximo passo e informações internas do sistema aparecendo como se fossem conteúdo real para quem está usando o app.</p>
+      <p class="section-intro">O app tem uma base sólida (onboarding gamificado, sistema de pontos, quiz educativo, doação de pontos e catálogo de recompensas), mas perde consistência nos detalhes: navegação que não volta para onde o usuário estava, estados vazios sem orientação e informações internas do sistema aparecendo como se fossem conteúdo real.</p>
 
-      <div class="scope-panel">
-        <h3>Escopo desta auditoria</h3>
-        <p>Este documento cobre o caso de uso de <strong>conta nova</strong>: da criação da conta até os primeiros contatos com pontos, doações e recompensas. Ele não inclui o comportamento de contas já existentes, com histórico de reciclagem e saldo acumulado. Esse é um caso de uso diferente, com outras telas e outros estados.</p>
-        <p>A auditoria de contas existentes com pontos é documentada separadamente, como um material próprio, seguindo esta mesma estrutura, para que os dois casos de uso nunca fiquem misturados no mesmo material. Essa segunda auditoria já começou: a primeira parte, cobrindo Início, Convidar amigos, Doe seus pontos e Saldo, está disponível na área "Caso de uso: conta existente com pontos", na barra lateral. Os demais fluxos entram em partes seguintes.</p>
-        <p>Alguns achados críticos se repetem nos dois casos de uso, porque usam exatamente as mesmas telas. Sempre que isso acontece, o achado leva uma marcação <span class="cross-tag">Também em: conta existente</span> ou é referenciado diretamente na outra auditoria, para que quem ler qualquer uma das duas entenda que o problema não é exclusivo dela.</p>
+      <div class="map-grid">
+        <a class="map-card" href="#fluxo-cadastro">
+          <span class="map-chip">Caso de uso</span>
+          <h3>Conta nova</h3>
+          <p>Da criação da conta até os primeiros contatos com pontos, doações e recompensas.</p>
+          <div class="map-stats">
+            <div class="map-stat"><strong>23</strong><span>críticos</span></div>
+            <div class="map-stat"><strong>13</strong><span>melhorias</span></div>
+            <div class="map-stat"><strong>7</strong><span>fluxos</span></div>
+          </div>
+          <div class="map-cta">Começar por aqui &rarr;</div>
+        </a>
+        <a class="map-card existing" href="#conta-existente">
+          <span class="map-chip">Caso de uso</span>
+          <h3>Conta existente com pontos</h3>
+          <p>Quem já usa o app, com saldo, histórico de reciclagem e resgates reais.</p>
+          <div class="map-stats">
+            <div class="map-stat"><strong>21</strong><span>críticos</span></div>
+            <div class="map-stat"><strong>14</strong><span>importantes</span></div>
+            <div class="map-stat"><strong>6</strong><span>partes</span></div>
+          </div>
+          <div class="map-cta">Ver conta existente &rarr;</div>
+        </a>
+        <a class="map-card shared" href="#faqs">
+          <span class="map-chip">Conteúdo compartilhado</span>
+          <h3>Central de ajuda (FAQs)</h3>
+          <p>Perguntas frequentes, iguais para os dois casos de uso acima.</p>
+          <div class="map-stats">
+            <div class="map-stat"><strong>50</strong><span>telas revisadas</span></div>
+            <div class="map-stat"><strong>11</strong><span>erros de texto</span></div>
+          </div>
+          <div class="map-cta">Ver Central de ajuda &rarr;</div>
+        </a>
       </div>
 
+      <div class="scope-panel">
+        <h3>Como este documento é organizado</h3>
+        <p>O material é dividido nos dois casos de uso acima, cada um em sua própria área da barra lateral, para nunca misturar as duas experiências. Quando um achado crítico se repete nos dois porque vem exatamente da mesma tela, ele recebe a marcação <span class="cross-tag">Também em: conta existente</span> no card original, em vez de ser duplicado.</p>
+        <details class="scope-detail">
+          <summary>Ver mais sobre a divisão dos casos de uso</summary>
+          <div class="scope-detail-body">
+            <p>A auditoria de conta nova (seções 01 a 04 na barra lateral) documenta a jornada de quem está criando uma conta agora, da tela de cadastro até o primeiro resgate de recompensas. Ela não cobre o comportamento de contas já existentes, com histórico e saldo acumulado: esse é um caso de uso diferente, com outras telas e outros estados.</p>
+            <p>A auditoria de conta existente com pontos está na área "Conta existente com pontos" da barra lateral, dividida em 6 partes (uma por jornada), seguindo a mesma estrutura desta auditoria de conta nova.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="kicker-inline">Detalhamento &middot; Conta nova</div>
       <div class="stat-grid">
         <div class="stat-card indigo">
           <div class="stat-num">7</div>
@@ -1300,7 +1438,13 @@
 
       <div class="scope-panel shared">
         <h3>Por que essa seção é separada</h3>
-        <p>O restante deste documento audita a jornada de quem está criando uma conta agora. A Central de Ajuda, no entanto, é um conteúdo único e compartilhado: a mesma pergunta, a mesma resposta e o mesmo texto aparecem para qualquer pessoa que abrir o app, hoje ou depois de meses de uso. Documentar essas telas dentro da jornada de conta nova misturaria os dois escopos. Por isso elas ganham uma área própria, e devem ser lidas como um núcleo à parte, válido para a auditoria de contas existentes que ainda será incorporada a este documento.</p>
+        <p>A Central de Ajuda é conteúdo único e compartilhado: a mesma pergunta, a mesma resposta e o mesmo texto aparecem para qualquer pessoa que abrir o app, seja conta nova ou conta existente. Por isso ela tem uma área própria, fora das duas jornadas.</p>
+        <details class="scope-detail">
+          <summary>Por que isso importa</summary>
+          <div class="scope-detail-body">
+            <p>Documentar essas telas dentro de uma das duas jornadas misturaria os escopos: os achados aqui valem tanto para quem está criando uma conta agora quanto para quem já usa o app com pontos acumulados, e devem ser lidos como um núcleo à parte, válido para os dois casos de uso.</p>
+          </div>
+        </details>
       </div>
 
       <div class="stat-grid">
@@ -1536,8 +1680,14 @@
 
       <div class="scope-panel existing">
         <h3>Como esta parte se relaciona com a auditoria de conta nova</h3>
-        <p>Boa parte da experiência de Início, convidar amigos, doação de pontos e saldo é a mesma interface usada na jornada de conta nova, então vários achados críticos se repetem nos dois materiais porque vêm exatamente da mesma tela. Quando isso acontece, o achado aqui aparece como uma referência direta ao padrão ou à tela já documentada na auditoria de conta nova, em vez de repetir a mesma explicação duas vezes; e o achado equivalente na auditoria de conta nova recebe a marcação <span class="cross-tag">Também em: conta existente</span> para deixar claro que o problema não é exclusivo de um único caso de uso.</p>
-        <p>Os cartões de instituição da doação de pontos (Instituto TMO, UOSC e EquoSorriso) também são conteúdo compartilhado entre as duas jornadas: qualquer correção de texto nessas telas vale para os dois casos de uso e só precisa ser aplicada uma vez.</p>
+        <p>Boa parte desta jornada usa a mesma interface da conta nova, então os achados repetidos aparecem aqui como referência direta ao card já documentado lá, marcado com <span class="cross-tag">Também em: conta existente</span>.</p>
+        <details class="scope-detail">
+          <summary>Ver a explicação completa</summary>
+          <div class="scope-detail-body">
+            <p>Vários achados críticos se repetem nos dois materiais porque vêm exatamente da mesma tela. Quando isso acontece, o achado aqui aparece como uma referência direta ao padrão ou à tela já documentada na auditoria de conta nova, em vez de repetir a mesma explicação duas vezes; e o achado equivalente na auditoria de conta nova recebe a marcação <span class="cross-tag">Também em: conta existente</span> para deixar claro que o problema não é exclusivo de um único caso de uso.</p>
+            <p>Os cartões de instituição da doação de pontos (Instituto TMO, UOSC e EquoSorriso) também são conteúdo compartilhado entre as duas jornadas: qualquer correção de texto nessas telas vale para os dois casos de uso e só precisa ser aplicada uma vez.</p>
+          </div>
+        </details>
       </div>
 
       <div class="stat-grid">
@@ -1993,7 +2143,13 @@
 
       <div class="scope-panel existing">
         <h3>Como esta parte se relaciona com a auditoria de conta nova</h3>
-        <p>A tela de Meu Impacto e o ranking já aparecem na auditoria de conta nova, incluindo o estado "Sua posição: Nenhuma" e o desalinhamento da aba ativa do ranking. Esses achados não são repetidos aqui: eles recebem a marcação <span class="cross-tag">Também em: conta existente</span> na auditoria de conta nova, e esta parte foca no que essa jornada acrescenta, principalmente sobre navegação e sobre como o app trata métricas zeradas.</p>
+        <p>Meu Impacto e o ranking já estão documentados na conta nova, marcados lá com <span class="cross-tag">Também em: conta existente</span>; esta parte foca no que é novo aqui: navegação e como o app trata métricas zeradas.</p>
+        <details class="scope-detail">
+          <summary>Ver a explicação completa</summary>
+          <div class="scope-detail-body">
+            <p>A tela de Meu Impacto e o ranking já aparecem na auditoria de conta nova, incluindo o estado "Sua posição: Nenhuma" e o desalinhamento da aba ativa do ranking. Esses achados não são repetidos aqui: eles recebem a marcação <span class="cross-tag">Também em: conta existente</span> na auditoria de conta nova, e esta parte foca no que essa jornada acrescenta, principalmente sobre navegação e sobre como o app trata métricas zeradas.</p>
+          </div>
+        </details>
       </div>
 
       <div class="stat-grid">
@@ -2196,7 +2352,13 @@
 
       <div class="scope-panel existing">
         <h3>Como esta parte se relaciona com a auditoria de conta nova</h3>
-        <p>O catálogo de materiais já aparece na auditoria de conta nova, incluindo a repetição do nome do material nas telas de detalhe, a hierarquia visual invertida entre categoria e material, e materiais sem foto. Esses achados não são repetidos aqui: eles recebem a marcação <span class="cross-tag">Também em: conta existente</span> na auditoria de conta nova, e esta parte foca no que essa jornada acrescenta, principalmente sobre confiabilidade da busca por nome.</p>
+        <p>O catálogo de materiais já está documentado na conta nova, marcado lá com <span class="cross-tag">Também em: conta existente</span>; esta parte foca no que é novo aqui: a confiabilidade da busca por nome.</p>
+        <details class="scope-detail">
+          <summary>Ver a explicação completa</summary>
+          <div class="scope-detail-body">
+            <p>O catálogo de materiais já aparece na auditoria de conta nova, incluindo a repetição do nome do material nas telas de detalhe, a hierarquia visual invertida entre categoria e material, e materiais sem foto. Esses achados não são repetidos aqui: eles recebem a marcação <span class="cross-tag">Também em: conta existente</span> na auditoria de conta nova, e esta parte foca no que essa jornada acrescenta, principalmente sobre confiabilidade da busca por nome.</p>
+          </div>
+        </details>
       </div>
 
       <div class="stat-grid">
@@ -2471,7 +2633,13 @@
 
       <div class="scope-panel existing">
         <h3>Como esta parte se relaciona com a auditoria de conta nova</h3>
-        <p>Esta é a jornada com a maior sobreposição já vista entre os dois casos de uso: o catálogo de recompensas usa exatamente os mesmos componentes e, em grande parte, o mesmo conteúdo já auditado em <a class="see-pattern" style="display:inline; margin:0;" href="#fluxo-recompensas">Minhas recompensas na conta nova</a>, que já documenta 8 problemas críticos e 3 melhorias. Todos os 8 críticos e as 3 melhorias reaparecem também com uma conta que tem saldo e histórico reais, e recebem a marcação <span class="cross-tag">Também em: conta existente</span> nos cards originais, listados de novo aqui de forma resumida. A tela de Detalhe do extrato (Saldo), com o mesmo problema de navegação, já tinha sido documentada na <a class="see-pattern" style="display:inline; margin:0;" href="#ce-navegacao">parte 1 desta auditoria</a> e não é repetida aqui. Da revisão de textos, 8 dos 13 erros encontrados nesta parte já estavam na tabela de conta nova (marcados agora como também presentes aqui); esta parte foca no que é genuinamente novo: a inconsistência de padrão entre os cabeçalhos das telas do fluxo, mais uma ocorrência do emoticon em texto, e os erros ortográficos que ainda não tinham sido pegos.</p>
+        <p>É a jornada com mais sobreposição entre os dois casos de uso: os 8 críticos e as 3 melhorias de <a class="see-pattern" style="display:inline; margin:0;" href="#fluxo-recompensas">Minhas recompensas na conta nova</a> reaparecem aqui só como confirmação; o novo é a inconsistência de cabeçalhos e mais erros de texto.</p>
+        <details class="scope-detail">
+          <summary>Ver a explicação completa</summary>
+          <div class="scope-detail-body">
+            <p>O catálogo de recompensas usa exatamente os mesmos componentes e, em grande parte, o mesmo conteúdo já auditado em <a class="see-pattern" style="display:inline; margin:0;" href="#fluxo-recompensas">Minhas recompensas na conta nova</a>, que já documenta 8 problemas críticos e 3 melhorias. Todos os 8 críticos e as 3 melhorias reaparecem também com uma conta que tem saldo e histórico reais, e recebem a marcação <span class="cross-tag">Também em: conta existente</span> nos cards originais, listados de novo aqui de forma resumida. A tela de Detalhe do extrato (Saldo), com o mesmo problema de navegação, já tinha sido documentada na <a class="see-pattern" style="display:inline; margin:0;" href="#ce-navegacao">parte 1 desta auditoria</a> e não é repetida aqui. Da revisão de textos, 8 dos 13 erros encontrados nesta parte já estavam na tabela de conta nova (marcados agora como também presentes aqui); esta parte foca no que é genuinamente novo: a inconsistência de padrão entre os cabeçalhos das telas do fluxo, mais uma ocorrência do emoticon em texto, e os erros ortográficos que ainda não tinham sido pegos.</p>
+          </div>
+        </details>
       </div>
 
       <div class="stat-grid">
@@ -2621,7 +2789,13 @@
 
       <div class="scope-panel existing">
         <h3>Como esta parte se relaciona com a auditoria de conta nova</h3>
-        <p>A jornada de Menu e perfil na conta nova (<a class="see-pattern" style="display:inline; margin:0;" href="#fluxo-menu">ver seção</a>) é enxuta, quase só links de referência para os padrões recorrentes de navegação e estados vazios, sem cards de achado próprios. Por isso esta parte tem uma proporção maior de conteúdo novo do que as partes anteriores: com uma conta que tem cartão, histórico de resgates e extrato reais, aparecem problemas que uma conta nova, sem uso, não expõe, como o item duplicado no histórico e a ausência de contexto na tela do cartão. Dois pontos já documentados na conta nova reaparecem aqui e recebem a marcação <span class="cross-tag">Também em: conta existente</span> nos cards originais: a falta de índice navegável no Regulamento e na Política de Privacidade, e o erro ortográfico "kilos" em vez de "quilos" na tela Meu Impacto. Da revisão de textos, 2 dos 10 erros encontrados ("kilos" e o separador decimal de "9,23%") já tinham sido corrigidos na auditoria de Meu Impacto (parte 3) e não repetem aqui; os outros 8 são novos.</p>
+        <p>O menu da conta nova (<a class="see-pattern" style="display:inline; margin:0;" href="#fluxo-menu">ver seção</a>) é enxuto, então esta parte tem mais conteúdo novo que as anteriores, como o item duplicado no histórico e a falta de contexto no cartão.</p>
+        <details class="scope-detail">
+          <summary>Ver a explicação completa</summary>
+          <div class="scope-detail-body">
+            <p>A jornada de Menu e perfil na conta nova é quase só links de referência para os padrões recorrentes de navegação e estados vazios, sem cards de achado próprios. Por isso esta parte tem uma proporção maior de conteúdo novo do que as partes anteriores: com uma conta que tem cartão, histórico de resgates e extrato reais, aparecem problemas que uma conta nova, sem uso, não expõe, como o item duplicado no histórico e a ausência de contexto na tela do cartão. Dois pontos já documentados na conta nova reaparecem aqui e recebem a marcação <span class="cross-tag">Também em: conta existente</span> nos cards originais: a falta de índice navegável no Regulamento e na Política de Privacidade, e o erro ortográfico "kilos" em vez de "quilos" na tela Meu Impacto. Da revisão de textos, 2 dos 10 erros encontrados ("kilos" e o separador decimal de "9,23%") já tinham sido corrigidos na auditoria de Meu Impacto (parte 3) e não repetem aqui; os outros 8 são novos.</p>
+          </div>
+        </details>
       </div>
 
       <div class="stat-grid">
@@ -2843,10 +3017,11 @@
 </div>
 
 <script>
-  // active link highlighting
+  // active link highlighting + sidebar accordion (progressive disclosure)
   const links = Array.from(document.querySelectorAll('.sidebar .navlink'));
   const targets = links.map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
   const map = new Map(targets.map((t,i) => [t, links[i]]));
+  const scopeDetails = Array.from(document.querySelectorAll('.sidebar > details.nav-scope'));
 
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -2855,11 +3030,34 @@
       if(entry.isIntersecting){
         links.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
+
+        // auto-expand the disclosure panels this link lives in
+        const openAncestors = [];
+        let el = link.parentElement;
+        while(el){
+          if(el.tagName === 'DETAILS'){ el.open = true; openAncestors.push(el); }
+          el = el.parentElement;
+        }
+        // keep the sidebar tidy: collapse sibling scope groups and sibling journeys
+        document.querySelectorAll('.sidebar details.nav-item-details').forEach(d => {
+          if(!openAncestors.includes(d)) d.open = false;
+        });
+        scopeDetails.forEach(d => {
+          if(!openAncestors.includes(d)) d.open = false;
+        });
       }
     });
   }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
 
   targets.forEach(t => obs.observe(t));
+
+  // clicking the "toc-link" always opens the Conta nova group (where #resumo lives)
+  const tocLink = document.querySelector('.toc-link');
+  if(tocLink){
+    tocLink.addEventListener('click', () => {
+      if(scopeDetails[0]) scopeDetails[0].open = true;
+    });
+  }
 </script>
 
 </body>
