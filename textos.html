@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revisão de textos · Auditoria de experiência · App So+ma</title>
+<meta name="description" content="Auditoria de experiência do app So+ma: 13 jornadas mapeadas, achados priorizados, propostas de solução e critérios de aceite.">
+<meta name="theme-color" content="#FBFAF7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+<div class="progress" id="progress" role="presentation"></div>
+
+<div class="sticky-top">
+<header class="site-header">
+  <nav class="site-nav" aria-label="Seções da auditoria">
+    <ul class="tabs">
+      <li><a class="tab" href="index.html"><span class="tab-n">01</span>Visão geral</a></li>
+      <li><a class="tab" href="padroes.html"><span class="tab-n">02</span>Padrões recorrentes</a></li>
+      <li><a class="tab" href="conta-nova.html"><span class="tab-n">03</span>Conta nova</a></li>
+      <li><a class="tab" href="conta-existente.html"><span class="tab-n">04</span>Conta com pontos</a></li>
+      <li><a class="tab" href="ajuda.html"><span class="tab-n">05</span>Central de ajuda</a></li>
+      <li><a class="tab" href="textos.html" aria-current="page"><span class="tab-n">06</span>Revisão de textos</a></li>
+      <li><a class="tab" href="plano.html"><span class="tab-n">07</span>Plano de ação</a></li>
+    </ul>
+  </nav>
+</header>
+
+</div>
+<main id="conteudo">
+    <div class="page-hero">
+      <div class="page-hero-inner">
+        <p class="breadcrumb"><a href="index.html">Visão geral</a> · Conteúdo</p>
+        <h1>Revisão de textos</h1>
+        <p class="lede">Ajustes de microcopy prontos para aplicar, organizados pelo ponto do app onde aparecem.</p>
+      </div>
+    </div>
+<section id="textos">
+
+      <div class="table-wrap" role="region" tabindex="0" aria-label="Tabela de ajustes de texto (rolável na horizontal)"><table class="writing-table">
+        <thead>
+          <tr><th style="width:14%;">Onde</th><th style="width:34%;">Texto atual</th><th style="width:38%;">Texto sugerido</th><th style="width:14%;">Motivo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="flow-tag">Cadastro</td><td class="old-text">"Clique abaixo para copiar o código ou compartilhe o link de cadatsro"</td><td class="new-text">"Toque no código para copiar, ou compartilhe seu link de cadastro."</td><td>Corrige erro de digitação e usa o verbo certo para toque</td></tr>
+          <tr><td class="flow-tag">Cadastro</td><td class="old-text">"Clique para copiar"</td><td class="new-text">"Toque para copiar"</td><td>Verbo adequado para mobile</td></tr>
+          <tr><td class="flow-tag">Cadastro</td><td class="old-text">"Olá, tudo bom? Vamos começar pelo seu nome e data de nascimento."</td><td class="new-text">"Vamos começar: seu nome e data de nascimento"</td><td>Remove pergunta sem resposta possível</td></tr>
+          <tr><td class="flow-tag">Cadastro</td><td class="old-text">"Agora precisamos que informe o seu CPF."</td><td class="new-text">"Agora, informe seu CPF"</td><td>Corrige construção truncada</td></tr>
+          <tr><td class="flow-tag">Cadastro</td><td class="old-text">"Cadastro Concluído, Tendo começado, você já deu o maior passo..."</td><td class="new-text">"Cadastro concluído, você já deu o primeiro passo para começar a reciclar"</td><td>Corrige gerúndio truncado e capitalização</td></tr>
+          <tr><td class="flow-tag">Início</td><td class="old-text">"Entregando em Sem preferência de espaço"</td><td class="new-text">"Adicione seu local de entrega"</td><td>Vira um convite à ação em vez de expor o valor interno do sistema</td></tr>
+          <tr><td class="flow-tag">Início</td><td class="old-text">"Infelizmente ainda não há unidades nessa região"</td><td class="new-text">"Ainda não chegamos à sua região, tente outro endereço"</td><td>Remove o tom derrotista e sugere uma próxima ação</td></tr>
+          <tr><td class="flow-tag">Saldo</td><td class="old-text">"0 pontos irão expirar em (0 dias restantes)"</td><td class="new-text">Ocultar a linha quando não há pontos a expirar</td><td>Elimina texto de sistema sem sentido para o usuário</td></tr>
+          <tr><td class="flow-tag">Saldo</td><td class="old-text">"Você não tem pontos a expirar"</td><td class="new-text">"Faça sua primeira entrega e comece a pontuar"</td><td>Transforma aviso neutro em incentivo</td></tr>
+          <tr><td class="flow-tag">Meu impacto</td><td class="old-text">"Sua posição: Nenhuma"</td><td class="new-text">"Você ainda não está no ranking, faça sua primeira entrega para aparecer aqui"</td><td>Corrige a semântica do estado vazio</td></tr>
+          <tr><td class="flow-tag">Quiz</td><td class="old-text">"Acerte a pergunta do dia pra avançar no seu nível!"</td><td class="new-text">"Acerte a pergunta do dia para avançar de nível."</td><td>Ajuste de formalidade e construção</td></tr>
+          <tr><td class="flow-tag">Buscar material</td><td class="old-text">"Confira o material reciclável que pode ser entregue / Busque o material desejado..."</td><td class="new-text">"Busque um material ou explore por categoria"</td><td>Remove redundância entre título e subtítulo, mantém a instrução de ação</td></tr>
+          <tr><td class="flow-tag">Buscar material</td><td class="old-text">"Outros Nomes"</td><td class="new-text">"Materiais semelhantes"</td><td>Nome mais claro; ocultar o título quando a seção estiver vazia</td></tr>
+          <tr><td class="flow-tag">Menu</td><td class="old-text">"Você ainda não resgatou recompensas"</td><td class="new-text">Manter mensagem, adicionar ação "Ver recompensas"</td><td>Estado vazio passa a orientar o próximo passo</td></tr>
+          <tr><td class="flow-tag">Menu</td><td class="old-text">"Nada por aqui no momento."</td><td class="new-text">"Você ainda não tem movimentações, recicle para ganhar seus primeiros pontos"</td><td>Estado vazio orientado à primeira ação</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3 style="font-size:17px; font-weight:800; color:var(--ink); margin:44px 0 8px;">Revisão ortográfica e gramatical</h3>
+      <p class="section-intro" style="margin-bottom:20px;">Uma revisão linha a linha dos textos que já existem no app, cobrindo acentuação, concordância, crase, pontuação e pequenas inconsistências de termos. São ajustes de precisão da língua portuguesa, e não decisões de copy, por isso ficam separados da tabela acima.</p>
+
+      <div class="table-wrap" role="region" tabindex="0" aria-label="Tabela de ajustes de texto (rolável na horizontal)"><table class="writing-table">
+        <thead>
+          <tr><th style="width:12%;">Fluxo</th><th style="width:16%;">Tela</th><th style="width:32%;">Encontrado</th><th style="width:30%;">Correção</th><th style="width:10%;">Tipo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="flow-tag">Diversos</td><td>Saudação inicial (Início, Quiz, Meu impacto, Buscar material)</td><td class="old-text">"Olá Policarpo"</td><td class="new-text">"Olá, Policarpo" (vírgula de vocativo em todas as telas)</td><td>Pontuação, recorrente em 4 telas</td></tr>
+          <tr><td class="flow-tag">Início</td><td>Instituto TMO (card de doação)</td><td class="old-text">"que vem a Curitiba"; "beneficios" (2x); "nosso trabalho seja possiv el"; espaço duplo antes de "Oferecemos apoio"</td><td class="new-text">"que vêm a Curitiba"; "benefícios"; "possível"; remover o espaço extra</td><td>Ortografia e gramática</td></tr>
+          <tr><td class="flow-tag">Início</td><td>UOSC (card de doação)</td><td class="old-text">"publico alvo"; "Este apoio também importante"</td><td class="new-text">"público-alvo"; "Este apoio é também importante"</td><td>Ortografia e gramática</td></tr>
+          <tr><td class="flow-tag">Início</td><td>Equo Sorriso (card de doação)</td><td class="old-text">Espaço duplo antes de "Na época a Fundadora"</td><td class="new-text">Remover o espaço extra</td><td>Pontuação</td></tr>
+          <tr><td class="flow-tag">Quiz</td><td>Modal "Seja um Campeão da Reciclagem"</td><td class="old-text">"você perde a ultima medalha"</td><td class="new-text">"você perde a última medalha"</td><td>Ortografia</td></tr>
+          <tr><td class="flow-tag">Quiz</td><td>Modal "Parabéns! Resposta correta!"</td><td class="old-text">"Volte amanhã para responder a próxima!"</td><td class="new-text">"Volte amanhã para responder à próxima!"</td><td>Crase</td></tr>
+          <tr><td class="flow-tag">Quiz</td><td>Tela do quiz respondido (2 telas)</td><td class="old-text">"Você já respondeu a pergunta do dia."</td><td class="new-text">"Você já respondeu à pergunta do dia."</td><td>Crase</td></tr>
+          <tr><td class="flow-tag">Quiz</td><td>Convidar amigos (toast)</td><td class="old-text">"código copiado com sucesso"</td><td class="new-text">"Código copiado com sucesso"</td><td>Consistência</td></tr>
+          <tr><td class="flow-tag">Meu impacto</td><td>Ranking (Este mês / Últimos 12 meses)</td><td class="old-text">"Para começar a participar do ranking faça entrega..."</td><td class="new-text">"Para começar a participar do ranking, faça entrega..."</td><td>Pontuação</td></tr>
+          <tr><td class="flow-tag">Meu impacto <span class="cross-tag" style="margin-left:6px;">Também em: conta existente</span></td><td>"Como é calculado o Ranking?"</td><td class="old-text">"com base na soma no total de quilos..."</td><td class="new-text">"com base no total de quilos..."</td><td>Regência e redundância</td></tr>
+          <tr><td class="flow-tag">Meu impacto <span class="cross-tag" style="margin-left:6px;">Também em: conta existente</span></td><td>Modal Compartilhar impacto</td><td class="old-text">"Kgs reciclados"</td><td class="new-text">"Kg reciclados" (símbolo de unidade é invariável)</td><td>Ortografia</td></tr>
+          <tr><td class="flow-tag">Meu impacto</td><td>Cards de impacto (água / energia)</td><td class="old-text">"Equivale a..." e "Equivalente a..." sem padrão</td><td class="new-text">Padronizar em "Equivalente a..." em todos os cards</td><td>Consistência</td></tr>
+          <tr><td class="flow-tag">Meu impacto</td><td>Cards de impacto (todos)</td><td class="old-text">"Isso equivale a..." e "Equivale a..." sem padrão</td><td class="new-text">Padronizar o início da frase em todos os cards</td><td>Consistência</td></tr>
+          <tr><td class="flow-tag">Meu impacto</td><td>Ranking vazio</td><td class="old-text">"...fique atento às atualizações sobre novos espaços" (sem ponto final)</td><td class="new-text">Adicionar o ponto final</td><td>Pontuação</td></tr>
+          <tr><td class="flow-tag">Buscar material</td><td>Início (missão 8/8)</td><td class="old-text">"8 de 8 etapas completos"</td><td class="new-text">"8 de 8 etapas completas"</td><td>Concordância</td></tr>
+          <tr><td class="flow-tag">Buscar material</td><td>Detalhe: Cápsula de Café</td><td class="old-text">"Esse tipo de cápsula é feita de alumínio"</td><td class="new-text">"...é feito de alumínio"</td><td>Concordância</td></tr>
+          <tr><td class="flow-tag">Buscar material</td><td>Detalhe: Vidro</td><td class="old-text">"lâmpadas fluorescentes contém mercúrio"; "Limpe os residuos"</td><td class="new-text">"...contêm mercúrio"; "resíduos"</td><td>Concordância e ortografia</td></tr>
+          <tr><td class="flow-tag">Buscar material</td><td>Detalhe: Plástico Duro, Papel e Papelão, Plástico Mole (3 telas)</td><td class="old-text">"Certifique-se/lembre-se que..."</td><td class="new-text">"Certifique-se/lembre-se de que..."</td><td>Regência verbal</td></tr>
+          <tr><td class="flow-tag">Buscar material</td><td>Detalhe: Papel e Papelão</td><td class="old-text">"...leve, limpo , em uma bag" (espaço antes da vírgula)</td><td class="new-text">"...leve, limpo, em uma bag"</td><td>Pontuação</td></tr>
+          <tr><td class="flow-tag">Buscar material</td><td>Detalhe: Óleos</td><td class="old-text">"pode levar a entupimentos e contamina"</td><td class="new-text">"...e contaminar"</td><td>Paralelismo verbal</td></tr>
+          <tr><td class="flow-tag">Buscar material</td><td>Detalhe: Plástico Mole</td><td class="old-text">"você possui em casa e leva para a casa so+ma"</td><td class="new-text">"...e leve para a casa so+ma"</td><td>Conjugação (imperativo)</td></tr>
+          <tr><td class="flow-tag">Minhas recompensas <span class="cross-tag" style="margin-left:6px;">Também em: conta existente</span></td><td>Diversas telas (~6)</td><td class="old-text">"Agua Sanitária"</td><td class="new-text">"Água Sanitária"</td><td>Ortografia</td></tr>
+          <tr><td class="flow-tag">Minhas recompensas <span class="cross-tag" style="margin-left:6px;">Também em: conta existente</span></td><td>Busca com resultado único</td><td class="old-text">"Foram encontrados 1 resultados para Arroz"</td><td class="new-text">"Foi encontrado 1 resultado para Arroz"</td><td>Concordância numérica</td></tr>
+          <tr><td class="flow-tag">Minhas recompensas <span class="cross-tag" style="margin-left:6px;">Também em: conta existente</span></td><td>Cards de Educação/Capacitação e Composteira HUMI (3 telas)</td><td class="old-text">"40% desconto no curso..."; "cupom de 10% desconto..."</td><td class="new-text">"...% de desconto..." em todos os casos</td><td>Regência (preposição ausente)</td></tr>
+          <tr><td class="flow-tag">Minhas recompensas <span class="cross-tag" style="margin-left:6px;">Também em: conta existente</span></td><td>Detalhes Espaçolaser</td><td class="old-text">"lojas fisicas da Espaçolaser"</td><td class="new-text">"lojas físicas"</td><td>Ortografia</td></tr>
+          <tr><td class="flow-tag">Minhas recompensas <span class="cross-tag" style="margin-left:6px;">Também em: conta existente</span></td><td>Detalhes Reiki Online</td><td class="old-text">"você resgata pode resgatar sessões de Reiki"</td><td class="new-text">"você pode resgatar sessões de Reiki"</td><td>Redação (redundância)</td></tr>
+          <tr><td class="flow-tag">Minhas recompensas <span class="cross-tag" style="margin-left:6px;">Também em: conta existente</span></td><td>Detalhes Terapia Online</td><td class="old-text">"bem-estar emocional Agende agora pelo Instagram"</td><td class="new-text">"bem-estar emocional. Agende agora..."</td><td>Pontuação</td></tr>
+          <tr><td class="flow-tag">Minhas recompensas <span class="cross-tag" style="margin-left:6px;">Também em: conta existente</span></td><td>Detalhes Sardinha em Lata</td><td class="old-text">"peso liquido de 125g"</td><td class="new-text">"peso líquido"</td><td>Ortografia</td></tr>
+          <tr><td class="flow-tag">Minhas recompensas <span class="cross-tag" style="margin-left:6px;">Também em: conta existente</span></td><td>Diversas telas de detalhe (~10)</td><td class="old-text">"Infelizmente não há casas na cidade selecionada"</td><td class="new-text">Termo "casas" inadequado; usar "lojas" ou "pontos de retirada"</td><td>Vocabulário</td></tr>
+          <tr><td class="flow-tag">Minhas recompensas <span class="cross-tag" style="margin-left:6px;">Também em: conta existente</span></td><td>Telas de detalhe de produtos</td><td class="old-text">"Imagens Meramente Ilustrativas" vs "imagens meramente ilustrativas"</td><td class="new-text">Padronizar a capitalização entre as telas</td><td>Consistência</td></tr>
+          <tr><td class="flow-tag">Menu</td><td>Regulamento</td><td class="old-text">"com sed na Avenida Paulista"; "Conjunto 4 – 15 andar"; "programa soma Vantagens"</td><td class="new-text">"sede"; "15º andar"; "Programa Soma Vantagens"</td><td>Ortografia</td></tr>
+          <tr><td class="flow-tag">Menu</td><td>Regulamento</td><td class="old-text">"...de diversas formas que atinja os objetivos..."; "...preferencialmente, busque uma solução..."</td><td class="new-text">"...que atinjam..."; "...busquem..."</td><td>Concordância verbal</td></tr>
+          <tr><td class="flow-tag">Menu</td><td>Política de privacidade</td><td class="old-text">"Usuários que utilizam website"</td><td class="new-text">"...que utilizam o website"</td><td>Artigo ausente</td></tr>
+          <tr><td class="flow-tag">Menu</td><td>Política de privacidade</td><td class="old-text">"acesso periódico a nossa Política"</td><td class="new-text">"...à nossa Política"</td><td>Crase</td></tr>
+          <tr><td class="flow-tag">Menu</td><td>Política de privacidade</td><td class="old-text">"...restrinjam os direitos dos titulares, serão informados..."</td><td class="new-text">"...serão informadas..."</td><td>Concordância nominal</td></tr>
+          <tr><td class="flow-tag">Menu</td><td>Enviar sugestão</td><td class="old-text">"não hesite em visitar nosso Central de Ajuda"</td><td class="new-text">"...nossa Central de Ajuda"</td><td>Concordância de gênero</td></tr>
+          <tr><td class="flow-tag">Menu <span class="cross-tag" style="margin-left:6px;">Também em: conta existente</span></td><td>Meu impacto</td><td class="old-text">"Você reciclou um total de 0 kilos"</td><td class="new-text">"...0 quilos"</td><td>Ortografia</td></tr>
+          <tr><td class="flow-tag">Menu</td><td>Recompensas</td><td class="old-text">"Marca Texto Amarelo 1 und"</td><td class="new-text">"1 UN" (ou "1 unid.")</td><td>Abreviação</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+</main>
+
+  <nav class="pager" aria-label="Navegação entre páginas">
+    <a class="prev" href="ajuda.html"><span class="pager-label">Anterior</span><span class="pager-title">Central de ajuda</span></a>
+    <a class="next" href="plano.html"><span class="pager-label">Próxima</span><span class="pager-title">Plano de ação</span></a>
+  </nav>
+<footer class="site-footer">
+  <div class="footer-base">
+    <span>App So+ma · Auditoria de experiência · Matheus Policarpo · Agosto 2026</span>
+    <a class="to-top" href="#conteudo">Voltar ao topo ↑</a>
+  </div>
+</footer>
+
+<script>
+  var bar = document.getElementById('progress'), raf = null;
+  function updateBar(){
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (max > 0 ? Math.min(1, window.scrollY / max) * 100 : 0) + '%';
+    raf = null;
+  }
+  window.addEventListener('scroll', function(){ if(!raf) raf = requestAnimationFrame(updateBar); }, {passive:true});
+  updateBar();
+
+  var subLinks = Array.prototype.slice.call(document.querySelectorAll('.subnav a'));
+  if(subLinks.length){
+    var targets = subLinks.map(function(l){ return document.querySelector(l.getAttribute('href')); });
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting) return;
+        var i = targets.indexOf(e.target);
+        subLinks.forEach(function(l){ l.classList.remove('active'); });
+        if(i > -1) subLinks[i].classList.add('active');
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    targets.forEach(function(t){ if(t) obs.observe(t); });
+  }
+</script>
+
+</body>
+</html>
