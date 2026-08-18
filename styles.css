@@ -502,3 +502,124 @@
     section, .flow-section{padding:24pt 0; break-inside:avoid;}
     .pattern-card, .finding-card, .map-card{box-shadow:none;}
   }
+
+  /* ============================================================
+     Busca de achados (command palette) — utilitário para devs
+     encontrarem rapidamente os erros que precisam corrigir.
+     ============================================================ */
+
+  /* Gatilho: convive na mesma faixa fixa do topo em toda página,
+     ao lado do que já existe ali (site-nav, subnav, ou sozinho). */
+  .site-nav{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+  .subnav{display:flex; align-items:stretch;}
+  .subnav .subnav-inner{flex:1 1 auto; min-width:0;}
+
+  .search-bar-only{border-bottom:1px solid var(--line); background:rgba(251,250,247,.6);}
+  .search-bar-only-inner{
+    max-width:1180px; margin:0 auto; padding:0 var(--pad-x);
+    display:flex; align-items:center; justify-content:flex-end; min-height:44px;
+  }
+
+  .search-trigger{
+    display:inline-flex; align-items:center; gap:8px; flex-shrink:0;
+    height:34px; padding:0 10px 0 11px; margin:5px 0;
+    border:1px solid var(--line); border-radius:999px; background:var(--card);
+    color:var(--muted); font-family:var(--sans); font-size:13px; cursor:pointer;
+    transition:border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .search-trigger:hover{color:var(--ink); border-color:var(--muted); background:var(--slate-soft);}
+  .search-trigger:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .search-trigger-icon{flex-shrink:0;}
+  .search-trigger-kbd{display:inline-flex; gap:3px;}
+  .search-trigger kbd{
+    font-family:var(--sans); font-size:10.5px; color:var(--faint); background:var(--slate-soft);
+    border:1px solid var(--line); border-radius:4px; padding:1px 5px; line-height:1.5;
+  }
+  @media (max-width:640px){
+    .search-trigger-label, .search-trigger-kbd{display:none;}
+    .search-trigger{width:34px; padding:0; justify-content:center;}
+  }
+
+  /* Overlay + modal */
+  .search-modal-overlay{
+    position:fixed; inset:0; z-index:200; background:rgba(34,31,27,.42);
+    display:flex; align-items:flex-start; justify-content:center;
+    padding:min(12vh,110px) 20px 20px;
+  }
+  .search-modal-overlay[hidden]{display:none;}
+  .search-modal{
+    width:100%; max-width:640px; max-height:min(72vh,620px); background:var(--card);
+    border-radius:var(--radius-lg); box-shadow:var(--shadow-lift); border:1px solid var(--line);
+    display:flex; flex-direction:column; overflow:hidden;
+  }
+  .search-modal-head{display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1px solid var(--line);}
+  .search-modal-icon{color:var(--faint); flex-shrink:0;}
+  .search-input{
+    flex:1; border:none; outline:none; background:transparent; font-family:var(--sans);
+    font-size:16px; color:var(--ink);
+  }
+  .search-input::placeholder{color:var(--faint);}
+  .search-close{
+    flex-shrink:0; border:1px solid var(--line); border-radius:6px; background:var(--slate-soft);
+    color:var(--muted); font-size:11px; padding:3px 7px; cursor:pointer;
+  }
+  .search-filters{display:flex; gap:6px; padding:10px 16px; border-bottom:1px solid var(--line); flex-wrap:wrap;}
+  .search-filter{
+    border:1px solid var(--line); border-radius:999px; background:var(--card); color:var(--muted);
+    font-size:12.5px; padding:5px 12px; cursor:pointer; transition:all .12s ease;
+  }
+  .search-filter .search-filter-count{color:var(--faint); margin-left:5px; font-variant-numeric:tabular-nums;}
+  .search-filter:hover{border-color:var(--muted); color:var(--ink);}
+  .search-filter.active{background:var(--ink); border-color:var(--ink); color:#fff;}
+  .search-filter.active .search-filter-count{color:rgba(255,255,255,.65);}
+
+  .search-results{overflow-y:auto; flex:1; padding:6px;}
+  .search-result{
+    display:flex; align-items:flex-start; gap:10px; padding:10px 10px; border-radius:10px;
+    text-decoration:none; color:inherit; cursor:pointer;
+  }
+  .search-result:hover, .search-result.is-active{background:var(--slate-soft);}
+  .search-result-sev{width:8px; height:8px; border-radius:50%; margin-top:6px; flex-shrink:0;}
+  .search-result-sev.p0{background:var(--red);}
+  .search-result-sev.p1{background:var(--amber);}
+  .search-result-sev.p2{background:var(--slate);}
+  .search-result-sev.texto{background:var(--teal);}
+  .search-result-body{flex:1; min-width:0;}
+  .search-result-title{display:block; font-size:14px; font-weight:600; color:var(--ink); line-height:1.4;}
+  .search-result-meta{display:block; font-size:11.5px; color:var(--muted); margin-top:2px;}
+  .search-result-excerpt{display:block; font-size:12.5px; color:var(--muted); margin-top:3px; line-height:1.5;
+    overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;}
+  .search-result-badge{flex-shrink:0; margin-top:1px;}
+  .search-empty{padding:40px 20px; text-align:center; color:var(--muted); font-size:13.5px;}
+  .search-empty strong{color:var(--ink); display:block; margin-bottom:4px; font-size:14.5px;}
+
+  .search-modal-foot{
+    display:flex; gap:16px; padding:10px 16px; border-top:1px solid var(--line);
+    font-size:11.5px; color:var(--faint);
+  }
+  .search-modal-foot span{display:inline-flex; align-items:center; gap:5px;}
+  .search-modal-foot kbd{
+    font-family:var(--sans); font-size:10.5px; color:var(--muted); background:var(--slate-soft);
+    border:1px solid var(--line); border-radius:4px; padding:1px 5px;
+  }
+  @media (max-width:640px){
+    .search-modal-foot span:first-child{display:none;}
+  }
+
+  /* Destaque temporário ao chegar num achado via busca. Duas variantes:
+     box-shadow para cards (div) e background-color para linhas de tabela
+     (box-shadow não é pintado em <tr> pelo modelo de renderização de tabelas). */
+  @keyframes searchTargetFlash{
+    0%{box-shadow:0 0 0 3px var(--accent-line), var(--shadow);}
+    100%{box-shadow:var(--shadow);}
+  }
+  @keyframes searchTargetFlashRow{
+    0%{background-color:var(--accent-soft);}
+    100%{background-color:transparent;}
+  }
+  .search-target-flash{animation:searchTargetFlash 1.8s ease-out;}
+  tr.search-target-flash{animation:searchTargetFlashRow 1.8s ease-out;}
+
+  @media print{
+    .search-trigger, .search-modal-overlay, .search-bar-only{display:none !important;}
+  }

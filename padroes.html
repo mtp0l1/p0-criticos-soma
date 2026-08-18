@@ -1,333 +1,322 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Padrões recorrentes · Auditoria de experiência · App So+ma</title>
-<meta name="description" content="Auditoria de experiência do app So+ma: 13 jornadas mapeadas, achados priorizados, propostas de solução e critérios de aceite.">
-<meta name="theme-color" content="#FBFAF7">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<meta content="Auditoria de experiência do app So+ma: 13 jornadas mapeadas, achados priorizados, propostas de solução e critérios de aceite." name="description"/>
+<meta content="#FBFAF7" name="theme-color"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
-
 <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 <div class="progress" id="progress" role="presentation"></div>
-
 <div class="sticky-top">
-<nav class="subnav" aria-label="Padrões nesta página">
-  <div class="subnav-inner">
-    <a href="#padrao-navegacao">01 · Navegação sem volta confiável</a>
-    <a href="#padrao-vazios">02 · Estados vazios sem orientação</a>
-    <a href="#padrao-copy">03 · Textos internos do sistema aparecendo como conteúdo real</a>
-    <a href="#padrao-hierarquia">04 · Repetição e hierarquia confusa de informação</a>
-    <a href="#padrao-pin-duplicado">05 · Dois controles abrem exatamente a mesma tela</a>
-    <a href="#padrao-nome-destino">06 · O nome da tela não corresponde ao botão que leva até ela</a>
-    <a href="#padrao-emoticon">07 · Emoticons de texto em títulos não são lidos por leitores de tela</a>
-  </div>
-</nav>
-
+<nav aria-label="Padrões nesta página" class="subnav">
+<div class="subnav-inner">
+<a href="#padrao-navegacao">01 · Navegação sem volta confiável</a>
+<a href="#padrao-vazios">02 · Estados vazios sem orientação</a>
+<a href="#padrao-copy">03 · Textos internos do sistema aparecendo como conteúdo real</a>
+<a href="#padrao-hierarquia">04 · Repetição e hierarquia confusa de informação</a>
+<a href="#padrao-pin-duplicado">05 · Dois controles abrem exatamente a mesma tela</a>
+<a href="#padrao-nome-destino">06 · O nome da tela não corresponde ao botão que leva até ela</a>
+<a href="#padrao-emoticon">07 · Emoticons de texto em títulos não são lidos por leitores de tela</a>
+</div>
+<button aria-controls="search-overlay" aria-haspopup="dialog" class="search-trigger" type="button"><svg aria-hidden="true" class="search-trigger-icon" fill="none" height="15" viewbox="0 0 16 16" width="15"><circle cx="7" cy="7" r="5.25" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14.5 14.5" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path></svg><span class="search-trigger-label">Buscar achados</span><span class="search-trigger-kbd"><kbd>Ctrl</kbd><kbd>K</kbd></span></button></nav>
 </div>
 <main id="conteudo">
-    <div class="page-hero">
-      <div class="page-hero-inner">
-        <a class="back" href="index.html" aria-label="Voltar para a visão geral"><span aria-hidden="true">&larr;</span></a>
-        <p class="breadcrumb">Achados sistêmicos</p>
-        <h1>Padrões recorrentes</h1>
-        <p class="lede">Estes sete problemas não pertencem a uma única tela: eles se repetem em vários pontos diferentes do app, com a mesma causa e a mesma solução. Corrigir a causa de cada um resolve várias telas de uma vez só.</p>
-      </div>
-    </div>
+<div class="page-hero">
+<div class="page-hero-inner">
+<a aria-label="Voltar para a visão geral" class="back" href="index.html"><span aria-hidden="true">←</span></a>
+<p class="breadcrumb">Achados sistêmicos</p>
+<h1>Padrões recorrentes</h1>
+<p class="lede">Estes sete problemas não pertencem a uma única tela: eles se repetem em vários pontos diferentes do app, com a mesma causa e a mesma solução. Corrigir a causa de cada um resolve várias telas de uma vez só.</p>
+</div>
+</div>
 <section id="padroes">
-
-      <div class="pattern-card" id="padrao-navegacao">
-        <div class="pattern-head">
-          <div>
-            <div class="pattern-num">Padrão 01</div>
-            <div class="pattern-title">Navegação sem volta confiável</div>
-          </div>
-          <span class="badge p0"><span class="dot"></span>Crítico</span>
-        </div>
-        <div class="pattern-body">
-          <div>
-            <h4>O que acontece</h4>
-            <p>Ao fechar ou voltar de uma tela secundária, o usuário quase nunca retorna para onde estava. Em vez disso, cai direto na tela inicial do app, perdendo o contexto de navegação. Em pelo menos três telas, os dois controles de retorno (a seta de voltar e o botão de fechar) aparecem juntos, ao mesmo tempo, e os dois levam para o lugar errado.</p>
-          </div>
-          <div>
-            <h4>Onde aparece</h4>
-            <ul class="occurrence-list">
-              <li>Convite de amigos, tanto no cadastro quanto no menu principal</li>
-              <li>Telas de ajuda, acessadas a partir de várias áreas do app</li>
-              <li>Ranking, dentro de Meu Impacto</li>
-              <li>Saldo de pontos, que deveria voltar para o catálogo de recompensas</li>
-              <li><b>9 telas</b> acessadas a partir do menu lateral, incluindo perfil, histórico, extrato, doação, sugestões, política de privacidade e regulamento</li>
-              <li>Reaparece também na jornada de conta existente com pontos: Ajuda, Convidar amigos e o detalhe do extrato voltam para o Início em vez da tela anterior; no fluxo de Meu Impacto, o mesmo problema aparece no Ranking e na tela "Como reciclar gera impacto?", que deveriam voltar especificamente para Meu Impacto, não para o Início; em Buscar material, a tela de Ajuda acessada a partir do catálogo tem o mesmo par "&lt;" e "Fechar" redundante, ambos levando ao Início; e, em Minhas recompensas, o mesmo detalhe do extrato (agora acessado a partir de "Saldo atual" no topo do catálogo) repete o mesmo par "&lt;" e "Fechar" indo para o Início em vez de voltar para o catálogo de recompensas; na jornada de Menu e footer, o botão "X" no canto superior da tela Meu Perfil também leva para o Início em vez de para o Menu, de onde o usuário efetivamente veio <span class="cross-tag">Também em: conta existente</span></li>
-            </ul>
-          </div>
-          <div class="pattern-footer">
-            <div class="foot-block">
-              <h4>Impacto</h4>
-              <p>O usuário perde a posição de navegação toda vez que fecha uma tela, precisando refazer o caminho do zero mesmo em ações simples, como consultar o extrato ou pedir ajuda.</p>
-            </div>
-            <div class="foot-block">
-              <h4>Proposta</h4>
-              <p>Uma regra única para todo o app: o botão de voltar sempre retorna ao nível imediatamente anterior no histórico de navegação, nunca a uma rota fixa. O botão de fechar é exclusivo para modais reais e nunca deve coexistir com o botão de voltar na mesma tela.</p>
-            </div>
-            <div class="foot-block">
-              <h4>Critério de aceite</h4>
-              <p>Nenhuma tela do app tem mais de um controle de retorno visível ao mesmo tempo; fechar ou voltar de qualquer tela leva sempre à tela de origem.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="pattern-card" id="padrao-vazios">
-        <div class="pattern-head">
-          <div>
-            <div class="pattern-num">Padrão 02</div>
-            <div class="pattern-title">Estados vazios sem orientação</div>
-          </div>
-          <span class="badge p0"><span class="dot"></span>Crítico</span>
-        </div>
-        <div class="pattern-body">
-          <div>
-            <h4>O que acontece</h4>
-            <p>Quando uma lista, um histórico ou um saldo estão vazios ou zerados, a tela apenas comunica a ausência de dados, sem indicar o que o usuário pode fazer a seguir. Em alguns pontos a tela sequer chega a carregar qualquer conteúdo visual.</p>
-          </div>
-          <div>
-            <h4>Onde aparece</h4>
-            <ul class="occurrence-list">
-              <li>Ranking sem participação do usuário e ranking sem pontos de entrega na região</li>
-              <li>Histórico de resgates e extrato de pontos vazios, sem nenhuma ação sugerida</li>
-              <li><b>4 categorias</b> do catálogo de materiais abrem em telas completamente brancas</li>
-              <li>Carrinho de recompensas vazio, sem estado dedicado e ainda com um botão de limpar sem função</li>
-            </ul>
-          </div>
-          <div class="pattern-footer">
-            <div class="foot-block">
-              <h4>Impacto</h4>
-              <p>Usuários novos ou pouco engajados não recebem nenhum incentivo ou instrução de próximo passo justamente nos pontos em que mais precisariam disso; telas em branco parecem erro de carregamento.</p>
-            </div>
-            <div class="foot-block">
-              <h4>Proposta</h4>
-              <p>Todo estado vazio de listagem, saldo ou busca deve ter uma mensagem que explique a situação e ofereça uma ação clara, como "Você ainda não resgatou recompensas, veja o catálogo". Nenhuma tela deve renderizar sem conteúdo visual.</p>
-            </div>
-            <div class="foot-block">
-              <h4>Critério de aceite</h4>
-              <p>Nenhum estado vazio aparece sem uma mensagem e uma ação associada; nenhuma tela carrega em branco.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="pattern-card" id="padrao-copy">
-        <div class="pattern-head">
-          <div>
-            <div class="pattern-num">Padrão 03</div>
-            <div class="pattern-title">Textos internos do sistema aparecendo como conteúdo real</div>
-          </div>
-          <span class="badge p1"><span class="dot"></span>Importante</span>
-        </div>
-        <div class="pattern-body">
-          <div>
-            <h4>O que acontece</h4>
-            <p>Em vários pontos, um valor padrão interno (um campo vazio, um zero, uma ausência) é exibido diretamente para o usuário como se fosse informação válida, sem nenhum tratamento de texto.</p>
-          </div>
-          <div>
-            <h4>Onde aparece</h4>
-            <ul class="occurrence-list">
-              <li>O cabeçalho de localização mostra <b>"Entregando em Sem preferência de espaço"</b>, como se fosse o nome de um lugar <span class="cross-tag">Também em: conta existente</span></li>
-              <li>O saldo mostra <b>"0 pontos irão expirar em (0 dias restantes)"</b>, um texto renderizado com valores zerados</li>
-              <li>O ranking mostra <b>"Sua posição: Nenhuma"</b>, como se "Nenhuma" fosse uma posição válida</li>
-              <li>Também na jornada de conta existente com pontos, o card de comparação do ranking mostra "você reciclou mais quilos... que 0% dos participantes" e uma equivalência de "0 camas de casal" quando não há impacto registrado ainda, tratando o zero como se fosse um dado de comparação real <span class="cross-tag">Também em: conta existente</span></li>
-            </ul>
-          </div>
-          <div class="pattern-footer">
-            <div class="foot-block">
-              <h4>Impacto</h4>
-              <p>Essas frases soam como falhas do sistema, mesmo sendo um comportamento esperado, e reduzem a confiança de quem está usando o app pela primeira vez.</p>
-            </div>
-            <div class="foot-block">
-              <h4>Proposta</h4>
-              <p>Tratar cada um desses casos como um estado especial de texto, nunca como o valor padrão de um campo: um local não escolhido não é um local; um saldo zerado não tem prazo de expiração; a ausência de participação não é uma posição no ranking.</p>
-            </div>
-            <div class="foot-block">
-              <h4>Critério de aceite</h4>
-              <p>Nenhuma tela exibe valores de sistema (zero, nulo, "sem preferência") como se fossem dados válidos para o usuário.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="pattern-card" id="padrao-hierarquia">
-        <div class="pattern-head">
-          <div>
-            <div class="pattern-num">Padrão 04</div>
-            <div class="pattern-title">Repetição e hierarquia confusa de informação</div>
-          </div>
-          <span class="badge p1"><span class="dot"></span>Importante</span>
-        </div>
-        <div class="pattern-body">
-          <div>
-            <h4>O que acontece</h4>
-            <p>Em telas de detalhe de material, o mesmo nome aparece repetido de forma redundante, enquanto a categoria geral tem mais destaque visual do que o item específico, que é, na prática, o assunto da tela.</p>
-          </div>
-          <div>
-            <h4>Onde aparece</h4>
-            <ul class="occurrence-list">
-              <li>O nome do material se repete <b>três vezes</b> na mesma tela de detalhe (cabeçalho, título e subtítulo)</li>
-              <li>O nome também se repete entre o título e o rodapé do card na lista</li>
-              <li>A categoria geral tem mais contraste visual do que o material específico</li>
-              <li>A seção de materiais relacionados aparece vazia na maioria das telas, sem indicar isso visualmente, e o termo usado não comunica do que se trata</li>
-              <li>Confirmado também na jornada de conta existente com pontos: o nome do material se repete no header, no título e no texto de apoio (ex: "Vidro"), a categoria tem mais destaque do que o nome do material específico (ex: "Alumínio"), e a seção "Outros Nomes" gera dúvida sobre o que ela lista, reforçando a proposta de renomeá-la para "Materiais semelhantes" <span class="cross-tag">Também em: conta existente</span></li>
-            </ul>
-          </div>
-          <div class="pattern-footer">
-            <div class="foot-block">
-              <h4>Impacto</h4>
-              <p>Poluição visual, ruído cognitivo e perda de destaque exatamente na informação mais importante da tela.</p>
-            </div>
-            <div class="foot-block">
-              <h4>Proposta</h4>
-              <p>Manter o nome do item apenas uma vez, em destaque; garantir que o item específico tenha mais peso visual do que a categoria; renomear a seção para "Materiais semelhantes" e ocultá-la por completo quando não houver conteúdo.</p>
-            </div>
-            <div class="foot-block">
-              <h4>Critério de aceite</h4>
-              <p>Nenhum nome aparece mais de uma vez em destaque na mesma tela; o item específico sempre tem mais peso visual do que a categoria geral.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="pattern-card" id="padrao-pin-duplicado">
-        <div class="pattern-head">
-          <div>
-            <div class="pattern-num">Padrão 05</div>
-            <div class="pattern-title">Dois controles abrem exatamente a mesma tela</div>
-          </div>
-          <span class="badge p1"><span class="dot"></span>Importante</span>
-        </div>
-        <div class="pattern-body">
-          <div>
-            <h4>O que acontece</h4>
-            <p>No cabeçalho que mostra o local de entrega, dois elementos são tocáveis: o ícone de localização (pin) e a seta ao lado. Os dois abrem a mesma tela e levam ao mesmo resultado, sem nenhuma diferença de comportamento entre eles.</p>
-          </div>
-          <div>
-            <h4>Onde aparece</h4>
-            <ul class="occurrence-list">
-              <li>No cadastro, a seta ao lado do pin parece indicar um menu suspenso ou um botão de voltar, mas dispara a mesma ação do pin</li>
-              <li>Em Buscar material, tocar no pin ou na seta abre, os dois, a mesma tela de "ainda não há unidades nessa região"</li>
-              <li>Qualquer tela que reutilize este mesmo cabeçalho de localização herda o mesmo comportamento duplicado</li>
-              <li>Também documentado na jornada de conta existente com pontos, na tela de Início <span class="cross-tag">Também em: conta existente</span></li>
-            </ul>
-          </div>
-          <div class="pattern-footer">
-            <div class="foot-block">
-              <h4>Impacto</h4>
-              <p>Sugere duas funções diferentes onde existe apenas uma, o que gera dúvida sobre o que cada ícone faz e adiciona um toque desnecessário ao caminho do usuário.</p>
-            </div>
-            <div class="foot-block">
-              <h4>Proposta</h4>
-              <p>Manter um único controle de localização, o pin, e remover a seta. Se no futuro fizer sentido ter duas ações diferentes nesse cabeçalho, como voltar e trocar de local, cada uma precisa de um ícone e um comportamento próprios, não dois ícones para a mesma coisa.</p>
-            </div>
-            <div class="foot-block">
-              <h4>Critério de aceite</h4>
-              <p>O cabeçalho de localização tem um único elemento tocável, e ele sempre abre a tela de seleção de local.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="pattern-card" id="padrao-nome-destino">
-        <div class="pattern-head">
-          <div>
-            <div class="pattern-num">Padrão 06</div>
-            <div class="pattern-title">O nome da tela não corresponde ao botão que leva até ela</div>
-          </div>
-          <span class="badge p1"><span class="dot"></span>Importante</span>
-        </div>
-        <div class="pattern-body">
-          <div>
-            <h4>O que acontece</h4>
-            <p>O botão que inicia a doação de pontos muda de texto conforme o ponto do app onde aparece, e nenhuma das duas versões corresponde ao título da tela para onde ele leva.</p>
-          </div>
-          <div>
-            <h4>Onde aparece</h4>
-            <ul class="occurrence-list">
-              <li>No cadastro, o botão <b>"Doar meus pontos"</b> abre uma tela chamada <b>"Meu impacto social"</b></li>
-              <li>Na tela inicial e no menu principal, o botão <b>"Doe seus pontos"</b> abre essa mesma tela <b>"Meu impacto social"</b></li>
-              <li>O mesmo problema aparece na jornada de conta existente com pontos, com a mesma tela "Meu impacto social" <span class="cross-tag">Também em: conta existente</span></li>
-            </ul>
-          </div>
-          <div class="pattern-footer">
-            <div class="foot-block">
-              <h4>Impacto</h4>
-              <p>A história se quebra entre o toque e a tela seguinte, e o usuário precisa reconfirmar se chegou ao lugar certo. O nome também se confunde com "Meu impacto", a área de ranking de reciclagem, um recurso totalmente diferente dentro do app.</p>
-            </div>
-            <div class="foot-block">
-              <h4>Proposta</h4>
-              <p>Renomear a tela de destino para uma linguagem alinhada ao botão que leva até ela, como "Doação de pontos", e reservar a palavra "impacto" exclusivamente para a área de ranking de reciclagem, evitando que os dois nomes se confundam. Vale evitar "Onde doar" como novo nome da tela: esse mesmo rótulo já é usado dentro dela para introduzir as categorias de causa, e a auditoria de conta existente com pontos mostra que ele confunde por sugerir localização geográfica em vez de causa social.</p>
-            </div>
-            <div class="foot-block">
-              <h4>Critério de aceite</h4>
-              <p>O título de cada tela usa a mesma linguagem do botão que levou até ela, e nenhum nome de tela se confunde com outro recurso existente no app.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="pattern-card" id="padrao-emoticon">
-        <div class="pattern-head">
-          <div>
-            <div class="pattern-num">Padrão 07</div>
-            <div class="pattern-title">Emoticons de texto em títulos não são lidos por leitores de tela</div>
-          </div>
-          <span class="badge p0"><span class="dot"></span>Crítico</span>
-        </div>
-        <div class="pattern-body">
-          <div>
-            <h4>O que acontece</h4>
-            <p>Estados de busca sem resultado usam o emoticon feito de pontuação ":(" dentro do próprio texto do título da tela.</p>
-          </div>
-          <div>
-            <h4>Onde aparece</h4>
-            <ul class="occurrence-list">
-              <li>Buscar material, no título <b>"Item não encontrado :("</b>, onde "item" também diverge do termo "material" usado no resto da tela</li>
-              <li>Minhas recompensas, no mesmo título <b>"Item não encontrado :("</b>, seguido do botão "Falar pelo WhatsApp"</li>
-              <li>Também na jornada de conta existente com pontos: nas telas de detalhe de recompensa, sempre que não há ponto de retirada na cidade selecionada, o texto usa o mesmo tipo de emoticon em <b>"Infelizmente não há casas na cidade selecionada :("</b> <span class="cross-tag">Também em: conta existente</span></li>
-            </ul>
-          </div>
-          <div class="pattern-footer">
-            <div class="foot-block">
-              <h4>Impacto</h4>
-              <p>Quem usa leitor de tela ouve "dois pontos, parênteses" no lugar de qualquer expressão de sentimento, uma informação sem sentido nesse contexto e uma barreira real de acessibilidade.</p>
-            </div>
-            <div class="foot-block">
-              <h4>Proposta</h4>
-              <p>Remover o emoticon do texto e comunicar o tom por meio de uma ilustração, como a já usada nesse mesmo estado em Minhas recompensas, com texto alternativo descritivo, nunca por caracteres de pontuação lidos literalmente. Em Buscar material, também trocar "item" por "material" para manter a mesma linguagem do restante da tela.</p>
-            </div>
-            <div class="foot-block">
-              <h4>Critério de aceite</h4>
-              <p>Nenhum texto de interface usa emoticons feitos de pontuação; toda ilustração associada a um estado vazio tem texto alternativo descritivo.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="pattern-card" id="padrao-navegacao">
+<div class="pattern-head">
+<div>
+<div class="pattern-num">Padrão 01</div>
+<div class="pattern-title">Navegação sem volta confiável</div>
+</div>
+<span class="badge p0"><span class="dot"></span>Crítico</span>
+</div>
+<div class="pattern-body">
+<div>
+<h4>O que acontece</h4>
+<p>Ao fechar ou voltar de uma tela secundária, o usuário quase nunca retorna para onde estava. Em vez disso, cai direto na tela inicial do app, perdendo o contexto de navegação. Em pelo menos três telas, os dois controles de retorno (a seta de voltar e o botão de fechar) aparecem juntos, ao mesmo tempo, e os dois levam para o lugar errado.</p>
+</div>
+<div>
+<h4>Onde aparece</h4>
+<ul class="occurrence-list">
+<li>Convite de amigos, tanto no cadastro quanto no menu principal</li>
+<li>Telas de ajuda, acessadas a partir de várias áreas do app</li>
+<li>Ranking, dentro de Meu Impacto</li>
+<li>Saldo de pontos, que deveria voltar para o catálogo de recompensas</li>
+<li><b>9 telas</b> acessadas a partir do menu lateral, incluindo perfil, histórico, extrato, doação, sugestões, política de privacidade e regulamento</li>
+<li>Reaparece também na jornada de conta existente com pontos: Ajuda, Convidar amigos e o detalhe do extrato voltam para o Início em vez da tela anterior; no fluxo de Meu Impacto, o mesmo problema aparece no Ranking e na tela "Como reciclar gera impacto?", que deveriam voltar especificamente para Meu Impacto, não para o Início; em Buscar material, a tela de Ajuda acessada a partir do catálogo tem o mesmo par "&lt;" e "Fechar" redundante, ambos levando ao Início; e, em Minhas recompensas, o mesmo detalhe do extrato (agora acessado a partir de "Saldo atual" no topo do catálogo) repete o mesmo par "&lt;" e "Fechar" indo para o Início em vez de voltar para o catálogo de recompensas; na jornada de Menu e footer, o botão "X" no canto superior da tela Meu Perfil também leva para o Início em vez de para o Menu, de onde o usuário efetivamente veio <span class="cross-tag">Também em: conta existente</span></li>
+</ul>
+</div>
+<div class="pattern-footer">
+<div class="foot-block">
+<h4>Impacto</h4>
+<p>O usuário perde a posição de navegação toda vez que fecha uma tela, precisando refazer o caminho do zero mesmo em ações simples, como consultar o extrato ou pedir ajuda.</p>
+</div>
+<div class="foot-block">
+<h4>Proposta</h4>
+<p>Uma regra única para todo o app: o botão de voltar sempre retorna ao nível imediatamente anterior no histórico de navegação, nunca a uma rota fixa. O botão de fechar é exclusivo para modais reais e nunca deve coexistir com o botão de voltar na mesma tela.</p>
+</div>
+<div class="foot-block">
+<h4>Critério de aceite</h4>
+<p>Nenhuma tela do app tem mais de um controle de retorno visível ao mesmo tempo; fechar ou voltar de qualquer tela leva sempre à tela de origem.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pattern-card" id="padrao-vazios">
+<div class="pattern-head">
+<div>
+<div class="pattern-num">Padrão 02</div>
+<div class="pattern-title">Estados vazios sem orientação</div>
+</div>
+<span class="badge p0"><span class="dot"></span>Crítico</span>
+</div>
+<div class="pattern-body">
+<div>
+<h4>O que acontece</h4>
+<p>Quando uma lista, um histórico ou um saldo estão vazios ou zerados, a tela apenas comunica a ausência de dados, sem indicar o que o usuário pode fazer a seguir. Em alguns pontos a tela sequer chega a carregar qualquer conteúdo visual.</p>
+</div>
+<div>
+<h4>Onde aparece</h4>
+<ul class="occurrence-list">
+<li>Ranking sem participação do usuário e ranking sem pontos de entrega na região</li>
+<li>Histórico de resgates e extrato de pontos vazios, sem nenhuma ação sugerida</li>
+<li><b>4 categorias</b> do catálogo de materiais abrem em telas completamente brancas</li>
+<li>Carrinho de recompensas vazio, sem estado dedicado e ainda com um botão de limpar sem função</li>
+</ul>
+</div>
+<div class="pattern-footer">
+<div class="foot-block">
+<h4>Impacto</h4>
+<p>Usuários novos ou pouco engajados não recebem nenhum incentivo ou instrução de próximo passo justamente nos pontos em que mais precisariam disso; telas em branco parecem erro de carregamento.</p>
+</div>
+<div class="foot-block">
+<h4>Proposta</h4>
+<p>Todo estado vazio de listagem, saldo ou busca deve ter uma mensagem que explique a situação e ofereça uma ação clara, como "Você ainda não resgatou recompensas, veja o catálogo". Nenhuma tela deve renderizar sem conteúdo visual.</p>
+</div>
+<div class="foot-block">
+<h4>Critério de aceite</h4>
+<p>Nenhum estado vazio aparece sem uma mensagem e uma ação associada; nenhuma tela carrega em branco.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pattern-card" id="padrao-copy">
+<div class="pattern-head">
+<div>
+<div class="pattern-num">Padrão 03</div>
+<div class="pattern-title">Textos internos do sistema aparecendo como conteúdo real</div>
+</div>
+<span class="badge p1"><span class="dot"></span>Importante</span>
+</div>
+<div class="pattern-body">
+<div>
+<h4>O que acontece</h4>
+<p>Em vários pontos, um valor padrão interno (um campo vazio, um zero, uma ausência) é exibido diretamente para o usuário como se fosse informação válida, sem nenhum tratamento de texto.</p>
+</div>
+<div>
+<h4>Onde aparece</h4>
+<ul class="occurrence-list">
+<li>O cabeçalho de localização mostra <b>"Entregando em Sem preferência de espaço"</b>, como se fosse o nome de um lugar <span class="cross-tag">Também em: conta existente</span></li>
+<li>O saldo mostra <b>"0 pontos irão expirar em (0 dias restantes)"</b>, um texto renderizado com valores zerados</li>
+<li>O ranking mostra <b>"Sua posição: Nenhuma"</b>, como se "Nenhuma" fosse uma posição válida</li>
+<li>Também na jornada de conta existente com pontos, o card de comparação do ranking mostra "você reciclou mais quilos... que 0% dos participantes" e uma equivalência de "0 camas de casal" quando não há impacto registrado ainda, tratando o zero como se fosse um dado de comparação real <span class="cross-tag">Também em: conta existente</span></li>
+</ul>
+</div>
+<div class="pattern-footer">
+<div class="foot-block">
+<h4>Impacto</h4>
+<p>Essas frases soam como falhas do sistema, mesmo sendo um comportamento esperado, e reduzem a confiança de quem está usando o app pela primeira vez.</p>
+</div>
+<div class="foot-block">
+<h4>Proposta</h4>
+<p>Tratar cada um desses casos como um estado especial de texto, nunca como o valor padrão de um campo: um local não escolhido não é um local; um saldo zerado não tem prazo de expiração; a ausência de participação não é uma posição no ranking.</p>
+</div>
+<div class="foot-block">
+<h4>Critério de aceite</h4>
+<p>Nenhuma tela exibe valores de sistema (zero, nulo, "sem preferência") como se fossem dados válidos para o usuário.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pattern-card" id="padrao-hierarquia">
+<div class="pattern-head">
+<div>
+<div class="pattern-num">Padrão 04</div>
+<div class="pattern-title">Repetição e hierarquia confusa de informação</div>
+</div>
+<span class="badge p1"><span class="dot"></span>Importante</span>
+</div>
+<div class="pattern-body">
+<div>
+<h4>O que acontece</h4>
+<p>Em telas de detalhe de material, o mesmo nome aparece repetido de forma redundante, enquanto a categoria geral tem mais destaque visual do que o item específico, que é, na prática, o assunto da tela.</p>
+</div>
+<div>
+<h4>Onde aparece</h4>
+<ul class="occurrence-list">
+<li>O nome do material se repete <b>três vezes</b> na mesma tela de detalhe (cabeçalho, título e subtítulo)</li>
+<li>O nome também se repete entre o título e o rodapé do card na lista</li>
+<li>A categoria geral tem mais contraste visual do que o material específico</li>
+<li>A seção de materiais relacionados aparece vazia na maioria das telas, sem indicar isso visualmente, e o termo usado não comunica do que se trata</li>
+<li>Confirmado também na jornada de conta existente com pontos: o nome do material se repete no header, no título e no texto de apoio (ex: "Vidro"), a categoria tem mais destaque do que o nome do material específico (ex: "Alumínio"), e a seção "Outros Nomes" gera dúvida sobre o que ela lista, reforçando a proposta de renomeá-la para "Materiais semelhantes" <span class="cross-tag">Também em: conta existente</span></li>
+</ul>
+</div>
+<div class="pattern-footer">
+<div class="foot-block">
+<h4>Impacto</h4>
+<p>Poluição visual, ruído cognitivo e perda de destaque exatamente na informação mais importante da tela.</p>
+</div>
+<div class="foot-block">
+<h4>Proposta</h4>
+<p>Manter o nome do item apenas uma vez, em destaque; garantir que o item específico tenha mais peso visual do que a categoria; renomear a seção para "Materiais semelhantes" e ocultá-la por completo quando não houver conteúdo.</p>
+</div>
+<div class="foot-block">
+<h4>Critério de aceite</h4>
+<p>Nenhum nome aparece mais de uma vez em destaque na mesma tela; o item específico sempre tem mais peso visual do que a categoria geral.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pattern-card" id="padrao-pin-duplicado">
+<div class="pattern-head">
+<div>
+<div class="pattern-num">Padrão 05</div>
+<div class="pattern-title">Dois controles abrem exatamente a mesma tela</div>
+</div>
+<span class="badge p1"><span class="dot"></span>Importante</span>
+</div>
+<div class="pattern-body">
+<div>
+<h4>O que acontece</h4>
+<p>No cabeçalho que mostra o local de entrega, dois elementos são tocáveis: o ícone de localização (pin) e a seta ao lado. Os dois abrem a mesma tela e levam ao mesmo resultado, sem nenhuma diferença de comportamento entre eles.</p>
+</div>
+<div>
+<h4>Onde aparece</h4>
+<ul class="occurrence-list">
+<li>No cadastro, a seta ao lado do pin parece indicar um menu suspenso ou um botão de voltar, mas dispara a mesma ação do pin</li>
+<li>Em Buscar material, tocar no pin ou na seta abre, os dois, a mesma tela de "ainda não há unidades nessa região"</li>
+<li>Qualquer tela que reutilize este mesmo cabeçalho de localização herda o mesmo comportamento duplicado</li>
+<li>Também documentado na jornada de conta existente com pontos, na tela de Início <span class="cross-tag">Também em: conta existente</span></li>
+</ul>
+</div>
+<div class="pattern-footer">
+<div class="foot-block">
+<h4>Impacto</h4>
+<p>Sugere duas funções diferentes onde existe apenas uma, o que gera dúvida sobre o que cada ícone faz e adiciona um toque desnecessário ao caminho do usuário.</p>
+</div>
+<div class="foot-block">
+<h4>Proposta</h4>
+<p>Manter um único controle de localização, o pin, e remover a seta. Se no futuro fizer sentido ter duas ações diferentes nesse cabeçalho, como voltar e trocar de local, cada uma precisa de um ícone e um comportamento próprios, não dois ícones para a mesma coisa.</p>
+</div>
+<div class="foot-block">
+<h4>Critério de aceite</h4>
+<p>O cabeçalho de localização tem um único elemento tocável, e ele sempre abre a tela de seleção de local.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pattern-card" id="padrao-nome-destino">
+<div class="pattern-head">
+<div>
+<div class="pattern-num">Padrão 06</div>
+<div class="pattern-title">O nome da tela não corresponde ao botão que leva até ela</div>
+</div>
+<span class="badge p1"><span class="dot"></span>Importante</span>
+</div>
+<div class="pattern-body">
+<div>
+<h4>O que acontece</h4>
+<p>O botão que inicia a doação de pontos muda de texto conforme o ponto do app onde aparece, e nenhuma das duas versões corresponde ao título da tela para onde ele leva.</p>
+</div>
+<div>
+<h4>Onde aparece</h4>
+<ul class="occurrence-list">
+<li>No cadastro, o botão <b>"Doar meus pontos"</b> abre uma tela chamada <b>"Meu impacto social"</b></li>
+<li>Na tela inicial e no menu principal, o botão <b>"Doe seus pontos"</b> abre essa mesma tela <b>"Meu impacto social"</b></li>
+<li>O mesmo problema aparece na jornada de conta existente com pontos, com a mesma tela "Meu impacto social" <span class="cross-tag">Também em: conta existente</span></li>
+</ul>
+</div>
+<div class="pattern-footer">
+<div class="foot-block">
+<h4>Impacto</h4>
+<p>A história se quebra entre o toque e a tela seguinte, e o usuário precisa reconfirmar se chegou ao lugar certo. O nome também se confunde com "Meu impacto", a área de ranking de reciclagem, um recurso totalmente diferente dentro do app.</p>
+</div>
+<div class="foot-block">
+<h4>Proposta</h4>
+<p>Renomear a tela de destino para uma linguagem alinhada ao botão que leva até ela, como "Doação de pontos", e reservar a palavra "impacto" exclusivamente para a área de ranking de reciclagem, evitando que os dois nomes se confundam. Vale evitar "Onde doar" como novo nome da tela: esse mesmo rótulo já é usado dentro dela para introduzir as categorias de causa, e a auditoria de conta existente com pontos mostra que ele confunde por sugerir localização geográfica em vez de causa social.</p>
+</div>
+<div class="foot-block">
+<h4>Critério de aceite</h4>
+<p>O título de cada tela usa a mesma linguagem do botão que levou até ela, e nenhum nome de tela se confunde com outro recurso existente no app.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pattern-card" id="padrao-emoticon">
+<div class="pattern-head">
+<div>
+<div class="pattern-num">Padrão 07</div>
+<div class="pattern-title">Emoticons de texto em títulos não são lidos por leitores de tela</div>
+</div>
+<span class="badge p0"><span class="dot"></span>Crítico</span>
+</div>
+<div class="pattern-body">
+<div>
+<h4>O que acontece</h4>
+<p>Estados de busca sem resultado usam o emoticon feito de pontuação ":(" dentro do próprio texto do título da tela.</p>
+</div>
+<div>
+<h4>Onde aparece</h4>
+<ul class="occurrence-list">
+<li>Buscar material, no título <b>"Item não encontrado :("</b>, onde "item" também diverge do termo "material" usado no resto da tela</li>
+<li>Minhas recompensas, no mesmo título <b>"Item não encontrado :("</b>, seguido do botão "Falar pelo WhatsApp"</li>
+<li>Também na jornada de conta existente com pontos: nas telas de detalhe de recompensa, sempre que não há ponto de retirada na cidade selecionada, o texto usa o mesmo tipo de emoticon em <b>"Infelizmente não há casas na cidade selecionada :("</b> <span class="cross-tag">Também em: conta existente</span></li>
+</ul>
+</div>
+<div class="pattern-footer">
+<div class="foot-block">
+<h4>Impacto</h4>
+<p>Quem usa leitor de tela ouve "dois pontos, parênteses" no lugar de qualquer expressão de sentimento, uma informação sem sentido nesse contexto e uma barreira real de acessibilidade.</p>
+</div>
+<div class="foot-block">
+<h4>Proposta</h4>
+<p>Remover o emoticon do texto e comunicar o tom por meio de uma ilustração, como a já usada nesse mesmo estado em Minhas recompensas, com texto alternativo descritivo, nunca por caracteres de pontuação lidos literalmente. Em Buscar material, também trocar "item" por "material" para manter a mesma linguagem do restante da tela.</p>
+</div>
+<div class="foot-block">
+<h4>Critério de aceite</h4>
+<p>Nenhum texto de interface usa emoticons feitos de pontuação; toda ilustração associada a um estado vazio tem texto alternativo descritivo.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
 </main>
-
-  <nav class="pager" aria-label="Navegação entre páginas">
-    <a class="prev" href="index.html"><span class="pager-label">Anterior</span><span class="pager-title">Visão geral</span></a>
-    <a class="next" href="conta-nova.html"><span class="pager-label">Próxima</span><span class="pager-title">Conta nova</span></a>
-  </nav>
+<nav aria-label="Navegação entre páginas" class="pager">
+<a class="prev" href="index.html"><span class="pager-label">Anterior</span><span class="pager-title">Visão geral</span></a>
+<a class="next" href="conta-nova.html"><span class="pager-label">Próxima</span><span class="pager-title">Conta nova</span></a>
+</nav>
 <footer class="site-footer">
-  <div class="footer-base">
-    <span>App So+ma · Auditoria de experiência · Matheus Policarpo · Agosto 2026</span>
-    <a class="to-top" href="#conteudo">Voltar ao topo ↑</a>
-  </div>
+<div class="footer-base">
+<span>App So+ma · Auditoria de experiência · Matheus Policarpo · Agosto 2026</span>
+<a class="to-top" href="#conteudo">Voltar ao topo ↑</a>
+</div>
 </footer>
-
 <script>
   var bar = document.getElementById('progress'), raf = null;
   function updateBar(){
@@ -352,6 +341,5 @@
     targets.forEach(function(t){ if(t) obs.observe(t); });
   }
 </script>
-
-</body>
+<script src="search-index.js"></script><script src="search.js"></script></body>
 </html>

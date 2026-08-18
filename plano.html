@@ -1,78 +1,73 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Plano de ação · Auditoria de experiência · App So+ma</title>
-<meta name="description" content="Auditoria de experiência do app So+ma: 13 jornadas mapeadas, achados priorizados, propostas de solução e critérios de aceite.">
-<meta name="theme-color" content="#FBFAF7">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<meta content="Auditoria de experiência do app So+ma: 13 jornadas mapeadas, achados priorizados, propostas de solução e critérios de aceite." name="description"/>
+<meta content="#FBFAF7" name="theme-color"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
-
 <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
-<div class="progress" id="progress" role="presentation"></div>
-
-
+<div class="progress" id="progress" role="presentation"></div><div class="sticky-top"><div class="search-bar-only"><div class="search-bar-only-inner"><button aria-controls="search-overlay" aria-haspopup="dialog" class="search-trigger" type="button"><svg aria-hidden="true" class="search-trigger-icon" fill="none" height="15" viewbox="0 0 16 16" width="15"><circle cx="7" cy="7" r="5.25" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14.5 14.5" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path></svg><span class="search-trigger-label">Buscar achados</span><span class="search-trigger-kbd"><kbd>Ctrl</kbd><kbd>K</kbd></span></button></div></div></div>
 <main id="conteudo">
-    <div class="page-hero">
-      <div class="page-hero-inner">
-        <a class="back" href="index.html" aria-label="Voltar para a visão geral"><span aria-hidden="true">&larr;</span></a>
-        <p class="breadcrumb">Priorização</p>
-        <h1>Plano de ação</h1>
-        <p class="lede">Todos os itens abaixo são relevantes para esta jornada, por isso estão em uma lista única, numerada por prioridade, da correção mais urgente para a mais leve.</p>
-      </div>
-    </div>
+<div class="page-hero">
+<div class="page-hero-inner">
+<a aria-label="Voltar para a visão geral" class="back" href="index.html"><span aria-hidden="true">←</span></a>
+<p class="breadcrumb">Priorização</p>
+<h1>Plano de ação</h1>
+<p class="lede">Todos os itens abaixo são relevantes para esta jornada, por isso estão em uma lista única, numerada por prioridade, da correção mais urgente para a mais leve.</p>
+</div>
+</div>
 <section id="plano">
-
-      <div class="roadmap-list">
-        <div class="roadmap-item"><span class="rn">1</span><span class="badge p0">Crítico</span><p>Padronizar a navegação: o botão de voltar sempre volta à tela anterior; remover o botão de fechar onde já existe o de voltar</p></div>
-        <div class="roadmap-item"><span class="rn">2</span><span class="badge p0">Crítico</span><p>Ativar a validação do campo de CPF</p></div>
-        <div class="roadmap-item"><span class="rn">3</span><span class="badge p0">Crítico</span><p>Corrigir a tela em branco ao convidar amigos durante o onboarding</p></div>
-        <div class="roadmap-item"><span class="rn">4</span><span class="badge p0">Crítico</span><p>Bloquear a doação para contas com saldo zero e limitar o valor ao saldo disponível</p></div>
-        <div class="roadmap-item"><span class="rn">5</span><span class="badge p0">Crítico</span><p>Corrigir o bug de cor na seleção de valores de doação</p></div>
-        <div class="roadmap-item"><span class="rn">6</span><span class="badge p0">Crítico</span><p>Revisar o tratamento de local de entrega não escolhido em toda a jornada, para nunca exibi-lo como um local válido</p></div>
-        <div class="roadmap-item"><span class="rn">7</span><span class="badge p0">Crítico</span><p>Substituir "Sua posição: Nenhuma" pela mensagem correta</p></div>
-        <div class="roadmap-item"><span class="rn">8</span><span class="badge p0">Crítico</span><p>Corrigir as telas em branco no catálogo de materiais</p></div>
-        <div class="roadmap-item"><span class="rn">9</span><span class="badge p0">Crítico</span><p>Remover os emoticons ":(" dos títulos de busca sem resultado em Buscar material e Minhas recompensas, substituindo por ilustração com texto alternativo</p></div>
-        <div class="roadmap-item"><span class="rn">10</span><span class="badge p0">Crítico</span><p>Corrigir "Item não encontrado" para "Material não encontrado" no estado de busca sem resultado em Buscar material</p></div>
-        <div class="roadmap-item"><span class="rn">11</span><span class="badge p0">Crítico</span><p>Redesenhar os estados vazios de listagem em todo o app com mensagem e ação padronizadas</p></div>
-        <div class="roadmap-item"><span class="rn">12</span><span class="badge p0">Crítico</span><p>Ocultar o botão "Limpar" no carrinho vazio e criar o estado vazio dedicado</p></div>
-        <div class="roadmap-item"><span class="rn">13</span><span class="badge p0">Crítico</span><p>Corrigir o retorno de navegação na categoria Floricultura e Jardinagem</p></div>
-        <div class="roadmap-item"><span class="rn">14</span><span class="badge p0">Crítico</span><p>Remover a duplicação de cards no início da categoria Saúde</p></div>
-        <div class="roadmap-item"><span class="rn">15</span><span class="badge p0">Crítico</span><p>Corrigir a posição inicial de rolagem nas categorias de recompensas</p></div>
-        <div class="roadmap-item"><span class="rn">16</span><span class="badge p0">Crítico</span><p>Corrigir o card de saldo do onboarding para refletir os dados reais da conta</p></div>
-        <div class="roadmap-item"><span class="rn">17</span><span class="badge p0">Crítico</span><p>Corrigir a opacidade e o corte do texto de apoio do quiz</p></div>
-        <div class="roadmap-item"><span class="rn">18</span><span class="badge p0">Crítico</span><p>Remover o título duplicado na tela de níveis do quiz</p></div>
-        <div class="roadmap-item"><span class="rn">19</span><span class="badge p1">Importante</span><p>Remover a seta duplicada do cabeçalho de localização, mantendo apenas o pin como controle único</p></div>
-        <div class="roadmap-item"><span class="rn">20</span><span class="badge p1">Importante</span><p>Ocultar o banner de onboarding após a conclusão de todas as etapas</p></div>
-        <div class="roadmap-item"><span class="rn">21</span><span class="badge p1">Importante</span><p>Renomear a tela "Meu impacto social" para uma linguagem alinhada aos botões que levam até ela ("Doar meus pontos" / "Doe seus pontos")</p></div>
-        <div class="roadmap-item"><span class="rn">22</span><span class="badge p1">Importante</span><p>Renomear a seção de materiais relacionados e ocultá-la quando vazia</p></div>
-        <div class="roadmap-item"><span class="rn">23</span><span class="badge p1">Importante</span><p>Rebalancear a hierarquia visual entre categoria e material específico nas telas de detalhe</p></div>
-        <div class="roadmap-item"><span class="rn">24</span><span class="badge p1">Importante</span><p>Adicionar índice de navegação nas páginas de regulamento e política de privacidade</p></div>
-        <div class="roadmap-item"><span class="rn">25</span><span class="badge p2">Leve</span><p>Corrigir o erro de digitação "cadatsro" para "cadastro"</p></div>
-        <div class="roadmap-item"><span class="rn">26</span><span class="badge p2">Leve</span><p>Padronizar o formato da saudação em todas as telas do app, incluindo a vírgula de vocativo ("Olá, [nome]")</p></div>
-        <div class="roadmap-item"><span class="rn">27</span><span class="badge p2">Leve</span><p>Criar o recurso de aviso quando um novo ponto de entrega abrir na região do usuário, hoje ausente na busca por local</p></div>
-        <div class="roadmap-item"><span class="rn">28</span><span class="badge p2">Leve</span><p>Revisar o componente de card de recompensa para suportar descrições de até 4 linhas</p></div>
-        <div class="roadmap-item"><span class="rn">29</span><span class="badge p2">Leve</span><p>Aplicar as cerca de 30 correções ortográficas e gramaticais listadas na revisão de textos, em telas de Início, Quiz, Meu impacto, Buscar material, Minhas recompensas e Menu</p></div>
-      </div>
-    </section>
+<div class="roadmap-list">
+<div class="roadmap-item" id="plano-plano-1"><span class="rn">1</span><span class="badge p0">Crítico</span><p>Padronizar a navegação: o botão de voltar sempre volta à tela anterior; remover o botão de fechar onde já existe o de voltar</p></div>
+<div class="roadmap-item" id="plano-plano-2"><span class="rn">2</span><span class="badge p0">Crítico</span><p>Ativar a validação do campo de CPF</p></div>
+<div class="roadmap-item" id="plano-plano-3"><span class="rn">3</span><span class="badge p0">Crítico</span><p>Corrigir a tela em branco ao convidar amigos durante o onboarding</p></div>
+<div class="roadmap-item" id="plano-plano-4"><span class="rn">4</span><span class="badge p0">Crítico</span><p>Bloquear a doação para contas com saldo zero e limitar o valor ao saldo disponível</p></div>
+<div class="roadmap-item" id="plano-plano-5"><span class="rn">5</span><span class="badge p0">Crítico</span><p>Corrigir o bug de cor na seleção de valores de doação</p></div>
+<div class="roadmap-item" id="plano-plano-6"><span class="rn">6</span><span class="badge p0">Crítico</span><p>Revisar o tratamento de local de entrega não escolhido em toda a jornada, para nunca exibi-lo como um local válido</p></div>
+<div class="roadmap-item" id="plano-plano-7"><span class="rn">7</span><span class="badge p0">Crítico</span><p>Substituir "Sua posição: Nenhuma" pela mensagem correta</p></div>
+<div class="roadmap-item" id="plano-plano-8"><span class="rn">8</span><span class="badge p0">Crítico</span><p>Corrigir as telas em branco no catálogo de materiais</p></div>
+<div class="roadmap-item" id="plano-plano-9"><span class="rn">9</span><span class="badge p0">Crítico</span><p>Remover os emoticons ":(" dos títulos de busca sem resultado em Buscar material e Minhas recompensas, substituindo por ilustração com texto alternativo</p></div>
+<div class="roadmap-item" id="plano-plano-10"><span class="rn">10</span><span class="badge p0">Crítico</span><p>Corrigir "Item não encontrado" para "Material não encontrado" no estado de busca sem resultado em Buscar material</p></div>
+<div class="roadmap-item" id="plano-plano-11"><span class="rn">11</span><span class="badge p0">Crítico</span><p>Redesenhar os estados vazios de listagem em todo o app com mensagem e ação padronizadas</p></div>
+<div class="roadmap-item" id="plano-plano-12"><span class="rn">12</span><span class="badge p0">Crítico</span><p>Ocultar o botão "Limpar" no carrinho vazio e criar o estado vazio dedicado</p></div>
+<div class="roadmap-item" id="plano-plano-13"><span class="rn">13</span><span class="badge p0">Crítico</span><p>Corrigir o retorno de navegação na categoria Floricultura e Jardinagem</p></div>
+<div class="roadmap-item" id="plano-plano-14"><span class="rn">14</span><span class="badge p0">Crítico</span><p>Remover a duplicação de cards no início da categoria Saúde</p></div>
+<div class="roadmap-item" id="plano-plano-15"><span class="rn">15</span><span class="badge p0">Crítico</span><p>Corrigir a posição inicial de rolagem nas categorias de recompensas</p></div>
+<div class="roadmap-item" id="plano-plano-16"><span class="rn">16</span><span class="badge p0">Crítico</span><p>Corrigir o card de saldo do onboarding para refletir os dados reais da conta</p></div>
+<div class="roadmap-item" id="plano-plano-17"><span class="rn">17</span><span class="badge p0">Crítico</span><p>Corrigir a opacidade e o corte do texto de apoio do quiz</p></div>
+<div class="roadmap-item" id="plano-plano-18"><span class="rn">18</span><span class="badge p0">Crítico</span><p>Remover o título duplicado na tela de níveis do quiz</p></div>
+<div class="roadmap-item" id="plano-plano-19"><span class="rn">19</span><span class="badge p1">Importante</span><p>Remover a seta duplicada do cabeçalho de localização, mantendo apenas o pin como controle único</p></div>
+<div class="roadmap-item" id="plano-plano-20"><span class="rn">20</span><span class="badge p1">Importante</span><p>Ocultar o banner de onboarding após a conclusão de todas as etapas</p></div>
+<div class="roadmap-item" id="plano-plano-21"><span class="rn">21</span><span class="badge p1">Importante</span><p>Renomear a tela "Meu impacto social" para uma linguagem alinhada aos botões que levam até ela ("Doar meus pontos" / "Doe seus pontos")</p></div>
+<div class="roadmap-item" id="plano-plano-22"><span class="rn">22</span><span class="badge p1">Importante</span><p>Renomear a seção de materiais relacionados e ocultá-la quando vazia</p></div>
+<div class="roadmap-item" id="plano-plano-23"><span class="rn">23</span><span class="badge p1">Importante</span><p>Rebalancear a hierarquia visual entre categoria e material específico nas telas de detalhe</p></div>
+<div class="roadmap-item" id="plano-plano-24"><span class="rn">24</span><span class="badge p1">Importante</span><p>Adicionar índice de navegação nas páginas de regulamento e política de privacidade</p></div>
+<div class="roadmap-item" id="plano-plano-25"><span class="rn">25</span><span class="badge p2">Leve</span><p>Corrigir o erro de digitação "cadatsro" para "cadastro"</p></div>
+<div class="roadmap-item" id="plano-plano-26"><span class="rn">26</span><span class="badge p2">Leve</span><p>Padronizar o formato da saudação em todas as telas do app, incluindo a vírgula de vocativo ("Olá, [nome]")</p></div>
+<div class="roadmap-item" id="plano-plano-27"><span class="rn">27</span><span class="badge p2">Leve</span><p>Criar o recurso de aviso quando um novo ponto de entrega abrir na região do usuário, hoje ausente na busca por local</p></div>
+<div class="roadmap-item" id="plano-plano-28"><span class="rn">28</span><span class="badge p2">Leve</span><p>Revisar o componente de card de recompensa para suportar descrições de até 4 linhas</p></div>
+<div class="roadmap-item" id="plano-plano-29"><span class="rn">29</span><span class="badge p2">Leve</span><p>Aplicar as cerca de 30 correções ortográficas e gramaticais listadas na revisão de textos, em telas de Início, Quiz, Meu impacto, Buscar material, Minhas recompensas e Menu</p></div>
+</div>
+</section>
 </main>
-
-  <nav class="pager" aria-label="Navegação entre páginas">
-    <a class="prev" href="textos.html"><span class="pager-label">Anterior</span><span class="pager-title">Revisão de textos</span></a>
-    <a class="next" href="index.html"><span class="pager-label">Voltar ao começo</span><span class="pager-title">Visão geral e mapa</span></a>
-  </nav>
+<nav aria-label="Navegação entre páginas" class="pager">
+<a class="prev" href="textos.html"><span class="pager-label">Anterior</span><span class="pager-title">Revisão de textos</span></a>
+<a class="next" href="index.html"><span class="pager-label">Voltar ao começo</span><span class="pager-title">Visão geral e mapa</span></a>
+</nav>
 <footer class="site-footer">
-  <div class="footer-base">
-    <span>App So+ma · Auditoria de experiência · Matheus Policarpo · Agosto 2026</span>
-    <a class="to-top" href="#conteudo">Voltar ao topo ↑</a>
-  </div>
+<div class="footer-base">
+<span>App So+ma · Auditoria de experiência · Matheus Policarpo · Agosto 2026</span>
+<a class="to-top" href="#conteudo">Voltar ao topo ↑</a>
+</div>
 </footer>
-
 <script>
   var bar = document.getElementById('progress'), raf = null;
   function updateBar(){
@@ -97,6 +92,5 @@
     targets.forEach(function(t){ if(t) obs.observe(t); });
   }
 </script>
-
-</body>
+<script src="search-index.js"></script><script src="search.js"></script></body>
 </html>

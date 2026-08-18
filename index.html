@@ -1,143 +1,134 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Visão geral · Auditoria de experiência · App So+ma</title>
-<meta name="description" content="Auditoria de experiência do app So+ma: 13 jornadas mapeadas, achados priorizados, propostas de solução e critérios de aceite.">
-<meta name="theme-color" content="#FBFAF7">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<meta content="Auditoria de experiência do app So+ma: 13 jornadas mapeadas, achados priorizados, propostas de solução e critérios de aceite." name="description"/>
+<meta content="#FBFAF7" name="theme-color"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
-
 <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 <div class="progress" id="progress" role="presentation"></div>
-
 <div class="sticky-top">
 <header class="site-header">
-  <nav class="site-nav" aria-label="Seções da auditoria">
-    <ul class="tabs">
-      <li><a class="tab" href="index.html" aria-current="page"><span class="tab-n">01</span>Visão geral</a></li>
-      <li><a class="tab" href="padroes.html"><span class="tab-n">02</span>Padrões</a></li>
-      <li><a class="tab" href="conta-nova.html"><span class="tab-n">03</span>Conta nova</a></li>
-      <li><a class="tab" href="conta-existente.html"><span class="tab-n">04</span>Conta com pontos</a></li>
-      <li><a class="tab" href="ajuda.html"><span class="tab-n">05</span>FAQs</a></li>
-      <li><a class="tab" href="textos.html"><span class="tab-n">06</span>Textos</a></li>
-      <li><a class="tab" href="plano.html"><span class="tab-n">07</span>Plano</a></li>
-    </ul>
-  </nav>
+<nav aria-label="Seções da auditoria" class="site-nav">
+<ul class="tabs">
+<li><a aria-current="page" class="tab" href="index.html"><span class="tab-n">01</span>Visão geral</a></li>
+<li><a class="tab" href="padroes.html"><span class="tab-n">02</span>Padrões</a></li>
+<li><a class="tab" href="conta-nova.html"><span class="tab-n">03</span>Conta nova</a></li>
+<li><a class="tab" href="conta-existente.html"><span class="tab-n">04</span>Conta com pontos</a></li>
+<li><a class="tab" href="ajuda.html"><span class="tab-n">05</span>FAQs</a></li>
+<li><a class="tab" href="textos.html"><span class="tab-n">06</span>Textos</a></li>
+<li><a class="tab" href="plano.html"><span class="tab-n">07</span>Plano</a></li>
+</ul>
+<button aria-controls="search-overlay" aria-haspopup="dialog" class="search-trigger" type="button"><svg aria-hidden="true" class="search-trigger-icon" fill="none" height="15" viewbox="0 0 16 16" width="15"><circle cx="7" cy="7" r="5.25" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14.5 14.5" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path></svg><span class="search-trigger-label">Buscar achados</span><span class="search-trigger-kbd"><kbd>Ctrl</kbd><kbd>K</kbd></span></button></nav>
 </header>
-
 </div>
 <main id="conteudo">
 <header class="hero">
-      <h1>✍️ Auditoria de experiência</h1>
-    </header>
+<h1>✍️ Auditoria de experiência</h1>
+</header>
 <section id="resumo">
-      <div class="section-kicker">Visão geral</div>
-      <h2 class="section-title">Resumo executivo</h2>
-      <p class="section-intro">O app tem uma base sólida (onboarding gamificado, sistema de pontos, quiz educativo, doação de pontos e catálogo de recompensas), mas perde consistência nos detalhes: navegação que não volta para onde o usuário estava, estados vazios sem orientação e informações internas do sistema aparecendo como se fossem conteúdo real.</p>
-
-      <div class="map-grid">
-        <a class="map-card" href="conta-nova.html#fluxo-cadastro">
-          <span class="map-chip">Caso de uso</span>
-          <h3>Conta nova</h3>
-          <p>Da criação da conta até os primeiros contatos com pontos, doações e recompensas.</p>
-          <div class="map-stats">
-            <div class="map-stat"><strong>23</strong><span>críticos</span></div>
-            <div class="map-stat"><strong>13</strong><span>melhorias</span></div>
-            <div class="map-stat"><strong>7</strong><span>fluxos</span></div>
-          </div>
-          <div class="map-cta">Começar por aqui &rarr;</div>
-        </a>
-        <a class="map-card existing" href="conta-existente.html#conta-existente">
-          <span class="map-chip">Caso de uso</span>
-          <h3>Conta existente com pontos</h3>
-          <p>Quem já usa o app, com saldo, histórico de reciclagem e resgates reais.</p>
-          <div class="map-stats">
-            <div class="map-stat"><strong>21</strong><span>críticos</span></div>
-            <div class="map-stat"><strong>14</strong><span>importantes</span></div>
-            <div class="map-stat"><strong>6</strong><span>partes</span></div>
-          </div>
-          <div class="map-cta">Ver conta existente &rarr;</div>
-        </a>
-        <a class="map-card shared" href="ajuda.html#faqs">
-          <span class="map-chip">Conteúdo compartilhado</span>
-          <h3>FAQs</h3>
-          <p>Perguntas frequentes, iguais para os dois casos de uso acima.</p>
-          <div class="map-stats">
-            <div class="map-stat"><strong>50</strong><span>telas revisadas</span></div>
-            <div class="map-stat"><strong>11</strong><span>erros de texto</span></div>
-          </div>
-          <div class="map-cta">Ver FAQs &rarr;</div>
-        </a>
-        <a class="map-card" href="padroes.html">
-          <span class="map-chip">Achados sistêmicos</span>
-          <h3>Padrões recorrentes</h3>
-          <p>Problemas que se repetem em vários pontos do app, com a mesma causa e a mesma solução.</p>
-          <div class="map-stats">
-            <div class="map-stat"><strong>7</strong><span>padrões</span></div>
-          </div>
-          <div class="map-cta">Ver padrões &rarr;</div>
-        </a>
-        <a class="map-card shared" href="textos.html">
-          <span class="map-chip">Conteúdo</span>
-          <h3>Revisão de textos</h3>
-          <p>Ajustes de microcopy prontos para aplicar, organizados pelo ponto do app onde aparecem.</p>
-          <div class="map-stats">
-            <div class="map-stat"><strong>53</strong><span>ajustes de texto</span></div>
-          </div>
-          <div class="map-cta">Ver textos &rarr;</div>
-        </a>
-        <a class="map-card existing" href="plano.html">
-          <span class="map-chip">Priorização</span>
-          <h3>Plano de ação</h3>
-          <p>Lista única numerada por prioridade, da correção mais urgente para a mais leve.</p>
-          <div class="map-stats">
-            <div class="map-stat"><strong>29</strong><span>itens priorizados</span></div>
-          </div>
-          <div class="map-cta">Ver plano &rarr;</div>
-        </a>
-      </div>
-
-      <div class="two-col">
-        <div class="panel">
-          <h3>O que mais chama atenção</h3>
-          <ul>
-            <li><strong>Navegação sem volta confiável</strong> aparece em praticamente todas as áreas do app: fechar uma tela secundária quase sempre leva para o início em vez de voltar para onde o usuário estava.</li>
-            <li><strong>Valores internos do sistema</strong> (local não escolhido, saldo zerado, ausência de participação) são exibidos como se fossem informação válida, o que soa como erro para quem está usando o app.</li>
-            <li>O fluxo de <strong>doação de pontos</strong> fica disponível mesmo para contas sem saldo, incluindo um campo que aceita valores muito acima de qualquer saldo real.</li>
-            <li>Telas de <strong>estado vazio</strong> (ranking, histórico, extrato, catálogo de materiais, carrinho) raramente indicam o que o usuário pode fazer a seguir.</li>
-            <li>No cabeçalho de localização, <strong>pin e seta abrem a mesma tela</strong>, e o botão que leva à doação de pontos chega a uma tela com <strong>nome diferente do prometido</strong>.</li>
-            <li>Emoticons de texto como <strong>":("</strong> aparecem em títulos de erro e não são lidos corretamente por quem usa leitor de tela, uma barreira real de acessibilidade.</li>
-          </ul>
-        </div>
-        <div class="panel risk">
-          <h3>Onde focar primeiro</h3>
-          <p>A combinação de <strong>navegação sem volta confiável</strong> com <strong>estados vazios sem orientação</strong> é o que mais reduz a confiança de quem está usando o app pela primeira vez.</p>
-          <p>São também os problemas mais baratos de resolver:</p>
-          <ul>
-            <li>a navegação depende de uma única regra global;</li>
-            <li>os estados vazios seguem o mesmo padrão em todas as telas onde aparecem.</li>
-          </ul>
-        </div>
-      </div>
-
-      
-    </section>
-
+<div class="section-kicker">Visão geral</div>
+<h2 class="section-title">Resumo executivo</h2>
+<p class="section-intro">O app tem uma base sólida (onboarding gamificado, sistema de pontos, quiz educativo, doação de pontos e catálogo de recompensas), mas perde consistência nos detalhes: navegação que não volta para onde o usuário estava, estados vazios sem orientação e informações internas do sistema aparecendo como se fossem conteúdo real.</p>
+<div class="map-grid">
+<a class="map-card" href="conta-nova.html#fluxo-cadastro">
+<span class="map-chip">Caso de uso</span>
+<h3>Conta nova</h3>
+<p>Da criação da conta até os primeiros contatos com pontos, doações e recompensas.</p>
+<div class="map-stats">
+<div class="map-stat"><strong>23</strong><span>críticos</span></div>
+<div class="map-stat"><strong>13</strong><span>melhorias</span></div>
+<div class="map-stat"><strong>7</strong><span>fluxos</span></div>
+</div>
+<div class="map-cta">Começar por aqui →</div>
+</a>
+<a class="map-card existing" href="conta-existente.html#conta-existente">
+<span class="map-chip">Caso de uso</span>
+<h3>Conta existente com pontos</h3>
+<p>Quem já usa o app, com saldo, histórico de reciclagem e resgates reais.</p>
+<div class="map-stats">
+<div class="map-stat"><strong>21</strong><span>críticos</span></div>
+<div class="map-stat"><strong>14</strong><span>importantes</span></div>
+<div class="map-stat"><strong>6</strong><span>partes</span></div>
+</div>
+<div class="map-cta">Ver conta existente →</div>
+</a>
+<a class="map-card shared" href="ajuda.html#faqs">
+<span class="map-chip">Conteúdo compartilhado</span>
+<h3>FAQs</h3>
+<p>Perguntas frequentes, iguais para os dois casos de uso acima.</p>
+<div class="map-stats">
+<div class="map-stat"><strong>50</strong><span>telas revisadas</span></div>
+<div class="map-stat"><strong>11</strong><span>erros de texto</span></div>
+</div>
+<div class="map-cta">Ver FAQs →</div>
+</a>
+<a class="map-card" href="padroes.html">
+<span class="map-chip">Achados sistêmicos</span>
+<h3>Padrões recorrentes</h3>
+<p>Problemas que se repetem em vários pontos do app, com a mesma causa e a mesma solução.</p>
+<div class="map-stats">
+<div class="map-stat"><strong>7</strong><span>padrões</span></div>
+</div>
+<div class="map-cta">Ver padrões →</div>
+</a>
+<a class="map-card shared" href="textos.html">
+<span class="map-chip">Conteúdo</span>
+<h3>Revisão de textos</h3>
+<p>Ajustes de microcopy prontos para aplicar, organizados pelo ponto do app onde aparecem.</p>
+<div class="map-stats">
+<div class="map-stat"><strong>53</strong><span>ajustes de texto</span></div>
+</div>
+<div class="map-cta">Ver textos →</div>
+</a>
+<a class="map-card existing" href="plano.html">
+<span class="map-chip">Priorização</span>
+<h3>Plano de ação</h3>
+<p>Lista única numerada por prioridade, da correção mais urgente para a mais leve.</p>
+<div class="map-stats">
+<div class="map-stat"><strong>29</strong><span>itens priorizados</span></div>
+</div>
+<div class="map-cta">Ver plano →</div>
+</a>
+</div>
+<div class="two-col">
+<div class="panel">
+<h3>O que mais chama atenção</h3>
+<ul>
+<li><strong>Navegação sem volta confiável</strong> aparece em praticamente todas as áreas do app: fechar uma tela secundária quase sempre leva para o início em vez de voltar para onde o usuário estava.</li>
+<li><strong>Valores internos do sistema</strong> (local não escolhido, saldo zerado, ausência de participação) são exibidos como se fossem informação válida, o que soa como erro para quem está usando o app.</li>
+<li>O fluxo de <strong>doação de pontos</strong> fica disponível mesmo para contas sem saldo, incluindo um campo que aceita valores muito acima de qualquer saldo real.</li>
+<li>Telas de <strong>estado vazio</strong> (ranking, histórico, extrato, catálogo de materiais, carrinho) raramente indicam o que o usuário pode fazer a seguir.</li>
+<li>No cabeçalho de localização, <strong>pin e seta abrem a mesma tela</strong>, e o botão que leva à doação de pontos chega a uma tela com <strong>nome diferente do prometido</strong>.</li>
+<li>Emoticons de texto como <strong>":("</strong> aparecem em títulos de erro e não são lidos corretamente por quem usa leitor de tela, uma barreira real de acessibilidade.</li>
+</ul>
+</div>
+<div class="panel risk">
+<h3>Onde focar primeiro</h3>
+<p>A combinação de <strong>navegação sem volta confiável</strong> com <strong>estados vazios sem orientação</strong> é o que mais reduz a confiança de quem está usando o app pela primeira vez.</p>
+<p>São também os problemas mais baratos de resolver:</p>
+<ul>
+<li>a navegação depende de uma única regra global;</li>
+<li>os estados vazios seguem o mesmo padrão em todas as telas onde aparecem.</li>
+</ul>
+</div>
+</div>
+</section>
 </main>
-
 <footer class="site-footer">
-  <div class="footer-base">
-    <span>App So+ma · Auditoria de experiência · Matheus Policarpo · Agosto 2026</span>
-    <a class="to-top" href="#conteudo">Voltar ao topo ↑</a>
-  </div>
+<div class="footer-base">
+<span>App So+ma · Auditoria de experiência · Matheus Policarpo · Agosto 2026</span>
+<a class="to-top" href="#conteudo">Voltar ao topo ↑</a>
+</div>
 </footer>
-
 <script>
   var bar = document.getElementById('progress'), raf = null;
   function updateBar(){
@@ -162,6 +153,5 @@
     targets.forEach(function(t){ if(t) obs.observe(t); });
   }
 </script>
-
-</body>
+<script src="search-index.js"></script><script src="search.js"></script></body>
 </html>
