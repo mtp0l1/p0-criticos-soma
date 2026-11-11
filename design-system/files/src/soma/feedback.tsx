@@ -1,6 +1,7 @@
 /* So+ma · feedback: Modal, Toast, Message, EmptyState, ResultScreen. */
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { Toaster as SonnerToaster, toast as sonnerToast } from 'sonner';
 import { cn } from '../lib/utils';
 import { Icon, type IconName } from '../ui/icon';
 import { Button, IconButton } from '../ui/button';
@@ -74,6 +75,28 @@ export function Toast({ message, kind = 'error', tone, onDismiss }: ToastProps) 
       <p className="label m-0 flex-1">{message}</p>
       {onDismiss && <IconButton icon="close" label="Dispensar" onClick={onDismiss} className="-my-micro -mr-nano text-text-inverse hover:bg-transparent active:bg-transparent" />}
     </div>
+  );
+}
+
+/* ------------------------------------------------------ Toaster / notify */
+
+export type ToasterProps = React.ComponentProps<typeof SonnerToaster>;
+/** Provedor de avisos (shadcn Sonner): cuida de fila, tempo, gesto de dispensar e anúncio. Monte uma vez na raiz do app. */
+export function Toaster({ position = 'bottom-center', offset = 96, mobileOffset = 96, ...props }: ToasterProps) {
+  return <SonnerToaster position={position} offset={offset} mobileOffset={mobileOffset} visibleToasts={2} containerAriaLabel="Avisos" toastOptions={{ unstyled: true, className: 'w-full' }} {...props} />;
+}
+export interface NotifyOptions {
+  /** error = erro (padrão: fica 6s) · success e info ficam 4s. */
+  kind?: 'error' | 'success' | 'info';
+  duration?: number;
+  /** false tira o X de dispensar. */
+  dismissible?: boolean;
+}
+/** Dispara um aviso com o visual do Toast do So+ma. Ex.: `notify('Entrega agendada', { kind: 'success' })`. */
+export function notify(message: string, { kind = 'error', duration, dismissible = true }: NotifyOptions = {}) {
+  return sonnerToast.custom(
+    (id) => <Toast kind={kind} message={message} onDismiss={dismissible ? () => sonnerToast.dismiss(id) : undefined} />,
+    { duration: duration ?? (kind === 'error' ? 6000 : 4000) },
   );
 }
 

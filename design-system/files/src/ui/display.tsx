@@ -4,7 +4,8 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
 import * as ProgressPrimitive from '@radix-ui/react-progress';
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
-import { cn } from '../lib/utils';
+import { Slot } from '@radix-ui/react-slot';
+import { cn, focusRing } from '../lib/utils';
 
 /* ---------------------------------------------------------------- Badge */
 
@@ -25,10 +26,14 @@ export const badgeVariants = cva(
     defaultVariants: { tone: 'neutral' },
   },
 );
-export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement>, VariantProps<typeof badgeVariants> {}
-/** Selo não interativo (shadcn Badge). Base de Tag e StatusChip. */
-export function Badge({ className, tone, ...props }: BadgeProps) {
-  return <span className={cn(badgeVariants({ tone }), className)} {...props} />;
+export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement>, VariantProps<typeof badgeVariants> {
+  /** Renderiza o filho (um link ou botão) com o visual do selo; ganha foco e hover. */
+  asChild?: boolean;
+}
+/** Selo (shadcn Badge). Não interativo por padrão; com asChild vira link ou botão. Base de Tag e StatusChip. */
+export function Badge({ className, tone, asChild, ...props }: BadgeProps) {
+  const Comp = asChild ? Slot : 'span';
+  return <Comp className={cn(badgeVariants({ tone }), asChild && cn('cursor-pointer no-underline transition-colors hover:underline', focusRing), className)} {...props} />;
 }
 
 /* ----------------------------------------------------------------- Card */
@@ -58,6 +63,10 @@ export function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHead
 }
 export function CardDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
   return <p className={cn('caption m-0 text-muted-foreground', className)} {...props} />;
+}
+/** Ação no canto do cabeçalho do card (shadcn CardAction). Use dentro de CardHeader com `className="grid-cols-[1fr_auto]"`. */
+export function CardAction({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  return <div className={cn('col-start-2 row-span-2 row-start-1 self-start justify-self-end', className)} {...props} />;
 }
 export function CardContent({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return <div className={cn('grid gap-nano', className)} {...props} />;

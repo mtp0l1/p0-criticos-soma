@@ -54,6 +54,8 @@ module.exports = {
       "award-gold": "var(--award-gold)",
       "award-silver": "var(--award-silver)",
       "award-bronze": "var(--award-bronze)",
+      "interactive-fill-destructive-hover": "var(--interactive-fill-destructive-hover)",
+      "interactive-fill-destructive-active": "var(--interactive-fill-destructive-active)",
       "background": "var(--background)",
       "foreground": "var(--foreground)",
       "card": "var(--card)",
@@ -121,6 +123,7 @@ module.exports = {
     },
     "extend": {
       "keyframes": {
+        "fade-out": {"from": {"opacity": "1"}, "to": {"opacity": "0"}}, "zoom-out": {"from": {"opacity": "1", "transform": "translate(-50%,-50%) scale(1)"}, "to": {"opacity": "0", "transform": "translate(-50%,-48%) scale(.96)"}}, "slide-down": {"from": {"transform": "translateY(0)"}, "to": {"transform": "translateY(100%)"}}, "slide-in-top": {"from": {"transform": "translateY(-100%)"}, "to": {"transform": "translateY(0)"}}, "slide-out-top": {"from": {"transform": "translateY(0)"}, "to": {"transform": "translateY(-100%)"}}, "slide-in-left": {"from": {"transform": "translateX(-100%)"}, "to": {"transform": "translateX(0)"}}, "slide-out-left": {"from": {"transform": "translateX(0)"}, "to": {"transform": "translateX(-100%)"}}, "slide-in-right": {"from": {"transform": "translateX(100%)"}, "to": {"transform": "translateX(0)"}}, "slide-out-right": {"from": {"transform": "translateX(0)"}, "to": {"transform": "translateX(100%)"}}, "pop-in": {"from": {"opacity": "0", "transform": "scale(.96)"}, "to": {"opacity": "1", "transform": "scale(1)"}}, "pop-out": {"from": {"opacity": "1", "transform": "scale(1)"}, "to": {"opacity": "0", "transform": "scale(.96)"}}, "collapsible-down": {"from": {"height": "0"}, "to": {"height": "var(--radix-collapsible-content-height)"}}, "collapsible-up": {"from": {"height": "var(--radix-collapsible-content-height)"}, "to": {"height": "0"}}, "caret-blink": {"0%,70%,100%": {"opacity": "1"}, "20%,50%": {"opacity": "0"}},
         "fade-in": {
           "from": {
             "opacity": "0"
@@ -165,6 +168,7 @@ module.exports = {
         }
       },
       "animation": {
+        "fade-out": "fade-out .15s ease-out", "zoom-out": "zoom-out .15s ease-out", "slide-down": "slide-down .2s ease-in", "slide-in-top": "slide-in-top .2s ease-out", "slide-out-top": "slide-out-top .2s ease-in", "slide-in-left": "slide-in-left .2s ease-out", "slide-out-left": "slide-out-left .2s ease-in", "slide-in-right": "slide-in-right .2s ease-out", "slide-out-right": "slide-out-right .2s ease-in", "pop-in": "pop-in .15s ease-out", "pop-out": "pop-out .15s ease-out", "collapsible-down": "collapsible-down .2s ease-out", "collapsible-up": "collapsible-up .2s ease-out", "caret-blink": "caret-blink 1.25s ease-out infinite",
         "fade-in": "fade-in .15s ease-out",
         "zoom-in": "zoom-in .15s ease-out",
         "slide-up": "slide-up .2s ease-out",

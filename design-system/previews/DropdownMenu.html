@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/bundle.css"><script src="../assets/react.production.min.js"></script><script src="../assets/react-dom.production.min.js"></script><script src="../assets/bundle.js"></script><meta charset="utf-8"><title>DropdownMenu</title>
+</head>
+<body class="m-0 p-small bg-background text-foreground font-sans">
+<div id="root" class="grid gap-mini" style="max-width:390px"></div>
+<script>
+var S = window.Soma, h = React.createElement, F = React.Fragment, useState = React.useState;
+function K(t){ return h('p', {className:'caption m-0 text-muted-foreground'}, t); }
+function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-center gap-nano'}].concat([].slice.call(arguments))); }
+var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
+// Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
+function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
+function Demo(){ var n=useState(true), o=useState('recentes'); return h('div',{className:'min-h-[280px]'}, Row(
+  h(S.DropdownMenu,{modal:false}, h(S.DropdownMenuTrigger,{asChild:true}, h(S.Button,{hierarchy:'quiet',size:'compact',icon:'chevron-down',iconPosition:'end'},'Opções do agendamento')),
+    h(S.DropdownMenuContent,{align:'start'}, h(S.DropdownMenuLabel,null,'Entrega de seg, 07 set'),
+      h(S.DropdownMenuItem,null,h(S.Icon,{name:'calendar'}),'Reagendar'), h(S.DropdownMenuItem,null,h(S.Icon,{name:'pin'}),'Como chegar'), h(S.DropdownMenuItem,{disabled:true},h(S.Icon,{name:'qr-code'}),'Mostrar QR'),
+      h(S.DropdownMenuSeparator), h(S.DropdownMenuCheckboxItem,{checked:n[0],onCheckedChange:n[1]},'Lembrar um dia antes'),
+      h(S.DropdownMenuSeparator), h(S.DropdownMenuItem,{variant:'destructive'},h(S.Icon,{name:'trash'}),'Cancelar agendamento'))),
+  h(S.DropdownMenu,{modal:false}, h(S.DropdownMenuTrigger,{asChild:true}, h(S.Button,{hierarchy:'transparent'},'Ordenar')),
+    h(S.DropdownMenuContent,{align:'end'}, h(S.DropdownMenuRadioGroup,{value:o[0],onValueChange:o[1]}, h(S.DropdownMenuRadioItem,{value:'recentes'},'Mais recentes'), h(S.DropdownMenuRadioItem,{value:'pontos'},'Menos pontos'), h(S.DropdownMenuRadioItem,{value:'az'},'A a Z')))))); }
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+<script>(function(){function s(){parent.postMessage({soma:"h",n:"DropdownMenu",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

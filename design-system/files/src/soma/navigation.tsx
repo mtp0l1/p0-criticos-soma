@@ -7,12 +7,31 @@ import { Button, IconButton } from '../ui/button';
 import { TabsRoot, TabsList, TabsTrigger, TabsContent } from '../ui/overlay';
 
 /** Classe comum de superfícies tocáveis (tile, card de saldo, linha). */
-export const pressable = cn('cursor-pointer select-none text-left font-sans transition-colors duration-150 motion-reduce:transition-none', focusRing);
+export const pressable = cn(
+  'cursor-pointer select-none text-left font-sans transition-colors duration-150 motion-reduce:transition-none',
+  focusRing,
+  'disabled:pointer-events-none disabled:text-interactive-text-disabled aria-disabled:pointer-events-none aria-disabled:text-interactive-text-disabled',
+);
 
 /** Renderiza <a> quando há href, senão <button>. Mantém um único elemento tocável. */
-export function PressableBase({ href, className, children, ...props }: { href?: string; className?: string; children?: React.ReactNode } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  if (href) return <a href={href} className={className}>{children}</a>;
-  return <button type="button" className={className} {...props}>{children}</button>;
+export function PressableBase({ href, className, children, disabled, onClick, ...props }: { href?: string; className?: string; children?: React.ReactNode } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
+  if (href) {
+    // O link recebe os mesmos atributos (aria-*, data-*, onClick); desabilitado vira aria-disabled e sai da ordem de foco.
+    const { type: _type, ...rest } = props as React.ButtonHTMLAttributes<HTMLButtonElement>;
+    return (
+      <a
+        {...(rest as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+        href={disabled ? undefined : href}
+        aria-disabled={disabled || undefined}
+        tabIndex={disabled ? -1 : undefined}
+        onClick={onClick as unknown as React.MouseEventHandler<HTMLAnchorElement>}
+        className={className}
+      >
+        {children}
+      </a>
+    );
+  }
+  return <button type="button" className={className} disabled={disabled} onClick={onClick} {...props}>{children}</button>;
 }
 
 /* ---------------------------------------------------------------- Header */

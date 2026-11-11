@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/bundle.css"><script src="../assets/react.production.min.js"></script><script src="../assets/react-dom.production.min.js"></script><script src="../assets/bundle.js"></script><meta charset="utf-8"><title>Table</title>
+</head>
+<body class="m-0 p-small bg-background text-foreground font-sans">
+<div id="root" class="grid gap-mini" style="max-width:390px"></div>
+<script>
+var S = window.Soma, h = React.createElement, F = React.Fragment, useState = React.useState;
+function K(t){ return h('p', {className:'caption m-0 text-muted-foreground'}, t); }
+function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-center gap-nano'}].concat([].slice.call(arguments))); }
+var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
+// Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
+function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
+var EX=[['11/11','Entrega · Vila Verde','+140'],['09/11','Pergunta do dia','+15'],['05/11','Resgate · Almoço executivo','−600'],['01/11','Doação','−500']];
+function Demo(){ return h(S.Table,{'aria-label':'Extrato de pontos'}, h(S.TableCaption,null,'Extrato de pontos de novembro'),
+  h(S.TableHeader,null, h(S.TableRow,null, h(S.TableHead,null,'Data'), h(S.TableHead,null,'Movimento'), h(S.TableHead,{className:'text-right'},'Pontos'))),
+  h(S.TableBody,null, EX.map(function(r){ return h(S.TableRow,{key:r[0]+r[1]}, h(S.TableCell,{className:'whitespace-nowrap text-muted-foreground'},r[0]), h(S.TableCell,null,r[1]), h(S.TableCell,{className:'text-right font-semibold'},r[2])); })),
+  h(S.TableFooter,null, h(S.TableRow,null, h(S.TableCell,{colSpan:2},'Saldo'), h(S.TableCell,{className:'text-right'},'1.130')))); }
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+<script>(function(){function s(){parent.postMessage({soma:"h",n:"Table",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

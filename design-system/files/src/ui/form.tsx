@@ -5,32 +5,33 @@ import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import * as SelectPrimitive from '@radix-ui/react-select';
-import { Check, ChevronDown, ChevronUp } from 'lucide-react';
-import { cn, focusRing } from '../lib/utils';
+import { Check, ChevronDown, ChevronUp, Minus } from 'lucide-react';
+import { cn, focusRing, hitArea } from '../lib/utils';
 
 /* ---------------------------------------------------------------- Label */
 
 export const Label = React.forwardRef<React.ElementRef<typeof LabelPrimitive.Root>, React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>>(
   function Label({ className, ...props }, ref) {
-    return <LabelPrimitive.Root ref={ref} className={cn('label text-foreground peer-disabled:cursor-not-allowed peer-disabled:text-interactive-text-disabled', className)} {...props} />;
+    return <LabelPrimitive.Root ref={ref} className={cn('label text-foreground peer-disabled:cursor-not-allowed peer-disabled:text-interactive-text-disabled group-data-[disabled=true]:text-interactive-text-disabled', className)} {...props} />;
   },
 );
 
 /* ---------------------------------------------------------- Input/Textarea */
 
-const fieldBase = cn(
+export const fieldBase = cn(
   'body w-full rounded-md border border-input bg-surface-primary px-mini text-foreground font-sans',
   'placeholder:text-muted-foreground transition-colors duration-150 motion-reduce:transition-none',
   'hover:border-text-secondary focus-visible:border-border-highlight',
   focusRing,
   'disabled:cursor-not-allowed disabled:border-transparent disabled:bg-interactive-fill-disabled disabled:text-interactive-text-disabled',
-  'aria-[invalid=true]:border-feedback-text-negative',
+  '[&[readonly]]:bg-surface-secondary [&[readonly]]:hover:border-input',
+  'aria-[invalid=true]:border-feedback-text-negative aria-[invalid=true]:hover:border-feedback-text-negative aria-[invalid=true]:focus-visible:border-feedback-text-negative aria-[invalid=true]:focus-visible:ring-destructive',
 );
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 /** shadcn Input com a altura e a borda acessível do So+ma. */
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input({ className, type = 'text', ...props }, ref) {
-  return <input ref={ref} type={type} className={cn(fieldBase, 'h-input', className)} {...props} />;
+  return <input ref={ref} type={type} className={cn(fieldBase, 'h-input min-w-0 file:mr-micro file:h-full file:cursor-pointer file:border-0 file:bg-transparent file:font-sans file:font-semibold file:text-text-link', className)} {...props} />;
 });
 
 export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
@@ -46,17 +47,21 @@ export const Checkbox = React.forwardRef<React.ElementRef<typeof CheckboxPrimiti
       <CheckboxPrimitive.Root
         ref={ref}
         className={cn(
-          'peer grid size-xsmall shrink-0 place-items-center rounded-xs border-[1.5px] border-input bg-surface-primary transition-colors',
-          'hover:border-text-primary',
+          'peer group grid size-xsmall shrink-0 cursor-pointer place-items-center rounded-xs border-[1.5px] border-input bg-surface-primary transition-colors',
+          hitArea,
+          'hover:border-text-primary active:bg-interactive-fill-quiet-active',
           focusRing,
           'data-[state=checked]:border-text-primary data-[state=checked]:bg-surface-inverse data-[state=checked]:text-text-inverse',
-          'disabled:cursor-not-allowed disabled:border-border disabled:bg-interactive-fill-disabled',
+          'data-[state=indeterminate]:border-text-primary data-[state=indeterminate]:bg-surface-inverse data-[state=indeterminate]:text-text-inverse',
+          'aria-[invalid=true]:border-feedback-text-negative',
+          'disabled:cursor-not-allowed disabled:border-border disabled:bg-interactive-fill-disabled disabled:text-interactive-text-disabled disabled:data-[state=checked]:bg-interactive-fill-disabled disabled:data-[state=checked]:text-interactive-text-disabled',
           className,
         )}
         {...props}
       >
         <CheckboxPrimitive.Indicator>
-          <Check className="size-[14px]" strokeWidth={3} aria-hidden />
+          <Check className="size-[14px] group-data-[state=indeterminate]:hidden" strokeWidth={3} aria-hidden />
+          <Minus className="hidden size-[14px] group-data-[state=indeterminate]:block" strokeWidth={3} aria-hidden />
         </CheckboxPrimitive.Indicator>
       </CheckboxPrimitive.Root>
     );
@@ -73,9 +78,10 @@ export const Switch = React.forwardRef<React.ElementRef<typeof SwitchPrimitive.R
         ref={ref}
         className={cn(
           'peer inline-flex h-small w-touch shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors',
-          'bg-text-secondary data-[state=checked]:bg-surface-inverse',
+          'bg-text-secondary hover:bg-text-primary data-[state=checked]:bg-surface-inverse',
+          hitArea,
           focusRing,
-          'disabled:cursor-not-allowed disabled:bg-border',
+          'disabled:cursor-not-allowed disabled:bg-border disabled:hover:bg-border disabled:data-[state=checked]:bg-border',
           className,
         )}
         {...props}
@@ -83,7 +89,7 @@ export const Switch = React.forwardRef<React.ElementRef<typeof SwitchPrimitive.R
         <SwitchPrimitive.Thumb
           className={cn(
             'pointer-events-none block size-xsmall rounded-full bg-surface-primary transition-transform motion-reduce:transition-none',
-            'data-[state=checked]:translate-x-xsmall data-[state=checked]:bg-primary data-[state=unchecked]:translate-x-0',
+            'data-[state=checked]:translate-x-xsmall data-[state=checked]:bg-primary data-[state=unchecked]:translate-x-0 data-[disabled]:bg-interactive-fill-disabled',
           )}
         />
       </SwitchPrimitive.Root>
@@ -104,10 +110,12 @@ export const RadioGroupItem = React.forwardRef<React.ElementRef<typeof RadioGrou
       <RadioGroupPrimitive.Item
         ref={ref}
         className={cn(
-          'peer grid aspect-square size-xsmall shrink-0 place-items-center rounded-full border-[1.5px] border-input bg-surface-primary text-text-primary',
-          'hover:border-text-primary data-[state=checked]:border-text-primary',
+          'peer grid aspect-square size-xsmall shrink-0 cursor-pointer place-items-center rounded-full border-[1.5px] border-input bg-surface-primary text-text-primary transition-colors',
+          hitArea,
+          'hover:border-text-primary active:bg-interactive-fill-quiet-active data-[state=checked]:border-text-primary',
           focusRing,
-          'disabled:cursor-not-allowed disabled:border-border disabled:bg-interactive-fill-disabled',
+          'aria-[invalid=true]:border-feedback-text-negative',
+          'disabled:cursor-not-allowed disabled:border-border disabled:bg-interactive-fill-disabled disabled:text-interactive-text-disabled',
           className,
         )}
         {...props}
@@ -129,12 +137,12 @@ export const SelectTrigger = React.forwardRef<React.ElementRef<typeof SelectPrim
     return (
       <SelectPrimitive.Trigger
         ref={ref}
-        className={cn(fieldBase, 'flex h-input items-center justify-between gap-nano text-left data-[placeholder]:text-muted-foreground [&>span]:truncate', className)}
+        className={cn(fieldBase, 'flex h-input cursor-pointer items-center justify-between gap-nano text-left data-[placeholder]:text-muted-foreground data-[state=open]:border-border-highlight disabled:[&_svg]:text-interactive-text-disabled [&>span]:truncate', className)}
         {...props}
       >
         {children}
         <SelectPrimitive.Icon asChild>
-          <ChevronDown className="size-icon shrink-0 text-icon-brand-strong" strokeWidth={1.75} aria-hidden />
+          <ChevronDown className="size-icon shrink-0 text-icon-brand-strong" aria-hidden />
         </SelectPrimitive.Icon>
       </SelectPrimitive.Trigger>
     );
@@ -150,7 +158,7 @@ export const SelectContent = React.forwardRef<React.ElementRef<typeof SelectPrim
           position={position}
           className={cn(
             'relative z-50 max-h-[--radix-select-content-available-height] min-w-[--radix-select-trigger-width] overflow-hidden rounded-md border border-border bg-popover text-popover-foreground shadow-high',
-            'data-[state=open]:animate-fade-in',
+            'data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out motion-reduce:animate-none',
             position === 'popper' && 'data-[side=bottom]:translate-y-xnano data-[side=top]:-translate-y-xnano',
             className,
           )}

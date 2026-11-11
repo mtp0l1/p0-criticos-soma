@@ -10,7 +10,10 @@ export const buttonVariants = cva(
     'button relative inline-flex items-center justify-center gap-nano whitespace-nowrap rounded-md border-[1.5px] border-transparent',
     'font-sans transition-colors duration-150 motion-reduce:transition-none select-none cursor-pointer',
     focusRing,
-    'disabled:cursor-not-allowed disabled:border-transparent disabled:bg-interactive-fill-disabled disabled:text-interactive-text-disabled disabled:[&_svg]:text-interactive-text-disabled',
+    '[&_svg]:pointer-events-none [&_svg]:shrink-0',
+    'disabled:pointer-events-none disabled:border-transparent disabled:bg-interactive-fill-disabled disabled:text-interactive-text-disabled disabled:[&_svg]:text-interactive-text-disabled',
+    // Link com cara de botão (asChild) não tem `disabled`: usa aria-disabled com o mesmo visual.
+    'aria-disabled:pointer-events-none aria-disabled:border-transparent aria-disabled:bg-interactive-fill-disabled aria-disabled:text-interactive-text-disabled aria-disabled:[&_svg]:text-interactive-text-disabled',
     'aria-[busy=true]:cursor-progress',
   ],
   {
@@ -19,8 +22,8 @@ export const buttonVariants = cva(
       hierarchy: {
         loud: 'bg-primary text-primary-foreground hover:bg-interactive-fill-loud-hover active:bg-interactive-fill-loud-active',
         quiet: 'border-interactive-border-quiet bg-surface-primary text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active [&_svg]:text-icon-brand',
-        transparent: 'bg-transparent text-text-link hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active active:text-foreground disabled:bg-transparent',
-        destructive: 'bg-destructive text-destructive-foreground hover:bg-feedback-text-negative active:bg-feedback-text-negative',
+        transparent: 'bg-transparent text-text-link hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active active:text-foreground disabled:bg-transparent aria-disabled:bg-transparent',
+        destructive: 'bg-destructive text-destructive-foreground hover:bg-interactive-fill-destructive-hover active:bg-interactive-fill-destructive-active',
       },
       /** large = 48px (padrão) · compact = 44px, para listas e cards densos · icon = quadrado de 44px. */
       size: {
@@ -60,6 +63,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
       ref={ref}
       className={cn(buttonVariants({ hierarchy, size, fullWidth }), className)}
       disabled={asChild ? undefined : disabled}
+      aria-disabled={asChild && disabled ? true : undefined}
+      tabIndex={asChild && disabled ? -1 : undefined}
+      data-loading={loading || undefined}
       type={asChild ? undefined : (type ?? 'button')}
       aria-busy={loading || undefined}
       onClick={loading ? (e: React.MouseEvent<HTMLButtonElement>) => e.preventDefault() : onClick}

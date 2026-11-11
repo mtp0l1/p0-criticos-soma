@@ -28,6 +28,8 @@
 --gold:#E2AF35;
 --silver:#C1BEBC;
 --bronze:#8D6045;
+--danger-ax-hover:#B42318;
+--danger-ax-pressed:#912018;
 --background-primary:var(--paper);
 --background-secondary:var(--surface-tile);
 --surface-primary:var(--paper);
@@ -76,6 +78,8 @@
 --award-gold:var(--gold);
 --award-silver:var(--silver);
 --award-bronze:var(--bronze);
+--interactive-fill-destructive-hover:var(--danger-ax-hover);
+--interactive-fill-destructive-active:var(--danger-ax-pressed);
 --background:var(--background-primary);
 --foreground:var(--text-primary);
 --card:var(--surface-primary);

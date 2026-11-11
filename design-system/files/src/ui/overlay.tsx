@@ -10,7 +10,7 @@ import { ChevronDown, X } from 'lucide-react';
 import { cn, focusRing } from '../lib/utils';
 import { buttonVariants } from './button';
 
-const overlayCls = 'fixed inset-0 z-50 bg-overlay data-[state=open]:animate-fade-in motion-reduce:animate-none';
+const overlayCls = 'fixed inset-0 z-50 bg-overlay data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out motion-reduce:animate-none';
 const closeCls = cn(
   'absolute right-xnano top-xnano grid size-touch place-items-center rounded-full text-icon-secondary transition-colors',
   'hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active',
@@ -44,8 +44,8 @@ export const DialogContent = React.forwardRef<React.ElementRef<typeof DialogPrim
       <DialogPrimitive.Content
         ref={ref}
         className={cn(
-          'fixed left-1/2 top-1/2 z-50 grid w-[calc(100%-48px)] max-w-[340px] -translate-x-1/2 -translate-y-1/2 gap-mini overflow-hidden rounded-lg bg-popover p-mini pt-medium text-popover-foreground',
-          'data-[state=open]:animate-zoom-in motion-reduce:animate-none outline-none',
+          'fixed left-1/2 top-1/2 z-50 grid max-h-[calc(100dvh-48px)] w-[calc(100%-48px)] max-w-[340px] -translate-x-1/2 -translate-y-1/2 gap-mini overflow-y-auto rounded-lg bg-popover p-mini pt-medium text-popover-foreground',
+          'data-[state=open]:animate-zoom-in data-[state=closed]:animate-zoom-out motion-reduce:animate-none outline-none',
           className,
         )}
         {...props}
@@ -53,7 +53,7 @@ export const DialogContent = React.forwardRef<React.ElementRef<typeof DialogPrim
         {children}
         {showClose && (
           <DialogPrimitive.Close className={closeCls} aria-label="Fechar">
-            <X className="size-icon" strokeWidth={1.75} aria-hidden />
+            <X className="size-icon" aria-hidden />
           </DialogPrimitive.Close>
         )}
       </DialogPrimitive.Content>
@@ -92,7 +92,10 @@ export const sheetVariants = cva(
   {
     variants: {
       side: {
-        bottom: 'inset-x-0 bottom-0 max-h-[90vh] overflow-y-auto rounded-t-xl data-[state=open]:animate-slide-up',
+        bottom: 'inset-x-0 bottom-0 max-h-[90dvh] overflow-y-auto rounded-t-xl data-[state=open]:animate-slide-up data-[state=closed]:animate-slide-down',
+        top: 'inset-x-0 top-0 max-h-[90dvh] overflow-y-auto rounded-b-xl data-[state=open]:animate-slide-in-top data-[state=closed]:animate-slide-out-top',
+        left: 'inset-y-0 left-0 h-full w-[85%] max-w-[360px] content-start overflow-y-auto data-[state=open]:animate-slide-in-left data-[state=closed]:animate-slide-out-left',
+        right: 'inset-y-0 right-0 h-full w-[85%] max-w-[360px] content-start overflow-y-auto data-[state=open]:animate-slide-in-right data-[state=closed]:animate-slide-out-right',
       },
     },
     defaultVariants: { side: 'bottom' },
@@ -110,11 +113,11 @@ export const SheetContent = React.forwardRef<React.ElementRef<typeof DialogPrimi
     <DialogPortal>
       <DialogOverlay />
       <DialogPrimitive.Content ref={ref} className={cn(sheetVariants({ side }), className)} {...props}>
-        <span aria-hidden className="mx-auto -mt-xnano block h-xnano w-large rounded-full bg-border" />
+        {(side ?? 'bottom') === 'bottom' && <span aria-hidden className="mx-auto -mt-xnano block h-xnano w-large rounded-full bg-border" />}
         {children}
         {showClose && (
           <DialogPrimitive.Close className={closeCls} aria-label="Fechar">
-            <X className="size-icon" strokeWidth={1.75} aria-hidden />
+            <X className="size-icon" aria-hidden />
           </DialogPrimitive.Close>
         )}
       </DialogPrimitive.Content>
@@ -126,6 +129,7 @@ export const SheetContent = React.forwardRef<React.ElementRef<typeof DialogPrimi
 
 export const AlertDialog = AlertDialogPrimitive.Root;
 export const AlertDialogTrigger = AlertDialogPrimitive.Trigger;
+export const AlertDialogPortal = AlertDialogPrimitive.Portal;
 export const AlertDialogContent = React.forwardRef<React.ElementRef<typeof AlertDialogPrimitive.Content>, React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Content>>(
   function AlertDialogContent({ className, ...props }, ref) {
     return (
@@ -134,8 +138,8 @@ export const AlertDialogContent = React.forwardRef<React.ElementRef<typeof Alert
         <AlertDialogPrimitive.Content
           ref={ref}
           className={cn(
-            'fixed left-1/2 top-1/2 z-50 grid w-[calc(100%-48px)] max-w-[340px] -translate-x-1/2 -translate-y-1/2 gap-mini rounded-lg bg-popover p-mini text-popover-foreground',
-            'data-[state=open]:animate-zoom-in motion-reduce:animate-none outline-none',
+            'fixed left-1/2 top-1/2 z-50 grid max-h-[calc(100dvh-48px)] w-[calc(100%-48px)] max-w-[340px] -translate-x-1/2 -translate-y-1/2 gap-mini overflow-y-auto rounded-lg bg-popover p-mini text-popover-foreground',
+            'data-[state=open]:animate-zoom-in data-[state=closed]:animate-zoom-out motion-reduce:animate-none outline-none',
             className,
           )}
           {...props}
@@ -176,6 +180,7 @@ export const AlertDialogCancel = React.forwardRef<React.ElementRef<typeof AlertD
 export const Popover = PopoverPrimitive.Root;
 export const PopoverTrigger = PopoverPrimitive.Trigger;
 export const PopoverAnchor = PopoverPrimitive.Anchor;
+export const PopoverClose = PopoverPrimitive.Close;
 export const PopoverContent = React.forwardRef<React.ElementRef<typeof PopoverPrimitive.Content>, React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>>(
   function PopoverContent({ className, align = 'center', sideOffset = 8, ...props }, ref) {
     return (
@@ -187,7 +192,7 @@ export const PopoverContent = React.forwardRef<React.ElementRef<typeof PopoverPr
           collisionPadding={16}
           className={cn(
             'caption z-50 w-[288px] max-w-[calc(100vw-32px)] rounded-md border border-border bg-popover p-mini text-popover-foreground shadow-high outline-none',
-            'data-[state=open]:animate-fade-in motion-reduce:animate-none',
+            'origin-[--radix-popover-content-transform-origin] data-[state=open]:animate-pop-in data-[state=closed]:animate-pop-out motion-reduce:animate-none',
             className,
           )}
           {...props}
@@ -213,15 +218,16 @@ export const AccordionTrigger = React.forwardRef<React.ElementRef<typeof Accordi
           ref={ref}
           className={cn(
             'label flex min-h-touch flex-1 items-center justify-between gap-micro rounded-sm py-micro text-left text-foreground transition-colors',
-            'hover:text-text-link',
+            'cursor-pointer hover:text-text-link active:bg-interactive-fill-quiet-active',
             focusRing,
+            'data-[disabled]:cursor-not-allowed data-[disabled]:text-interactive-text-disabled data-[disabled]:hover:text-interactive-text-disabled data-[disabled]:[&>svg]:text-interactive-text-disabled',
             '[&[data-state=open]>svg]:rotate-180',
             className,
           )}
           {...props}
         >
           {children}
-          <ChevronDown className="size-icon shrink-0 text-icon-brand-strong transition-transform duration-200 motion-reduce:transition-none" strokeWidth={1.75} aria-hidden />
+          <ChevronDown className="size-icon shrink-0 text-icon-brand-strong transition-transform duration-200 motion-reduce:transition-none" aria-hidden />
         </AccordionPrimitive.Trigger>
       </AccordionPrimitive.Header>
     );
@@ -261,13 +267,13 @@ export const tabsTriggerVariants = cva(
     variants: {
       variant: {
         underline: [
-          'relative min-h-button px-mini text-muted-foreground hover:bg-interactive-fill-quiet-hover hover:text-foreground',
+          'relative min-h-button px-mini text-muted-foreground hover:bg-interactive-fill-quiet-hover hover:text-foreground active:bg-interactive-fill-quiet-active disabled:hover:bg-transparent',
           'data-[state=active]:font-semibold data-[state=active]:text-foreground',
           "after:absolute after:inset-x-mini after:-bottom-px after:h-xnano after:rounded-full after:content-['']",
           'data-[state=active]:after:bg-selected-indicator',
         ],
         segmented: [
-          'min-h-large rounded-sm text-foreground hover:bg-interactive-fill-quiet-hover',
+          'min-h-large rounded-sm text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active disabled:hover:bg-transparent data-[state=active]:hover:bg-interactive-fill-loud-hover',
           'data-[state=active]:bg-primary data-[state=active]:font-semibold data-[state=active]:text-primary-foreground',
         ],
       },

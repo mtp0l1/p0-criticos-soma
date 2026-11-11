@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="pt-BR" data-root="../"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Auditoria contra o shadcn/ui · So+ma Design System</title>
+<meta name="description" content="O que o shadcn/ui tem e o So+ma cobre, o que foi adicionado, o que foi corrigido e o que ficou de fora.">
+<script>try{var t=localStorage.getItem('soma-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preload" href="../assets/fonts/lexend-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23FFDCC4'/%3E%3Cpath d='M16 9v14M9 16h14' stroke='%235A2700' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+</head><body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="rail" aria-label="Seções"><a class="mark sl" href="../index.html" aria-label="So+ma Design System, início"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-recycle" aria-hidden="true"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"></path><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"></path><path d="m14 16-3 3 3 3"></path><path d="M8.293 13.596 7.196 9.5 3.1 10.598"></path><path d="m9.344 5.811 1.093-1.892A1.83 1.83 0 0 1 11.985 3a1.784 1.784 0 0 1 1.546.888l3.943 6.843"></path><path d="m13.378 9.633 4.096 1.098 1.097-4.096"></path></svg></a><a class="dest" href="../index.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>Início</a><a class="dest" href="../guia/visao-geral.html" aria-current=page><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg></span>Guia</a><a class="dest" href="../fundamentos/cores.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg></span>Fundamentos</a><a class="dest" href="../componentes/index.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg></span>Componentes</a><a class="dest" href="../arquivos.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download" aria-hidden="true"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg></span>Arquivos</a></nav>
+<aside class="drawer" id="drawer" aria-label="Páginas"><div class="drawer-head"><b>So+ma Design System</b><span>Versão 5 · 11/11/2026</span></div><nav aria-label="Páginas do design system"><details open><summary class="sl">Guia<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><a class="sl" href="../guia/visao-geral.html">Visão geral</a><a class="sl" href="../guia/telas-novas.html">Telas novas e mapa do Figma</a><a class="sl" href="../guia/gerar-telas.html">Gerar telas com IA</a><a class="sl" href="../guia/padroes.html">Padrões de tela</a><a class="sl" href="../guia/engenharia.html">Para engenharia</a><a class="sl" href="../guia/auditoria-shadcn.html" aria-current="page">Auditoria contra o shadcn/ui</a></details><details><summary class="sl">Fundamentos<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><a class="sl" href="../fundamentos/cores.html">Cores</a><a class="sl" href="../fundamentos/tipografia.html">Tipografia</a><a class="sl" href="../fundamentos/espaco-e-forma.html">Espaço e forma</a><a class="sl" href="../fundamentos/icones.html">Ícones</a></details><details><summary class="sl">Componentes<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><a class="sl" href="../componentes/index.html">Todos os componentes</a><p class="gh">Ações</p><a class="sl dense" href="../componentes/Button.html">Button</a><a class="sl dense" href="../componentes/Icon.html">Icon</a><a class="sl dense" href="../componentes/ButtonGroup.html">ButtonGroup</a><a class="sl dense" href="../componentes/Toggle.html">Toggle</a><a class="sl dense" href="../componentes/DropdownMenu.html">DropdownMenu</a><a class="sl dense" href="../componentes/Spinner.html">Spinner</a><p class="gh">Navegação</p><a class="sl dense" href="../componentes/Header.html">Header</a><a class="sl dense" href="../componentes/LocationBar.html">LocationBar</a><a class="sl dense" href="../componentes/TabBar.html">TabBar</a><a class="sl dense" href="../componentes/Tabs.html">Tabs</a><a class="sl dense" href="../componentes/SegmentedControl.html">SegmentedControl</a><a class="sl dense" href="../componentes/SectionHeader.html">SectionHeader</a><a class="sl dense" href="../componentes/StepDots.html">StepDots</a><a class="sl dense" href="../componentes/ListRow.html">ListRow</a><p class="gh">Home</p><a class="sl dense" href="../componentes/Tile.html">Tile</a><a class="sl dense" href="../componentes/BalanceCard.html">BalanceCard</a><a class="sl dense" href="../componentes/MissionBanner.html">MissionBanner</a><a class="sl dense" href="../componentes/StepChecklist.html">StepChecklist</a><p class="gh">Quiz</p><a class="sl dense" href="../componentes/LevelCard.html">LevelCard</a><a class="sl dense" href="../componentes/QuestionCard.html">QuestionCard</a><a class="sl dense" href="../componentes/LevelBadge.html">LevelBadge</a><a class="sl dense" href="../componentes/PointsBadge.html">PointsBadge</a><a class="sl dense" href="../componentes/StreakTrail.html">StreakTrail</a><a class="sl dense" href="../componentes/StreakProgress.html">StreakProgress</a><a class="sl dense" href="../componentes/LevelList.html">LevelList</a><p class="gh">Impacto e ranking</p><a class="sl dense" href="../componentes/StatTile.html">StatTile</a><a class="sl dense" href="../componentes/RankingBanner.html">RankingBanner</a><a class="sl dense" href="../componentes/PositionCard.html">PositionCard</a><a class="sl dense" href="../componentes/Podium.html">Podium</a><a class="sl dense" href="../componentes/RankingRow.html">RankingRow</a><a class="sl dense" href="../componentes/StatsRow.html">StatsRow</a><p class="gh">Resgates e conta</p><a class="sl dense" href="../componentes/RedemptionItem.html">RedemptionItem</a><a class="sl dense" href="../componentes/MemberCard.html">MemberCard</a><a class="sl dense" href="../componentes/Avatar.html">Avatar</a><p class="gh">Reciclar e agendar</p><a class="sl dense" href="../componentes/DeliveryCard.html">DeliveryCard</a><a class="sl dense" href="../componentes/SpaceCard.html">SpaceCard</a><a class="sl dense" href="../componentes/SlotPicker.html">SlotPicker</a><p class="gh">Recompensas e doação</p><a class="sl dense" href="../componentes/GoalCard.html">GoalCard</a><a class="sl dense" href="../componentes/CampaignBanner.html">CampaignBanner</a><a class="sl dense" href="../componentes/RewardRow.html">RewardRow</a><a class="sl dense" href="../componentes/RedeemCode.html">RedeemCode</a><a class="sl dense" href="../componentes/InstitutionCard.html">InstitutionCard</a><p class="gh">Busca e ajuda</p><a class="sl dense" href="../componentes/SearchField.html">SearchField</a><a class="sl dense" href="../componentes/MaterialResult.html">MaterialResult</a><a class="sl dense" href="../componentes/Accordion.html">Accordion</a><a class="sl dense" href="../componentes/HelpfulVote.html">HelpfulVote</a><a class="sl dense" href="../componentes/Tag.html">Tag</a><p class="gh">Formulários</p><a class="sl dense" href="../componentes/Input.html">Input</a><a class="sl dense" href="../componentes/TextField.html">TextField</a><a class="sl dense" href="../componentes/Textarea.html">Textarea</a><a class="sl dense" href="../componentes/Select.html">Select</a><a class="sl dense" href="../componentes/Checkbox.html">Checkbox</a><a class="sl dense" href="../componentes/Switch.html">Switch</a><a class="sl dense" href="../componentes/ChoiceChips.html">ChoiceChips</a><a class="sl dense" href="../componentes/RadioList.html">RadioList</a><a class="sl dense" href="../componentes/Field.html">Field</a><a class="sl dense" href="../componentes/InputGroup.html">InputGroup</a><a class="sl dense" href="../componentes/InputOTP.html">InputOTP</a><a class="sl dense" href="../componentes/NativeSelect.html">NativeSelect</a><a class="sl dense" href="../componentes/Combobox.html">Combobox</a><a class="sl dense" href="../componentes/Command.html">Command</a><a class="sl dense" href="../componentes/Slider.html">Slider</a><p class="gh">Sobreposições</p><a class="sl dense" href="../componentes/Modal.html">Modal</a><a class="sl dense" href="../componentes/Dialog.html">Dialog</a><a class="sl dense" href="../componentes/AlertDialog.html">AlertDialog</a><a class="sl dense" href="../componentes/Sheet.html">Sheet</a><a class="sl dense" href="../componentes/Popover.html">Popover</a><a class="sl dense" href="../componentes/Drawer.html">Drawer</a><p class="gh">Exibição</p><a class="sl dense" href="../componentes/Card.html">Card</a><a class="sl dense" href="../componentes/Badge.html">Badge</a><a class="sl dense" href="../componentes/StatusChip.html">StatusChip</a><a class="sl dense" href="../componentes/Progress.html">Progress</a><a class="sl dense" href="../componentes/Separator.html">Separator</a><a class="sl dense" href="../componentes/AspectRatio.html">AspectRatio</a><a class="sl dense" href="../componentes/ScrollArea.html">ScrollArea</a><a class="sl dense" href="../componentes/Collapsible.html">Collapsible</a><a class="sl dense" href="../componentes/Table.html">Table</a><a class="sl dense" href="../componentes/Pagination.html">Pagination</a><a class="sl dense" href="../componentes/Carousel.html">Carousel</a><p class="gh">Feedback</p><a class="sl dense" href="../componentes/Message.html">Message</a><a class="sl dense" href="../componentes/Toast.html">Toast</a><a class="sl dense" href="../componentes/EmptyState.html">EmptyState</a><a class="sl dense" href="../componentes/ResultScreen.html">ResultScreen</a><a class="sl dense" href="../componentes/Skeleton.html">Skeleton</a><a class="sl dense" href="../componentes/Toaster.html">Toaster</a><p class="gh">Telas de exemplo</p><a class="sl dense" href="../componentes/TelaDoar.html">Tela Doar pontos</a><a class="sl dense" href="../componentes/TelaReciclar.html">Tela Reciclar</a></details></nav></aside>
+<div class="scrim"></div>
+<div class="app">
+<header class="topbar"><button type="button" class="ib sl" id="menu" aria-label="Abrir navegação" aria-controls="drawer" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg></button>
+<div class="search" role="search"><label class="search-bar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg><span class="sr">Buscar no design system</span><input id="q" type="search" placeholder="Buscar componente, token ou ícone" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="results" aria-autocomplete="list"><kbd aria-hidden="true">/</kbd></label><ul class="results" id="results" role="listbox" aria-label="Resultados" hidden></ul></div>
+<button type="button" class="ib sl" id="theme" aria-label="Usar tema escuro" aria-pressed="false"><span class="i-moon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg></span><span class="i-sun"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></span></button></header>
+<main id="conteudo" class="content has-toc"><article><header class="page-head"><p class="eyebrow-m3">Guia</p><h1>Auditoria contra o shadcn/ui</h1><p class=lead>O que o shadcn/ui tem e o So+ma cobre, o que foi adicionado, o que foi corrigido e o que ficou de fora.</p></header><div class="prose"><p>Comparação do So+ma Design System com a biblioteca completa do shadcn/ui (ui.shadcn.com), usada como referência técnica: o que já existia, o que foi adicionado, o que foi corrigido e o que ficou de fora de propósito. A lista de componentes do shadcn foi tomada de memória e deve ser conferida com a documentação oficial antes de fechar o escopo.</p>
+<h2 id="resultado">Resultado</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th></th>
+<th>Quantidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Componentes do shadcn/ui considerados</td>
+<td>59</td>
+</tr>
+<tr>
+<td>Já cobertos antes da auditoria</td>
+<td>22</td>
+</tr>
+<tr>
+<td>Adicionados nesta auditoria</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Cobertos por um equivalente So+ma ou por receita</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Fora de propósito no app (com motivo)</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Correções em componentes existentes</td>
+<td>18</td>
+</tr>
+</tbody>
+</table></div>
+<p>Todos os componentes novos seguem a receita do shadcn: primitiva sem estilo (Radix, ou a biblioteca que o próprio shadcn usa) + classes do preset So+ma + variantes em CVA + <code>cn()</code>; <code>forwardRef</code> e <code>asChild</code> onde o shadcn tem. Nenhum usa cor, raio ou tamanho fora dos tokens.</p>
+<h2 id="cobertura-componente-a-componente">Cobertura, componente a componente</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>shadcn/ui</th>
+<th>So+ma</th>
+<th>Situação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accordion</td>
+<td><code>Accordion</code></td>
+<td>Já existia; ganhou pressionado e desabilitado</td>
+</tr>
+<tr>
+<td>Alert</td>
+<td><code>Alert</code>, <code>Message</code></td>
+<td>Já existia</td>
+</tr>
+<tr>
+<td>Alert Dialog</td>
+<td><code>AlertDialog</code></td>
+<td>Já existia; ganhou rolagem e animação de saída</td>
+</tr>
+<tr>
+<td>Aspect Ratio</td>
+<td><code>AspectRatio</code></td>
+<td><strong>Novo</strong> (Radix)</td>
+</tr>
+<tr>
+<td>Avatar</td>
+<td><code>Avatar</code></td>
+<td>Já existia</td>
+</tr>
+<tr>
+<td>Badge</td>
+<td><code>Badge</code>, <code>Tag</code>, <code>StatusChip</code></td>
+<td>Já existia; ganhou <code>asChild</code></td>
+</tr>
+<tr>
+<td>Breadcrumb</td>
+<td>—</td>
+<td>Fora: o app navega por pilha, com voltar no <code>Header</code></td>
+</tr>
+<tr>
+<td>Button</td>
+<td><code>Button</code>, <code>IconButton</code></td>
+<td>Já existia; corrigido (ver abaixo)</td>
+</tr>
+<tr>
+<td>Button Group</td>
+<td><code>ButtonGroup</code></td>
+<td><strong>Novo</strong></td>
+</tr>
+<tr>
+<td>Calendar · Date Picker</td>
+<td><code>SlotPicker</code>, campo com máscara</td>
+<td>Equivalente: o agendamento escolhe entre poucos dias; nascimento é digitado</td>
+</tr>
+<tr>
+<td>Card</td>
+<td><code>Card</code></td>
+<td>Já existia; ganhou <code>CardAction</code></td>
+</tr>
+<tr>
+<td>Carousel</td>
+<td><code>Carousel</code></td>
+<td><strong>Novo</strong> (Embla)</td>
+</tr>
+<tr>
+<td>Chart</td>
+<td>—</td>
+<td>Fora por enquanto: o app não tem gráfico; entra com Recharts quando houver</td>
+</tr>
+<tr>
+<td>Checkbox</td>
+<td><code>Checkbox</code></td>
+<td>Já existia; corrigido (área de toque, indeterminado, erro)</td>
+</tr>
+<tr>
+<td>Collapsible</td>
+<td><code>Collapsible</code></td>
+<td><strong>Novo</strong> (Radix)</td>
+</tr>
+<tr>
+<td>Combobox</td>
+<td><code>Combobox</code></td>
+<td><strong>Novo</strong> (Popover + Command)</td>
+</tr>
+<tr>
+<td>Command</td>
+<td><code>Command</code></td>
+<td><strong>Novo</strong> (cmdk)</td>
+</tr>
+<tr>
+<td>Context Menu</td>
+<td>—</td>
+<td>Fora: toque longo não é padrão do app; ações vão em <code>DropdownMenu</code></td>
+</tr>
+<tr>
+<td>Data Table</td>
+<td><code>Table</code></td>
+<td>Parcial: tabela simples; ordenação e filtro (TanStack) não fazem sentido no celular</td>
+</tr>
+<tr>
+<td>Dialog</td>
+<td><code>Dialog</code>, <code>Modal</code></td>
+<td>Já existia; ganhou rolagem e animação de saída</td>
+</tr>
+<tr>
+<td>Drawer</td>
+<td><code>Drawer</code></td>
+<td><strong>Novo</strong> (Vaul)</td>
+</tr>
+<tr>
+<td>Dropdown Menu</td>
+<td><code>DropdownMenu</code></td>
+<td><strong>Novo</strong> (Radix)</td>
+</tr>
+<tr>
+<td>Empty</td>
+<td><code>EmptyState</code></td>
+<td>Equivalente</td>
+</tr>
+<tr>
+<td>Field</td>
+<td><code>Field</code> e família</td>
+<td><strong>Novo</strong></td>
+</tr>
+<tr>
+<td>Form</td>
+<td><code>Field</code> + React Hook Form</td>
+<td>Receita no README do <code>Field</code>; o pacote não entra no bundle</td>
+</tr>
+<tr>
+<td>Hover Card</td>
+<td>—</td>
+<td>Fora: depende de hover; use <code>Popover</code></td>
+</tr>
+<tr>
+<td>Input</td>
+<td><code>Input</code>, <code>TextField</code></td>
+<td>Já existia; corrigido (erro no foco, somente leitura, arquivo)</td>
+</tr>
+<tr>
+<td>Input Group</td>
+<td><code>InputGroup</code></td>
+<td><strong>Novo</strong></td>
+</tr>
+<tr>
+<td>Input OTP</td>
+<td><code>InputOTP</code></td>
+<td><strong>Novo</strong> (input-otp)</td>
+</tr>
+<tr>
+<td>Item</td>
+<td><code>ListRow</code></td>
+<td>Equivalente</td>
+</tr>
+<tr>
+<td>Kbd</td>
+<td>—</td>
+<td>Fora: não há teclado físico no uso principal</td>
+</tr>
+<tr>
+<td>Label</td>
+<td><code>Label</code></td>
+<td>Já existia; reage a <code>Field</code> desabilitado</td>
+</tr>
+<tr>
+<td>Menubar · Navigation Menu · Sidebar · Resizable</td>
+<td>—</td>
+<td>Fora: padrões de desktop; o app usa <code>TabBar</code>, <code>Header</code> e <code>Sheet</code></td>
+</tr>
+<tr>
+<td>Native Select</td>
+<td><code>NativeSelect</code></td>
+<td><strong>Novo</strong></td>
+</tr>
+<tr>
+<td>Pagination</td>
+<td><code>Pagination</code></td>
+<td><strong>Novo</strong></td>
+</tr>
+<tr>
+<td>Popover</td>
+<td><code>Popover</code></td>
+<td>Já existia; ganhou <code>PopoverClose</code> e animação de saída</td>
+</tr>
+<tr>
+<td>Progress</td>
+<td><code>Progress</code></td>
+<td>Já existia</td>
+</tr>
+<tr>
+<td>Radio Group</td>
+<td><code>RadioGroup</code>, <code>RadioList</code></td>
+<td>Já existia; corrigido (área de toque, erro)</td>
+</tr>
+<tr>
+<td>Scroll Area</td>
+<td><code>ScrollArea</code></td>
+<td><strong>Novo</strong> (Radix)</td>
+</tr>
+<tr>
+<td>Select</td>
+<td><code>Select</code></td>
+<td>Já existia; estado aberto e animação de saída</td>
+</tr>
+<tr>
+<td>Separator</td>
+<td><code>Separator</code></td>
+<td>Já existia</td>
+</tr>
+<tr>
+<td>Sheet</td>
+<td><code>Sheet</code></td>
+<td>Já existia; ganhou <code>side</code> top, left e right</td>
+</tr>
+<tr>
+<td>Skeleton</td>
+<td><code>Skeleton</code></td>
+<td>Já existia</td>
+</tr>
+<tr>
+<td>Slider</td>
+<td><code>Slider</code></td>
+<td><strong>Novo</strong> (Radix)</td>
+</tr>
+<tr>
+<td>Sonner · Toast</td>
+<td><code>Toaster</code> + <code>notify()</code>, <code>Toast</code></td>
+<td><strong>Novo</strong> provedor (Sonner); o visual já existia</td>
+</tr>
+<tr>
+<td>Spinner</td>
+<td><code>Spinner</code></td>
+<td><strong>Novo</strong></td>
+</tr>
+<tr>
+<td>Switch</td>
+<td><code>Switch</code></td>
+<td>Já existia; corrigido (área de toque, hover, desabilitado)</td>
+</tr>
+<tr>
+<td>Table</td>
+<td><code>Table</code></td>
+<td><strong>Novo</strong></td>
+</tr>
+<tr>
+<td>Tabs</td>
+<td><code>Tabs</code>, <code>SegmentedControl</code></td>
+<td>Já existia; ganhou pressionado</td>
+</tr>
+<tr>
+<td>Textarea</td>
+<td><code>Textarea</code></td>
+<td>Já existia</td>
+</tr>
+<tr>
+<td>Toggle · Toggle Group</td>
+<td><code>Toggle</code>, <code>ToggleGroup</code></td>
+<td><strong>Novo</strong> (Radix)</td>
+</tr>
+<tr>
+<td>Tooltip</td>
+<td>—</td>
+<td>Fora: no celular não há hover; ajuda curta vai em <code>Popover</code></td>
+</tr>
+<tr>
+<td>Typography</td>
+<td>estilos de texto</td>
+<td>Equivalente: classes <code>page-title</code>, <code>body</code>, <code>caption</code>…</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="o-que-estava-abaixo-do-padrao-e-foi-corrigido">O que estava abaixo do padrão e foi corrigido</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Onde</th>
+<th>Problema</th>
+<th>Correção</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Foco (todos)</td>
+<td><code>outline: none</code> fixo: no modo de alto contraste do sistema o anel (box-shadow) some e não sobra indicador</td>
+<td><code>focusRing</code> agora mantém um contorno transparente de 2px, que o sistema pinta em alto contraste</td>
+</tr>
+<tr>
+<td><code>Button</code></td>
+<td>Link com cara de botão (<code>asChild</code>) não tinha estado desabilitado</td>
+<td><code>aria-disabled</code>, fora da ordem de foco, mesmo visual do <code>disabled</code></td>
+</tr>
+<tr>
+<td><code>Button</code></td>
+<td><code>destructive</code> usava a mesma cor em hover e pressionado</td>
+<td>Tokens <code>interactive-fill-destructive-hover</code> e <code>-active</code></td>
+</tr>
+<tr>
+<td><code>Button</code></td>
+<td>Ícone podia capturar o toque e encolher</td>
+<td><code>pointer-events-none</code> e <code>shrink-0</code> nos ícones</td>
+</tr>
+<tr>
+<td><code>Checkbox</code>, <code>RadioGroupItem</code>, <code>Switch</code></td>
+<td>Área tocável de 20 a 24px quando usados fora de uma linha</td>
+<td><code>hitArea</code>: 44px sem mudar o desenho</td>
+</tr>
+<tr>
+<td><code>Checkbox</code></td>
+<td>Sem estado indeterminado; marcado e desabilitado ficava com check branco sobre cinza</td>
+<td>Traço no indeterminado; check em <code>interactive-text-disabled</code></td>
+</tr>
+<tr>
+<td><code>Checkbox</code>, <code>RadioGroupItem</code></td>
+<td>Sem pressionado e sem erro</td>
+<td><code>active</code> e <code>aria-invalid</code></td>
+</tr>
+<tr>
+<td><code>Switch</code></td>
+<td>Sem hover; desabilitado e ligado continuava navy</td>
+<td>Hover no trilho; cinza nos dois estados</td>
+</tr>
+<tr>
+<td><code>Input</code>, <code>Textarea</code></td>
+<td>Com erro, o anel de foco continuava navy; sem estilo de somente leitura e de arquivo</td>
+<td>Anel vermelho no erro; <code>readOnly</code> e <code>type="file"</code> tratados</td>
+</tr>
+<tr>
+<td><code>Select</code></td>
+<td>Gatilho sem estado aberto; ícone com traço diferente do resto</td>
+<td><code>data-state=open</code> com <code>border-highlight</code>; traço de 2px</td>
+</tr>
+<tr>
+<td><code>Dialog</code>, <code>AlertDialog</code></td>
+<td>Conteúdo maior que a tela era cortado</td>
+<td>Altura máxima e rolagem interna</td>
+</tr>
+<tr>
+<td><code>Dialog</code>, <code>AlertDialog</code>, <code>Sheet</code>, <code>Popover</code>, <code>Select</code></td>
+<td>Só animavam a entrada; sumiam de uma vez</td>
+<td>Animação de saída em <code>data-state=closed</code></td>
+</tr>
+<tr>
+<td><code>Sheet</code></td>
+<td>Só <code>side="bottom"</code></td>
+<td><code>top</code>, <code>left</code> e <code>right</code>, como no shadcn</td>
+</tr>
+<tr>
+<td><code>Accordion</code></td>
+<td>Sem pressionado; item desabilitado parecia ativo</td>
+<td><code>active</code> e <code>data-disabled</code></td>
+</tr>
+<tr>
+<td><code>Tabs</code></td>
+<td>Sem pressionado; aba desabilitada reagia ao hover</td>
+<td><code>active</code>; hover desligado no desabilitado</td>
+</tr>
+<tr>
+<td><code>Badge</code></td>
+<td>Não podia ser link</td>
+<td><code>asChild</code> com foco e hover</td>
+</tr>
+<tr>
+<td><code>PressableBase</code> (Tile, ListRow, BalanceCard…)</td>
+<td>Com <code>href</code>, o link perdia <code>onClick</code>, <code>aria-*</code> e <code>disabled</code></td>
+<td>O link recebe os mesmos atributos; desabilitado vira <code>aria-disabled</code></td>
+</tr>
+<tr>
+<td><code>Toast</code></td>
+<td>Só o visual: fila, tempo e anúncio ficavam por conta de quem usa</td>
+<td><code>Toaster</code> + <code>notify()</code></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="dependencias-novas">Dependências novas</h2>
+<p><code>@radix-ui/react-aspect-ratio</code>, <code>react-collapsible</code>, <code>react-dropdown-menu</code>, <code>react-scroll-area</code>, <code>react-slider</code>, <code>react-toggle</code>, <code>react-toggle-group</code>, <code>vaul</code>, <code>cmdk</code>, <code>input-otp</code>, <code>sonner</code>, <code>embla-carousel-react</code>. São as mesmas que o shadcn instala para esses componentes. O <code>bundle.js</code> de protótipo passou de 226 KB para 431 KB; no repositório, cada tela importa só o que usa.</p>
+<h2 id="verificacao">Verificação</h2>
+<ul>
+<li>TypeScript em modo estrito sem erros.</li>
+<li>axe-core (WCAG 2.2 AA) sem violações nos exemplos de todos os componentes; a única exceção continua sendo o <code>Toast tone="app"</code>, mantido de propósito para documentar o vermelho atual do app.</li>
+<li>Menu, combobox, drawer e avisos foram abertos e conferidos em navegador.</li>
+</ul>
+<h2 id="fica-para-depois">Fica para depois</h2>
+<ul>
+<li><code>Chart</code>, quando o Meu impacto ganhar gráfico.</li>
+<li><code>Calendar</code>, se o agendamento passar a aceitar datas distantes.</li>
+<li><code>TextField</code> e <code>SearchField</code> continuam com estrutura própria; podem passar a usar <code>Field</code> e <code>InputGroup</code> por dentro sem mudar a API.</li>
+<li>Tema escuro: os tokens estão prontos para um segundo modo, mas o app é só claro.</li>
+</ul></div><nav class="pager" aria-label="Páginas vizinhas"><a class="sl" href="engenharia.html"><small><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Anterior</small><b>Para engenharia</b></a><a class="sl next" href="../fundamentos/cores.html"><small>Próximo<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></small><b>Cores</b></a></nav></article><aside class="toc" aria-label="Nesta página"><p>Nesta página</p><a class="l2" href="#resultado">Resultado</a><a class="l2" href="#cobertura-componente-a-componente">Cobertura, componente a componente</a><a class="l2" href="#o-que-estava-abaixo-do-padrao-e-foi-corrigido">O que estava abaixo do padrão e foi corrigido</a><a class="l2" href="#dependencias-novas">Dependências novas</a><a class="l2" href="#verificacao">Verificação</a><a class="l2" href="#fica-para-depois">Fica para depois</a></aside></main>
+<footer class="foot"><span>So+ma Design System · Versão 5 · atualizado em 11/11/2026</span><span>Componentes em shadcn/ui com a estrutura do Andes · documentação no padrão Material Design 3</span></footer>
+</div>
+<nav class="navbar" aria-label="Seções"><a class="dest" href="../index.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>Início</a><a class="dest" href="../guia/visao-geral.html" aria-current=page><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg></span>Guia</a><a class="dest" href="../fundamentos/cores.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg></span>Fundamentos</a><a class="dest" href="../componentes/index.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg></span>Componentes</a><a class="dest" href="../arquivos.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download" aria-hidden="true"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg></span>Arquivos</a></nav>
+<div class="snack" role="status" aria-live="polite"></div>
+<script src="../assets/search-index.js"></script><script src="../assets/site.js"></script>
+</body></html>

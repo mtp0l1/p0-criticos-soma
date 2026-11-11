@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/bundle.css"><script src="../assets/react.production.min.js"></script><script src="../assets/react-dom.production.min.js"></script><script src="../assets/bundle.js"></script><meta charset="utf-8"><title>Command</title>
+</head>
+<body class="m-0 p-small bg-background text-foreground font-sans">
+<div id="root" class="grid gap-mini" style="max-width:390px"></div>
+<script>
+var S = window.Soma, h = React.createElement, F = React.Fragment, useState = React.useState;
+function K(t){ return h('p', {className:'caption m-0 text-muted-foreground'}, t); }
+function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-center gap-nano'}].concat([].slice.call(arguments))); }
+var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
+// Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
+function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
+function Demo(){ return h('div',{className:'rounded-md border border-border'}, h(S.Command,{label:'Buscar no app'}, h(S.CommandInput,{placeholder:'O que você procura?','aria-label':'O que você procura?'}), h(S.CommandList,null, h(S.CommandEmpty,null,'Nada encontrado'),
+  h(S.CommandGroup,{heading:'Atalhos'}, h(S.CommandItem,null,h(S.Icon,{name:'calendar'}),'Agendar entrega'), h(S.CommandItem,null,h(S.Icon,{name:'gift'}),'Ver recompensas'), h(S.CommandItem,{disabled:true},h(S.Icon,{name:'hand-heart'}),'Doar pontos')),
+  h(S.CommandSeparator), h(S.CommandGroup,{heading:'Ajuda'}, h(S.CommandItem,null,h(S.Icon,{name:'help'}),'Como ganho pontos?'), h(S.CommandItem,null,h(S.Icon,{name:'mail'}),'Enviar e-mail'))))); }
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+<script>(function(){function s(){parent.postMessage({soma:"h",n:"Command",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

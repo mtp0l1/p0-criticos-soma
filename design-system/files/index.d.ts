@@ -3,24 +3,42 @@
 
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
+import * as AspectRatioPrimitive from '@radix-ui/react-aspect-ratio';
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
+import * as CollapsiblePrimitive from '@radix-ui/react-collapsible';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 import * as LabelPrimitive from '@radix-ui/react-label';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
 import * as ProgressPrimitive from '@radix-ui/react-progress';
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
+import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
+import * as SliderPrimitive from '@radix-ui/react-slider';
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
+import * as TogglePrimitive from '@radix-ui/react-toggle';
+import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import { ClassValue } from 'clsx';
+import useEmblaCarousel from 'embla-carousel-react';
+import { UseEmblaCarouselType } from 'embla-carousel-react';
 import * as React$1 from 'react';
+import { Toaster as SonnerToaster } from 'sonner';
+import { Drawer as DrawerPrimitive } from 'vaul';
 
 /** Junta classes condicionais e resolve conflitos do Tailwind (padrão shadcn/ui). */
 export declare function cn(...inputs: ClassValue[]): string;
-/** Anel de foco único do sistema: 2px em `ring` (focus-ring), a 2px de distância. */
-export declare const focusRing = "outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+/**
+ * Anel de foco único do sistema: 2px em `ring` (focus-ring), a 2px de distância.
+ * O contorno transparente só aparece no modo de alto contraste do sistema (forced-colors), onde box-shadow some.
+ */
+export declare const focusRing = "outline outline-2 outline-offset-2 outline-transparent focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+/** Estado desabilitado comum a controles: cor cheia (sem opacidade) e sem resposta a toque. Vale para `disabled` e `aria-disabled`. */
+export declare const disabledState = "disabled:pointer-events-none disabled:cursor-not-allowed aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed data-[disabled]:pointer-events-none data-[disabled]:cursor-not-allowed";
+/** Aumenta a área tocável de controles pequenos (checkbox, rádio, switch, thumb) para 44px sem mudar o desenho. */
+export declare const hitArea = "relative after:absolute after:left-1/2 after:top-1/2 after:size-touch after:-translate-x-1/2 after:-translate-y-1/2 after:content-['']";
 type ClassValue$1 = CLSX.ClassValue;
 export type ClassProp = {
 	class: ClassValue$1;
@@ -186,9 +204,11 @@ export declare const badgeVariants: (props?: ({
 	tone?: "brand" | "positive" | "negative" | "neutral" | "caution" | "informative" | null | undefined;
 } & ClassProp) | undefined) => string;
 export interface BadgeProps extends React$1.HTMLAttributes<HTMLSpanElement>, VariantProps<typeof badgeVariants> {
+	/** Renderiza o filho (um link ou botão) com o visual do selo; ganha foco e hover. */
+	asChild?: boolean;
 }
-/** Selo não interativo (shadcn Badge). Base de Tag e StatusChip. */
-export declare function Badge({ className, tone, ...props }: BadgeProps): React$1.JSX.Element;
+/** Selo (shadcn Badge). Não interativo por padrão; com asChild vira link ou botão. Base de Tag e StatusChip. */
+export declare function Badge({ className, tone, asChild, ...props }: BadgeProps): React$1.JSX.Element;
 export declare const cardVariants: (props?: ({
 	variant?: "accent" | "outline" | "flat" | "inverse" | null | undefined;
 	padding?: "none" | "default" | null | undefined;
@@ -199,6 +219,8 @@ export declare const Card: React$1.ForwardRefExoticComponent<CardProps & React$1
 export declare function CardHeader({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
 export declare function CardTitle({ className, ...props }: React$1.HTMLAttributes<HTMLHeadingElement>): React$1.JSX.Element;
 export declare function CardDescription({ className, ...props }: React$1.HTMLAttributes<HTMLParagraphElement>): React$1.JSX.Element;
+/** Ação no canto do cabeçalho do card (shadcn CardAction). Use dentro de CardHeader com `className="grid-cols-[1fr_auto]"`. */
+export declare function CardAction({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
 export declare function CardContent({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
 export declare function CardFooter({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
 export type SeparatorProps = React$1.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>;
@@ -237,6 +259,7 @@ export declare const Alert: React$1.ForwardRefExoticComponent<AlertProps & React
 export declare function AlertTitle({ className, ...props }: React$1.HTMLAttributes<HTMLParagraphElement>): React$1.JSX.Element;
 export declare function AlertDescription({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
 export declare const Label: React$1.ForwardRefExoticComponent<Omit<LabelPrimitive.LabelProps & React$1.RefAttributes<HTMLLabelElement>, "ref"> & React$1.RefAttributes<HTMLLabelElement>>;
+export declare const fieldBase: string;
 export type InputProps = React$1.InputHTMLAttributes<HTMLInputElement>;
 /** shadcn Input com a altura e a borda acessível do So+ma. */
 export declare const Input: React$1.ForwardRefExoticComponent<InputProps & React$1.RefAttributes<HTMLInputElement>>;
@@ -277,7 +300,7 @@ export declare const SheetDescription: React$1.ForwardRefExoticComponent<Omit<Di
 export declare const SheetHeader: ({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>) => React$1.JSX.Element;
 export declare const SheetFooter: typeof DialogFooter;
 export declare const sheetVariants: (props?: ({
-	side?: "bottom" | null | undefined;
+	side?: "bottom" | "left" | "right" | "top" | null | undefined;
 } & ClassProp) | undefined) => string;
 export interface SheetContentProps extends React$1.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>, VariantProps<typeof sheetVariants> {
 	showClose?: boolean;
@@ -286,6 +309,7 @@ export interface SheetContentProps extends React$1.ComponentPropsWithoutRef<type
 export declare const SheetContent: React$1.ForwardRefExoticComponent<SheetContentProps & React$1.RefAttributes<HTMLDivElement>>;
 export declare const AlertDialog: React$1.FC<AlertDialogPrimitive.AlertDialogProps>;
 export declare const AlertDialogTrigger: React$1.ForwardRefExoticComponent<AlertDialogPrimitive.AlertDialogTriggerProps & React$1.RefAttributes<HTMLButtonElement>>;
+export declare const AlertDialogPortal: React$1.FC<AlertDialogPrimitive.AlertDialogPortalProps>;
 export declare const AlertDialogContent: React$1.ForwardRefExoticComponent<Omit<AlertDialogPrimitive.AlertDialogContentProps & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
 export declare const AlertDialogHeader: typeof DialogHeader;
 export declare const AlertDialogFooter: typeof DialogFooter;
@@ -300,6 +324,7 @@ export declare const AlertDialogCancel: React$1.ForwardRefExoticComponent<Omit<A
 export declare const Popover: React$1.FC<PopoverPrimitive.PopoverProps>;
 export declare const PopoverTrigger: React$1.ForwardRefExoticComponent<PopoverPrimitive.PopoverTriggerProps & React$1.RefAttributes<HTMLButtonElement>>;
 export declare const PopoverAnchor: React$1.ForwardRefExoticComponent<PopoverPrimitive.PopoverAnchorProps & React$1.RefAttributes<HTMLDivElement>>;
+export declare const PopoverClose: React$1.ForwardRefExoticComponent<PopoverPrimitive.PopoverCloseProps & React$1.RefAttributes<HTMLButtonElement>>;
 export declare const PopoverContent: React$1.ForwardRefExoticComponent<Omit<PopoverPrimitive.PopoverContentProps & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
 export declare const Accordion: React$1.ForwardRefExoticComponent<(AccordionPrimitive.AccordionSingleProps | AccordionPrimitive.AccordionMultipleProps) & React$1.RefAttributes<HTMLDivElement>>;
 export declare const AccordionItem: React$1.ForwardRefExoticComponent<Omit<AccordionPrimitive.AccordionItemProps & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
@@ -728,6 +753,18 @@ export interface ToastProps extends VariantProps<typeof toastVariants> {
 }
 /** Visual do aviso passageiro. No app, renderize dentro do provedor de toast (Radix Toast ou Sonner) que cuida de tempo e fila. */
 export declare function Toast({ message, kind, tone, onDismiss }: ToastProps): React$1.JSX.Element;
+export type ToasterProps = React$1.ComponentProps<typeof SonnerToaster>;
+/** Provedor de avisos (shadcn Sonner): cuida de fila, tempo, gesto de dispensar e anúncio. Monte uma vez na raiz do app. */
+export declare function Toaster({ position, offset, mobileOffset, ...props }: ToasterProps): React$1.JSX.Element;
+export interface NotifyOptions {
+	/** error = erro (padrão: fica 6s) · success e info ficam 4s. */
+	kind?: "error" | "success" | "info";
+	duration?: number;
+	/** false tira o X de dispensar. */
+	dismissible?: boolean;
+}
+/** Dispara um aviso com o visual do Toast do So+ma. Ex.: `notify('Entrega agendada', { kind: 'success' })`. */
+export declare function notify(message: string, { kind, duration, dismissible }?: NotifyOptions): string | number;
 export interface MessageProps {
 	tone?: "informative" | "positive" | "caution" | "negative";
 	title?: string;
@@ -892,6 +929,278 @@ export interface SlotPickerProps {
 }
 /** Escolha de data ou horário em fileira rolável, sobre Radix RadioGroup (setas do teclado, um ponto de tabulação). */
 export declare function SlotPicker({ label, slots, value, onChange, className }: SlotPickerProps): React$1.JSX.Element;
+export interface SpinnerProps extends React$1.SVGAttributes<SVGSVGElement> {
+	/** Texto para leitor de tela. Padrão "Carregando". */
+	label?: string;
+}
+/** Indicador de espera sem duração conhecida (shadcn Spinner). Dentro de botão, use `loading` do Button. */
+export declare function Spinner({ className, label, ...props }: SpinnerProps): React$1.JSX.Element;
+export declare const buttonGroupVariants: (props?: ({
+	orientation?: "horizontal" | "vertical" | null | undefined;
+} & ClassProp) | undefined) => string;
+export interface ButtonGroupProps extends React$1.HTMLAttributes<HTMLDivElement>, VariantProps<typeof buttonGroupVariants> {
+}
+/** Botões relacionados colados lado a lado (shadcn ButtonGroup). Dê um nome com aria-label. */
+export declare function ButtonGroup({ className, orientation, ...props }: ButtonGroupProps): React$1.JSX.Element;
+export declare const toggleVariants: (props?: ({
+	variant?: "outline" | "ghost" | null | undefined;
+	size?: "large" | "compact" | null | undefined;
+} & ClassProp) | undefined) => string;
+export interface ToggleProps extends React$1.ComponentPropsWithoutRef<typeof TogglePrimitive.Root>, VariantProps<typeof toggleVariants> {
+}
+/** Botão de liga e desliga (aria-pressed), sobre Radix Toggle. Ex.: favoritar uma recompensa. */
+export declare const Toggle: React$1.ForwardRefExoticComponent<ToggleProps & React$1.RefAttributes<HTMLButtonElement>>;
+export type ToggleGroupProps = React$1.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root> & VariantProps<typeof toggleVariants>;
+/** Grupo de Toggles: escolha única (type="single") ou múltipla (type="multiple"), com setas do teclado. */
+export declare const ToggleGroup: React$1.ForwardRefExoticComponent<ToggleGroupProps & React$1.RefAttributes<HTMLDivElement>>;
+export declare const ToggleGroupItem: React$1.ForwardRefExoticComponent<Omit<ToggleGroupPrimitive.ToggleGroupItemProps & React$1.RefAttributes<HTMLButtonElement>, "ref"> & VariantProps<(props?: ({
+	variant?: "outline" | "ghost" | null | undefined;
+	size?: "large" | "compact" | null | undefined;
+} & ClassProp) | undefined) => string> & React$1.RefAttributes<HTMLButtonElement>>;
+export interface SliderProps extends React$1.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> {
+	/** Nome acessível de cada alça, na ordem (uma por valor). */
+	thumbLabels?: string[];
+}
+/** Seleção de valor em faixa (Radix Slider). Mostre sempre o valor em texto ao lado. */
+export declare const Slider: React$1.ForwardRefExoticComponent<SliderProps & React$1.RefAttributes<HTMLSpanElement>>;
+export type NativeSelectProps = React$1.SelectHTMLAttributes<HTMLSelectElement>;
+/** Select nativo do sistema (shadcn NativeSelect). No celular abre o seletor do aparelho: prefira-o para listas simples. */
+export declare const NativeSelect: React$1.ForwardRefExoticComponent<NativeSelectProps & React$1.RefAttributes<HTMLSelectElement>>;
+/** Campo com ícone, texto ou botão dentro da mesma borda (shadcn InputGroup). O foco e o erro aparecem no grupo inteiro. */
+export declare function InputGroup({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
+export declare const InputGroupInput: React$1.ForwardRefExoticComponent<React$1.InputHTMLAttributes<HTMLInputElement> & React$1.RefAttributes<HTMLInputElement>>;
+export interface InputGroupAddonProps extends React$1.HTMLAttributes<HTMLDivElement> {
+	/** start = antes do campo · end = depois. */
+	align?: "start" | "end";
+}
+/** Ícone, texto ("R$", "pontos") ou botão do grupo. */
+export declare function InputGroupAddon({ className, align, ...props }: InputGroupAddonProps): React$1.JSX.Element;
+/** Código de verificação por dígitos (shadcn InputOTP, sobre input-otp). Cola o código inteiro e lê o SMS no celular. */
+export declare const InputOTP: React$1.ForwardRefExoticComponent<(Omit<Omit<React$1.InputHTMLAttributes<HTMLInputElement>, "onChange" | "value" | "nonce" | "maxLength" | "textAlign" | "onComplete" | "pushPasswordManagerStrategy" | "pasteTransformer" | "containerClassName" | "noScriptCSSFallback"> & {
+	value?: string;
+	onChange?: (newValue: string) => unknown;
+	maxLength: number;
+	textAlign?: "left" | "center" | "right";
+	onComplete?: (...args: any[]) => unknown;
+	pushPasswordManagerStrategy?: "increase-width" | "none";
+	pasteTransformer?: (pasted: string) => string;
+	containerClassName?: string;
+	noScriptCSSFallback?: string | null;
+	nonce?: string;
+} & {
+	render: (props: import("input-otp").RenderProps) => React$1.ReactNode;
+	children?: never;
+} & React$1.RefAttributes<HTMLInputElement>, "ref"> | Omit<Omit<React$1.InputHTMLAttributes<HTMLInputElement>, "onChange" | "value" | "nonce" | "maxLength" | "textAlign" | "onComplete" | "pushPasswordManagerStrategy" | "pasteTransformer" | "containerClassName" | "noScriptCSSFallback"> & {
+	value?: string;
+	onChange?: (newValue: string) => unknown;
+	maxLength: number;
+	textAlign?: "left" | "center" | "right";
+	onComplete?: (...args: any[]) => unknown;
+	pushPasswordManagerStrategy?: "increase-width" | "none";
+	pasteTransformer?: (pasted: string) => string;
+	containerClassName?: string;
+	noScriptCSSFallback?: string | null;
+	nonce?: string;
+} & {
+	render?: never;
+	children: React$1.ReactNode;
+} & React$1.RefAttributes<HTMLInputElement>, "ref">) & React$1.RefAttributes<HTMLInputElement>>;
+export declare function InputOTPGroup({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
+export interface InputOTPSlotProps extends React$1.HTMLAttributes<HTMLDivElement> {
+	index: number;
+	invalid?: boolean;
+}
+export declare function InputOTPSlot({ index, invalid, className, ...props }: InputOTPSlotProps): React$1.JSX.Element;
+export declare function InputOTPSeparator(props: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
+/** Grupo de campos com legenda (shadcn FieldSet). */
+export declare function FieldSet({ className, ...props }: React$1.FieldsetHTMLAttributes<HTMLFieldSetElement>): React$1.JSX.Element;
+export declare function FieldLegend({ className, ...props }: React$1.HTMLAttributes<HTMLLegendElement>): React$1.JSX.Element;
+/** Empilha Fields com o espaço padrão entre campos (space-small). */
+export declare function FieldGroup({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
+export declare const fieldVariants: (props?: ({
+	orientation?: "horizontal" | "vertical" | null | undefined;
+} & ClassProp) | undefined) => string;
+export interface FieldProps extends React$1.HTMLAttributes<HTMLDivElement>, VariantProps<typeof fieldVariants> {
+	invalid?: boolean;
+	disabled?: boolean;
+}
+/** Um campo: rótulo, controle, ajuda e erro (shadcn Field). Marca data-invalid e data-disabled para os filhos. */
+export declare function Field({ className, orientation, invalid, disabled, ...props }: FieldProps): React$1.JSX.Element;
+export declare const FieldLabel: React$1.ForwardRefExoticComponent<Omit<Omit<import("@radix-ui/react-label").LabelProps & React$1.RefAttributes<HTMLLabelElement>, "ref"> & React$1.RefAttributes<HTMLLabelElement>, "ref"> & React$1.RefAttributes<HTMLLabelElement>>;
+/** Agrupa rótulo e descrição ao lado de um Checkbox ou Switch. */
+export declare function FieldContent({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
+export declare function FieldDescription({ className, ...props }: React$1.HTMLAttributes<HTMLParagraphElement>): React$1.JSX.Element;
+/** Mensagem de erro do campo: anunciada na hora (role="alert") e ligada ao controle por aria-describedby. */
+export declare function FieldError({ className, children, ...props }: React$1.HTMLAttributes<HTMLParagraphElement>): React$1.JSX.Element | null;
+export declare function FieldSeparator({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
+/** Mantém a proporção de imagem, vídeo ou mapa (Radix AspectRatio). Ex.: `ratio={16 / 9}`. */
+export declare const AspectRatio: React$1.ForwardRefExoticComponent<AspectRatioPrimitive.AspectRatioProps & React$1.RefAttributes<HTMLDivElement>>;
+export declare const ScrollBar: React$1.ForwardRefExoticComponent<Omit<ScrollAreaPrimitive.ScrollAreaScrollbarProps & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+/** Área rolável com barra desenhada (Radix ScrollArea). A área recebe foco pelo teclado. */
+export declare const ScrollArea: React$1.ForwardRefExoticComponent<Omit<ScrollAreaPrimitive.ScrollAreaProps & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+export declare const Collapsible: React$1.ForwardRefExoticComponent<CollapsiblePrimitive.CollapsibleProps & React$1.RefAttributes<HTMLDivElement>>;
+export declare const CollapsibleTrigger: React$1.ForwardRefExoticComponent<CollapsiblePrimitive.CollapsibleTriggerProps & React$1.RefAttributes<HTMLButtonElement>>;
+/** Conteúdo que abre e fecha com animação de altura (Radix Collapsible). Para várias perguntas, use Accordion. */
+export declare const CollapsibleContent: React$1.ForwardRefExoticComponent<Omit<CollapsiblePrimitive.CollapsibleContentProps & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+/** Tabela de dados simples (shadcn Table), com rolagem horizontal própria. Ex.: extrato de pontos. */
+export declare const Table: React$1.ForwardRefExoticComponent<React$1.TableHTMLAttributes<HTMLTableElement> & React$1.RefAttributes<HTMLTableElement>>;
+export declare function TableHeader({ className, ...props }: React$1.HTMLAttributes<HTMLTableSectionElement>): React$1.JSX.Element;
+export declare function TableBody({ className, ...props }: React$1.HTMLAttributes<HTMLTableSectionElement>): React$1.JSX.Element;
+export declare function TableFooter({ className, ...props }: React$1.HTMLAttributes<HTMLTableSectionElement>): React$1.JSX.Element;
+export declare function TableRow({ className, ...props }: React$1.HTMLAttributes<HTMLTableRowElement>): React$1.JSX.Element;
+export declare function TableHead({ className, ...props }: React$1.ThHTMLAttributes<HTMLTableCellElement>): React$1.JSX.Element;
+export declare function TableCell({ className, ...props }: React$1.TdHTMLAttributes<HTMLTableCellElement>): React$1.JSX.Element;
+export declare function TableCaption({ className, ...props }: React$1.HTMLAttributes<HTMLTableCaptionElement>): React$1.JSX.Element;
+/** Navegação entre páginas (shadcn Pagination). No app, prefira "Carregar mais"; use em listas longas com posição conhecida. */
+export declare function Pagination({ className, ...props }: React$1.HTMLAttributes<HTMLElement>): React$1.JSX.Element;
+export declare function PaginationContent({ className, ...props }: React$1.HTMLAttributes<HTMLUListElement>): React$1.JSX.Element;
+export declare function PaginationItem(props: React$1.LiHTMLAttributes<HTMLLIElement>): React$1.JSX.Element;
+export interface PaginationLinkProps extends React$1.AnchorHTMLAttributes<HTMLAnchorElement> {
+	isActive?: boolean;
+	disabled?: boolean;
+}
+export declare function PaginationLink({ className, isActive, disabled, href, ...props }: PaginationLinkProps): React$1.JSX.Element;
+export declare function PaginationPrevious({ className, ...props }: PaginationLinkProps): React$1.JSX.Element;
+export declare function PaginationNext({ className, ...props }: PaginationLinkProps): React$1.JSX.Element;
+export declare function PaginationEllipsis({ className, ...props }: React$1.HTMLAttributes<HTMLSpanElement>): React$1.JSX.Element;
+export type CarouselApi = UseEmblaCarouselType[1];
+export type CarouselOptions = Parameters<typeof useEmblaCarousel>[0];
+export interface CarouselProps extends React$1.HTMLAttributes<HTMLDivElement> {
+	/** Nome do carrossel ("Novidades do programa"). */
+	label: string;
+	opts?: CarouselOptions;
+	setApi?: (api: CarouselApi) => void;
+}
+/** Carrossel por gesto (shadcn Carousel, sobre Embla). Sem avanço automático; setas do teclado passam os slides. */
+export declare function Carousel({ label, opts, setApi, className, children, ...props }: CarouselProps): React$1.JSX.Element;
+export declare function CarouselContent({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
+export declare function CarouselItem({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
+export declare function CarouselPrevious({ className, ...props }: React$1.ButtonHTMLAttributes<HTMLButtonElement>): React$1.JSX.Element;
+export declare function CarouselNext({ className, ...props }: React$1.ButtonHTMLAttributes<HTMLButtonElement>): React$1.JSX.Element;
+/** Pontos de posição: mostram o slide atual e levam direto a um slide. */
+export declare function CarouselDots({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
+export declare const DropdownMenu: React$1.FC<DropdownMenuPrimitive.DropdownMenuProps>;
+export declare const DropdownMenuTrigger: React$1.ForwardRefExoticComponent<DropdownMenuPrimitive.DropdownMenuTriggerProps & React$1.RefAttributes<HTMLButtonElement>>;
+export declare const DropdownMenuGroup: React$1.ForwardRefExoticComponent<DropdownMenuPrimitive.DropdownMenuGroupProps & React$1.RefAttributes<HTMLDivElement>>;
+export declare const DropdownMenuPortal: React$1.FC<DropdownMenuPrimitive.DropdownMenuPortalProps>;
+export declare const DropdownMenuSub: React$1.FC<DropdownMenuPrimitive.DropdownMenuSubProps>;
+export declare const DropdownMenuRadioGroup: React$1.ForwardRefExoticComponent<DropdownMenuPrimitive.DropdownMenuRadioGroupProps & React$1.RefAttributes<HTMLDivElement>>;
+/** Menu de ações de um item (Radix DropdownMenu): abre no toque, setas e letras navegam, Esc fecha e devolve o foco. */
+export declare const DropdownMenuContent: React$1.ForwardRefExoticComponent<Omit<DropdownMenuPrimitive.DropdownMenuContentProps & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+export interface DropdownMenuItemProps extends React$1.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> {
+	/** destructive = ação que apaga ou sai. */
+	variant?: "default" | "destructive";
+	/** Recuo para alinhar com itens que têm marca de seleção. */
+	inset?: boolean;
+}
+export declare const DropdownMenuItem: React$1.ForwardRefExoticComponent<DropdownMenuItemProps & React$1.RefAttributes<HTMLDivElement>>;
+export declare const DropdownMenuCheckboxItem: React$1.ForwardRefExoticComponent<Omit<DropdownMenuPrimitive.DropdownMenuCheckboxItemProps & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+export declare const DropdownMenuRadioItem: React$1.ForwardRefExoticComponent<Omit<DropdownMenuPrimitive.DropdownMenuRadioItemProps & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+export declare const DropdownMenuLabel: React$1.ForwardRefExoticComponent<Omit<DropdownMenuPrimitive.DropdownMenuLabelProps & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+export declare const DropdownMenuSeparator: React$1.ForwardRefExoticComponent<Omit<DropdownMenuPrimitive.DropdownMenuSeparatorProps & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+export declare const DropdownMenuSubTrigger: React$1.ForwardRefExoticComponent<Omit<DropdownMenuPrimitive.DropdownMenuSubTriggerProps & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+export declare const DropdownMenuSubContent: React$1.ForwardRefExoticComponent<Omit<DropdownMenuPrimitive.DropdownMenuSubContentProps & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+/** Lista com busca e navegação por teclado (shadcn Command, sobre cmdk). Base do Combobox. */
+export declare const Command: React$1.ForwardRefExoticComponent<Omit<{
+	children?: React$1.ReactNode;
+} & Pick<Pick<React$1.DetailedHTMLProps<React$1.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "key" | keyof React$1.HTMLAttributes<HTMLDivElement>> & {
+	ref?: React$1.Ref<HTMLDivElement>;
+} & {
+	asChild?: boolean;
+}, "key" | "asChild" | keyof React$1.HTMLAttributes<HTMLDivElement>> & {
+	label?: string;
+	shouldFilter?: boolean;
+	filter?: (value: string, search: string, keywords?: string[]) => number;
+	defaultValue?: string;
+	value?: string;
+	onValueChange?: (value: string) => void;
+	loop?: boolean;
+	disablePointerSelection?: boolean;
+	vimBindings?: boolean;
+} & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+export declare const CommandInput: React$1.ForwardRefExoticComponent<Omit<Omit<Pick<Pick<React$1.DetailedHTMLProps<React$1.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "key" | keyof React$1.InputHTMLAttributes<HTMLInputElement>> & {
+	ref?: React$1.Ref<HTMLInputElement>;
+} & {
+	asChild?: boolean;
+}, "key" | "asChild" | keyof React$1.InputHTMLAttributes<HTMLInputElement>>, "type" | "onChange" | "value"> & {
+	value?: string;
+	onValueChange?: (search: string) => void;
+} & React$1.RefAttributes<HTMLInputElement>, "ref"> & React$1.RefAttributes<HTMLInputElement>>;
+export declare const CommandList: React$1.ForwardRefExoticComponent<Omit<{
+	children?: React$1.ReactNode;
+} & Pick<Pick<React$1.DetailedHTMLProps<React$1.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "key" | keyof React$1.HTMLAttributes<HTMLDivElement>> & {
+	ref?: React$1.Ref<HTMLDivElement>;
+} & {
+	asChild?: boolean;
+}, "key" | "asChild" | keyof React$1.HTMLAttributes<HTMLDivElement>> & {
+	label?: string;
+} & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+export declare const CommandEmpty: React$1.ForwardRefExoticComponent<Omit<{
+	children?: React$1.ReactNode;
+} & Pick<Pick<React$1.DetailedHTMLProps<React$1.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "key" | keyof React$1.HTMLAttributes<HTMLDivElement>> & {
+	ref?: React$1.Ref<HTMLDivElement>;
+} & {
+	asChild?: boolean;
+}, "key" | "asChild" | keyof React$1.HTMLAttributes<HTMLDivElement>> & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+export declare const CommandGroup: React$1.ForwardRefExoticComponent<Omit<{
+	children?: React$1.ReactNode;
+} & Omit<Pick<Pick<React$1.DetailedHTMLProps<React$1.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "key" | keyof React$1.HTMLAttributes<HTMLDivElement>> & {
+	ref?: React$1.Ref<HTMLDivElement>;
+} & {
+	asChild?: boolean;
+}, "key" | "asChild" | keyof React$1.HTMLAttributes<HTMLDivElement>>, "heading" | "value"> & {
+	heading?: React$1.ReactNode;
+	value?: string;
+	forceMount?: boolean;
+} & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+/** Divisor entre grupos. É decorativo (role="none"), para a lista continuar só com opções e grupos. */
+export declare function CommandSeparator({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
+export declare const CommandItem: React$1.ForwardRefExoticComponent<Omit<{
+	children?: React$1.ReactNode;
+} & Omit<Pick<Pick<React$1.DetailedHTMLProps<React$1.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "key" | keyof React$1.HTMLAttributes<HTMLDivElement>> & {
+	ref?: React$1.Ref<HTMLDivElement>;
+} & {
+	asChild?: boolean;
+}, "key" | "asChild" | keyof React$1.HTMLAttributes<HTMLDivElement>>, "onSelect" | "disabled" | "value"> & {
+	disabled?: boolean;
+	onSelect?: (value: string) => void;
+	value?: string;
+	keywords?: string[];
+	forceMount?: boolean;
+} & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+export interface ComboboxOption {
+	value: string;
+	label: string;
+	disabled?: boolean;
+}
+export interface ComboboxProps {
+	options: ComboboxOption[];
+	value?: string;
+	onChange?: (value: string) => void;
+	/** Texto do gatilho sem valor ("Selecione a cidade"). */
+	placeholder?: string;
+	searchPlaceholder?: string;
+	emptyText?: string;
+	/** Nome acessível quando não há Label ligado por id. */
+	"aria-label"?: string;
+	"aria-invalid"?: boolean;
+	id?: string;
+	disabled?: boolean;
+	className?: string;
+}
+/** Select com busca para listas longas, como cidade (shadcn Combobox: Popover + Command). */
+export declare function Combobox({ options, value, onChange, placeholder, searchPlaceholder, emptyText, className, id, disabled, ...aria }: ComboboxProps): React$1.JSX.Element;
+/** Bottom sheet com gesto de arrastar para fechar (shadcn Drawer, sobre Vaul). Sem gesto, use Sheet. */
+export declare function Drawer({ shouldScaleBackground, ...props }: React$1.ComponentProps<typeof DrawerPrimitive.Root>): React$1.JSX.Element;
+export declare const DrawerTrigger: React$1.ForwardRefExoticComponent<import("@radix-ui/react-dialog").DialogTriggerProps & React$1.RefAttributes<HTMLButtonElement>>;
+export declare const DrawerPortal: typeof import("vaul").Portal;
+export declare const DrawerClose: React$1.ForwardRefExoticComponent<import("@radix-ui/react-dialog").DialogCloseProps & React$1.RefAttributes<HTMLButtonElement>>;
+export declare const DrawerOverlay: React$1.ForwardRefExoticComponent<Omit<Omit<import("@radix-ui/react-dialog").DialogOverlayProps & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+export declare const DrawerContent: React$1.ForwardRefExoticComponent<Omit<Omit<import("@radix-ui/react-dialog").DialogContentProps & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
+export declare function DrawerHeader({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
+export declare function DrawerFooter({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
+export declare const DrawerTitle: React$1.ForwardRefExoticComponent<Omit<import("@radix-ui/react-dialog").DialogTitleProps & React$1.RefAttributes<HTMLHeadingElement>, "ref"> & React$1.RefAttributes<HTMLHeadingElement>>;
+export declare const DrawerDescription: React$1.ForwardRefExoticComponent<Omit<import("@radix-ui/react-dialog").DialogDescriptionProps & React$1.RefAttributes<HTMLParagraphElement>, "ref"> & React$1.RefAttributes<HTMLParagraphElement>>;
 
 export {};
 
@@ -900,6 +1209,8 @@ declare global {
 		Soma: {
 			cn: typeof cn;
 			focusRing: typeof focusRing;
+			disabledState: typeof disabledState;
+			hitArea: typeof hitArea;
 			ICONS: typeof ICONS;
 			ICON_ALIASES: typeof ICON_ALIASES;
 			iconVariants: typeof iconVariants;
@@ -914,6 +1225,7 @@ declare global {
 			CardHeader: typeof CardHeader;
 			CardTitle: typeof CardTitle;
 			CardDescription: typeof CardDescription;
+			CardAction: typeof CardAction;
 			CardContent: typeof CardContent;
 			CardFooter: typeof CardFooter;
 			Separator: typeof Separator;
@@ -928,6 +1240,7 @@ declare global {
 			AlertTitle: typeof AlertTitle;
 			AlertDescription: typeof AlertDescription;
 			Label: typeof Label;
+			fieldBase: typeof fieldBase;
 			Input: typeof Input;
 			Textarea: typeof Textarea;
 			Checkbox: typeof Checkbox;
@@ -963,6 +1276,7 @@ declare global {
 			SheetContent: typeof SheetContent;
 			AlertDialog: typeof AlertDialog;
 			AlertDialogTrigger: typeof AlertDialogTrigger;
+			AlertDialogPortal: typeof AlertDialogPortal;
 			AlertDialogContent: typeof AlertDialogContent;
 			AlertDialogHeader: typeof AlertDialogHeader;
 			AlertDialogFooter: typeof AlertDialogFooter;
@@ -973,6 +1287,7 @@ declare global {
 			Popover: typeof Popover;
 			PopoverTrigger: typeof PopoverTrigger;
 			PopoverAnchor: typeof PopoverAnchor;
+			PopoverClose: typeof PopoverClose;
 			PopoverContent: typeof PopoverContent;
 			Accordion: typeof Accordion;
 			AccordionItem: typeof AccordionItem;
@@ -1032,6 +1347,8 @@ declare global {
 			Modal: typeof Modal;
 			toastVariants: typeof toastVariants;
 			Toast: typeof Toast;
+			Toaster: typeof Toaster;
+			notify: typeof notify;
 			Message: typeof Message;
 			EmptyState: typeof EmptyState;
 			ResultScreen: typeof ResultScreen;
@@ -1043,6 +1360,91 @@ declare global {
 			DeliveryCard: typeof DeliveryCard;
 			SpaceCard: typeof SpaceCard;
 			SlotPicker: typeof SlotPicker;
+			Spinner: typeof Spinner;
+			buttonGroupVariants: typeof buttonGroupVariants;
+			ButtonGroup: typeof ButtonGroup;
+			toggleVariants: typeof toggleVariants;
+			Toggle: typeof Toggle;
+			ToggleGroup: typeof ToggleGroup;
+			ToggleGroupItem: typeof ToggleGroupItem;
+			Slider: typeof Slider;
+			NativeSelect: typeof NativeSelect;
+			InputGroup: typeof InputGroup;
+			InputGroupInput: typeof InputGroupInput;
+			InputGroupAddon: typeof InputGroupAddon;
+			InputOTP: typeof InputOTP;
+			InputOTPGroup: typeof InputOTPGroup;
+			InputOTPSlot: typeof InputOTPSlot;
+			InputOTPSeparator: typeof InputOTPSeparator;
+			FieldSet: typeof FieldSet;
+			FieldLegend: typeof FieldLegend;
+			FieldGroup: typeof FieldGroup;
+			fieldVariants: typeof fieldVariants;
+			Field: typeof Field;
+			FieldLabel: typeof FieldLabel;
+			FieldContent: typeof FieldContent;
+			FieldDescription: typeof FieldDescription;
+			FieldError: typeof FieldError;
+			FieldSeparator: typeof FieldSeparator;
+			AspectRatio: typeof AspectRatio;
+			ScrollBar: typeof ScrollBar;
+			ScrollArea: typeof ScrollArea;
+			Collapsible: typeof Collapsible;
+			CollapsibleTrigger: typeof CollapsibleTrigger;
+			CollapsibleContent: typeof CollapsibleContent;
+			Table: typeof Table;
+			TableHeader: typeof TableHeader;
+			TableBody: typeof TableBody;
+			TableFooter: typeof TableFooter;
+			TableRow: typeof TableRow;
+			TableHead: typeof TableHead;
+			TableCell: typeof TableCell;
+			TableCaption: typeof TableCaption;
+			Pagination: typeof Pagination;
+			PaginationContent: typeof PaginationContent;
+			PaginationItem: typeof PaginationItem;
+			PaginationLink: typeof PaginationLink;
+			PaginationPrevious: typeof PaginationPrevious;
+			PaginationNext: typeof PaginationNext;
+			PaginationEllipsis: typeof PaginationEllipsis;
+			Carousel: typeof Carousel;
+			CarouselContent: typeof CarouselContent;
+			CarouselItem: typeof CarouselItem;
+			CarouselPrevious: typeof CarouselPrevious;
+			CarouselNext: typeof CarouselNext;
+			CarouselDots: typeof CarouselDots;
+			DropdownMenu: typeof DropdownMenu;
+			DropdownMenuTrigger: typeof DropdownMenuTrigger;
+			DropdownMenuGroup: typeof DropdownMenuGroup;
+			DropdownMenuPortal: typeof DropdownMenuPortal;
+			DropdownMenuSub: typeof DropdownMenuSub;
+			DropdownMenuRadioGroup: typeof DropdownMenuRadioGroup;
+			DropdownMenuContent: typeof DropdownMenuContent;
+			DropdownMenuItem: typeof DropdownMenuItem;
+			DropdownMenuCheckboxItem: typeof DropdownMenuCheckboxItem;
+			DropdownMenuRadioItem: typeof DropdownMenuRadioItem;
+			DropdownMenuLabel: typeof DropdownMenuLabel;
+			DropdownMenuSeparator: typeof DropdownMenuSeparator;
+			DropdownMenuSubTrigger: typeof DropdownMenuSubTrigger;
+			DropdownMenuSubContent: typeof DropdownMenuSubContent;
+			Command: typeof Command;
+			CommandInput: typeof CommandInput;
+			CommandList: typeof CommandList;
+			CommandEmpty: typeof CommandEmpty;
+			CommandGroup: typeof CommandGroup;
+			CommandSeparator: typeof CommandSeparator;
+			CommandItem: typeof CommandItem;
+			Combobox: typeof Combobox;
+			Drawer: typeof Drawer;
+			DrawerTrigger: typeof DrawerTrigger;
+			DrawerPortal: typeof DrawerPortal;
+			DrawerClose: typeof DrawerClose;
+			DrawerOverlay: typeof DrawerOverlay;
+			DrawerContent: typeof DrawerContent;
+			DrawerHeader: typeof DrawerHeader;
+			DrawerFooter: typeof DrawerFooter;
+			DrawerTitle: typeof DrawerTitle;
+			DrawerDescription: typeof DrawerDescription;
 		};
 	}
 }
