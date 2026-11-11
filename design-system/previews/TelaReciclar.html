@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/bundle.css"><script src="../assets/react.production.min.js"></script><script src="../assets/react-dom.production.min.js"></script><script src="../assets/bundle.js"></script><meta charset="utf-8"><title>TelaReciclar</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap">
+</head>
+<body class="m-0 p-0 bg-background-secondary text-foreground font-sans">
+<div id="root" class="grid gap-mini" style="max-width:360px"></div>
+<script>
+var S = window.Soma, h = React.createElement, F = React.Fragment, useState = React.useState;
+function K(t){ return h('p', {className:'caption m-0 text-muted-foreground'}, t); }
+function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-center gap-nano'}].concat([].slice.call(arguments))); }
+var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
+// Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
+function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
+function Demo(){ var m=useState(''); return h('div',{className:'flex min-h-[880px] flex-col bg-background'},
+  h('main',{className:'grid flex-1 content-start gap-small px-xsmall pb-medium pt-xsmall'},
+    h('h1',{className:'screen-title m-0'},'Reciclar'),
+    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'Sua próxima entrega'}), h(S.DeliveryCard,{state:'scheduled',space:'Vila Verde',date:'Seg, 07 set · 09h',address:'R. Nunes Machado, 620 · Batel'})),
+    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'O que posso reciclar'}), h(S.SearchField,{label:'Buscar um material',placeholder:'Buscar um material',value:''}),
+      h(S.ChoiceChips,{label:'Material',variant:'soft',scroll:true,value:m[0],onChange:m[1],options:[{value:'p',label:'Plástico',icon:'bottle'},{value:'pa',label:'Papel',icon:'doc'},{value:'v',label:'Vidro',icon:'wine'},{value:'m',label:'Metal',icon:'package'},{value:'o',label:'Óleo',icon:'drop'}]})),
+    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'Espaços de recebimento perto de você'}),
+      h(S.SpaceCard,{name:'Casa so+ma Batel',distance:'0,8 km',hours:'Hoje · 09h às 18h',onDirections:function(){}}),
+      h(S.SpaceCard,{name:'Vila Verde',distance:'1,6 km',hours:'Seg–Sáb · 08h às 17h',onDirections:function(){}}))),
+  h(S.TabBar,{active:'reciclar'})); }
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+<script>(function(){function s(){parent.postMessage({soma:"h",n:"TelaReciclar",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

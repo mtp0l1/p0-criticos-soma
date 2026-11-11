@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/bundle.css"><script src="../assets/react.production.min.js"></script><script src="../assets/react-dom.production.min.js"></script><script src="../assets/bundle.js"></script><meta charset="utf-8"><title>TelaDoar</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap">
+</head>
+<body class="m-0 p-0 bg-background-secondary text-foreground font-sans">
+<div id="root" class="grid gap-mini" style="max-width:360px"></div>
+<script>
+var S = window.Soma, h = React.createElement, F = React.Fragment, useState = React.useState;
+function K(t){ return h('p', {className:'caption m-0 text-muted-foreground'}, t); }
+function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-center gap-nano'}].concat([].slice.call(arguments))); }
+var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
+// Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
+function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
+function Demo(){ var v=useState('500'); var n=parseInt(v[0]||'0',10); var err=n>1130?'O valor é maior que o seu saldo.':undefined;
+  return h('div',{className:'flex min-h-[740px] flex-col bg-background-secondary'},
+  h(S.Header,{title:'Doar pontos',onBack:function(){},action:{icon:'help',label:'Ajuda'}}),
+  h('main',{className:'grid flex-1 content-start gap-small px-xsmall pt-small'},
+    h(S.InstitutionCard,{name:'Associação S. Francisco de Assis para Proteção aos Animais',description:'Abrigo, cuidados veterinários e adoção responsável de animais resgatados.',onMore:function(){}}),
+    h(S.Card,{variant:'outline',className:'gap-mini rounded-xl p-mini'},
+      h('div',{className:'grid gap-xnano'}, h('p',{className:'body-strong m-0'},'Quantos pontos deseja doar?'), h('p',{className:'caption m-0 text-muted-foreground'},'Você tem ', h('b',{className:'font-semibold text-text-link'},'1.130 pontos'))),
+      h(S.TextField,{label:'Quantidade de pontos',inputMode:'numeric',value:v[0],onChange:function(x){ v[1](typeof x==='string'?x:x.target.value); },error:err}))),
+  h('div',{className:'px-xsmall pb-small pt-medium'}, h(S.Button,{fullWidth:true,disabled:!n||!!err},'Doar')),
+  h(S.TabBar,{active:'recompensas'})); }
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+<script>(function(){function s(){parent.postMessage({soma:"h",n:"TelaDoar",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

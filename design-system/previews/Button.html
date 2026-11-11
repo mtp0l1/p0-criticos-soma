@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/bundle.css"><script src="../assets/react.production.min.js"></script><script src="../assets/react-dom.production.min.js"></script><script src="../assets/bundle.js"></script><meta charset="utf-8"><title>Button</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap">
+</head>
+<body class="m-0 p-small bg-background text-foreground font-sans">
+<div id="root" class="grid gap-mini" style="max-width:760px"></div>
+<script>
+var S = window.Soma, h = React.createElement, F = React.Fragment, useState = React.useState;
+function K(t){ return h('p', {className:'caption m-0 text-muted-foreground'}, t); }
+function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-center gap-nano'}].concat([].slice.call(arguments))); }
+var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
+// Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
+function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
+function Demo(){ return h(F,null,
+  K('hierarchy: loud · quiet · transparent · destructive'),
+  Row(h(S.Button,null,'Ok, entendi'), h(S.Button,{hierarchy:'quiet',icon:'user-plus',iconPosition:'end'},'Convidar amigos'), h(S.Button,{hierarchy:'transparent'},'Ver níveis'), h(S.Button,{hierarchy:'destructive'},'Sair')),
+  K('Estados do loud: padrão · hover · pressionado · foco · carregando · desabilitado'),
+  Row(h(S.Button,null,'Padrão'), h(S.Button,{className:'bg-interactive-fill-loud-hover'},'Hover'), h(S.Button,{className:'bg-interactive-fill-loud-active'},'Pressionado'), h(S.Button,{className:'ring-2 ring-ring ring-offset-2 ring-offset-background'},'Foco'), h(S.Button,{loading:true},'Enviando'), h(S.Button,{disabled:true},'Desabilitado')),
+  K('Estados do quiet'),
+  Row(h(S.Button,{hierarchy:'quiet'},'Padrão'), h(S.Button,{hierarchy:'quiet',className:'bg-interactive-fill-quiet-hover'},'Hover'), h(S.Button,{hierarchy:'quiet',className:'bg-interactive-fill-quiet-active'},'Pressionado'), h(S.Button,{hierarchy:'quiet',disabled:true},'Desabilitado')),
+  K('size: large (48) · compact (44) · icon (44) · asChild com link'),
+  Row(h(S.Button,{size:'large'},'Large'), h(S.Button,{size:'compact',hierarchy:'quiet'},'Compact'), h(S.IconButton,{icon:'help',label:'Ajuda'}), h(S.Button,{asChild:true,hierarchy:'quiet'},h('a',{href:'#'},'Link com cara de botão'))),
+  h(S.Button,{fullWidth:true},'Largura total'));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+<script>(function(){function s(){parent.postMessage({soma:"h",n:"Button",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

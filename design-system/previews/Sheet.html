@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/bundle.css"><script src="../assets/react.production.min.js"></script><script src="../assets/react-dom.production.min.js"></script><script src="../assets/bundle.js"></script><meta charset="utf-8"><title>Sheet</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap">
+</head>
+<body class="m-0 p-small bg-background text-foreground font-sans">
+<div id="root" class="grid gap-mini" style="max-width:390px"></div>
+<script>
+var S = window.Soma, h = React.createElement, F = React.Fragment, useState = React.useState;
+function K(t){ return h('p', {className:'caption m-0 text-muted-foreground'}, t); }
+function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-center gap-nano'}].concat([].slice.call(arguments))); }
+var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
+// Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
+function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
+function Demo(){ var s=useState('1'); return h(F,null,h(Scrim),h(S.Sheet,{defaultOpen:true,modal:false},
+  h(S.SheetTrigger,{asChild:true},h(S.Button,{hierarchy:'quiet',icon:'pin'},'Trocar local')),
+  h(S.SheetContent,noFocus, h(S.SheetHeader,null, h(S.SheetTitle,null,'Onde você vai entregar?'), h(S.SheetDescription,null,'Escolha o espaço de recebimento mais perto.')),
+    h(S.RadioList,{legend:'Espaço',value:s[0],onChange:s[1],options:[{value:'1',label:'Mercado Municipal - Curitiba'},{value:'2',label:'Parque Barigui - Curitiba'},{value:'3',label:'Shopping Estação - Curitiba'}]}),
+    h(S.SheetFooter,null, h(S.Button,{fullWidth:true},'Confirmar local')))));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+<script>(function(){function s(){parent.postMessage({soma:"h",n:"Sheet",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/bundle.css"><script src="../assets/react.production.min.js"></script><script src="../assets/react-dom.production.min.js"></script><script src="../assets/bundle.js"></script><meta charset="utf-8"><title>ChoiceChips</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap">
+</head>
+<body class="m-0 p-small bg-background text-foreground font-sans">
+<div id="root" class="grid gap-mini" style="max-width:390px"></div>
+<script>
+var S = window.Soma, h = React.createElement, F = React.Fragment, useState = React.useState;
+function K(t){ return h('p', {className:'caption m-0 text-muted-foreground'}, t); }
+function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-center gap-nano'}].concat([].slice.call(arguments))); }
+var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
+// Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
+function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
+function Demo(){ var s=useState('2000'), c=useState('todas'), m=useState('');
+  return h(F,null, K('Saldo atual: 2.500 pontos'), h(S.ChoiceChips,{label:'Quantos pontos doar',value:s[0],onChange:s[1],options:[{value:'1000',label:'1.000'},{value:'2000',label:'2.000'},{value:'5000',label:'5.000',disabled:true},{value:'10000',label:'10.000',disabled:true}]}),
+  K('Categorias de recompensa, com ícone e rolagem'), h(S.ChoiceChips,{label:'Categoria',scroll:true,value:c[0],onChange:c[1],options:[{value:'todas',label:'Todas'},{value:'comida',label:'Alimentação',icon:'utensils'},{value:'casa',label:'Casa',icon:'home'},{value:'edu',label:'Educação',icon:'book'},{value:'sus',label:'Sustentável',icon:'leaf'},{value:'saude',label:'Saúde',icon:'heart'},{value:'mercado',label:'Mercado',icon:'cart'}]}),
+  K('variant="soft": materiais na aba Reciclar'), h(S.ChoiceChips,{label:'Material',variant:'soft',value:m[0],onChange:m[1],options:[{value:'plastico',label:'Plástico',icon:'bottle'},{value:'papel',label:'Papel',icon:'doc'},{value:'vidro',label:'Vidro',icon:'wine'},{value:'metal',label:'Metal',icon:'package'},{value:'oleo',label:'Óleo',icon:'drop'}]})); }
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+<script>(function(){function s(){parent.postMessage({soma:"h",n:"ChoiceChips",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>
