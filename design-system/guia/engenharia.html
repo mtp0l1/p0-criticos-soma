@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="pt-BR" data-root="../"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Para engenharia · So+ma Design System</title>
+<meta name="description" content="Arquitetura shadcn/ui, convenções, estados e como levar para o repositório.">
+<script>try{var t=localStorage.getItem('soma-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preload" href="../assets/fonts/lexend-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23FFDCC4'/%3E%3Cpath d='M16 9v14M9 16h14' stroke='%235A2700' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+</head><body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="rail" aria-label="Seções"><a class="mark sl" href="../index.html" aria-label="So+ma Design System, início"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-recycle" aria-hidden="true"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"></path><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"></path><path d="m14 16-3 3 3 3"></path><path d="M8.293 13.596 7.196 9.5 3.1 10.598"></path><path d="m9.344 5.811 1.093-1.892A1.83 1.83 0 0 1 11.985 3a1.784 1.784 0 0 1 1.546.888l3.943 6.843"></path><path d="m13.378 9.633 4.096 1.098 1.097-4.096"></path></svg></a><a class="dest" href="../index.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>Início</a><a class="dest" href="../guia/visao-geral.html" aria-current=page><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg></span>Guia</a><a class="dest" href="../fundamentos/cores.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg></span>Fundamentos</a><a class="dest" href="../componentes/index.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg></span>Componentes</a><a class="dest" href="../arquivos.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download" aria-hidden="true"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg></span>Arquivos</a></nav>
+<aside class="drawer" id="drawer" aria-label="Páginas"><div class="drawer-head"><b>So+ma Design System</b><span>Versão 4 · 11/11/2026</span></div><nav aria-label="Páginas do design system"><details open><summary class="sl">Guia<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><a class="sl" href="../guia/visao-geral.html">Visão geral</a><a class="sl" href="../guia/telas-novas.html">Telas novas e mapa do Figma</a><a class="sl" href="../guia/gerar-telas.html">Gerar telas com IA</a><a class="sl" href="../guia/padroes.html">Padrões de tela</a><a class="sl" href="../guia/engenharia.html" aria-current="page">Para engenharia</a></details><details><summary class="sl">Fundamentos<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><a class="sl" href="../fundamentos/cores.html">Cores</a><a class="sl" href="../fundamentos/tipografia.html">Tipografia</a><a class="sl" href="../fundamentos/espaco-e-forma.html">Espaço e forma</a><a class="sl" href="../fundamentos/icones.html">Ícones</a></details><details><summary class="sl">Componentes<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><a class="sl" href="../componentes/index.html">Todos os componentes</a><p class="gh">Ações</p><a class="sl dense" href="../componentes/Button.html">Button</a><a class="sl dense" href="../componentes/Icon.html">Icon</a><p class="gh">Navegação</p><a class="sl dense" href="../componentes/Header.html">Header</a><a class="sl dense" href="../componentes/LocationBar.html">LocationBar</a><a class="sl dense" href="../componentes/TabBar.html">TabBar</a><a class="sl dense" href="../componentes/Tabs.html">Tabs</a><a class="sl dense" href="../componentes/SegmentedControl.html">SegmentedControl</a><a class="sl dense" href="../componentes/SectionHeader.html">SectionHeader</a><a class="sl dense" href="../componentes/StepDots.html">StepDots</a><a class="sl dense" href="../componentes/ListRow.html">ListRow</a><p class="gh">Home</p><a class="sl dense" href="../componentes/Tile.html">Tile</a><a class="sl dense" href="../componentes/BalanceCard.html">BalanceCard</a><a class="sl dense" href="../componentes/MissionBanner.html">MissionBanner</a><a class="sl dense" href="../componentes/StepChecklist.html">StepChecklist</a><p class="gh">Quiz</p><a class="sl dense" href="../componentes/LevelCard.html">LevelCard</a><a class="sl dense" href="../componentes/QuestionCard.html">QuestionCard</a><a class="sl dense" href="../componentes/LevelBadge.html">LevelBadge</a><a class="sl dense" href="../componentes/PointsBadge.html">PointsBadge</a><a class="sl dense" href="../componentes/StreakTrail.html">StreakTrail</a><a class="sl dense" href="../componentes/StreakProgress.html">StreakProgress</a><a class="sl dense" href="../componentes/LevelList.html">LevelList</a><p class="gh">Impacto e ranking</p><a class="sl dense" href="../componentes/StatTile.html">StatTile</a><a class="sl dense" href="../componentes/RankingBanner.html">RankingBanner</a><a class="sl dense" href="../componentes/PositionCard.html">PositionCard</a><a class="sl dense" href="../componentes/Podium.html">Podium</a><a class="sl dense" href="../componentes/RankingRow.html">RankingRow</a><a class="sl dense" href="../componentes/StatsRow.html">StatsRow</a><p class="gh">Resgates e conta</p><a class="sl dense" href="../componentes/RedemptionItem.html">RedemptionItem</a><a class="sl dense" href="../componentes/MemberCard.html">MemberCard</a><a class="sl dense" href="../componentes/Avatar.html">Avatar</a><p class="gh">Reciclar e agendar</p><a class="sl dense" href="../componentes/DeliveryCard.html">DeliveryCard</a><a class="sl dense" href="../componentes/SpaceCard.html">SpaceCard</a><a class="sl dense" href="../componentes/SlotPicker.html">SlotPicker</a><p class="gh">Recompensas e doação</p><a class="sl dense" href="../componentes/GoalCard.html">GoalCard</a><a class="sl dense" href="../componentes/CampaignBanner.html">CampaignBanner</a><a class="sl dense" href="../componentes/RewardRow.html">RewardRow</a><a class="sl dense" href="../componentes/RedeemCode.html">RedeemCode</a><a class="sl dense" href="../componentes/InstitutionCard.html">InstitutionCard</a><p class="gh">Busca e ajuda</p><a class="sl dense" href="../componentes/SearchField.html">SearchField</a><a class="sl dense" href="../componentes/MaterialResult.html">MaterialResult</a><a class="sl dense" href="../componentes/Accordion.html">Accordion</a><a class="sl dense" href="../componentes/HelpfulVote.html">HelpfulVote</a><a class="sl dense" href="../componentes/Tag.html">Tag</a><p class="gh">Formulários</p><a class="sl dense" href="../componentes/Input.html">Input</a><a class="sl dense" href="../componentes/TextField.html">TextField</a><a class="sl dense" href="../componentes/Textarea.html">Textarea</a><a class="sl dense" href="../componentes/Select.html">Select</a><a class="sl dense" href="../componentes/Checkbox.html">Checkbox</a><a class="sl dense" href="../componentes/Switch.html">Switch</a><a class="sl dense" href="../componentes/ChoiceChips.html">ChoiceChips</a><a class="sl dense" href="../componentes/RadioList.html">RadioList</a><p class="gh">Sobreposições</p><a class="sl dense" href="../componentes/Modal.html">Modal</a><a class="sl dense" href="../componentes/Dialog.html">Dialog</a><a class="sl dense" href="../componentes/AlertDialog.html">AlertDialog</a><a class="sl dense" href="../componentes/Sheet.html">Sheet</a><a class="sl dense" href="../componentes/Popover.html">Popover</a><p class="gh">Exibição</p><a class="sl dense" href="../componentes/Card.html">Card</a><a class="sl dense" href="../componentes/Badge.html">Badge</a><a class="sl dense" href="../componentes/StatusChip.html">StatusChip</a><a class="sl dense" href="../componentes/Progress.html">Progress</a><a class="sl dense" href="../componentes/Separator.html">Separator</a><p class="gh">Feedback</p><a class="sl dense" href="../componentes/Message.html">Message</a><a class="sl dense" href="../componentes/Toast.html">Toast</a><a class="sl dense" href="../componentes/EmptyState.html">EmptyState</a><a class="sl dense" href="../componentes/ResultScreen.html">ResultScreen</a><a class="sl dense" href="../componentes/Skeleton.html">Skeleton</a><p class="gh">Telas de exemplo</p><a class="sl dense" href="../componentes/TelaDoar.html">Tela Doar pontos</a><a class="sl dense" href="../componentes/TelaReciclar.html">Tela Reciclar</a></details></nav></aside>
+<div class="scrim"></div>
+<div class="app">
+<header class="topbar"><button type="button" class="ib sl" id="menu" aria-label="Abrir navegação" aria-controls="drawer" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg></button>
+<div class="search" role="search"><label class="search-bar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg><span class="sr">Buscar no design system</span><input id="q" type="search" placeholder="Buscar componente, token ou ícone" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="results" aria-autocomplete="list"><kbd aria-hidden="true">/</kbd></label><ul class="results" id="results" role="listbox" aria-label="Resultados" hidden></ul></div>
+<button type="button" class="ib sl" id="theme" aria-label="Usar tema escuro" aria-pressed="false"><span class="i-moon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg></span><span class="i-sun"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></span></button></header>
+<main id="conteudo" class="content has-toc"><article><header class="page-head"><p class="eyebrow-m3">Guia</p><h1>Para engenharia</h1><p class=lead>Arquitetura shadcn/ui, convenções, estados e como levar para o repositório.</p></header><div class="prose"><h2 id="arquitetura">Arquitetura</h2>
+<p>A biblioteca segue a arquitetura do shadcn/ui, com a identidade e as regras do So+ma:</p>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Camada</th>
+<th>O que é</th>
+<th>Onde</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tokens</td>
+<td>Núcleo (cores do app), semântico So+ma (papel, como no Andes) e aliases shadcn (<code>background</code>, <code>primary</code>, <code>ring</code>…)</td>
+<td><code>tokens.json</code> → <code>tokens.css</code></td>
+</tr>
+<tr>
+<td>Preset Tailwind</td>
+<td>Cores, espaços, tamanhos, raios e sombra do Tailwind apontando para as variáveis de <code>tokens.css</code></td>
+<td><code>components/src/tailwind.preset.js</code></td>
+</tr>
+<tr>
+<td>Primitivas (<code>ui/</code>)</td>
+<td>Componentes do shadcn adaptados: Radix para comportamento e acessibilidade, <code>cva</code> para variantes, <code>cn</code> para juntar classes</td>
+<td><code>components/src/ui/</code></td>
+</tr>
+<tr>
+<td>Produto (<code>soma/</code>)</td>
+<td>Componentes do app montados sobre as primitivas (LevelCard, QuestionCard, Podium…)</td>
+<td><code>components/src/soma/</code></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="arquivos">Arquivos</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Arquivo</th>
+<th>O que é</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tokens.json</code></td>
+<td>Fonte única dos tokens</td>
+</tr>
+<tr>
+<td><code>tokens.css</code></td>
+<td>Variáveis CSS (<code>--text-primary</code>, <code>--primary</code>, <code>--space-mini</code>…) e um estilo de texto por classe (<code>.label</code>, <code>.caption</code>, <code>.eyebrow</code>…)</td>
+</tr>
+<tr>
+<td><code>components/src/</code></td>
+<td>Código-fonte TypeScript para copiar para o repositório: <code>lib/utils.ts</code> (<code>cn</code>, <code>focusRing</code>), <code>ui/*.tsx</code>, <code>soma/*.tsx</code>, <code>index.ts</code>, <code>tailwind.preset.js</code></td>
+</tr>
+<tr>
+<td><code>components/bundle.css</code></td>
+<td>O Tailwind compilado a partir de <code>src/</code> com o preset (só <code>var(--token)</code>, inclui o preflight)</td>
+</tr>
+<tr>
+<td><code>components/bundle.js</code></td>
+<td>Tudo em <code>window.Soma</code>, script clássico que lê React 18 de <code>window.React</code> (Radix, CVA e Lucide já dentro)</td>
+</tr>
+<tr>
+<td><code>components/index.d.ts</code></td>
+<td>Tipos e props de cada componente e primitiva</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="como-levar-para-o-repositorio">Como levar para o repositório</h2>
+<ol>
+<li>Instale as dependências do shadcn: <code>@radix-ui/react-*</code> (accordion, alert-dialog, avatar, checkbox, dialog, label, popover, progress, radio-group, select, separator, slot, switch, tabs, toggle-group), <code>class-variance-authority</code>, <code>clsx</code>, <code>tailwind-merge</code>, <code>lucide-react@0.544.0</code> (ou mais nova; é a primeira com <code>bottle-wine</code>).</li>
+<li>Copie <code>components/src/</code> para o projeto (por exemplo <code>src/components/soma/</code>) e use <code>tailwind.preset.js</code> em <code>presets</code> do <code>tailwind.config</code>.</li>
+<li>Carregue <code>tokens.css</code> no CSS global, antes do Tailwind. Os aliases (<code>--background</code>, <code>--primary</code>, <code>--ring</code>…) já têm os nomes do shadcn: componentes novos do <code>npx shadcn add</code> saem com o tema So+ma.</li>
+<li>Para protótipo sem build, carregue <code>tokens.css</code>, <code>components/bundle.css</code>, React 18 e <code>components/bundle.js</code>; depois <code>const { Button } = window.Soma</code>.</li>
+</ol>
+<p>App nativo (React Native, Flutter): leia <code>tokens.json</code> e gere o tema com os mesmos nomes. Os README de cada componente servem de especificação de medidas, estados e acessibilidade.</p>
+<h2 id="convencoes">Convenções</h2>
+<ul>
+<li><strong>Variantes por CVA, com o vocabulário do Andes:</strong> <code>hierarchy</code> (loud, quiet, transparent, destructive), <code>size</code>, <code>tone</code>, <code>variant</code>, <code>layout</code>, <code>fullWidth</code>. Cada família exporta suas classes (<code>buttonVariants</code>, <code>badgeVariants</code>, <code>cardVariants</code>, <code>alertVariants</code>, <code>tabsTriggerVariants</code>, <code>listRowVariants</code>, <code>statTileVariants</code>, <code>toastVariants</code>, <code>iconVariants</code>).</li>
+<li><strong>Classes com <code>cn()</code>:</strong> <code>clsx</code> + <code>tailwind-merge</code> configurado com as escalas So+ma (<code>p-mini</code>, <code>h-button</code>, <code>rounded-lg</code>), então <code>className</code> de quem usa sempre vence sem duplicar.</li>
+<li><strong>Escalas fechadas:</strong> o preset substitui as escalas do Tailwind. Só existem <code>xnano</code>…<code>xlarge</code> (espaço), <code>touch</code>, <code>button</code>, <code>input</code>, <code>icon</code>, <code>thumb</code>, <code>medal</code>, <code>avatar</code>, <code>qr</code>, <code>tile</code>, <code>tabbar</code> (tamanho), <code>xs</code>…<code>xl</code>, <code>full</code> (raio) e as cores semânticas. <code>p-4</code> ou <code>bg-orange-500</code> não compilam.</li>
+<li><strong>Texto por classe de estilo:</strong> <code>page-title</code>, <code>screen-title</code>, <code>section-title</code>, <code>subtitle</code>, <code>header-title</code>, <code>stat-number</code>, <code>balance-number</code>, <code>body</code>, <code>body-strong</code>, <code>body-small</code>, <code>label</code>, <code>caption</code>, <code>eyebrow</code>, <code>tab-label</code>, <code>button</code>. Não use <code>text-sm</code> e afins. Lexend em 400, 500, 600 e 700.</li>
+<li><strong>Versão atual e anterior:</strong> componentes cujo desenho mudou nas telas novas aceitam <code>version</code> (<code>TabBar</code>, <code>SectionHeader</code>, <code>QuestionCard</code>, <code>Podium</code>). O padrão é <code>"atual"</code>; <code>"anterior"</code> mantém o app em produção funcionando enquanto as telas migram. Nada foi removido.</li>
+<li><strong>Composição:</strong> <code>asChild</code> (Radix Slot) em <code>Button</code> e nos gatilhos; <code>href</code> nos componentes tocáveis de produto (Tile, BalanceCard, ListRow, RankingBanner, RedemptionItem, RewardRow) vira <code>&lt;a&gt;</code>.</li>
+<li><strong>Ícones pelo nome do Figma:</strong> <code>Icon</code> aceita o nome So+ma (<code>pin</code>) e o nome da camada no Figma (<code>map-pin</code>, <code>Pino — SVG fornecido</code>), via <code>ICON_ALIASES</code>.</li>
+<li><strong>Refs:</strong> primitivas usam <code>forwardRef</code>, como no shadcn.</li>
+<li>Variantes "como no app" (<code>tone="app"</code>, <code>border="app"</code>, <code>nameTone="app"</code>) só documentam o estado atual.</li>
+</ul>
+<h2 id="estados">Estados</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Estado</th>
+<th>Regra</th>
+<th>Tokens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hover</td>
+<td>Escurece o fundo um passo; nunca muda a cor do texto para algo que reprove</td>
+<td><code>interactive-fill-loud-hover</code>, <code>interactive-fill-quiet-hover</code>, <code>surface-secondary-hover</code>, <code>surface-accent-hover</code></td>
+</tr>
+<tr>
+<td>Pressionado (<code>active</code>)</td>
+<td>Um passo além do hover</td>
+<td><code>interactive-fill-loud-active</code>, <code>interactive-fill-quiet-active</code></td>
+</tr>
+<tr>
+<td>Foco</td>
+<td>Só no teclado (<code>focus-visible</code>): anel de 2px em <code>ring</code>, a 2px, sobre <code>background</code></td>
+<td><code>ring</code> (= <code>focus-ring</code>)</td>
+</tr>
+<tr>
+<td>Desabilitado</td>
+<td>Cor cheia, sem opacidade, cursor bloqueado, motivo dito em texto</td>
+<td><code>interactive-fill-disabled</code>, <code>interactive-text-disabled</code></td>
+</tr>
+<tr>
+<td>Selecionado</td>
+<td>Pelo atributo do Radix (<code>data-state=checked/active/on</code>) ou <code>aria-current</code>, nunca só por classe</td>
+<td><code>primary</code>, <code>selected-indicator</code>, <code>surface-inverse</code></td>
+</tr>
+<tr>
+<td>Carregando</td>
+<td><code>aria-busy</code>, indicador no lugar do ícone, toques ignorados</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Erro</td>
+<td><code>aria-invalid</code> no campo; borda e mensagem em <code>feedback-text-negative</code></td>
+<td><code>feedback-*-negative</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Transições de 150 a 200ms, todas desligadas com <code>prefers-reduced-motion</code>.</p>
+<h2 id="do-andes-e-do-shadcn-para-o-so-ma">Do Andes e do shadcn para o So+ma</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Andes</th>
+<th>shadcn/ui</th>
+<th>So+ma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Button Loud / Quiet / Transparent</td>
+<td>Button default / outline / link / destructive</td>
+<td><code>Button hierarchy="loud" / "quiet" / "transparent" / "destructive"</code></td>
+</tr>
+<tr>
+<td>Header</td>
+<td>—</td>
+<td><code>Header</code></td>
+</tr>
+<tr>
+<td>Tabs mobile</td>
+<td>Tabs</td>
+<td><code>Tabs</code> (e <code>TabsRoot</code>/<code>TabsList</code>/<code>TabsTrigger</code>/<code>TabsContent</code>)</td>
+</tr>
+<tr>
+<td>Segmented control</td>
+<td>Tabs / Toggle Group</td>
+<td><code>SegmentedControl</code></td>
+</tr>
+<tr>
+<td>List row chevron / ícone</td>
+<td>—</td>
+<td><code>ListRow variant="help" / "menu"</code></td>
+</tr>
+<tr>
+<td>Shortcuts grid</td>
+<td>—</td>
+<td><code>TileGrid</code> + <code>Tile</code></td>
+</tr>
+<tr>
+<td>Card</td>
+<td>Card</td>
+<td><code>Card</code> (+ <code>CardHeader</code>, <code>CardTitle</code>…)</td>
+</tr>
+<tr>
+<td>Textfield</td>
+<td>Input + Label + Form</td>
+<td><code>Input</code>, <code>Label</code>, <code>TextField</code></td>
+</tr>
+<tr>
+<td>—</td>
+<td>Textarea</td>
+<td><code>Textarea</code></td>
+</tr>
+<tr>
+<td>Searchbox</td>
+<td>—</td>
+<td><code>SearchField</code></td>
+</tr>
+<tr>
+<td>Dropdown</td>
+<td>Select</td>
+<td><code>Select</code></td>
+</tr>
+<tr>
+<td>Checkbox</td>
+<td>Checkbox</td>
+<td><code>Checkbox</code></td>
+</tr>
+<tr>
+<td>Switch</td>
+<td>Switch</td>
+<td><code>Switch</code></td>
+</tr>
+<tr>
+<td>Radio button group</td>
+<td>Radio Group</td>
+<td><code>RadioList</code>, <code>RadioGroup</code></td>
+</tr>
+<tr>
+<td>Tag choice</td>
+<td>Toggle Group</td>
+<td><code>ChoiceChips</code></td>
+</tr>
+<tr>
+<td>Tag, Badge pill</td>
+<td>Badge</td>
+<td><code>Badge</code>, <code>Tag</code>, <code>StatusChip</code></td>
+</tr>
+<tr>
+<td>Progress indicator linear / segments</td>
+<td>Progress</td>
+<td><code>Progress</code> / segmentos do <code>MissionBanner</code> / <code>StepDots</code> / <code>StreakProgress</code></td>
+</tr>
+<tr>
+<td>Accordion</td>
+<td>Accordion</td>
+<td><code>Accordion</code></td>
+</tr>
+<tr>
+<td>Message (quiet)</td>
+<td>Alert</td>
+<td><code>Message</code> (e <code>Alert</code>)</td>
+</tr>
+<tr>
+<td>Snackbar</td>
+<td>Toast / Sonner</td>
+<td><code>Toast</code> (visual, <code>kind</code> error · success · info)</td>
+</tr>
+<tr>
+<td>Feedback screen (congrats)</td>
+<td>—</td>
+<td><code>ResultScreen</code></td>
+</tr>
+<tr>
+<td>Pill / tag de valor</td>
+<td>Badge</td>
+<td><code>PointsBadge</code>, <code>LevelBadge</code></td>
+</tr>
+<tr>
+<td>Card selecionável</td>
+<td>Toggle</td>
+<td><code>SpaceCard</code> com <code>onSelect</code> (<code>aria-pressed</code>)</td>
+</tr>
+<tr>
+<td>Date / time picker em chips</td>
+<td>Toggle Group</td>
+<td><code>SlotPicker</code></td>
+</tr>
+<tr>
+<td>Modal</td>
+<td>Dialog / Alert Dialog</td>
+<td><code>Modal</code>, <code>Dialog</code>, <code>AlertDialog</code></td>
+</tr>
+<tr>
+<td>Bottom sheet</td>
+<td>Sheet (side bottom)</td>
+<td><code>Sheet</code></td>
+</tr>
+<tr>
+<td>Popover</td>
+<td>Popover</td>
+<td><code>Popover</code></td>
+</tr>
+<tr>
+<td>Thumbnail</td>
+<td>Avatar</td>
+<td><code>Avatar</code>, <code>Thumb</code></td>
+</tr>
+<tr>
+<td>Divider</td>
+<td>Separator</td>
+<td><code>Separator</code></td>
+</tr>
+<tr>
+<td>Skeleton</td>
+<td>Skeleton</td>
+<td><code>Skeleton</code></td>
+</tr>
+<tr>
+<td><code>andes-color-text-primary</code>, <code>…-interactive-fill-loud-idle</code></td>
+<td><code>--foreground</code>, <code>--primary</code></td>
+<td><code>text-primary</code>, <code>interactive-fill-loud</code></td>
+</tr>
+<tr>
+<td>Spacing xnano 4 · nano 8 · micro 12 · mini 16 · xsmall 20 · small 24 · medium 32 · large 40 · xlarge 48</td>
+<td>—</td>
+<td><code>space-xnano</code> … <code>space-xlarge</code> (classes <code>p-mini</code>, <code>gap-nano</code>…). As variáveis do Andes X no Figma usam outra numeração (nano 6, xmicro 8, xtiny 16): não importe uma pela outra</td>
+</tr>
+</tbody>
+</table></div>
+<p>Fora de propósito: Tooltip (no celular não há hover; use <code>Popover</code>), Dropdown Menu, Command, Navigation Menu, Data Table e Calendar, que o app não usa hoje.</p>
+<h2 id="pronto-para-entregar">Pronto para entregar</h2>
+<ul>
+<li>[ ] Usa componentes do sistema; primitivos novos foram registrados.</li>
+<li>[ ] Nenhum hex, nenhuma classe fora das escalas do preset.</li>
+<li>[ ] Estados: hover, pressionado, foco, desabilitado, carregando, vazio, erro, conta nova e sucesso.</li>
+<li>[ ] Área tocável de 44px, rótulos acessíveis, seleção por atributo (<code>aria-*</code> ou <code>data-state</code>).</li>
+<li>[ ] Teclado: Tab chega em tudo; setas em abas, rádios e chips; Esc fecha sobreposições e o foco volta ao gatilho.</li>
+<li>[ ] Contraste 4,5:1 para texto e 3:1 para ícone, borda e controle.</li>
+<li>[ ] Movimento reduzido respeitado.</li>
+<li>[ ] Voltar leva à tela anterior real; a tela atualiza sem precisar sair e voltar.</li>
+<li>[ ] Validação antes de enviar: CPF válido, valor de doação até o saldo.</li>
+</ul>
+<h2 id="a-confirmar-antes-de-implementar">A confirmar antes de implementar</h2>
+<ul>
+<li>Fonte: Lexend, confirmada nas variáveis de texto do Figma (Heading, Subtitle, Paragraph). Os conceitos em Inter, Sora e Manrope foram trazidos para Lexend.</li>
+<li>Ícones: definidos. São Lucide, inclusive os "SVG fornecido" (recycle, chart-column, map-pin, gift). Lista e apelidos no README do <code>Icon</code>.</li>
+<li>Cores: vêm das variáveis do Figma (Neutral/Level 1 a 8, Highlight, Brand). Hover e pressionado continuam propostas.</li>
+<li>Texto laranja do Figma (#DD8613, #F36208, #E8823F) e texto branco sobre laranja reprovam contraste: o sistema usa <code>text-link</code> e <code>text-on-loud</code>. Confirme com o time antes de seguir o Figma ao pé da letra.</li>
+<li>Textos de 9 e 10px do Figma (endereço, chip, etiqueta) sobem para <code>caption</code> (12px).</li>
+<li>Pendente no Figma: card de entrega quando a data do calendário já passou (<code>DeliveryCard state="past"</code> é a proposta).</li>
+<li>Indicadores de impacto: o app usa uma cor por métrica no valor; essas cores não estão no sistema.</li>
+</ul></div><nav class="pager" aria-label="Páginas vizinhas"><a class="sl" href="padroes.html"><small><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Anterior</small><b>Padrões de tela</b></a><a class="sl next" href="../fundamentos/cores.html"><small>Próximo<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></small><b>Cores</b></a></nav></article><aside class="toc" aria-label="Nesta página"><p>Nesta página</p><a class="l2" href="#arquitetura">Arquitetura</a><a class="l2" href="#arquivos">Arquivos</a><a class="l2" href="#como-levar-para-o-repositorio">Como levar para o repositório</a><a class="l2" href="#convencoes">Convenções</a><a class="l2" href="#estados">Estados</a><a class="l2" href="#do-andes-e-do-shadcn-para-o-so-ma">Do Andes e do shadcn para o So+ma</a><a class="l2" href="#pronto-para-entregar">Pronto para entregar</a><a class="l2" href="#a-confirmar-antes-de-implementar">A confirmar antes de implementar</a></aside></main>
+<footer class="foot"><span>So+ma Design System · Versão 4 · atualizado em 11/11/2026</span><span>Componentes em shadcn/ui com a estrutura do Andes · documentação no padrão Material Design 3</span></footer>
+</div>
+<nav class="navbar" aria-label="Seções"><a class="dest" href="../index.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>Início</a><a class="dest" href="../guia/visao-geral.html" aria-current=page><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg></span>Guia</a><a class="dest" href="../fundamentos/cores.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg></span>Fundamentos</a><a class="dest" href="../componentes/index.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg></span>Componentes</a><a class="dest" href="../arquivos.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download" aria-hidden="true"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg></span>Arquivos</a></nav>
+<div class="snack" role="status" aria-live="polite"></div>
+<script src="../assets/search-index.js"></script><script src="../assets/site.js"></script>
+</body></html>

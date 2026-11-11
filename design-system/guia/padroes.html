@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="pt-BR" data-root="../"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Padrões de tela · So+ma Design System</title>
+<meta name="description" content="As telas do app montadas com os componentes, na versão atual e na anterior.">
+<script>try{var t=localStorage.getItem('soma-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preload" href="../assets/fonts/lexend-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23FFDCC4'/%3E%3Cpath d='M16 9v14M9 16h14' stroke='%235A2700' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+</head><body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="rail" aria-label="Seções"><a class="mark sl" href="../index.html" aria-label="So+ma Design System, início"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-recycle" aria-hidden="true"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"></path><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"></path><path d="m14 16-3 3 3 3"></path><path d="M8.293 13.596 7.196 9.5 3.1 10.598"></path><path d="m9.344 5.811 1.093-1.892A1.83 1.83 0 0 1 11.985 3a1.784 1.784 0 0 1 1.546.888l3.943 6.843"></path><path d="m13.378 9.633 4.096 1.098 1.097-4.096"></path></svg></a><a class="dest" href="../index.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>Início</a><a class="dest" href="../guia/visao-geral.html" aria-current=page><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg></span>Guia</a><a class="dest" href="../fundamentos/cores.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg></span>Fundamentos</a><a class="dest" href="../componentes/index.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg></span>Componentes</a><a class="dest" href="../arquivos.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download" aria-hidden="true"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg></span>Arquivos</a></nav>
+<aside class="drawer" id="drawer" aria-label="Páginas"><div class="drawer-head"><b>So+ma Design System</b><span>Versão 4 · 11/11/2026</span></div><nav aria-label="Páginas do design system"><details open><summary class="sl">Guia<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><a class="sl" href="../guia/visao-geral.html">Visão geral</a><a class="sl" href="../guia/telas-novas.html">Telas novas e mapa do Figma</a><a class="sl" href="../guia/gerar-telas.html">Gerar telas com IA</a><a class="sl" href="../guia/padroes.html" aria-current="page">Padrões de tela</a><a class="sl" href="../guia/engenharia.html">Para engenharia</a></details><details><summary class="sl">Fundamentos<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><a class="sl" href="../fundamentos/cores.html">Cores</a><a class="sl" href="../fundamentos/tipografia.html">Tipografia</a><a class="sl" href="../fundamentos/espaco-e-forma.html">Espaço e forma</a><a class="sl" href="../fundamentos/icones.html">Ícones</a></details><details><summary class="sl">Componentes<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><a class="sl" href="../componentes/index.html">Todos os componentes</a><p class="gh">Ações</p><a class="sl dense" href="../componentes/Button.html">Button</a><a class="sl dense" href="../componentes/Icon.html">Icon</a><p class="gh">Navegação</p><a class="sl dense" href="../componentes/Header.html">Header</a><a class="sl dense" href="../componentes/LocationBar.html">LocationBar</a><a class="sl dense" href="../componentes/TabBar.html">TabBar</a><a class="sl dense" href="../componentes/Tabs.html">Tabs</a><a class="sl dense" href="../componentes/SegmentedControl.html">SegmentedControl</a><a class="sl dense" href="../componentes/SectionHeader.html">SectionHeader</a><a class="sl dense" href="../componentes/StepDots.html">StepDots</a><a class="sl dense" href="../componentes/ListRow.html">ListRow</a><p class="gh">Home</p><a class="sl dense" href="../componentes/Tile.html">Tile</a><a class="sl dense" href="../componentes/BalanceCard.html">BalanceCard</a><a class="sl dense" href="../componentes/MissionBanner.html">MissionBanner</a><a class="sl dense" href="../componentes/StepChecklist.html">StepChecklist</a><p class="gh">Quiz</p><a class="sl dense" href="../componentes/LevelCard.html">LevelCard</a><a class="sl dense" href="../componentes/QuestionCard.html">QuestionCard</a><a class="sl dense" href="../componentes/LevelBadge.html">LevelBadge</a><a class="sl dense" href="../componentes/PointsBadge.html">PointsBadge</a><a class="sl dense" href="../componentes/StreakTrail.html">StreakTrail</a><a class="sl dense" href="../componentes/StreakProgress.html">StreakProgress</a><a class="sl dense" href="../componentes/LevelList.html">LevelList</a><p class="gh">Impacto e ranking</p><a class="sl dense" href="../componentes/StatTile.html">StatTile</a><a class="sl dense" href="../componentes/RankingBanner.html">RankingBanner</a><a class="sl dense" href="../componentes/PositionCard.html">PositionCard</a><a class="sl dense" href="../componentes/Podium.html">Podium</a><a class="sl dense" href="../componentes/RankingRow.html">RankingRow</a><a class="sl dense" href="../componentes/StatsRow.html">StatsRow</a><p class="gh">Resgates e conta</p><a class="sl dense" href="../componentes/RedemptionItem.html">RedemptionItem</a><a class="sl dense" href="../componentes/MemberCard.html">MemberCard</a><a class="sl dense" href="../componentes/Avatar.html">Avatar</a><p class="gh">Reciclar e agendar</p><a class="sl dense" href="../componentes/DeliveryCard.html">DeliveryCard</a><a class="sl dense" href="../componentes/SpaceCard.html">SpaceCard</a><a class="sl dense" href="../componentes/SlotPicker.html">SlotPicker</a><p class="gh">Recompensas e doação</p><a class="sl dense" href="../componentes/GoalCard.html">GoalCard</a><a class="sl dense" href="../componentes/CampaignBanner.html">CampaignBanner</a><a class="sl dense" href="../componentes/RewardRow.html">RewardRow</a><a class="sl dense" href="../componentes/RedeemCode.html">RedeemCode</a><a class="sl dense" href="../componentes/InstitutionCard.html">InstitutionCard</a><p class="gh">Busca e ajuda</p><a class="sl dense" href="../componentes/SearchField.html">SearchField</a><a class="sl dense" href="../componentes/MaterialResult.html">MaterialResult</a><a class="sl dense" href="../componentes/Accordion.html">Accordion</a><a class="sl dense" href="../componentes/HelpfulVote.html">HelpfulVote</a><a class="sl dense" href="../componentes/Tag.html">Tag</a><p class="gh">Formulários</p><a class="sl dense" href="../componentes/Input.html">Input</a><a class="sl dense" href="../componentes/TextField.html">TextField</a><a class="sl dense" href="../componentes/Textarea.html">Textarea</a><a class="sl dense" href="../componentes/Select.html">Select</a><a class="sl dense" href="../componentes/Checkbox.html">Checkbox</a><a class="sl dense" href="../componentes/Switch.html">Switch</a><a class="sl dense" href="../componentes/ChoiceChips.html">ChoiceChips</a><a class="sl dense" href="../componentes/RadioList.html">RadioList</a><p class="gh">Sobreposições</p><a class="sl dense" href="../componentes/Modal.html">Modal</a><a class="sl dense" href="../componentes/Dialog.html">Dialog</a><a class="sl dense" href="../componentes/AlertDialog.html">AlertDialog</a><a class="sl dense" href="../componentes/Sheet.html">Sheet</a><a class="sl dense" href="../componentes/Popover.html">Popover</a><p class="gh">Exibição</p><a class="sl dense" href="../componentes/Card.html">Card</a><a class="sl dense" href="../componentes/Badge.html">Badge</a><a class="sl dense" href="../componentes/StatusChip.html">StatusChip</a><a class="sl dense" href="../componentes/Progress.html">Progress</a><a class="sl dense" href="../componentes/Separator.html">Separator</a><p class="gh">Feedback</p><a class="sl dense" href="../componentes/Message.html">Message</a><a class="sl dense" href="../componentes/Toast.html">Toast</a><a class="sl dense" href="../componentes/EmptyState.html">EmptyState</a><a class="sl dense" href="../componentes/ResultScreen.html">ResultScreen</a><a class="sl dense" href="../componentes/Skeleton.html">Skeleton</a><p class="gh">Telas de exemplo</p><a class="sl dense" href="../componentes/TelaDoar.html">Tela Doar pontos</a><a class="sl dense" href="../componentes/TelaReciclar.html">Tela Reciclar</a></details></nav></aside>
+<div class="scrim"></div>
+<div class="app">
+<header class="topbar"><button type="button" class="ib sl" id="menu" aria-label="Abrir navegação" aria-controls="drawer" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg></button>
+<div class="search" role="search"><label class="search-bar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg><span class="sr">Buscar no design system</span><input id="q" type="search" placeholder="Buscar componente, token ou ícone" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="results" aria-autocomplete="list"><kbd aria-hidden="true">/</kbd></label><ul class="results" id="results" role="listbox" aria-label="Resultados" hidden></ul></div>
+<button type="button" class="ib sl" id="theme" aria-label="Usar tema escuro" aria-pressed="false"><span class="i-moon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg></span><span class="i-sun"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></span></button></header>
+<main id="conteudo" class="content has-toc"><article><header class="page-head"><p class="eyebrow-m3">Guia</p><h1>Padrões de tela</h1><p class=lead>As telas do app montadas com os componentes, na versão atual e na anterior.</p></header><div class="prose"><p>As telas do app montadas com os componentes do sistema, na ordem dos blocos. A primeira parte é a <strong>versão atual</strong> (telas novas do Figma "So+ma Vantagens – Pontos críticos e novos conceitos"); a segunda é a <strong>versão anterior</strong>, em produção, que continua valendo até cada tela migrar.</p>
+<p>Regras comuns da versão atual: largura 360px, fundo <code>background-primary</code>, margem lateral <code>space-xsmall</code> (20px), conteúdo a <code>space-small</code> (24px) do cabeçalho, blocos a <code>space-small</code>, botão principal a <code>space-medium</code> (32px) do último bloco e nunca colado na barra. <code>TabBar</code> com Reciclar. Fluxo que termina vai para <code>ResultScreen</code> com "Ir para o início".</p>
+<h2 id="versao-atual">Versão atual</h2>
+<h3 id="reciclar-aba">Reciclar (aba)</h3>
+<p>Figma: "Aba Reciclar" (478:14928).</p>
+<div class="codeblock"><pre tabindex="0"><code>├── &quot;Reciclar&quot; (screen-title, sem Header)
+├── SectionHeader &quot;Sua próxima entrega&quot; → DeliveryCard state=empty | scheduled | past
+├── SectionHeader &quot;O que posso reciclar&quot; → SearchField &quot;Buscar um material&quot; + ChoiceChips variant=soft scroll (Plástico · Papel · Vidro · Metal · Óleo)
+├── SectionHeader &quot;Espaços de recebimento perto de você&quot; → SpaceCard × n (distância, horário, Como chegar)
+└── TabBar active=reciclar
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<ul>
+<li>"Agendar entrega" abre o agendamento; "Mostrar meu QR" abre o <code>MemberCard</code>. "Como chegar" abre o mapa.</li>
+<li>Sem "Enviar e-mail" nos cards de espaço (mapa de mudanças de 27/10).</li>
+</ul>
+<h3 id="agendar-entrega">Agendar entrega</h3>
+<p>Figma: "escolha-espaco" (477:9296).</p>
+<div class="codeblock"><pre tabindex="0"><code>├── Header &quot;Em qual espaço de recebimento você vai entregar?&quot; · voltar + ajuda
+├── SpaceCard onSelect × n (selecionado com borda de destaque; detalhe com endereço, horário e Como chegar)
+├── SlotPicker &quot;Escolha a data&quot; (dias indisponíveis desabilitados)
+├── SlotPicker &quot;Escolha o horário&quot;
+├── Button loud fullWidth &quot;Agendar entrega&quot; (desabilitado até espaço, data e hora)
+└── TabBar active=reciclar
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<ul>
+<li>Sucesso: <code>Toast kind=success</code> "Entrega agendada para seg, 07 set" e volta à aba Reciclar com o <code>DeliveryCard state=scheduled</code>, ou <code>ResultScreen</code> quando for a primeira entrega.</li>
+<li>Meus agendamentos: <code>Header</code> "Meus agendamentos" + <code>DeliveryCard state=scheduled</code> por entrega, do mais próximo ao mais distante.</li>
+</ul>
+<h3 id="quiz">Quiz</h3>
+<p>Figma: Quiz (477:20539).</p>
+<div class="codeblock"><pre tabindex="0"><code>├── Header variant=round &quot;Quiz&quot; · voltar + ajuda
+├── SegmentedControl Quiz | Histórico
+├── LevelCard + LevelBadge
+├── StreakTrail (semana) + StreakProgress (marcos)
+├── QuestionCard state=open | answered · points=15
+├── Button quiet fullWidth icon=user-plus &quot;Convidar amigos&quot;
+└── TabBar active=inicio
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<ul>
+<li>Resultado da resposta em <code>Modal</code> ou <code>Sheet</code> (acertou: pontos ganhos e novo nível; errou: explica a certa). Dia protegido aparece no <code>StreakTrail</code> com escudo.</li>
+<li>Conquistas e introdução em <code>Sheet</code>; subir de nível em <code>ResultScreen</code> com o selo como <code>art</code>.</li>
+</ul>
+<h3 id="ranking">Ranking</h3>
+<p>Figma: Ranking (478:10126); Telas 9, 14, 15 e 16 do mapa de mudanças.</p>
+<div class="codeblock"><pre tabindex="0"><code>├── Header variant=start &quot;Ranking&quot; · voltar + compartilhar
+├── SegmentedControl Este mês | Últimos 12 meses
+├── Tabs Amigos | Meu espaço | Geral
+├── Podium (degraus)
+├── RankingList → RankingRow × n (a linha &quot;você&quot; com self e hint &quot;Faltam 6,5 kg para ultrapassar…&quot;)
+├── Button quiet fullWidth icon=contacts &quot;Encontrar amigos nos contatos&quot;
+└── TabBar active=impacto
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<ul>
+<li>Encontrar amigos: <code>ResultScreen tone=neutral icon=contacts</code> pedindo a permissão (Tela 14); amigos que já participam em <code>RankingRow</code> com <code>Button quiet compact</code> "Convidar" (Tela 15); permissão negada em <code>ResultScreen</code> com "Abrir ajustes" e "Agora não" (Tela 16).</li>
+<li>Aba Amigos vazia: <code>EmptyState</code> com "Convidar amigos".</li>
+</ul>
+<h3 id="recompensas-catalogo">Recompensas (catálogo)</h3>
+<p>Figma: home-campaign-on (477:22160).</p>
+<div class="codeblock"><pre tabindex="0"><code>├── &quot;Recompensas&quot; (screen-title) + PointsBadge kind=cost com o saldo
+├── SegmentedControl Catálogo | Meus resgates
+├── GoalCard (some se não houver meta)
+├── CampaignBanner (só com campanha ativa)
+├── ChoiceChips scroll com ícone (Todas · Alimentação · Casa · Educação · Sustentável · Saúde · Mercado)
+├── RewardRow × n (etiquetas &quot;2× vidro&quot;, &quot;Sua meta atual&quot;; &quot;faltam X&quot; quando o saldo não alcança)
+└── TabBar active=recompensas
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<ul>
+<li>Resgatar: detalhe → <code>Sheet</code> de confirmação ("Usar 600 pontos?") → <code>ResultScreen</code> com <code>RedeemCode</code> como <code>children</code>.</li>
+<li>Meus resgates: <code>RedemptionGroup</code> → <code>RedemptionItem</code> (componentes da versão anterior, sem mudança).</li>
+</ul>
+<h3 id="doar-pontos">Doar pontos</h3>
+<p>Figma: doação — campo vazio, valor válido e erro (478:12858, 478:12927).</p>
+<div class="codeblock"><pre tabindex="0"><code>├── Header &quot;Doar pontos&quot; · voltar + ajuda (fundo background-secondary)
+├── InstitutionCard
+├── Card outline radius-xlarge: &quot;Quantos pontos deseja doar?&quot; (body-strong) + &quot;Você tem {saldo} pontos&quot; (caption, saldo em text-link) + TextField &quot;Quantidade de pontos&quot; inputMode=numeric
+├── Button loud fullWidth &quot;Doar&quot; (desabilitado até valor válido; erro se maior que o saldo)
+└── TabBar active=recompensas
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<ul>
+<li>Doação livre, sem mínimo nem máximo além do saldo. "Doar" abre <code>Sheet</code> de confirmação antes de descontar; depois <code>ResultScreen</code> "Doação feita!".</li>
+</ul>
+<h3 id="cadastro-um-passo">Cadastro (um passo)</h3>
+<p>Figma: "01 · Nome e data de nascimento" (476:7330), 11 telas.</p>
+<div class="codeblock"><pre tabindex="0"><code>├── Header &quot;Cadastro&quot; · voltar + ajuda (sem TabBar)
+├── Título do passo (page-title): &quot;Vamos começar pelo seu nome e data de nascimento&quot;
+├── TextField × 1 ou 2 (com máscara: DD/MM/AAAA, CPF), space-small entre campos
+├── Checkbox &quot;Li e aceito o regulamento&quot; no último passo
+├── Button loud fullWidth &quot;Continuar&quot; (desabilitado até válido)
+└── StepDots current={passo} total={7}
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<ul>
+<li>A seta do topo é a única forma de voltar. Dúvidas abrem <code>Sheet</code> pelo (?) do cabeçalho.</li>
+</ul>
+<h3 id="ativacao-e-primeira-entrega">Ativação e primeira entrega</h3>
+<p>Figma: seção Ativação (22 telas).</p>
+<div class="codeblock"><pre tabindex="0"><code>├── Header · voltar
+├── Escolha do espaço e da data (como em Agendar entrega)
+├── MemberCard (QR) no dia da entrega
+├── StatsRow (entregas · kg · pontos) depois da primeira entrega
+└── ResultScreen &quot;Primeira entrega feita!&quot; com Compartilhar (Sheet) e &quot;Ir para o início&quot;
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<h2 id="versao-anterior-em-producao">Versão anterior (em produção)</h2>
+<h3 id="inicio-anterior">Início (anterior)</h3>
+<p>Fundo <code>background-primary</code>, margem <code>space-mini</code>, blocos a <code>space-medium</code>.</p>
+<div class="codeblock"><pre tabindex="0"><code>├── LocationBar sticky
+├── &quot;Olá, {primeiro nome}&quot; (page-title) + IconButton ajuda
+├── MissionBanner (some quando completa)
+├── BalanceCard
+├── SectionHeader version=anterior &quot;Ganhe suas medalhas&quot;
+├── Button quiet fullWidth icon=star &quot;Responda ao quiz&quot;
+├── SectionHeader &quot;Reciclar e ganhar pontos&quot; → TileGrid: Buscar material · Convidar amigos
+├── SectionHeader &quot;Resultado das minhas ações&quot; → TileGrid: Meu impacto · Meu ranking de reciclagem
+├── SectionHeader &quot;Usar pontos&quot; → TileGrid: Recompensas · Doe seus pontos
+└── TabBar version=anterior active=inicio
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<ul>
+<li>Ganhar pontos fica acima de Usar pontos e acima da dobra.</li>
+<li>Tocar na <code>LocationBar</code> abre um <code>Sheet</code> com os espaços de recebimento (<code>RadioList</code>) e "Confirmar local".</li>
+<li>Conta nova: sem local, a <code>LocationBar</code> chama para adicionar; saldo 0 mostra o caminho para a primeira entrega; Doe seus pontos leva a <code>Message</code> de saldo zero.</li>
+</ul>
+<h3 id="quiz-anterior">Quiz (anterior)</h3>
+<div class="codeblock"><pre tabindex="0"><code>├── Header &quot;Quiz&quot; · voltar + ajuda
+├── SegmentedControl Quiz | Histórico
+├── &quot;Olá, {primeiro nome},&quot; (section-title) + &quot;Acerte a pergunta do dia para avançar no seu nível!&quot; (body, text-secondary)
+├── LevelCard (+ Ver níveis → LevelList)
+├── QuestionCard version=anterior state=open | answered
+├── Button quiet fullWidth icon=user-plus &quot;Convidar amigos&quot;
+└── TabBar version=anterior active=inicio
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<ul>
+<li>O (i) de "Pergunta do dia" abre um <code>Popover</code> com a regra.</li>
+<li>Ao enviar: <code>Modal</code> de resultado com uma ação; ao fechar, <code>LevelCard</code> já mostra o novo percentual.</li>
+<li>Resposta errada: explica a certa e incentiva; sem check verde.</li>
+</ul>
+<h3 id="meu-impacto">Meu impacto</h3>
+<p>Fundo <code>background-secondary</code>, cards <code>surface-primary</code>.</p>
+<div class="codeblock"><pre tabindex="0"><code>├── Header &quot;Meu impacto&quot; · voltar + ajuda
+├── SectionHeader &quot;Resumo&quot; → StatTile layout=row &quot;Total de entregas&quot;
+├── SectionHeader &quot;Ranking&quot; · Ver mais → RankingBanner
+├── SectionHeader &quot;Meu impacto&quot; · Ver informações → StatGrid (kg, árvores, água economizada, água protegida, energia, CO2, R$, pontos doados)
+├── Button transparent icon=share &quot;Compartilhar o seu impacto&quot; → Dialog + RadioList
+└── TabBar version=anterior active=impacto
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<ul>
+<li>Conta nova: troque os zeros por projeção ou <code>Message</code> com chamada para a primeira entrega; <code>RankingBanner</code> dá lugar a <code>Message</code>.</li>
+</ul>
+<h3 id="ranking-anterior">Ranking (anterior)</h3>
+<p>Fundo <code>background-secondary</code>.</p>
+<div class="codeblock"><pre tabindex="0"><code>├── Header &quot;Ranking&quot; · voltar (volta para Meu impacto)
+├── Tabs Este mês | Últimos 12 meses
+├── &quot;Ranking do seu espaço de recebimento neste mês.&quot; (caption)
+├── StatTile layout=row &quot;Você reciclou&quot; · &quot;{kg} kg este mês&quot;
+├── PositionCard
+├── Podium version=anterior
+├── IconButton info &quot;Como é calculado o ranking?&quot; → Popover
+└── Button quiet fullWidth icon=user-plus &quot;Convidar amigos&quot;
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<ul>
+<li>Sem entrega: <code>PositionCard position={null}</code>; nada de "Sua posição: Nenhuma".</li>
+<li>Trocar de aba mostra <code>Skeleton</code> no lugar dos cards até os dados chegarem.</li>
+<li>Cidade sem espaço de recebimento: <code>EmptyState</code> "Sua cidade ainda não tem ranking".</li>
+</ul>
+<h3 id="buscar-material">Buscar material</h3>
+<div class="codeblock"><pre tabindex="0"><code>├── LocationBar
+├── &quot;Confira o material reciclável que pode ser entregue&quot; (page-title)
+├── &quot;Busque o material desejado ou toque em cada tipo&quot; (body, text-secondary)
+├── SearchField
+├── &quot;Foram encontrados {n} resultados para &quot;{termo}&quot;&quot; (caption)
+├── MaterialResult × n
+└── TabBar version=anterior active=inicio
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<ul>
+<li>Antes de buscar: categorias para tocar, nunca tela em branco. Sem resultado: <code>EmptyState</code> com "Enviar e-mail".</li>
+</ul>
+<h3 id="resgates">Resgates</h3>
+<div class="codeblock"><pre tabindex="0"><code>├── Header &quot;Histórico de resgates&quot; · voltar
+├── RedemptionGroup &quot;{data}&quot; → RedemptionItem × n
+└── TabBar version=anterior active=resgates
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<ul>
+<li>Carregando: <code>Skeleton variant="row"</code> × 4. Nenhum resgate: <code>EmptyState</code> com "Ver recompensas".</li>
+</ul>
+<h3 id="meu-cartao">Meu cartão</h3>
+<div class="codeblock"><pre tabindex="0"><code>├── Header &quot;Meu cartão&quot; · voltar
+└── MemberCard (nome, QR) centralizado
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<h3 id="menu">Menu</h3>
+<div class="codeblock"><pre tabindex="0"><code>├── &quot;{nome completo}&quot; (page-title)
+├── Avatar size=thumb + nome
+├── ListRow menu: Meu perfil · Meu cartão · Histórico de resgates · Meu extrato de pontos · Doe seus pontos · Convidar amigos · Enviar sugestão · Ajuda · Política de privacidade · Regulamento · Sair
+│     Sair → AlertDialog &quot;Sair da sua conta?&quot; (Continuar no app / Sair destructive)
+├── &quot;desenvolvido por so+ma&quot; (caption)
+└── TabBar version=anterior active=menu
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<h3 id="ajuda">Ajuda</h3>
+<p>Lista:</p>
+<div class="codeblock"><pre tabindex="0"><code>├── Header &quot;Ajuda&quot; · voltar
+├── SearchField &quot;Como podemos te ajudar?&quot;
+├── ListRow help × temas (Recompensas, Quiz, Pontos, Endereços e horários, Materiais recicláveis, Cadastro, Indicar amigos, Impacto ambiental e social)
+├── Dentro de um tema: Accordion com as perguntas, cada uma terminando em HelpfulVote
+├── SectionHeader &quot;Fale conosco&quot;
+└── ListRow help icon=mail &quot;E-mail&quot;
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<p>Artigo:</p>
+<div class="codeblock"><pre tabindex="0"><code>├── Header &quot;Ajuda&quot; · voltar
+├── &quot;{tema}&quot; (overline, text-link)
+├── &quot;{pergunta}&quot; (page-title)
+├── Texto (body), com passos numerados quando houver
+└── HelpfulVote
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<h3 id="doar-pontos-anterior">Doar pontos (anterior)</h3>
+<div class="codeblock"><pre tabindex="0"><code>├── Header &quot;Doar meus pontos&quot; · voltar
+├── &quot;Saldo atual: {saldo} pontos&quot; (body)
+├── ChoiceChips (valores acima do saldo desabilitados)
+├── TextField &quot;Outro valor&quot; inputMode=numeric, erro se maior que o saldo
+└── Button loud fullWidth &quot;Doar pontos&quot; (desabilitado até valor válido)
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<ul>
+<li>Saldo zero: só <code>Message tone="caution"</code> "Você ainda não tem pontos para doar" com "Ver locais de entrega".</li>
+</ul>
+<h3 id="cadastro-anterior">Cadastro (anterior)</h3>
+<div class="codeblock"><pre tabindex="0"><code>├── Header &quot;{passo}&quot; · voltar
+├── Título do passo (page-title): &quot;Agora, informe seu CPF&quot;
+├── TextField (um por passo, com máscara e inputMode); estado e cidade em Select
+├── Checkbox &quot;Li e aceito o regulamento&quot; no último passo
+├── Button loud fullWidth &quot;Continuar&quot; (desabilitado até válido)
+└── Button transparent &quot;Continuar depois&quot; (só onde pular for permitido)
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<h3 id="enviar-sugestao">Enviar sugestão</h3>
+<div class="codeblock"><pre tabindex="0"><code>├── Header &quot;Enviar sugestão&quot; · voltar
+├── Label + Textarea &quot;Sua sugestão&quot; (até 500 caracteres)
+└── Button loud fullWidth &quot;Enviar&quot; (desabilitado com o campo vazio; loading ao enviar)
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div>
+<h3 id="notificacoes">Notificações</h3>
+<div class="codeblock"><pre tabindex="0"><code>├── Header &quot;Notificações&quot; · voltar
+├── Linhas com Label + Switch: Lembrete da pergunta do dia · Avisos de pontos a expirar · Novidades do programa
+└── (sem botão de salvar: o Switch vale na hora)
+</code></pre><button type="button" class="ib sl" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></div></div><nav class="pager" aria-label="Páginas vizinhas"><a class="sl" href="gerar-telas.html"><small><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Anterior</small><b>Gerar telas com IA</b></a><a class="sl next" href="engenharia.html"><small>Próximo<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></small><b>Para engenharia</b></a></nav></article><aside class="toc" aria-label="Nesta página"><p>Nesta página</p><a class="l2" href="#versao-atual">Versão atual</a><a class="l3" href="#reciclar-aba">Reciclar (aba)</a><a class="l3" href="#agendar-entrega">Agendar entrega</a><a class="l3" href="#quiz">Quiz</a><a class="l3" href="#ranking">Ranking</a><a class="l3" href="#recompensas-catalogo">Recompensas (catálogo)</a><a class="l3" href="#doar-pontos">Doar pontos</a><a class="l3" href="#cadastro-um-passo">Cadastro (um passo)</a><a class="l3" href="#ativacao-e-primeira-entrega">Ativação e primeira entrega</a><a class="l2" href="#versao-anterior-em-producao">Versão anterior (em produção)</a><a class="l3" href="#inicio-anterior">Início (anterior)</a><a class="l3" href="#quiz-anterior">Quiz (anterior)</a><a class="l3" href="#meu-impacto">Meu impacto</a><a class="l3" href="#ranking-anterior">Ranking (anterior)</a><a class="l3" href="#buscar-material">Buscar material</a><a class="l3" href="#resgates">Resgates</a><a class="l3" href="#meu-cartao">Meu cartão</a><a class="l3" href="#menu">Menu</a><a class="l3" href="#ajuda">Ajuda</a><a class="l3" href="#doar-pontos-anterior">Doar pontos (anterior)</a><a class="l3" href="#cadastro-anterior">Cadastro (anterior)</a><a class="l3" href="#enviar-sugestao">Enviar sugestão</a><a class="l3" href="#notificacoes">Notificações</a></aside></main>
+<footer class="foot"><span>So+ma Design System · Versão 4 · atualizado em 11/11/2026</span><span>Componentes em shadcn/ui com a estrutura do Andes · documentação no padrão Material Design 3</span></footer>
+</div>
+<nav class="navbar" aria-label="Seções"><a class="dest" href="../index.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>Início</a><a class="dest" href="../guia/visao-geral.html" aria-current=page><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg></span>Guia</a><a class="dest" href="../fundamentos/cores.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg></span>Fundamentos</a><a class="dest" href="../componentes/index.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg></span>Componentes</a><a class="dest" href="../arquivos.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download" aria-hidden="true"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg></span>Arquivos</a></nav>
+<div class="snack" role="status" aria-live="polite"></div>
+<script src="../assets/search-index.js"></script><script src="../assets/site.js"></script>
+</body></html>
