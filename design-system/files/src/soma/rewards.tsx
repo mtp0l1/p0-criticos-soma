@@ -1,4 +1,4 @@
-/* So+ma · recompensas e doação: GoalCard, CampaignBanner, RewardRow, RedeemCode, InstitutionCard. */
+/* So+ma · recompensas e doação: GoalCard, CampaignBanner, RewardRow, RedeemCode, RewardDetail, InstitutionCard. */
 import * as React from 'react';
 import { cn, fmt } from '../lib/utils';
 import { Icon, type IconName } from '../ui/icon';
@@ -109,14 +109,16 @@ export function RewardRow({ title, partner, points, image, icon = 'gift', tags, 
 
 export interface RedeemCodeProps {
   code: string;
-  /** "Válido até 30/11/2026". */
+  /** "Válido até 5 de nov de 2026". */
   validity?: string;
+  /** Texto sob a caixa. Padrão: "Use na retirada ou no site do parceiro.". */
+  hint?: string;
   /** Chamado depois de copiar; o componente já anuncia "Código copiado". */
   onCopy?: (code: string) => void;
   className?: string;
 }
-/** Código do resgate em caixa tracejada, com Copiar. */
-export function RedeemCode({ code, validity, onCopy, className }: RedeemCodeProps) {
+/** Código do resgate (Tela 21): caixa tracejada com o código em laranja, a instrução e o botão principal "Copiar código". */
+export function RedeemCode({ code, validity, hint = 'Use na retirada ou no site do parceiro.', onCopy, className }: RedeemCodeProps) {
   const [copied, setCopied] = React.useState(false);
   const copy = async () => {
     try { await navigator.clipboard?.writeText(code); } catch { /* sem permissão: o código continua visível para copiar à mão */ }
@@ -125,13 +127,54 @@ export function RedeemCode({ code, validity, onCopy, className }: RedeemCodeProp
     window.setTimeout(() => setCopied(false), 2000);
   };
   return (
-    <div className={cn('grid justify-items-center gap-nano rounded-lg border-[1.5px] border-dashed border-border-highlight bg-surface-accent p-mini text-center text-foreground', className)}>
-      <p className="caption m-0 text-muted-foreground">Seu código</p>
-      <p className="m-0 select-all font-sans text-[24px] font-bold leading-8 tracking-[0.12em]">{code}</p>
-      <Button hierarchy="quiet" size="compact" icon={copied ? 'check' : 'copy'} onClick={copy}>{copied ? 'Copiado' : 'Copiar código'}</Button>
+    <div className={cn('grid gap-mini text-foreground', className)}>
+      <div className="grid justify-items-center gap-nano rounded-lg border-[1.5px] border-dashed border-border-highlight bg-card px-mini py-small text-center">
+        <p className="caption m-0 font-semibold uppercase tracking-wide text-muted-foreground">Código de resgate</p>
+        <p className="m-0 select-all font-sans text-[28px] font-bold leading-9 tracking-[0.08em] text-text-link">{code}</p>
+        {validity && <p className="caption m-0 text-muted-foreground">{validity}</p>}
+      </div>
+      <p className="body-small m-0 text-center text-muted-foreground">{hint}</p>
+      <Button fullWidth icon={copied ? 'check' : undefined} onClick={copy}>{copied ? 'Copiado' : 'Copiar código'}</Button>
       <span aria-live="polite" className="sr-only">{copied ? 'Código copiado' : ''}</span>
-      {validity && <p className="caption m-0 text-muted-foreground">{validity}</p>}
     </div>
+  );
+}
+
+/* ------------------------------------------------------------ RewardDetail */
+
+export interface RewardDetailProps {
+  /** Foto do prêmio. Sem ela, mostra o espaço em cinza. */
+  image?: string;
+  /** Categoria em maiúsculas ("Alimentação e gastronomia"). */
+  category: string;
+  title: string;
+  points: number;
+  /** Etiquetas como "2× vidro". */
+  tags?: RewardTag[];
+  /** "45,0 kg de vidro = 450 pontos ≈ R$ 45,00 em prêmios". */
+  source: string;
+  className?: string;
+}
+/** Detalhe do prêmio (Telas 18, 20 e V2): foto, categoria, nome, custo e "De onde vêm os pontos". O botão fica na tela. */
+export function RewardDetail({ image, category, title, points, tags, source, className }: RewardDetailProps) {
+  return (
+    <article className={cn('grid gap-mini', className)}>
+      <div className="grid h-[148px] place-items-center overflow-hidden rounded-lg bg-surface-secondary text-icon-brand-strong">
+        {image ? <img src={image} alt="" className="size-full object-cover" /> : <Icon name="gift" size="xlarge" />}
+      </div>
+      <div className="grid gap-xnano">
+        <p className="eyebrow m-0 uppercase text-text-link">{category}</p>
+        <h1 className="page-title m-0">{title}</h1>
+      </div>
+      <div className="flex flex-wrap items-center gap-nano">
+        <span className="inline-flex min-h-small items-center rounded-full bg-surface-secondary px-nano text-[12px] font-semibold leading-4 text-foreground">{fmt(points)} pontos</span>
+        {tags?.map((t) => <Badge key={t.label} tone={(t.tone ?? 'neutral') as BadgeProps['tone']}>{t.icon && <Icon name={t.icon} />}{t.label}</Badge>)}
+      </div>
+      <div className="grid gap-xnano rounded-lg bg-surface-secondary p-mini">
+        <p className="caption m-0 font-semibold uppercase tracking-wide text-muted-foreground">De onde vêm os pontos</p>
+        <p className="body-strong m-0 text-text-link">{source}</p>
+      </div>
+    </article>
   );
 }
 

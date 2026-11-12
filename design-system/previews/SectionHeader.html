@@ -10,7 +10,7 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ return h(F,null, K('version="atual" · subtitle 16px'), h(S.SectionHeader,{title:'Sua próxima entrega'}), h(S.SectionHeader,{title:'Espaços de recebimento perto de você',action:{label:'Ver mapa'}}), K('version="anterior" · section-title 18px'), h(S.SectionHeader,{version:'anterior',title:'Ganhe suas medalhas'})); }
+function Demo(){ return h(F,null, h(S.SectionHeader,{title:'Sua próxima entrega'}), h(S.SectionHeader,{title:'Espaços de recebimento perto de você',action:{label:'Ver mapa'}})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
 <script>(function(){function s(){parent.postMessage({soma:"h",n:"SectionHeader",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

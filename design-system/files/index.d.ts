@@ -372,22 +372,19 @@ export interface LocationBarProps {
 	sticky?: boolean;
 }
 export declare function LocationBar({ location, onPress, sticky }: LocationBarProps): React$1.JSX.Element;
-export type TabId = "inicio" | "reciclar" | "recompensas" | "resgates" | "impacto" | "menu";
-export type TabBarVersion = "atual" | "anterior";
-/** atual = telas novas do Figma (Reciclar no lugar de Resgates) · anterior = app em produção. */
-export declare const TAB_ITEMS: Record<TabBarVersion, Array<{
+export type TabId = "inicio" | "reciclar" | "recompensas" | "impacto" | "menu";
+/** Barra de cinco itens do redesign. "Meus resgates" virou aba dentro de Recompensas. */
+export declare const TAB_ITEMS: Array<{
 	id: TabId;
 	label: string;
 	icon: IconName;
-}>>;
+}>;
 export interface TabBarProps {
 	active: TabId;
 	onNavigate?: (id: TabId) => void;
-	/** Padrão "atual". Use "anterior" só em telas que ainda não migraram. */
-	version?: TabBarVersion;
 }
 /** Navegação inferior fixa. É navegação (nav + aria-current), não abas: por isso não usa Radix Tabs. */
-export declare function TabBar({ active, onNavigate, version }: TabBarProps): React$1.JSX.Element;
+export declare function TabBar({ active, onNavigate }: TabBarProps): React$1.JSX.Element;
 export interface TabsItem {
 	id: string;
 	label: string;
@@ -409,15 +406,13 @@ export declare function Tabs(props: TabsProps): React$1.JSX.Element;
 export declare function SegmentedControl(props: TabsProps): React$1.JSX.Element;
 export interface SectionHeaderProps {
 	title: string;
-	/** atual = subtitle (16px, telas novas) · anterior = section-title (18px, Home em produção). Padrão "atual". */
-	version?: "atual" | "anterior";
 	/** Link curto à direita ("Ver mais", "Ver informações"). */
 	action?: {
 		label: string;
 		onClick?: () => void;
 	};
 }
-export declare function SectionHeader({ title, action, version }: SectionHeaderProps): React$1.JSX.Element;
+export declare function SectionHeader({ title, action }: SectionHeaderProps): React$1.JSX.Element;
 export declare const listRowVariants: (props?: ({
 	variant?: "menu" | "help" | null | undefined;
 	lead?: boolean | null | undefined;
@@ -455,97 +450,250 @@ export interface BalanceCardProps {
 	hint?: string;
 	href?: string;
 	onPress?: () => void;
-}
-export declare function BalanceCard({ points, hint, href, onPress }: BalanceCardProps): React$1.JSX.Element;
-export interface MissionBannerProps {
-	title: string;
-	total: number;
-	done: number;
-}
-/** Some sozinho quando a missão termina. */
-export declare function MissionBanner({ title, total, done }: MissionBannerProps): React$1.JSX.Element | null;
-export interface StepChecklistProps {
-	steps: Array<{
+	/** light = card creme tocável com seta (Início) · dark = faixa escura com botão (Início com meta, Tela 17). */
+	tone?: "light" | "dark";
+	/** Só no tone dark: o botão à direita ("Ver meta"). */
+	action?: {
 		label: string;
-		status: "done" | "current" | "todo";
-	}>;
+		onClick?: () => void;
+		href?: string;
+	};
 }
-export declare function StepChecklist({ steps }: StepChecklistProps): React$1.JSX.Element;
-export type Tier = "ferro" | "bronze" | "prata" | "ouro" | "platina";
+export declare function BalanceCard({ points, hint, href, onPress, tone, action }: BalanceCardProps): React$1.JSX.Element;
+export interface QuestionTeaserProps {
+	/** A pergunta do dia, curta ("Isopor é reciclável?"). */
+	question: string;
+	/** Padrão: "Responda para somar pontos e trocar por recompensas.". */
+	hint?: string;
+	href?: string;
+	onPress?: () => void;
+}
+/** Card "Pergunta do dia" do Início. Leva ao Quiz; no lugar de "Responda ao Quiz" e "Ganhe suas medalhas". */
+export declare function QuestionTeaser({ question, hint, href, onPress }: QuestionTeaserProps): React$1.JSX.Element;
+export interface GoalSummaryCardProps {
+	/** Nome do prêmio escolhido como meta. */
+	title: string;
+	/** Pontos que o prêmio custa. */
+	goal: number;
+	/** Pontos que faltam. */
+	remaining: number;
+	icon?: IconName;
+	href?: string;
+	onPress?: () => void;
+}
+/** Meta ativa no topo do Início (Tela 17): prêmio, custo e quanto falta. Para o card laranja do catálogo use GoalCard. */
+export declare function GoalSummaryCard({ title, goal, remaining, icon, href, onPress }: GoalSummaryCardProps): React$1.JSX.Element;
+export interface ActivityRowProps {
+	title: string;
+	/** "3,2 kg de PET · +64 pontos". */
+	detail: string;
+	icon?: IconName;
+	/** Ação à direita ("Ver recibo"). */
+	action?: {
+		label: string;
+		onClick?: () => void;
+		href?: string;
+	};
+}
+/** Linha de "Atividade recente" do Início (Tela 17). */
+export declare function ActivityRow({ title, detail, icon, action }: ActivityRowProps): React$1.JSX.Element;
+/** Três níveis no redesign. Ferro e Platina do app anterior não existem mais. */
+export type Tier = "bronze" | "prata" | "ouro";
 export declare const TIER_NAME: Record<Tier, string>;
+/** Dificuldade que o Figma escreve ao lado do nome do nível (Tela 5). */
+export declare const TIER_LEVEL: Record<Tier, string>;
+/** Perguntas respondidas para alcançar o nível (Tela 5). */
+export declare const TIER_GOAL: Record<Tier, number>;
+export declare const TIER_NEXT: Record<Tier, Tier | null>;
 export interface MedalProps {
 	tier: Tier;
+	/** sm 56px (listas) · md 96px (cards de nível) · lg 124px (topo do Quiz). */
+	size?: "sm" | "md" | "lg";
+	/** Arte ilustrada do nível (a do Figma). Sem ela, desenha a medalha simples do sistema. */
+	src?: string;
 	className?: string;
 }
-/** Hoje o app usa a mesma arte para todos os níveis; o nível vai no rótulo acessível. */
-export declare function Medal({ tier, className }: MedalProps): React$1.JSX.Element;
+/** Selo ilustrado do nível: 1 estrela no Bronze, 2 na Prata, 3 no Ouro, sobre o aro. */
+export declare function Medal({ tier, size, src, className }: MedalProps): React$1.JSX.Element;
+export interface LevelBadgeProps {
+	tier: Tier;
+	/** name = "BRONZE" (topo do Quiz, histórico) · level = "INICIANTE" (lista de níveis). */
+	kind?: "name" | "level";
+	className?: string;
+}
+/** Etiqueta do nível em maiúsculas. A cor segue o nível nas duas formas. */
+export declare function LevelBadge({ tier, kind, className }: LevelBadgeProps): React$1.JSX.Element;
 export interface LevelCardProps {
 	tier: Tier;
-	/** 0 a 100. Atualize assim que o modal de acerto fechar. */
-	percent: number;
-	remaining: number;
-	onSeeLevels?: () => void;
+	/** Perguntas que faltam para o próximo nível. Ignorado no Ouro. */
+	remaining?: number;
+	src?: string;
+	className?: string;
 }
-export declare function LevelCard({ tier, percent, remaining, onSeeLevels }: LevelCardProps): React$1.JSX.Element;
+/** Topo do Quiz: medalha grande, etiqueta do nível e quantas perguntas faltam. Sem barra nem percentual. */
+export declare function LevelCard({ tier, remaining, src, className }: LevelCardProps): React$1.JSX.Element;
+export interface TierCardProps {
+	tier: Tier;
+	/** Nível da pessoa agora: borda de destaque. */
+	current?: boolean;
+	/** Perguntas para chegar ao nível. Padrão: o do Figma (5, 15, 50). */
+	questions?: number;
+	src?: string;
+}
+/** Um nível na tela "Campeão da Reciclagem": medalha, nome, etiqueta de dificuldade e quantas perguntas. Use dentro de <ul>. */
+export declare function TierCard({ tier, current, questions, src }: TierCardProps): React$1.JSX.Element;
+export interface ProtectionNoticeProps {
+	children: React$1.ReactNode;
+	/** inline = linha curta com escudo (trilha: "Proteção usada. Renova em 2 dias") · card = aviso creme com (i) (lista de níveis). */
+	variant?: "inline" | "card";
+	/** Só no card: abre "Como funciona a sequência". */
+	onInfo?: () => void;
+}
+/** Aviso da proteção semanal da sequência. */
+export declare function ProtectionNotice({ children, variant, onInfo }: ProtectionNoticeProps): React$1.JSX.Element;
 export interface QuestionCardProps {
-	/** open = pergunta para responder · answered = já respondeu hoje. */
-	state: "open" | "answered";
-	/** atual = card com borda de destaque, selo de pontos e opções em linha (Figma novo) · anterior = app em produção. Padrão "atual". */
-	version?: "atual" | "anterior";
-	/** Pontos que o acerto vale; aparece como PointsBadge na versão atual. */
+	/** Pontos que o acerto vale, no selo à direita. */
 	points?: number;
-	question?: string;
-	options?: string[];
+	question: string;
+	options: string[];
 	value?: string;
 	onChange?: (v: string) => void;
 	onSubmit?: () => void;
 	/** Texto do popover do (i). Sem ele, o (i) não aparece. */
 	info?: string;
 	submitting?: boolean;
-	answeredMessage?: string;
 }
-export declare function QuestionCard({ state, version, points, question, options, value, onChange, onSubmit, info, submitting, answeredMessage, }: QuestionCardProps): React$1.JSX.Element;
-export interface LevelListProps {
-	levels: Array<{
-		tier: Tier;
-		description: string;
-	}>;
-}
-export declare function LevelList({ levels }: LevelListProps): React$1.JSX.Element;
-export interface LevelBadgeProps {
-	tier: Tier;
-	className?: string;
-}
-/** Selo do nível em maiúsculas ("BRONZE"), ao lado do selo ilustrado ou do nome. */
-export declare function LevelBadge({ tier, className }: LevelBadgeProps): React$1.JSX.Element;
+/** Card da pergunta do dia: borda de destaque, selo de pontos, opções em linha e "Enviar resposta". Depois de responder, use DailyDone. */
+export declare function QuestionCard({ points, question, options, value, onChange, onSubmit, info, submitting }: QuestionCardProps): React$1.JSX.Element;
 export interface PointsBadgeProps {
 	points: number;
-	/** gain = "+15 pontos" (o que vale) · cost = "1.200 pontos" (o que custa) · balance = saldo. */
+	/** gain = "+15 pontos" (o que vale) · cost = "1.200 pontos" (o que custa). */
 	kind?: "gain" | "cost";
 	className?: string;
 }
 /** Pílula de pontos em creme com texto text-link. Número no padrão brasileiro. */
 export declare function PointsBadge({ points, kind, className }: PointsBadgeProps): React$1.JSX.Element;
 export type StreakDayState = "done" | "protected" | "today" | "missed" | "future";
+export interface StreakDay {
+	/** Inicial do dia ("S", "T", "Q"). */
+	label: string;
+	state: StreakDayState;
+	/** Hoje, já respondido: o check ganha o anel de destaque (Tela 3). Com state="today", o anel já vem. */
+	today?: boolean;
+}
 export interface StreakTrailProps {
 	/** Sete dias, na ordem da semana. */
-	days: Array<{
-		label: string;
-		state: StreakDayState;
-	}>;
+	days: StreakDay[];
 	className?: string;
 }
-/** Trilha da semana do quiz: feito (check), protegido (escudo), hoje (anel de destaque), perdido e futuro. */
+/** "Sua trilha": check (feito), escudo (protegido), × (perdido) e a inicial do dia quando ainda não há resposta. Hoje leva anel de destaque. */
 export declare function StreakTrail({ days, className }: StreakTrailProps): React$1.JSX.Element;
 export interface StreakProgressProps {
-	/** Dias seguidos até agora. */
-	days: number;
-	/** Marcos com recompensa, em dias (ex.: [3, 7, 14]). O último é o fim da barra. */
-	milestones: number[];
+	/** Semanas seguidas até agora. */
+	weeks: number;
+	/** Marcos em semanas. O último é o fim da barra. Padrão do Figma: 1, 5, 10, 20. */
+	milestones?: number[];
+	/** "Próximo prêmio: 500 pontos em 3 semanas". */
+	nextReward?: {
+		points: number;
+		inWeeks: number;
+	};
+	/** Esconde o título "Sequência: N semanas" (tela de conquista). */
+	hideLabel?: boolean;
 	className?: string;
 }
-/** Barra da sequência com marcos. Trilho surface-track de 8px, preenchimento selected-indicator. */
-export declare function StreakProgress({ days, milestones, className }: StreakProgressProps): React$1.JSX.Element;
+/** Barra da sequência em semanas, com marcos de prêmio (1, 5, 10 e 20 semanas). Marco alcançado: bolinha laranja com check. */
+export declare function StreakProgress({ weeks, milestones, nextReward, hideLabel, className }: StreakProgressProps): React$1.JSX.Element;
+export interface AnswerResultProps {
+	correct: boolean;
+	/** A resposta certa, como aparece nas opções. */
+	answer: string;
+	/** "Por quê?": a explicação curta. */
+	explanation: string;
+	/** Só no acerto. */
+	points?: number;
+	/** Semanas seguidas, só no acerto. */
+	weeks?: number;
+	/** Frase abaixo de "Pontos ganhos". Padrão: "Volte amanhã para manter sua sequência!". */
+	message?: string;
+	/** Ilustração do mascote (URL ou nó). Sem ela, mostra um ícone. */
+	art?: string | React$1.ReactNode;
+	onContinue?: () => void;
+	/** Link sob o botão: "Convidar amigos" no acerto, "Volte amanhã para a próxima pergunta" no erro. */
+	secondary?: {
+		label: string;
+		onClick?: () => void;
+		href?: string;
+	};
+}
+/** Resultado da resposta do dia, em tela cheia (Telas 2A e 2B). Não use Modal: o redesign não tem diálogo aqui. */
+export declare function AnswerResult({ correct, answer, explanation, points, weeks, message, art, onContinue, secondary }: AnswerResultProps): React$1.JSX.Element;
+export interface DailyDoneProps {
+	/** Padrão "Tarefa cumprida!". */
+	title?: string;
+	children?: React$1.ReactNode;
+	/** Tempo até a próxima pergunta ("14h 15m"). */
+	countdown?: string;
+	className?: string;
+}
+/** Estado do Quiz depois de responder: check verde, mensagem e contagem até a próxima pergunta (Tela 3). */
+export declare function DailyDone({ title, children, countdown, className }: DailyDoneProps): React$1.JSX.Element;
+export interface HistorySummaryProps {
+	tier: Tier;
+	/** Data em que subiu de nível ("26/08/2026"). */
+	since?: string;
+	total: number;
+	/** Data da última resposta. */
+	last: string;
+	src?: string;
+}
+/** Topo do Histórico: medalha com etiqueta, total de respostas e data da última (Tela 4). */
+export declare function HistorySummary({ tier, since, total, last, src }: HistorySummaryProps): React$1.JSX.Element;
+export interface AnswerHistoryProps {
+	/** Mês exibido ("Agosto 2026"). */
+	month: string;
+	onPrev?: () => void;
+	onNext?: () => void;
+	children: React$1.ReactNode;
+}
+/** Paginador de mês + lista de respostas. Filhos: AnswerHistoryRow. */
+export declare function AnswerHistory({ month, onPrev, onNext, children }: AnswerHistoryProps): React$1.JSX.Element;
+export type AnswerResultKind = {
+	kind: "points";
+	points: number;
+} | {
+	kind: "kept";
+} | {
+	kind: "zero";
+};
+export interface AnswerHistoryRowProps {
+	/** "28/08/2026". */
+	date: string;
+	question: string;
+	result: AnswerResultKind;
+}
+/** Uma resposta do histórico: data, pergunta em uma linha e o resultado (+15, "Sequência mantida" ou 0). */
+export declare function AnswerHistoryRow({ date, question, result }: AnswerHistoryRowProps): React$1.JSX.Element;
+export interface MilestoneResultProps {
+	/** Semanas seguidas completadas (1, 5, 10, 20). */
+	weeks: number;
+	/** Bônus do marco. */
+	points: number;
+	/** Próximo marco. Sem ele, usa só o texto de `message`. */
+	nextReward?: {
+		week: number;
+		points: number;
+	};
+	/** Texto de apoio. Padrão: "Continue assim. Na 5ª semana seguida você ganha 500 pontos.". */
+	message?: string;
+	milestones?: number[];
+	tier?: Tier;
+	/** Arte da conquista (URL ou nó). */
+	art?: string | React$1.ReactNode;
+	onContinue?: () => void;
+}
+/** Conquista de marco da sequência (Telas 7 e 8): "+100 pontos", título e os marcos com o atual marcado. */
+export declare function MilestoneResult({ weeks, points, nextReward, message, milestones, tier, art, onContinue }: MilestoneResultProps): React$1.JSX.Element;
 export declare const statTileVariants: (props?: ({
 	layout?: "row" | "stack" | null | undefined;
 } & ClassProp) | undefined) => string;
@@ -562,33 +710,28 @@ export declare function StatGrid({ children, className }: {
 	children?: React$1.ReactNode;
 	className?: string;
 }): React$1.JSX.Element;
-export interface RankingBannerProps {
-	position: number;
-	title: string;
-	message: string;
-	href?: string;
-	onPress?: () => void;
-}
-export declare function RankingBanner({ position, title, message, href, onPress }: RankingBannerProps): React$1.JSX.Element;
 export interface PositionCardProps {
-	/** null = ainda sem entrega no período. */
-	position: number | null;
-	percent?: number;
+	/** Percentual de participantes do mesmo espaço de recebimento que a pessoa superou. null = ainda sem entrega no período. */
+	percent: number | null;
+	className?: string;
 }
-export declare function PositionCard({ position, percent }: PositionCardProps): React$1.JSX.Element;
+/** Aba Geral do ranking: uma frase de comparação com quem entrega no mesmo espaço (Figma: ícone de tendência em círculo laranja). */
+export declare function PositionCard({ percent, className }: PositionCardProps): React$1.JSX.Element;
 export interface PodiumEntry {
 	position: 1 | 2 | 3;
+	/** Nome ou "Participante" na aba Geral. */
 	name: string;
 	kg: number;
 	self?: boolean;
 	photo?: string;
+	/** Aba Geral: sem nome nem foto; o avatar mostra "?". */
+	anonymous?: boolean;
 }
 export interface PodiumProps {
 	entries: PodiumEntry[];
-	/** atual = avatares sobre degraus ouro, prata e bronze (Figma novo) · anterior = três cards (app em produção). Padrão "atual". */
-	version?: "atual" | "anterior";
 }
-export declare function Podium({ entries, version }: PodiumProps): React$1.JSX.Element;
+/** Os três primeiros: avatares sobre degraus ouro, prata e bronze (Ranking do redesign). */
+export declare function Podium({ entries }: PodiumProps): React$1.JSX.Element;
 export interface RankingRowProps {
 	position: number;
 	name: string;
@@ -617,6 +760,21 @@ export interface StatsRowProps {
 }
 /** Números lado a lado (entregas, kg, pontos) em um card creme ou neutro. */
 export declare function StatsRow({ items, className }: StatsRowProps): React$1.JSX.Element;
+export interface ImpactTilesProps {
+	/** Título da faixa ("Seu impacto nesta entrega"). */
+	title?: string;
+	/** Três números do resultado. O que tem `highlight` ganha borda e valor laranja (os pontos ganhos). */
+	items: Array<{
+		value: string;
+		label: string;
+		highlight?: boolean;
+	}>;
+	/** "Compartilhar" no canto do título. Sem ele, a pílula não aparece. */
+	onShare?: () => void;
+	className?: string;
+}
+/** Resultado da entrega em três cartões (kg, pontos, água), como na tela "Entrega registrada". */
+export declare function ImpactTiles({ title, items, onShare, className }: ImpactTilesProps): React$1.JSX.Element;
 export interface StatusChipProps {
 	status: "done" | "expired" | "pending";
 	/** Texto do chip. Padrão: Concluído, Expirado, Aguardando retirada. */
@@ -651,16 +809,19 @@ export declare function RedemptionGroup({ date, children }: {
 	date: string;
 	children?: React$1.ReactNode;
 }): React$1.JSX.Element;
-export interface MemberCardProps {
-	name: string;
-	/** O QR code (svg ou img) gerado pelo back-end. */
+export interface QrCheckinCardProps {
+	/** QR gerado pelo back-end (svg ou img). */
 	qr: React$1.ReactNode;
-	/** URL da foto; sem ela, aparecem as iniciais. */
-	photo?: string;
-	/** ax = nome em navy (padrão, 7,07:1) · app = nome branco como hoje (2,05:1, reprova). */
-	nameTone?: "ax" | "app";
+	/** Nome da pessoa, mostrado em maiúsculas sob o QR. */
+	name: string;
+	/** Passos do atendimento. Padrão: "Mostre o QR", "A equipe pesa seus recicláveis", "Seus pontos aparecem aqui". */
+	steps?: string[];
+	title?: string;
+	description?: string;
+	className?: string;
 }
-export declare function MemberCard({ name, qr, photo, nameTone }: MemberCardProps): React$1.JSX.Element;
+/** QR de identificação na entrega (Tela 11): cartão branco com título, QR, nome e os três passos. Aparece no dia da entrega, não escondido no Menu. */
+export declare function QrCheckinCard({ qr, name, className, title, description, steps, }: QrCheckinCardProps): React$1.JSX.Element;
 export interface SearchFieldProps extends Omit<InputProps, "onChange" | "value"> {
 	label: string;
 	value: string;
@@ -744,7 +905,7 @@ export interface ModalProps {
 export declare function Modal({ title, children, art, actionLabel, onAction, actionDisabled, trigger, open, defaultOpen, onOpenChange, dismissible, modal }: ModalProps): React$1.JSX.Element;
 export declare const toastVariants: (props?: ({
 	kind?: "info" | "error" | "success" | null | undefined;
-	tone?: "ax" | "app" | null | undefined;
+	tone?: "app" | "ax" | null | undefined;
 } & ClassProp) | undefined) => string;
 export interface ToastProps extends VariantProps<typeof toastVariants> {
 	message: string;
@@ -862,14 +1023,31 @@ export interface RewardRowProps {
 export declare function RewardRow({ title, partner, points, image, icon, tags, missing, href, onClick }: RewardRowProps): React$1.JSX.Element;
 export interface RedeemCodeProps {
 	code: string;
-	/** "Válido até 30/11/2026". */
+	/** "Válido até 5 de nov de 2026". */
 	validity?: string;
+	/** Texto sob a caixa. Padrão: "Use na retirada ou no site do parceiro.". */
+	hint?: string;
 	/** Chamado depois de copiar; o componente já anuncia "Código copiado". */
 	onCopy?: (code: string) => void;
 	className?: string;
 }
-/** Código do resgate em caixa tracejada, com Copiar. */
-export declare function RedeemCode({ code, validity, onCopy, className }: RedeemCodeProps): React$1.JSX.Element;
+/** Código do resgate (Tela 21): caixa tracejada com o código em laranja, a instrução e o botão principal "Copiar código". */
+export declare function RedeemCode({ code, validity, hint, onCopy, className }: RedeemCodeProps): React$1.JSX.Element;
+export interface RewardDetailProps {
+	/** Foto do prêmio. Sem ela, mostra o espaço em cinza. */
+	image?: string;
+	/** Categoria em maiúsculas ("Alimentação e gastronomia"). */
+	category: string;
+	title: string;
+	points: number;
+	/** Etiquetas como "2× vidro". */
+	tags?: RewardTag[];
+	/** "45,0 kg de vidro = 450 pontos ≈ R$ 45,00 em prêmios". */
+	source: string;
+	className?: string;
+}
+/** Detalhe do prêmio (Telas 18, 20 e V2): foto, categoria, nome, custo e "De onde vêm os pontos". O botão fica na tela. */
+export declare function RewardDetail({ image, category, title, points, tags, source, className }: RewardDetailProps): React$1.JSX.Element;
 export interface InstitutionCardProps {
 	name: string;
 	description: string;
@@ -929,6 +1107,44 @@ export interface SlotPickerProps {
 }
 /** Escolha de data ou horário em fileira rolável, sobre Radix RadioGroup (setas do teclado, um ponto de tabulação). */
 export declare function SlotPicker({ label, slots, value, onChange, className }: SlotPickerProps): React$1.JSX.Element;
+export interface SpaceDetailProps {
+	name: string;
+	/** "Rua das Flores, 120 · Seg a sáb, 8h às 18h". */
+	address: string;
+	/** Abre o mapa. */
+	onDirections?: () => void;
+	className?: string;
+}
+/** Painel salmão que aparece sob a lista de espaços quando um está escolhido (Tela 27): endereço, horário e "Como chegar". */
+export declare function SpaceDetail({ name, address, onDirections, className }: SpaceDetailProps): React$1.JSX.Element;
+export interface InviteCodeCardProps {
+	code: string;
+	/** Chamado depois de copiar; o componente já anuncia "Código copiado". */
+	onCopy?: (code: string) => void;
+	className?: string;
+}
+/** "Seu código" de convite com Copiar ao lado (Tela 9). O botão principal da tela é Compartilhar convite. */
+export declare function InviteCodeCard({ code, onCopy, className }: InviteCodeCardProps): React$1.JSX.Element;
+export interface FriendRequestBannerProps {
+	/** Quem pediu ("Policarpo"). */
+	name: string;
+	onAccept?: () => void;
+	onDecline?: () => void;
+	className?: string;
+}
+/** Aviso no topo do Ranking para quem recebeu um pedido de amizade (Tela 13): "Agora não" e "Aceitar". */
+export declare function FriendRequestBanner({ name, onAccept, onDecline, className }: FriendRequestBannerProps): React$1.JSX.Element;
+export interface ContactRowProps {
+	name: string;
+	/** Espaço de recebimento do contato ("Vila Verde"). */
+	space?: string;
+	photo?: string;
+	/** idle = botão Convidar · sent = "Convite enviado", sem ação. */
+	status?: "idle" | "sent";
+	onInvite?: () => void;
+}
+/** Contato que já participa (Tela 15). Use dentro de <ul>. Convidar envia o pedido e vira "Convite enviado". */
+export declare function ContactRow({ name, space, photo, status, onInvite }: ContactRowProps): React$1.JSX.Element;
 export interface SpinnerProps extends React$1.SVGAttributes<SVGSVGElement> {
 	/** Texto para leitor de tela. Padrão "Carregando". */
 	label?: string;
@@ -1312,32 +1528,43 @@ declare global {
 			Tile: typeof Tile;
 			TileGrid: typeof TileGrid;
 			BalanceCard: typeof BalanceCard;
-			MissionBanner: typeof MissionBanner;
-			StepChecklist: typeof StepChecklist;
+			QuestionTeaser: typeof QuestionTeaser;
+			GoalSummaryCard: typeof GoalSummaryCard;
+			ActivityRow: typeof ActivityRow;
 			TIER_NAME: typeof TIER_NAME;
+			TIER_LEVEL: typeof TIER_LEVEL;
+			TIER_GOAL: typeof TIER_GOAL;
+			TIER_NEXT: typeof TIER_NEXT;
 			Medal: typeof Medal;
-			LevelCard: typeof LevelCard;
-			QuestionCard: typeof QuestionCard;
-			LevelList: typeof LevelList;
 			LevelBadge: typeof LevelBadge;
+			LevelCard: typeof LevelCard;
+			TierCard: typeof TierCard;
+			ProtectionNotice: typeof ProtectionNotice;
+			QuestionCard: typeof QuestionCard;
 			PointsBadge: typeof PointsBadge;
 			StreakTrail: typeof StreakTrail;
 			StreakProgress: typeof StreakProgress;
+			AnswerResult: typeof AnswerResult;
+			DailyDone: typeof DailyDone;
+			HistorySummary: typeof HistorySummary;
+			AnswerHistory: typeof AnswerHistory;
+			AnswerHistoryRow: typeof AnswerHistoryRow;
+			MilestoneResult: typeof MilestoneResult;
 			statTileVariants: typeof statTileVariants;
 			StatTile: typeof StatTile;
 			StatGrid: typeof StatGrid;
-			RankingBanner: typeof RankingBanner;
 			PositionCard: typeof PositionCard;
 			Podium: typeof Podium;
 			RankingRow: typeof RankingRow;
 			RankingList: typeof RankingList;
 			StatsRow: typeof StatsRow;
+			ImpactTiles: typeof ImpactTiles;
 			StatusChip: typeof StatusChip;
 			Tag: typeof Tag;
 			Thumb: typeof Thumb;
 			RedemptionItem: typeof RedemptionItem;
 			RedemptionGroup: typeof RedemptionGroup;
-			MemberCard: typeof MemberCard;
+			QrCheckinCard: typeof QrCheckinCard;
 			SearchField: typeof SearchField;
 			TextField: typeof TextField;
 			ChoiceChips: typeof ChoiceChips;
@@ -1356,10 +1583,15 @@ declare global {
 			CampaignBanner: typeof CampaignBanner;
 			RewardRow: typeof RewardRow;
 			RedeemCode: typeof RedeemCode;
+			RewardDetail: typeof RewardDetail;
 			InstitutionCard: typeof InstitutionCard;
 			DeliveryCard: typeof DeliveryCard;
 			SpaceCard: typeof SpaceCard;
 			SlotPicker: typeof SlotPicker;
+			SpaceDetail: typeof SpaceDetail;
+			InviteCodeCard: typeof InviteCodeCard;
+			FriendRequestBanner: typeof FriendRequestBanner;
+			ContactRow: typeof ContactRow;
 			Spinner: typeof Spinner;
 			buttonGroupVariants: typeof buttonGroupVariants;
 			ButtonGroup: typeof ButtonGroup;

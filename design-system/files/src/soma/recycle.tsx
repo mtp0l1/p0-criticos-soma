@@ -139,3 +139,24 @@ export function SlotPicker({ label, slots, value, onChange, className }: SlotPic
     </div>
   );
 }
+
+/* -------------------------------------------------------------- SpaceDetail */
+
+export interface SpaceDetailProps {
+  name: string;
+  /** "Rua das Flores, 120 · Seg a sáb, 8h às 18h". */
+  address: string;
+  /** Abre o mapa. */
+  onDirections?: () => void;
+  className?: string;
+}
+/** Painel salmão que aparece sob a lista de espaços quando um está escolhido (Tela 27): endereço, horário e "Como chegar". */
+export function SpaceDetail({ name, address, onDirections, className }: SpaceDetailProps) {
+  return (
+    <section aria-label={`Detalhes de ${name}`} className={cn('grid gap-nano rounded-lg bg-surface-accent p-mini text-foreground', className)}>
+      <p className="label m-0">{name}</p>
+      <p className="caption m-0 text-muted-foreground">{address}</p>
+      {onDirections && <Button hierarchy="quiet" size="compact" fullWidth icon="pin" onClick={onDirections} className="rounded-full">Como chegar<span className="sr-only"> a {name}</span></Button>}
+    </section>
+  );
+}

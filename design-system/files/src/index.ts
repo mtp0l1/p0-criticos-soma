@@ -37,23 +37,25 @@ export {
 
 /* Componentes So+ma (camada de produto) */
 export { Header, LocationBar, TabBar, Tabs, SegmentedControl, SectionHeader, ListRow, StepDots, listRowVariants, TAB_ITEMS } from './soma/navigation';
-export type { HeaderProps, LocationBarProps, TabBarProps, TabBarVersion, TabId, TabsProps, TabsItem, SectionHeaderProps, ListRowProps, StepDotsProps } from './soma/navigation';
-export { Tile, TileGrid, BalanceCard, MissionBanner, StepChecklist } from './soma/home';
-export type { TileProps, BalanceCardProps, MissionBannerProps, StepChecklistProps } from './soma/home';
-export { Medal, LevelCard, QuestionCard, LevelList, LevelBadge, PointsBadge, StreakTrail, StreakProgress, TIER_NAME } from './soma/quiz';
-export type { Tier, MedalProps, LevelCardProps, QuestionCardProps, LevelListProps, LevelBadgeProps, PointsBadgeProps, StreakTrailProps, StreakDayState, StreakProgressProps } from './soma/quiz';
-export { StatTile, StatGrid, RankingBanner, PositionCard, Podium, RankingRow, RankingList, StatsRow, statTileVariants } from './soma/impact';
-export type { StatTileProps, RankingBannerProps, PositionCardProps, PodiumProps, PodiumEntry, RankingRowProps, StatsRowProps } from './soma/impact';
-export { StatusChip, Tag, Thumb, RedemptionItem, RedemptionGroup, MemberCard } from './soma/account';
-export type { StatusChipProps, TagProps, ThumbProps, RedemptionItemProps, MemberCardProps } from './soma/account';
+export type { HeaderProps, LocationBarProps, TabBarProps, TabId, TabsProps, TabsItem, SectionHeaderProps, ListRowProps, StepDotsProps } from './soma/navigation';
+export { Tile, TileGrid, BalanceCard, QuestionTeaser, GoalSummaryCard, ActivityRow } from './soma/home';
+export type { TileProps, BalanceCardProps, QuestionTeaserProps, GoalSummaryCardProps, ActivityRowProps } from './soma/home';
+export { Medal, LevelCard, LevelBadge, TierCard, ProtectionNotice, QuestionCard, PointsBadge, StreakTrail, StreakProgress, AnswerResult, DailyDone, HistorySummary, AnswerHistory, AnswerHistoryRow, MilestoneResult, TIER_NAME, TIER_LEVEL, TIER_GOAL, TIER_NEXT } from './soma/quiz';
+export type { Tier, MedalProps, LevelCardProps, LevelBadgeProps, TierCardProps, ProtectionNoticeProps, QuestionCardProps, PointsBadgeProps, StreakTrailProps, StreakDayState, StreakDay, StreakProgressProps, AnswerResultProps, DailyDoneProps, HistorySummaryProps, AnswerHistoryProps, AnswerHistoryRowProps, AnswerResultKind, MilestoneResultProps } from './soma/quiz';
+export { StatTile, StatGrid, PositionCard, Podium, RankingRow, RankingList, StatsRow, ImpactTiles, statTileVariants } from './soma/impact';
+export type { StatTileProps, PositionCardProps, PodiumProps, PodiumEntry, RankingRowProps, StatsRowProps, ImpactTilesProps } from './soma/impact';
+export { StatusChip, Tag, Thumb, RedemptionItem, RedemptionGroup, QrCheckinCard } from './soma/account';
+export type { StatusChipProps, TagProps, ThumbProps, RedemptionItemProps, QrCheckinCardProps } from './soma/account';
 export { SearchField, TextField, ChoiceChips, RadioList, MaterialResult, HelpfulVote } from './soma/forms';
 export type { SearchFieldProps, TextFieldProps, ChoiceOption, ChoiceChipsProps, RadioListProps, MaterialResultProps, HelpfulVoteProps } from './soma/forms';
 export { Modal, Toast, Toaster, notify, Message, EmptyState, ResultScreen, toastVariants } from './soma/feedback';
 export type { ModalProps, ToastProps, ToasterProps, NotifyOptions, MessageProps, EmptyStateProps, ResultScreenProps } from './soma/feedback';
-export { GoalCard, CampaignBanner, RewardRow, RedeemCode, InstitutionCard } from './soma/rewards';
-export type { GoalCardProps, CampaignBannerProps, RewardRowProps, RewardTag, RedeemCodeProps, InstitutionCardProps } from './soma/rewards';
-export { DeliveryCard, SpaceCard, SlotPicker } from './soma/recycle';
-export type { DeliveryCardProps, SpaceCardProps, SlotPickerProps, Slot } from './soma/recycle';
+export { GoalCard, CampaignBanner, RewardRow, RedeemCode, RewardDetail, InstitutionCard } from './soma/rewards';
+export type { GoalCardProps, CampaignBannerProps, RewardRowProps, RewardTag, RedeemCodeProps, RewardDetailProps, InstitutionCardProps } from './soma/rewards';
+export { DeliveryCard, SpaceCard, SpaceDetail, SlotPicker } from './soma/recycle';
+export type { DeliveryCardProps, SpaceCardProps, SpaceDetailProps, SlotPickerProps, Slot } from './soma/recycle';
+export { InviteCodeCard, FriendRequestBanner, ContactRow } from './soma/social';
+export type { InviteCodeCardProps, FriendRequestBannerProps, ContactRowProps } from './soma/social';
 
 /* shadcn/ui: controles */
 export { Spinner, ButtonGroup, buttonGroupVariants, Toggle, ToggleGroup, ToggleGroupItem, toggleVariants, Slider, NativeSelect, InputGroup, InputGroupInput, InputGroupAddon, InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator, FieldSet, FieldLegend, FieldGroup, Field, FieldLabel, FieldContent, FieldDescription, FieldError, FieldSeparator, fieldVariants } from './ui/controls';

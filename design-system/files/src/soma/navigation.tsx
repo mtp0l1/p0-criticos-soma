@@ -110,36 +110,24 @@ export function LocationBar({ location, onPress, sticky }: LocationBarProps) {
 
 /* ---------------------------------------------------------------- TabBar */
 
-export type TabId = 'inicio' | 'reciclar' | 'recompensas' | 'resgates' | 'impacto' | 'menu';
-export type TabBarVersion = 'atual' | 'anterior';
-/** atual = telas novas do Figma (Reciclar no lugar de Resgates) · anterior = app em produção. */
-export const TAB_ITEMS: Record<TabBarVersion, Array<{ id: TabId; label: string; icon: IconName }>> = {
-  atual: [
-    { id: 'inicio', label: 'Início', icon: 'home' },
-    { id: 'reciclar', label: 'Reciclar', icon: 'recycle' },
-    { id: 'recompensas', label: 'Recompensas', icon: 'gift' },
-    { id: 'impacto', label: 'Impacto', icon: 'chart' },
-    { id: 'menu', label: 'Menu', icon: 'menu' },
-  ],
-  anterior: [
-    { id: 'inicio', label: 'Início', icon: 'home' },
-    { id: 'recompensas', label: 'Recompensas', icon: 'gift' },
-    { id: 'resgates', label: 'Resgates', icon: 'bag-check' },
-    { id: 'impacto', label: 'Impacto', icon: 'chart' },
-    { id: 'menu', label: 'Menu', icon: 'menu' },
-  ],
-};
+export type TabId = 'inicio' | 'reciclar' | 'recompensas' | 'impacto' | 'menu';
+/** Barra de cinco itens do redesign. "Meus resgates" virou aba dentro de Recompensas. */
+export const TAB_ITEMS: Array<{ id: TabId; label: string; icon: IconName }> = [
+  { id: 'inicio', label: 'Início', icon: 'home' },
+  { id: 'reciclar', label: 'Reciclar', icon: 'recycle' },
+  { id: 'recompensas', label: 'Recompensas', icon: 'gift' },
+  { id: 'impacto', label: 'Impacto', icon: 'chart' },
+  { id: 'menu', label: 'Menu', icon: 'menu' },
+];
 export interface TabBarProps {
   active: TabId;
   onNavigate?: (id: TabId) => void;
-  /** Padrão "atual". Use "anterior" só em telas que ainda não migraram. */
-  version?: TabBarVersion;
 }
 /** Navegação inferior fixa. É navegação (nav + aria-current), não abas: por isso não usa Radix Tabs. */
-export function TabBar({ active, onNavigate, version = 'atual' }: TabBarProps) {
+export function TabBar({ active, onNavigate }: TabBarProps) {
   return (
     <nav aria-label="Navegação principal" className="grid min-h-tabbar grid-cols-5 border-t border-border bg-surface-primary">
-      {TAB_ITEMS[version].map((t) => {
+      {TAB_ITEMS.map((t) => {
         const on = t.id === active;
         return (
           <button
@@ -197,15 +185,13 @@ export function SegmentedControl(props: TabsProps) { return <TabsImpl {...props}
 
 export interface SectionHeaderProps {
   title: string;
-  /** atual = subtitle (16px, telas novas) · anterior = section-title (18px, Home em produção). Padrão "atual". */
-  version?: 'atual' | 'anterior';
   /** Link curto à direita ("Ver mais", "Ver informações"). */
   action?: { label: string; onClick?: () => void };
 }
-export function SectionHeader({ title, action, version = 'atual' }: SectionHeaderProps) {
+export function SectionHeader({ title, action }: SectionHeaderProps) {
   return (
     <div className="flex min-h-touch items-center justify-between gap-nano text-foreground">
-      <h2 className={cn('m-0', version === 'anterior' ? 'section-title' : 'subtitle')}>{title}</h2>
+      <h2 className="subtitle m-0">{title}</h2>
       {action && <Button hierarchy="transparent" onClick={action.onClick}>{action.label}</Button>}
     </div>
   );

@@ -1,8 +1,8 @@
-/* So+ma · resgates e conta: StatusChip, Tag, Thumb, RedemptionItem, RedemptionGroup, MemberCard. */
+/* So+ma · resgates e conta: StatusChip, Tag, Thumb, RedemptionItem, RedemptionGroup, QrCheckinCard. */
 import * as React from 'react';
 import { cn, fmt } from '../lib/utils';
 import { Icon, type IconName } from '../ui/icon';
-import { Badge, Avatar, AvatarImage, AvatarFallback } from '../ui/display';
+import { Badge } from '../ui/display';
 import { pressable, PressableBase } from './navigation';
 
 export interface StatusChipProps {
@@ -71,25 +71,35 @@ export function RedemptionGroup({ date, children }: { date: string; children?: R
   );
 }
 
-export interface MemberCardProps {
-  name: string;
-  /** O QR code (svg ou img) gerado pelo back-end. */
+export interface QrCheckinCardProps {
+  /** QR gerado pelo back-end (svg ou img). */
   qr: React.ReactNode;
-  /** URL da foto; sem ela, aparecem as iniciais. */
-  photo?: string;
-  /** ax = nome em navy (padrão, 7,07:1) · app = nome branco como hoje (2,05:1, reprova). */
-  nameTone?: 'ax' | 'app';
+  /** Nome da pessoa, mostrado em maiúsculas sob o QR. */
+  name: string;
+  /** Passos do atendimento. Padrão: "Mostre o QR", "A equipe pesa seus recicláveis", "Seus pontos aparecem aqui". */
+  steps?: string[];
+  title?: string;
+  description?: string;
+  className?: string;
 }
-const initials = (n: string) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((p) => p[0]).join('').toUpperCase();
-export function MemberCard({ name, qr, photo, nameTone = 'ax' }: MemberCardProps) {
+/** QR de identificação na entrega (Tela 11): cartão branco com título, QR, nome e os três passos. Aparece no dia da entrega, não escondido no Menu. */
+export function QrCheckinCard({
+  qr, name, className,
+  title = 'Chegou? Mostre este QR no atendimento',
+  description = 'A equipe vai ler o código para registrar seus recicláveis e liberar seus pontos.',
+  steps = ['Mostre o QR', 'A equipe pesa seus recicláveis', 'Seus pontos aparecem aqui'],
+}: QrCheckinCardProps) {
   return (
-    <section aria-label="Meu cartão" className={cn('flex flex-col items-center gap-small rounded-lg bg-surface-brand px-mini py-xlarge text-center', nameTone === 'app' ? 'text-[var(--white)]' : 'text-text-on-loud')}>
-      <Avatar size="avatar" className="border-[3px] border-surface-primary">
-        {photo && <AvatarImage src={photo} alt="" />}
-        <AvatarFallback className="page-title">{initials(name)}</AvatarFallback>
-      </Avatar>
-      <p className="page-title m-0 uppercase tracking-[0.5px]">{name}</p>
-      <div className="grid size-qr place-items-center rounded-lg bg-surface-primary p-micro [&>*]:size-full">{qr}</div>
+    <section aria-label="Meu QR de entrega" className={cn('grid justify-items-center gap-mini rounded-lg border border-border bg-card px-mini py-small text-center text-card-foreground', className)}>
+      <div className="grid gap-xnano">
+        <h2 className="screen-title m-0 text-left">{title}</h2>
+        <p className="body-small m-0 text-left text-muted-foreground">{description}</p>
+      </div>
+      <div className="grid size-qr place-items-center rounded-lg border border-border bg-surface-primary p-micro shadow-low [&>*]:size-full">{qr}</div>
+      <p className="label m-0 uppercase tracking-[0.5px]">{name}</p>
+      <ol className="caption m-0 grid list-none gap-xnano p-0 text-muted-foreground">
+        {steps.map((t, i) => <li key={t}>{i + 1}. {t}</li>)}
+      </ol>
     </section>
   );
 }

@@ -1,10 +1,10 @@
-/* So+ma · impacto e ranking: StatTile, StatGrid, RankingBanner, PositionCard, Podium, RankingRow, StatsRow. */
+/* So+ma · impacto e ranking: StatTile, StatGrid, PositionCard, Podium, RankingRow, StatsRow. */
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn, fmt } from '../lib/utils';
 import { Icon, type IconName } from '../ui/icon';
 import { Card, Avatar, AvatarImage, AvatarFallback } from '../ui/display';
-import { pressable, PressableBase } from './navigation';
+import { Button } from '../ui/button';
 
 export const statTileVariants = cva('flex rounded-lg bg-card text-card-foreground', {
   variants: {
@@ -40,78 +40,45 @@ export function StatGrid({ children, className }: { children?: React.ReactNode; 
   return <div className={cn('grid grid-cols-2 gap-micro', className)}>{children}</div>;
 }
 
-export interface RankingBannerProps { position: number; title: string; message: string; href?: string; onPress?: () => void }
-export function RankingBanner({ position, title, message, href, onPress }: RankingBannerProps) {
-  return (
-    <PressableBase
-      href={href}
-      onClick={onPress}
-      className={cn(pressable, 'grid w-full grid-cols-[auto_1fr] items-center gap-micro rounded-lg bg-surface-brand p-mini text-text-on-loud hover:bg-interactive-fill-loud-hover active:bg-interactive-fill-loud-active')}
-    >
-      <span aria-label={`Posição ${position}`} className="stat-number grid h-[56px] min-w-[56px] place-items-center rounded-full border-2 border-text-on-loud px-xnano">{position}</span>
-      <span className="grid gap-xnano"><span className="label">{title}</span><span className="caption">{message}</span></span>
-    </PressableBase>
-  );
-}
-
 export interface PositionCardProps {
-  /** null = ainda sem entrega no período. */
-  position: number | null;
-  percent?: number;
+  /** Percentual de participantes do mesmo espaço de recebimento que a pessoa superou. null = ainda sem entrega no período. */
+  percent: number | null;
+  className?: string;
 }
-export function PositionCard({ position, percent }: PositionCardProps) {
+/** Aba Geral do ranking: uma frase de comparação com quem entrega no mesmo espaço (Figma: ícone de tendência em círculo laranja). */
+export function PositionCard({ percent, className }: PositionCardProps) {
   return (
-    <Card variant="flat" aria-label="Sua posição" role="group" className="justify-items-center text-center">
-      <p className="eyebrow m-0 text-muted-foreground">Sua posição</p>
-      {position == null ? (
-        <>
-          <p className="page-title m-0">Sem posição ainda</p>
-          <p className="caption m-0 max-w-[280px] text-muted-foreground">Faça sua primeira entrega para entrar no ranking do seu espaço de recebimento.</p>
-        </>
-      ) : (
-        <>
-          <p className="page-title m-0">{position}º lugar</p>
-          {percent != null && (
-            <p className="caption m-0 max-w-[280px] text-muted-foreground">
-              Você reciclou mais que {fmt(percent)}% dos participantes que entregam no mesmo espaço de recebimento.
-            </p>
-          )}
-        </>
-      )}
-    </Card>
+    <div role="group" aria-label="Sua posição" className={cn('grid grid-cols-[auto_1fr] items-center gap-micro rounded-lg border border-border bg-card p-mini text-card-foreground', className)}>
+      <span aria-hidden className="grid size-[40px] place-items-center rounded-full border border-border-highlight bg-surface-accent text-icon-brand-strong"><Icon name="trending-up" /></span>
+      <p className="label m-0">
+        {percent == null
+          ? 'Faça sua primeira entrega para entrar no ranking do seu espaço de recebimento.'
+          : `Você reciclou mais que ${fmt(percent)}% dos participantes do seu espaço de recebimento.`}
+      </p>
+    </div>
   );
 }
 
-export interface PodiumEntry { position: 1 | 2 | 3; name: string; kg: number; self?: boolean; photo?: string }
-export interface PodiumProps {
-  entries: PodiumEntry[];
-  /** atual = avatares sobre degraus ouro, prata e bronze (Figma novo) · anterior = três cards (app em produção). Padrão "atual". */
-  version?: 'atual' | 'anterior';
+export interface PodiumEntry {
+  position: 1 | 2 | 3;
+  /** Nome ou "Participante" na aba Geral. */
+  name: string;
+  kg: number;
+  self?: boolean;
+  photo?: string;
+  /** Aba Geral: sem nome nem foto; o avatar mostra "?". */
+  anonymous?: boolean;
 }
+export interface PodiumProps { entries: PodiumEntry[] }
 const initials = (n: string) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]!.toUpperCase()).join('');
 const STEP: Record<1 | 2 | 3, { fill: string; h: string; avatar: string }> = {
   1: { fill: 'bg-award-gold text-foreground', h: 'h-[46px]', avatar: 'size-[64px]' },
   2: { fill: 'bg-award-silver text-foreground', h: 'h-[34px]', avatar: 'size-[54px]' },
   3: { fill: 'bg-award-bronze text-text-inverse', h: 'h-[26px]', avatar: 'size-[54px]' },
 };
-export function Podium({ entries, version = 'atual' }: PodiumProps) {
+/** Os três primeiros: avatares sobre degraus ouro, prata e bronze (Ranking do redesign). */
+export function Podium({ entries }: PodiumProps) {
   const sorted = [...entries].sort((a, b) => a.position - b.position);
-  if (version === 'anterior') {
-    return (
-      <ol aria-label="Os três primeiros" className="m-0 grid list-none grid-cols-3 gap-nano p-0">
-        {sorted.map((e) => (
-          <li key={e.position} className={cn('grid justify-items-center gap-xnano rounded-lg bg-card px-nano py-mini text-center text-card-foreground', e.self && 'ring-2 ring-inset ring-selected-indicator')}>
-            <span aria-hidden className="relative grid size-medal place-items-center text-feedback-text-positive">
-              <Icon name="recycle" className="absolute inset-0 size-full" />
-              <b className="text-[13px] font-semibold leading-none">{e.position}</b>
-            </span>
-            <p className="label m-0"><span className="sr-only">{e.position}º lugar: </span>{e.name}{e.self && <span className="sr-only"> (você)</span>}</p>
-            <p className="caption m-0 text-muted-foreground">{fmt(e.kg)} kg</p>
-          </li>
-        ))}
-      </ol>
-    );
-  }
   // Ordem visual 2 · 1 · 3; a lista continua em ordem de posição para o leitor de tela.
   return (
     <ol aria-label="Os três primeiros" className="m-0 grid list-none grid-cols-3 items-end gap-nano p-0">
@@ -119,7 +86,7 @@ export function Podium({ entries, version = 'atual' }: PodiumProps) {
         <li key={e.position} className={cn('grid justify-items-center gap-xnano text-center text-foreground', e.position === 1 && 'order-2', e.position === 2 && 'order-1', e.position === 3 && 'order-3')}>
           <Avatar className={cn(STEP[e.position].avatar, e.self ? 'ring-[3px] ring-border-highlight ring-offset-2 ring-offset-background' : '')}>
             {e.photo && <AvatarImage src={e.photo} alt="" />}
-            <AvatarFallback className={cn('body-strong', STEP[e.position].fill)}>{initials(e.name)}</AvatarFallback>
+            <AvatarFallback className={cn('body-strong', STEP[e.position].fill)}>{e.anonymous ? '?' : initials(e.name)}</AvatarFallback>
           </Avatar>
           <p className={cn('label m-0 max-w-full truncate', e.self && 'text-text-link')}><span className="sr-only">{e.position}º lugar: </span>{e.name}{e.self && <span className="sr-only"> (você)</span>}</p>
           <p className="caption m-0 text-muted-foreground">{fmt(e.kg)} kg</p>
@@ -182,5 +149,38 @@ export function StatsRow({ items, className }: StatsRowProps) {
         </div>
       ))}
     </dl>
+  );
+}
+
+/* ------------------------------------------------------------- ImpactTiles */
+
+export interface ImpactTilesProps {
+  /** Título da faixa ("Seu impacto nesta entrega"). */
+  title?: string;
+  /** Três números do resultado. O que tem `highlight` ganha borda e valor laranja (os pontos ganhos). */
+  items: Array<{ value: string; label: string; highlight?: boolean }>;
+  /** "Compartilhar" no canto do título. Sem ele, a pílula não aparece. */
+  onShare?: () => void;
+  className?: string;
+}
+/** Resultado da entrega em três cartões (kg, pontos, água), como na tela "Entrega registrada". */
+export function ImpactTiles({ title, items, onShare, className }: ImpactTilesProps) {
+  return (
+    <section aria-label={title ?? 'Seu impacto'} className={cn('grid gap-nano', className)}>
+      {(title || onShare) && (
+        <div className="flex items-center justify-between gap-nano">
+          {title && <h2 className="body-strong m-0">{title}</h2>}
+          {onShare && <Button hierarchy="transparent" size="compact" icon="share" onClick={onShare} className="rounded-full bg-surface-accent">Compartilhar</Button>}
+        </div>
+      )}
+      <dl className="m-0 grid auto-cols-fr grid-flow-col gap-nano">
+        {items.map((it) => (
+          <div key={it.label} className={cn('grid content-between gap-xnano rounded-lg border bg-card p-micro', it.highlight ? 'border-[1.5px] border-border-highlight' : 'border-border')}>
+            <dd className={cn('m-0 text-[24px] font-bold leading-8', it.highlight ? 'text-text-link' : 'text-foreground')}>{it.value}</dd>
+            <dt className="caption order-last text-muted-foreground">{it.label}</dt>
+          </div>
+        ))}
+      </dl>
+    </section>
   );
 }

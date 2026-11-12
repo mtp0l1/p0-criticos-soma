@@ -10,7 +10,7 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ return h(S.StreakProgress,{days:5,milestones:[3,7,14]}); }
+function Demo(){ return h(F,null, h(S.StreakProgress,{weeks:2,nextReward:{points:500,inWeeks:3}}), K('Sem título, na tela de conquista'), h(S.StreakProgress,{weeks:5,hideLabel:true})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
 <script>(function(){function s(){parent.postMessage({soma:"h",n:"StreakProgress",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>
