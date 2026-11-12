@@ -338,4 +338,12 @@ a.card:focus-visible{border-radius:var(--md-shape-lg)}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:0s!important;animation-duration:0s!important}html{scroll-behavior:auto}}
 
+.ills{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:0 0 40px}
+.ill{margin:0;display:grid;grid-template-rows:auto 1fr;border-radius:var(--md-shape-lg);overflow:hidden;background:var(--md-surface-container-low)}
+.ill-img{display:grid;place-items:center;min-height:220px;padding:16px;background:var(--md-surface-container)}
+.ill-img img{max-width:100%;height:auto;max-height:260px;object-fit:contain}
+.ill figcaption{display:grid;gap:6px;padding:16px;align-content:start}
+.ill figcaption b{font-size:15px;color:var(--md-on-surface)}.ill figcaption span{font-size:14px;line-height:20px;color:var(--md-on-surface-variant)}.ill figcaption small{font-size:12px;color:var(--md-on-surface-variant)}
+.ill figcaption .code{justify-self:start;font-size:12px;overflow-wrap:anywhere}
+
 #theme .i-sun{display:none}#theme[data-mode=dark] .i-sun{display:block}#theme[data-mode=dark] .i-moon{display:none}

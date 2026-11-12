@@ -75,7 +75,7 @@ export interface QuestionTeaserProps {
   href?: string;
   onPress?: () => void;
 }
-/** Card "Pergunta do dia" do Início. Leva ao Quiz; no lugar de "Responda ao Quiz" e "Ganhe suas medalhas". */
+/** Card "Pergunta do dia" do Início. Leva ao Quiz; no lugar do banner antigo de quiz. */
 export function QuestionTeaser({ question, hint = 'Responda para somar pontos e trocar por recompensas.', href, onPress }: QuestionTeaserProps) {
   return (
     <PressableBase

@@ -10,7 +10,8 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ return h(S.EmptyState,{title:'Item não encontrado',description:'Não encontramos esse item. Fale com a gente para tirar sua dúvida.',action:{label:'Enviar e-mail',icon:'mail'}}); }
+function Demo(){ return h(F,null, K('Padrão: ícone no círculo'), h(S.EmptyState,{title:'Item não encontrado',description:'Não encontramos esse item. Fale com a gente para tirar sua dúvida.',action:{label:'Enviar e-mail',icon:'mail'}}),
+  K('artFrame={false}: ilustração solta (ranking de amigos vazio)'), h(S.EmptyState,{artFrame:false,art:h(S.Illustration,{name:'ranking-vazio'}),title:'Seu ranking de amigos começa com você',description:'Quando seu amigo fizer a 1ª entrega, vocês ganham 100 pontos cada um.',action:{label:'Convidar amigos'}})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
 <script>(function(){function s(){parent.postMessage({soma:"h",n:"EmptyState",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

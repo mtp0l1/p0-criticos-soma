@@ -54,6 +54,8 @@ module.exports = {
       "award-gold": "var(--award-gold)",
       "award-silver": "var(--award-silver)",
       "award-bronze": "var(--award-bronze)",
+      "tier-gold-surface": "var(--tier-gold-surface)",
+      "tier-gold-border": "var(--tier-gold-border)",
       "interactive-fill-destructive-hover": "var(--interactive-fill-destructive-hover)",
       "interactive-fill-destructive-active": "var(--interactive-fill-destructive-active)",
       "background": "var(--background)",

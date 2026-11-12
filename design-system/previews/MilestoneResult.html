@@ -10,7 +10,10 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ return h('div',{className:'h-[600px] overflow-hidden rounded-lg border border-border bg-background'}, h(S.MilestoneResult,{weeks:1,points:100,nextReward:{week:5,points:500},onContinue:function(){}})); }
+function Demo(){ var t=useState('1'); return h(F,null, h(S.SegmentedControl,{label:'Marco',value:t[0],onChange:t[1],items:[{id:'1',label:'1 semana'},{id:'5',label:'5 semanas'}]}),
+  h('div',{className:'h-[704px] overflow-hidden rounded-lg border border-border bg-background'}, t[0]==='1'
+   ? h(S.MilestoneResult,{weeks:1,points:100,nextReward:{week:5,points:500},onContinue:function(){}})
+   : h(S.MilestoneResult,{weeks:5,points:500,nextReward:{week:10,points:1000},onContinue:function(){}}))); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
 <script>(function(){function s(){parent.postMessage({soma:"h",n:"MilestoneResult",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

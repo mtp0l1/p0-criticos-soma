@@ -468,7 +468,7 @@ export interface QuestionTeaserProps {
 	href?: string;
 	onPress?: () => void;
 }
-/** Card "Pergunta do dia" do Início. Leva ao Quiz; no lugar de "Responda ao Quiz" e "Ganhe suas medalhas". */
+/** Card "Pergunta do dia" do Início. Leva ao Quiz; no lugar do banner antigo de quiz. */
 export declare function QuestionTeaser({ question, hint, href, onPress }: QuestionTeaserProps): React$1.JSX.Element;
 export interface GoalSummaryCardProps {
 	/** Nome do prêmio escolhido como meta. */
@@ -505,23 +505,25 @@ export declare const TIER_LEVEL: Record<Tier, string>;
 /** Perguntas respondidas para alcançar o nível (Tela 5). */
 export declare const TIER_GOAL: Record<Tier, number>;
 export declare const TIER_NEXT: Record<Tier, Tier | null>;
-export interface MedalProps {
+/** Estrelas do troféu: 1 no Bronze, 2 na Prata, 3 no Ouro. */
+export declare const TIER_STARS: Record<Tier, number>;
+export interface TrophyProps {
 	tier: Tier;
-	/** sm 56px (listas) · md 96px (cards de nível) · lg 124px (topo do Quiz). */
-	size?: "sm" | "md" | "lg";
-	/** Arte ilustrada do nível (a do Figma). Sem ela, desenha a medalha simples do sistema. */
+	/** md 96px (cards de nível e Histórico) · lg 120px (topo do Quiz). */
+	size?: "md" | "lg";
+	/** Troca a arte do Figma por outra imagem. */
 	src?: string;
 	className?: string;
 }
-/** Selo ilustrado do nível: 1 estrela no Bronze, 2 na Prata, 3 no Ouro, sobre o aro. */
-export declare function Medal({ tier, size, src, className }: MedalProps): React$1.JSX.Element;
+/** Troféu ilustrado do nível: pilha de pontos com estrela, num círculo. 1 estrela no Bronze, 2 na Prata e 3 no Ouro. A arte já vem embutida. */
+export declare function Trophy({ tier, size, src, className }: TrophyProps): React$1.JSX.Element;
 export interface LevelBadgeProps {
 	tier: Tier;
-	/** name = "BRONZE" (topo do Quiz, histórico) · level = "INICIANTE" (lista de níveis). */
+	/** name = "Bronze" (topo do Quiz, histórico) · level = "Iniciante" (lista de níveis). */
 	kind?: "name" | "level";
 	className?: string;
 }
-/** Etiqueta do nível em maiúsculas. A cor segue o nível nas duas formas. */
+/** Etiqueta do nível em maiúsculas, 10px. A cor segue o nível nas duas formas: marrom, cinza-azulado e amarelo. */
 export declare function LevelBadge({ tier, kind, className }: LevelBadgeProps): React$1.JSX.Element;
 export interface LevelCardProps {
 	tier: Tier;
@@ -530,17 +532,17 @@ export interface LevelCardProps {
 	src?: string;
 	className?: string;
 }
-/** Topo do Quiz: medalha grande, etiqueta do nível e quantas perguntas faltam. Sem barra nem percentual. */
+/** Topo do Quiz (Telas 1 e 3): troféu do nível, etiqueta e quantas perguntas faltam. Sem barra nem percentual. Mostra Bronze, Prata ou Ouro. */
 export declare function LevelCard({ tier, remaining, src, className }: LevelCardProps): React$1.JSX.Element;
 export interface TierCardProps {
 	tier: Tier;
-	/** Nível da pessoa agora: borda de destaque. */
+	/** Nível da pessoa agora. No Figma o cartão não muda de aparência: só avisa o leitor de tela. */
 	current?: boolean;
 	/** Perguntas para chegar ao nível. Padrão: o do Figma (5, 15, 50). */
 	questions?: number;
 	src?: string;
 }
-/** Um nível na tela "Campeão da Reciclagem": medalha, nome, etiqueta de dificuldade e quantas perguntas. Use dentro de <ul>. */
+/** Um nível na tela "Campeão da Reciclagem" (Tela 5): troféu, nome, etiqueta de dificuldade e quantas perguntas. Cada nível tem fundo e contorno próprios. Use dentro de <ul>. */
 export declare function TierCard({ tier, current, questions, src }: TierCardProps): React$1.JSX.Element;
 export interface ProtectionNoticeProps {
 	children: React$1.ReactNode;
@@ -555,6 +557,7 @@ export interface QuestionCardProps {
 	/** Pontos que o acerto vale, no selo à direita. */
 	points?: number;
 	question: string;
+	/** Só o texto. O componente escreve "a)", "b)"… na frente. */
 	options: string[];
 	value?: string;
 	onChange?: (v: string) => void;
@@ -563,7 +566,7 @@ export interface QuestionCardProps {
 	info?: string;
 	submitting?: boolean;
 }
-/** Card da pergunta do dia: borda de destaque, selo de pontos, opções em linha e "Enviar resposta". Depois de responder, use DailyDone. */
+/** Card da pergunta do dia (Tela 1): borda de destaque, selo de pontos, opções "a) …" em linha e "Enviar resposta". Depois de responder, use DailyDone. */
 export declare function QuestionCard({ points, question, options, value, onChange, onSubmit, info, submitting }: QuestionCardProps): React$1.JSX.Element;
 export interface PointsBadgeProps {
 	points: number;
@@ -586,7 +589,7 @@ export interface StreakTrailProps {
 	days: StreakDay[];
 	className?: string;
 }
-/** "Sua trilha": check (feito), escudo (protegido), × (perdido) e a inicial do dia quando ainda não há resposta. Hoje leva anel de destaque. */
+/** "Sua trilha": check (feito), escudo (protegido) e a inicial do dia ainda sem resposta. Hoje leva anel laranja de 3px. O estado "missed" não aparece no Figma. */
 export declare function StreakTrail({ days, className }: StreakTrailProps): React$1.JSX.Element;
 export interface StreakProgressProps {
 	/** Semanas seguidas até agora. */
@@ -598,12 +601,28 @@ export interface StreakProgressProps {
 		points: number;
 		inWeeks: number;
 	};
-	/** Esconde o título "Sequência: N semanas" (tela de conquista). */
+	/** Esconde o título "Sequência: N semanas". */
 	hideLabel?: boolean;
 	className?: string;
 }
-/** Barra da sequência em semanas, com marcos de prêmio (1, 5, 10 e 20 semanas). Marco alcançado: bolinha laranja com check. */
+/** Barra da sequência em semanas (Tela 1): trilho de 8px, marcos de prêmio em 1, 5, 10 e 20 semanas. Marco alcançado: bolinha laranja de 10px com check. Os outros: bolinha de 6px. */
 export declare function StreakProgress({ weeks, milestones, nextReward, hideLabel, className }: StreakProgressProps): React$1.JSX.Element;
+export interface StreakSectionProps {
+	/** Sete dias da semana. */
+	days: StreakDay[];
+	weeks: number;
+	nextReward?: {
+		points: number;
+		inWeeks: number;
+	};
+	/** Aviso da proteção ("Proteção usada. Renova em 2 dias"). */
+	protection?: React$1.ReactNode;
+	/** Link "Ver histórico". Sem ele, o link não aparece. */
+	onHistory?: () => void;
+	className?: string;
+}
+/** Bloco "Sua trilha" das Telas 1 e 3: título, 7 dias, barra de semanas, aviso de proteção e link "Ver histórico". */
+export declare function StreakSection({ days, weeks, nextReward, protection, onHistory, className }: StreakSectionProps): React$1.JSX.Element;
 export interface AnswerResultProps {
 	correct: boolean;
 	/** A resposta certa, como aparece nas opções. */
@@ -616,7 +635,7 @@ export interface AnswerResultProps {
 	weeks?: number;
 	/** Frase abaixo de "Pontos ganhos". Padrão: "Volte amanhã para manter sua sequência!". */
 	message?: string;
-	/** Ilustração do mascote (URL ou nó). Sem ela, mostra um ícone. */
+	/** Troca a mascote do Figma por outra ilustração (URL ou nó). */
 	art?: string | React$1.ReactNode;
 	onContinue?: () => void;
 	/** Link sob o botão: "Convidar amigos" no acerto, "Volte amanhã para a próxima pergunta" no erro. */
@@ -626,7 +645,7 @@ export interface AnswerResultProps {
 		href?: string;
 	};
 }
-/** Resultado da resposta do dia, em tela cheia (Telas 2A e 2B). Não use Modal: o redesign não tem diálogo aqui. */
+/** Resultado da resposta do dia, em tela cheia (Telas 2A e 2B): faixa com a mascote da lata, resposta certa, "Por quê?" e, no acerto, as pílulas de semanas e pontos. Não use Modal: o redesign não tem diálogo aqui. */
 export declare function AnswerResult({ correct, answer, explanation, points, weeks, message, art, onContinue, secondary }: AnswerResultProps): React$1.JSX.Element;
 export interface DailyDoneProps {
 	/** Padrão "Tarefa cumprida!". */
@@ -636,7 +655,7 @@ export interface DailyDoneProps {
 	countdown?: string;
 	className?: string;
 }
-/** Estado do Quiz depois de responder: check verde, mensagem e contagem até a próxima pergunta (Tela 3). */
+/** Estado do Quiz depois de responder (Tela 3): check verde, mensagem e "Próxima pergunta em 14h 15m". */
 export declare function DailyDone({ title, children, countdown, className }: DailyDoneProps): React$1.JSX.Element;
 export interface HistorySummaryProps {
 	tier: Tier;
@@ -647,17 +666,19 @@ export interface HistorySummaryProps {
 	last: string;
 	src?: string;
 }
-/** Topo do Histórico: medalha com etiqueta, total de respostas e data da última (Tela 4). */
+/** Topo do Histórico (Tela 4): troféu de 96px com etiqueta do nível, total de respostas e data da última. */
 export declare function HistorySummary({ tier, since, total, last, src }: HistorySummaryProps): React$1.JSX.Element;
 export interface AnswerHistoryProps {
 	/** Mês exibido ("Agosto 2026"). */
 	month: string;
+	/** Título da lista. Padrão: "Histórico de respostas". */
+	title?: string;
 	onPrev?: () => void;
 	onNext?: () => void;
 	children: React$1.ReactNode;
 }
-/** Paginador de mês + lista de respostas. Filhos: AnswerHistoryRow. */
-export declare function AnswerHistory({ month, onPrev, onNext, children }: AnswerHistoryProps): React$1.JSX.Element;
+/** Título, paginador de mês e lista de respostas (Tela 4). Filhos: AnswerHistoryRow. */
+export declare function AnswerHistory({ month, title, onPrev, onNext, children }: AnswerHistoryProps): React$1.JSX.Element;
 export type AnswerResultKind = {
 	kind: "points";
 	points: number;
@@ -672,28 +693,49 @@ export interface AnswerHistoryRowProps {
 	question: string;
 	result: AnswerResultKind;
 }
-/** Uma resposta do histórico: data, pergunta em uma linha e o resultado (+15, "Sequência mantida" ou 0). */
+/** Uma resposta do histórico: data, pergunta em uma linha e o resultado (+15 verde, "Sequência mantida" creme ou 0 cinza). */
 export declare function AnswerHistoryRow({ date, question, result }: AnswerHistoryRowProps): React$1.JSX.Element;
 export interface MilestoneResultProps {
 	/** Semanas seguidas completadas (1, 5, 10, 20). */
 	weeks: number;
 	/** Bônus do marco. */
 	points: number;
-	/** Próximo marco. Sem ele, usa só o texto de `message`. */
+	/** Próximo marco. Gera o texto: na 1ª semana "Continue assim. Na 5ª semana seguida você ganha 500 pontos.", depois "Próximo prêmio: 1.000 pontos na 10ª semana.". */
 	nextReward?: {
 		week: number;
 		points: number;
 	};
-	/** Texto de apoio. Padrão: "Continue assim. Na 5ª semana seguida você ganha 500 pontos.". */
+	/** Texto de apoio, no lugar do gerado. */
 	message?: string;
 	milestones?: number[];
-	tier?: Tier;
-	/** Arte da conquista (URL ou nó). */
+	/** Troca a arte de conquista do Figma por outra imagem. */
 	art?: string | React$1.ReactNode;
 	onContinue?: () => void;
 }
-/** Conquista de marco da sequência (Telas 7 e 8): "+100 pontos", título e os marcos com o atual marcado. */
-export declare function MilestoneResult({ weeks, points, nextReward, message, milestones, tier, art, onContinue }: MilestoneResultProps): React$1.JSX.Element;
+/** Conquista de marco da sequência (Telas 7 e 8): arte do troféu com quatro estrelas, "+100 pontos", título e os marcos em blocos. */
+export declare function MilestoneResult({ weeks, points, nextReward, message, milestones, art, onContinue }: MilestoneResultProps): React$1.JSX.Element;
+export type IllustrationName = "trofeu-bronze-120" | "trofeu-bronze-96" | "trofeu-prata-96" | "trofeu-ouro-96" | "conquista-bronze-148" | "mascote-lata-acerto" | "mascote-lata-erro" | "convite-pontos" | "ranking-vazio" | "doar-sucesso" | "doar-saldo-insuficiente";
+export interface IllustrationMeta {
+	name: IllustrationName;
+	title: string;
+	description: string;
+	width: number;
+	height: number;
+	figmaNode: string;
+	usedIn: string;
+	src: string;
+}
+export declare const ILLUSTRATIONS: Record<IllustrationName, IllustrationMeta>;
+export interface IllustrationProps {
+	name: IllustrationName;
+	/** Texto alternativo. Vazio por padrão: a ilustração é decorativa e o texto da tela já diz o que ela mostra. */
+	alt?: string;
+	/** Lado maior em px. Sem ele, usa o tamanho do Figma. */
+	size?: number;
+	className?: string;
+}
+/** Mostra uma das ilustrações do sistema pelo nome. Use quando precisar da arte fora de um componente de Quiz. */
+export declare function Illustration({ name, alt, size, className }: IllustrationProps): React$1.JSX.Element;
 export declare const statTileVariants: (props?: ({
 	layout?: "row" | "stack" | null | undefined;
 } & ClassProp) | undefined) => string;
@@ -940,7 +982,10 @@ export declare function Message({ tone, title, children, action }: MessageProps)
 export interface EmptyStateProps {
 	title: string;
 	description: string;
+	/** Ícone ou ilustração. Por padrão entra num círculo creme de 160px. */
 	art?: React$1.ReactNode;
+	/** false = mostra a `art` solta, sem o círculo (ilustração larga, como a do ranking vazio). */
+	artFrame?: boolean;
 	action?: {
 		label: string;
 		icon?: IconName;
@@ -948,7 +993,7 @@ export interface EmptyStateProps {
 	};
 	className?: string;
 }
-export declare function EmptyState({ title, description, art, action, className }: EmptyStateProps): React$1.JSX.Element;
+export declare function EmptyState({ title, description, art, artFrame, action, className }: EmptyStateProps): React$1.JSX.Element;
 export interface ResultScreenProps {
 	/** positive = deu certo (check verde) · negative = não deu (×) · neutral = aviso ou pedido (ícone livre). */
 	tone?: "positive" | "negative" | "neutral";
@@ -1535,7 +1580,8 @@ declare global {
 			TIER_LEVEL: typeof TIER_LEVEL;
 			TIER_GOAL: typeof TIER_GOAL;
 			TIER_NEXT: typeof TIER_NEXT;
-			Medal: typeof Medal;
+			TIER_STARS: typeof TIER_STARS;
+			Trophy: typeof Trophy;
 			LevelBadge: typeof LevelBadge;
 			LevelCard: typeof LevelCard;
 			TierCard: typeof TierCard;
@@ -1544,12 +1590,15 @@ declare global {
 			PointsBadge: typeof PointsBadge;
 			StreakTrail: typeof StreakTrail;
 			StreakProgress: typeof StreakProgress;
+			StreakSection: typeof StreakSection;
 			AnswerResult: typeof AnswerResult;
 			DailyDone: typeof DailyDone;
 			HistorySummary: typeof HistorySummary;
 			AnswerHistory: typeof AnswerHistory;
 			AnswerHistoryRow: typeof AnswerHistoryRow;
 			MilestoneResult: typeof MilestoneResult;
+			ILLUSTRATIONS: typeof ILLUSTRATIONS;
+			Illustration: typeof Illustration;
 			statTileVariants: typeof statTileVariants;
 			StatTile: typeof StatTile;
 			StatGrid: typeof StatGrid;

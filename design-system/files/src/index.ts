@@ -40,8 +40,10 @@ export { Header, LocationBar, TabBar, Tabs, SegmentedControl, SectionHeader, Lis
 export type { HeaderProps, LocationBarProps, TabBarProps, TabId, TabsProps, TabsItem, SectionHeaderProps, ListRowProps, StepDotsProps } from './soma/navigation';
 export { Tile, TileGrid, BalanceCard, QuestionTeaser, GoalSummaryCard, ActivityRow } from './soma/home';
 export type { TileProps, BalanceCardProps, QuestionTeaserProps, GoalSummaryCardProps, ActivityRowProps } from './soma/home';
-export { Medal, LevelCard, LevelBadge, TierCard, ProtectionNotice, QuestionCard, PointsBadge, StreakTrail, StreakProgress, AnswerResult, DailyDone, HistorySummary, AnswerHistory, AnswerHistoryRow, MilestoneResult, TIER_NAME, TIER_LEVEL, TIER_GOAL, TIER_NEXT } from './soma/quiz';
-export type { Tier, MedalProps, LevelCardProps, LevelBadgeProps, TierCardProps, ProtectionNoticeProps, QuestionCardProps, PointsBadgeProps, StreakTrailProps, StreakDayState, StreakDay, StreakProgressProps, AnswerResultProps, DailyDoneProps, HistorySummaryProps, AnswerHistoryProps, AnswerHistoryRowProps, AnswerResultKind, MilestoneResultProps } from './soma/quiz';
+export { Trophy, LevelCard, LevelBadge, TierCard, ProtectionNotice, QuestionCard, PointsBadge, StreakTrail, StreakProgress, StreakSection, AnswerResult, DailyDone, HistorySummary, AnswerHistory, AnswerHistoryRow, MilestoneResult, TIER_NAME, TIER_LEVEL, TIER_GOAL, TIER_NEXT, TIER_STARS } from './soma/quiz';
+export { Illustration, ILLUSTRATIONS } from './soma/illustration';
+export type { IllustrationProps, IllustrationName } from './soma/illustration';
+export type { Tier, TrophyProps, LevelCardProps, LevelBadgeProps, TierCardProps, ProtectionNoticeProps, QuestionCardProps, PointsBadgeProps, StreakTrailProps, StreakDayState, StreakDay, StreakProgressProps, StreakSectionProps, AnswerResultProps, DailyDoneProps, HistorySummaryProps, AnswerHistoryProps, AnswerHistoryRowProps, AnswerResultKind, MilestoneResultProps } from './soma/quiz';
 export { StatTile, StatGrid, PositionCard, Podium, RankingRow, RankingList, StatsRow, ImpactTiles, statTileVariants } from './soma/impact';
 export type { StatTileProps, PositionCardProps, PodiumProps, PodiumEntry, RankingRowProps, StatsRowProps, ImpactTilesProps } from './soma/impact';
 export { StatusChip, Tag, Thumb, RedemptionItem, RedemptionGroup, QrCheckinCard } from './soma/account';

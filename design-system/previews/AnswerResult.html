@@ -12,7 +12,7 @@ var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
 var EXP='O CO₂ é o principal gás responsável pelo efeito estufa. Ele é liberado pela queima de combustíveis fósseis e desmatamento.';
 function Demo(){ var t=useState('certa'); return h(F,null, h(S.SegmentedControl,{label:'Resultado',value:t[0],onChange:t[1],items:[{id:'certa',label:'Acertou'},{id:'errada',label:'Errou'}]}),
-  h('div',{className:'h-[640px] overflow-hidden rounded-lg border border-border bg-background'}, t[0]==='certa'
+  h('div',{className:'h-[704px] overflow-hidden rounded-lg border border-border bg-background'}, t[0]==='certa'
    ? h(S.AnswerResult,{correct:true,answer:'Dióxido de Carbono (CO₂)',explanation:EXP,points:15,weeks:2,onContinue:function(){},secondary:{label:'Convidar amigos'}})
    : h(S.AnswerResult,{correct:false,answer:'Dióxido de Carbono (CO₂)',explanation:EXP,onContinue:function(){},secondary:{label:'Volte amanhã para a próxima pergunta'}}))); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));

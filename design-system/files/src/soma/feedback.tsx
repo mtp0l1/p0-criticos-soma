@@ -126,14 +126,19 @@ export function Message({ tone = 'informative', title, children, action }: Messa
 export interface EmptyStateProps {
   title: string;
   description: string;
+  /** Ícone ou ilustração. Por padrão entra num círculo creme de 160px. */
   art?: React.ReactNode;
+  /** false = mostra a `art` solta, sem o círculo (ilustração larga, como a do ranking vazio). */
+  artFrame?: boolean;
   action?: { label: string; icon?: IconName; onClick?: () => void };
   className?: string;
 }
-export function EmptyState({ title, description, art, action, className }: EmptyStateProps) {
+export function EmptyState({ title, description, art, artFrame = true, action, className }: EmptyStateProps) {
   return (
     <section className={cn('flex flex-col items-center gap-mini px-mini py-large text-center text-foreground', className)}>
-      <div className="grid size-[160px] place-items-center rounded-full bg-surface-accent text-icon-brand-strong">{art ?? <Icon name="search" size="xlarge" />}</div>
+      {artFrame
+        ? <div className="grid size-[160px] place-items-center rounded-full bg-surface-accent text-icon-brand-strong">{art ?? <Icon name="search" size="xlarge" />}</div>
+        : art}
       <p className="page-title m-0">{title}</p>
       <p className="body m-0 max-w-[280px] text-muted-foreground">{description}</p>
       {action && <Button hierarchy="quiet" fullWidth icon={action.icon} onClick={action.onClick}>{action.label}</Button>}

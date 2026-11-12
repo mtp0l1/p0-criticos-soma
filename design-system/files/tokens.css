@@ -26,6 +26,8 @@
 --sky-soft:#E0ECFF;
 --sky-ink:#1D4ED8;
 --gold:#E2AF35;
+--gold-bright:#E8C43A;
+--gold-wash:#FFFBF0;
 --silver:#C1BEBC;
 --bronze:#8D6045;
 --danger-ax-hover:#B42318;
@@ -78,6 +80,8 @@
 --award-gold:var(--gold);
 --award-silver:var(--silver);
 --award-bronze:var(--bronze);
+--tier-gold-surface:var(--gold-wash);
+--tier-gold-border:var(--gold-bright);
 --interactive-fill-destructive-hover:var(--danger-ax-hover);
 --interactive-fill-destructive-active:var(--danger-ax-pressed);
 --background:var(--background-primary);
