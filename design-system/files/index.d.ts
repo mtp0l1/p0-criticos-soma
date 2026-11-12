@@ -440,6 +440,16 @@ export interface StepDotsProps {
 }
 /** Pontos de progresso do cadastro ("Passo 1 de 7"). O texto vai para o leitor de tela; os pontos são decorativos. */
 export declare function StepDots({ current, total, className }: StepDotsProps): React$1.JSX.Element;
+export interface HomeGreetingProps {
+	/** Primeiro nome. Mostra "Olá {nome}". */
+	name: string;
+	/** Abre o cartão QR da pessoa (botão redondo ao lado do nome). Sem ele, o botão não aparece. */
+	onQr?: () => void;
+	/** Abre a ajuda (ícone à direita). Sem ele, o ícone não aparece. */
+	onHelp?: () => void;
+}
+/** Saudação do Início (Figma, Home): "Olá Mônica" em screen-title, botão do QR em círculo e ajuda à direita. */
+export declare function HomeGreeting({ name, onQr, onHelp }: HomeGreetingProps): React$1.JSX.Element;
 export interface TileProps {
 	icon: IconName;
 	label: string;
@@ -475,7 +485,7 @@ export interface QuestionTeaserProps {
 	href?: string;
 	onPress?: () => void;
 }
-/** Card "Pergunta do dia" do Início. Leva ao Quiz; no lugar do banner antigo de quiz. */
+/** Card "Pergunta do dia" do Início, sob um `SectionHeader` "Pergunta do dia". Leva ao Quiz; no lugar do banner antigo de quiz. */
 export declare function QuestionTeaser({ question, hint, href, onPress }: QuestionTeaserProps): React$1.JSX.Element;
 export interface GoalSummaryCardProps {
 	/** Nome do prêmio escolhido como meta. */
@@ -1158,7 +1168,7 @@ export interface DeliveryCardProps {
 	onAction?: () => void;
 	className?: string;
 }
-/** "Sua próxima entrega" na aba Reciclar e no Início. */
+/** "Sua próxima entrega" na aba Reciclar (Figma: Variante A sem entrega, Variante B com entrega; os rótulos são só anotação). Texto e botão, sem ícone. */
 export declare function DeliveryCard({ state, space, date, address, onAction, className }: DeliveryCardProps): React$1.JSX.Element;
 export interface SpaceCardProps {
 	name: string;
@@ -1621,6 +1631,7 @@ declare global {
 			listRowVariants: typeof listRowVariants;
 			ListRow: typeof ListRow;
 			StepDots: typeof StepDots;
+			HomeGreeting: typeof HomeGreeting;
 			Tile: typeof Tile;
 			TileGrid: typeof TileGrid;
 			BalanceCard: typeof BalanceCard;

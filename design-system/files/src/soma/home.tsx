@@ -1,9 +1,30 @@
-/* So+ma · Início: Tile, TileGrid, BalanceCard, QuestionTeaser, GoalSummaryCard, ActivityRow. */
+/* So+ma · Início: HomeGreeting, Tile, TileGrid, BalanceCard, QuestionTeaser, GoalSummaryCard, ActivityRow. */
 import * as React from 'react';
 import { cn, fmt } from '../lib/utils';
 import { Icon, type IconName } from '../ui/icon';
-import { Button } from '../ui/button';
+import { Button, IconButton } from '../ui/button';
 import { pressable, PressableBase } from './navigation';
+
+export interface HomeGreetingProps {
+  /** Primeiro nome. Mostra "Olá {nome}". */
+  name: string;
+  /** Abre o cartão QR da pessoa (botão redondo ao lado do nome). Sem ele, o botão não aparece. */
+  onQr?: () => void;
+  /** Abre a ajuda (ícone à direita). Sem ele, o ícone não aparece. */
+  onHelp?: () => void;
+}
+/** Saudação do Início (Figma, Home): "Olá Mônica" em screen-title, botão do QR em círculo e ajuda à direita. */
+export function HomeGreeting({ name, onQr, onHelp }: HomeGreetingProps) {
+  return (
+    <div className="flex items-center justify-between gap-nano text-foreground">
+      <div className="flex min-w-0 items-center gap-nano">
+        <h1 className="screen-title m-0 truncate">Olá {name}</h1>
+        {onQr && <IconButton icon="qr-code" label="Meu cartão QR" onClick={onQr} className="size-touch shrink-0 rounded-full bg-surface-secondary text-icon-brand hover:bg-surface-secondary-hover active:bg-surface-secondary-hover" />}
+      </div>
+      {onHelp && <IconButton icon="help" label="Ajuda" onClick={onHelp} className="text-icon-brand" />}
+    </div>
+  );
+}
 
 export interface TileProps { icon: IconName; label: string; href?: string; onClick?: () => void }
 export function Tile({ icon, label, href, onClick }: TileProps) {
@@ -13,7 +34,7 @@ export function Tile({ icon, label, href, onClick }: TileProps) {
       onClick={onClick}
       className={cn(
         pressable,
-        'flex min-h-tile flex-col items-start justify-between gap-nano rounded-lg bg-surface-secondary p-mini text-foreground',
+        'flex min-h-tile flex-col items-start justify-center gap-xnano rounded-lg bg-surface-secondary px-mini py-nano text-foreground',
         'hover:bg-surface-secondary-hover active:bg-surface-secondary-hover',
       )}
     >
@@ -55,11 +76,11 @@ export function BalanceCard({ points, hint, href, onPress, tone = 'light', actio
     <PressableBase
       href={href}
       onClick={onPress}
-      className={cn(pressable, 'grid w-full grid-cols-[1fr_auto] items-center gap-nano rounded-lg bg-surface-accent p-mini text-foreground hover:bg-surface-accent-hover active:bg-surface-accent-hover')}
+      className={cn(pressable, 'grid min-h-[104px] w-full grid-cols-[1fr_auto] items-center gap-nano rounded-lg bg-surface-accent p-mini text-foreground hover:bg-surface-accent-hover active:bg-surface-accent-hover')}
     >
-      <span className="grid gap-xnano">
-        <span className="caption text-muted-foreground">Saldo atual</span>
-        <span className="flex items-baseline gap-nano"><span className="balance-number">{fmt(points)}</span><span className="body">pontos</span></span>
+      <span className="grid gap-0 self-start">
+        <span className="caption">Saldo atual</span>
+        <span className="flex items-baseline gap-nano"><span className="balance-number font-normal">{fmt(points)}</span><span className="subtitle">{points === 1 ? 'ponto' : 'pontos'}</span></span>
         {text && <span className="caption text-muted-foreground">{text}</span>}
       </span>
       <Icon name="chevron-right" tone="brand-strong" />
@@ -75,17 +96,17 @@ export interface QuestionTeaserProps {
   href?: string;
   onPress?: () => void;
 }
-/** Card "Pergunta do dia" do Início. Leva ao Quiz; no lugar do banner antigo de quiz. */
+/** Card "Pergunta do dia" do Início, sob um `SectionHeader` "Pergunta do dia". Leva ao Quiz; no lugar do banner antigo de quiz. */
 export function QuestionTeaser({ question, hint = 'Responda para somar pontos e trocar por recompensas.', href, onPress }: QuestionTeaserProps) {
   return (
     <PressableBase
       href={href}
       onClick={onPress}
-      className={cn(pressable, 'grid w-full grid-cols-[auto_1fr] items-center gap-micro rounded-lg border-[1.5px] border-border-highlight bg-surface-primary p-mini text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active')}
+      className={cn(pressable, 'grid w-full grid-cols-[auto_1fr] items-center gap-micro rounded-lg border border-border-highlight bg-surface-primary p-mini text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active')}
     >
-      <Icon name="help" tone="brand-strong" />
+      <Icon name="help" tone="brand" />
       <span className="grid gap-xnano">
-        <span className="body-strong">{question}</span>
+        <span className="label">{question}</span>
         <span className="caption text-muted-foreground">{hint}</span>
       </span>
     </PressableBase>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/bundle.css"><script src="../assets/react.production.min.js"></script><script src="../assets/react-dom.production.min.js"></script><script src="../assets/bundle.js"></script><meta charset="utf-8"><title>TelaInicio</title>
+</head>
+<body class="m-0 p-0 bg-background-secondary text-foreground font-sans">
+<div id="root" class="grid gap-mini" style="max-width:360px"></div>
+<script>
+var S = window.Soma, h = React.createElement, F = React.Fragment, useState = React.useState;
+function K(t){ return h('p', {className:'caption m-0 text-muted-foreground'}, t); }
+function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-center gap-nano'}].concat([].slice.call(arguments))); }
+var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
+// Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
+function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
+function Demo(){ return h('div',{className:'flex min-h-[880px] flex-col bg-background'},
+  h('main',{className:'grid flex-1 content-start gap-small px-xsmall pb-medium pt-xsmall'},
+    h(S.LocationBar,{location:'Casa so+ma Batel'}),
+    h('div',{className:'grid gap-nano'}, h(S.HomeGreeting,{name:'Mônica',onQr:function(){},onHelp:function(){}}), h(S.BalanceCard,{points:10})),
+    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'Reciclar e ganhar pontos'}), h(S.TileGrid,null, h(S.Tile,{icon:'search',label:'Buscar material'}), h(S.Tile,{icon:'user-plus',label:'Convidar amigos'}))),
+    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'Pergunta do dia'}), h(S.QuestionTeaser,{question:'Isopor é reciclável?'})),
+    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'Resultado das minhas ações'}), h(S.TileGrid,null, h(S.Tile,{icon:'chart',label:'Meu impacto'}), h(S.Tile,{icon:'star',label:'Meu ranking de reciclagem'}))),
+    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'Usar pontos'}), h(S.TileGrid,null, h(S.Tile,{icon:'gift',label:'Recompensas'}), h(S.Tile,{icon:'envelope-open-heart',label:'Doar pontos'})))),
+  h(S.TabBar,{active:'inicio'})); }
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+<script>(function(){function s(){parent.postMessage({soma:"h",n:"TelaInicio",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

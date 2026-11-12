@@ -1,7 +1,7 @@
 /* So+ma · navegação: Header, LocationBar, TabBar, Tabs, SegmentedControl, SectionHeader, ListRow, StepDots. */
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn, focusRing } from '../lib/utils';
+import { cn, focusRing, hitArea } from '../lib/utils';
 import { Icon, type IconName } from '../ui/icon';
 import { Button, IconButton } from '../ui/button';
 import { TabsRoot, TabsList, TabsTrigger, TabsContent } from '../ui/overlay';
@@ -94,16 +94,14 @@ export function LocationBar({ location, onPress, sticky }: LocationBarProps) {
       onClick={onPress}
       className={cn(
         pressable,
-        'flex min-h-touch w-full items-center justify-center gap-nano bg-surface-primary px-mini py-nano text-center text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active',
+        hitArea,
+        'flex w-full items-center justify-center gap-[6px] bg-surface-primary py-0 text-center text-foreground',
         sticky && 'sticky top-0 z-10 border-b border-border',
       )}
     >
-      <Icon name="pin" tone="brand" />
-      <span className="grid min-w-0">
-        <span className="caption text-muted-foreground">{empty ? 'Você ainda não escolheu um local' : 'Entregando em'}</span>
-        <span className={cn('label truncate', empty && 'text-text-link')}>{empty ? 'Adicione seu local de entrega' : location}</span>
-      </span>
-      <Icon name="chevron-down" tone="brand-strong" size="small" />
+      <Icon name="pin" size="small" tone="brand" />
+      <span className={cn('caption truncate', empty && 'font-semibold text-text-link')}>{empty ? 'Adicione seu local de entrega' : `Entregando em ${location}`}</span>
+      <Icon name="chevron-down" size="small" tone="brand-strong" className="size-3" />
     </button>
   );
 }
@@ -197,14 +195,14 @@ export interface SectionHeaderProps {
 export function SectionHeader({ title, action, icon, size = 'default' }: SectionHeaderProps) {
   if (size === 'small') {
     return (
-      <div className="flex min-h-touch items-center justify-between gap-nano text-foreground">
+      <div className={cn('flex items-center justify-between gap-nano text-foreground', action ? 'min-h-touch' : 'min-h-6')}>
         <h2 className="label m-0 flex items-center gap-nano">{icon && <Icon name={icon} size="small" />}{title}</h2>
         {action && <button type="button" onClick={action.onClick} className={cn(pressable, 'caption rounded-xs font-semibold text-text-link')}>{action.label}</button>}
       </div>
     );
   }
   return (
-    <div className="flex min-h-touch items-center justify-between gap-nano text-foreground">
+    <div className={cn('flex items-center justify-between gap-nano text-foreground', action && 'min-h-touch')}>
       <h2 className="subtitle m-0 flex items-center gap-nano">{icon && <Icon name={icon} />}{title}</h2>
       {action && <Button hierarchy="transparent" onClick={action.onClick}>{action.label}</Button>}
     </div>

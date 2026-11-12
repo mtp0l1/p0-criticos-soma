@@ -27,26 +27,20 @@ const DELIVERY = {
   scheduled: { text: '', action: 'Mostrar meu QR', bg: 'bg-surface-accent' },
   past: { text: 'A data da sua entrega passou', action: 'Reagendar entrega', bg: 'bg-surface-secondary' },
 } as const;
-/** "Sua próxima entrega" na aba Reciclar e no Início. */
+/** "Sua próxima entrega" na aba Reciclar (Figma: Variante A sem entrega, Variante B com entrega; os rótulos são só anotação). Texto e botão, sem ícone. */
 export function DeliveryCard({ state, space, date, address, onAction, className }: DeliveryCardProps) {
   const d = DELIVERY[state];
   return (
     <section aria-label="Sua próxima entrega" className={cn('grid gap-micro rounded-lg p-micro text-foreground', d.bg, className)}>
       {state === 'scheduled' ? (
-        <div className="grid grid-cols-[auto_1fr] items-start gap-nano">
-          <Icon name="calendar-check" tone="brand-strong" />
-          <div className="grid gap-xnano">
-            <p className="label m-0">{[space, date].filter(Boolean).join(' · ')}</p>
-            {address && <p className="caption m-0 text-muted-foreground">{address}</p>}
-          </div>
+        <div className="grid gap-xnano">
+          <p className="label m-0">{[space, date].filter(Boolean).join(' · ')}</p>
+          {address && <p className="caption m-0 text-muted-foreground">{address}</p>}
         </div>
       ) : (
-        <div className="grid grid-cols-[auto_1fr] items-center gap-nano">
-          <Icon name={state === 'past' ? 'clock' : 'calendar'} tone="brand-strong" />
-          <p className="label m-0">{d.text}</p>
-        </div>
+        <p className="label m-0">{d.text}</p>
       )}
-      <Button size="compact" fullWidth icon={state === 'scheduled' ? 'qr-code' : undefined} onClick={onAction}>{d.action}</Button>
+      <Button size="compact" fullWidth onClick={onAction}>{d.action}</Button>
     </section>
   );
 }
