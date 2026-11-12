@@ -332,10 +332,10 @@ export declare const AccordionItem: React$1.ForwardRefExoticComponent<Omit<Accor
 export declare const AccordionTrigger: React$1.ForwardRefExoticComponent<Omit<AccordionPrimitive.AccordionTriggerProps & React$1.RefAttributes<HTMLButtonElement>, "ref"> & React$1.RefAttributes<HTMLButtonElement>>;
 export declare const AccordionContent: React$1.ForwardRefExoticComponent<Omit<AccordionPrimitive.AccordionContentProps & React$1.RefAttributes<HTMLDivElement>, "ref"> & React$1.RefAttributes<HTMLDivElement>>;
 export declare const tabsListVariants: (props?: ({
-	variant?: "underline" | "segmented" | null | undefined;
+	variant?: "underline" | "segmented" | "pill" | null | undefined;
 } & ClassProp) | undefined) => string;
 export declare const tabsTriggerVariants: (props?: ({
-	variant?: "underline" | "segmented" | null | undefined;
+	variant?: "underline" | "segmented" | "pill" | null | undefined;
 } & ClassProp) | undefined) => string;
 export declare const TabsRoot: React$1.ForwardRefExoticComponent<TabsPrimitive.TabsProps & React$1.RefAttributes<HTMLDivElement>>;
 export interface TabsListProps extends React$1.ComponentPropsWithoutRef<typeof TabsPrimitive.List>, VariantProps<typeof tabsListVariants> {
@@ -405,15 +405,21 @@ export interface TabsProps {
 export declare function Tabs(props: TabsProps): React$1.JSX.Element;
 /** Controle em pílula (Radix Tabs, variante segmented), para alternar seções. */
 export declare function SegmentedControl(props: TabsProps): React$1.JSX.Element;
+/** Abas em pílulas soltas: a ativa cheia, as outras contornadas (Recompensas: Catálogo | Meus resgates). */
+export declare function PillTabs(props: TabsProps): React$1.JSX.Element;
 export interface SectionHeaderProps {
 	title: string;
-	/** Link curto à direita ("Ver mais", "Ver informações"). */
+	/** Link curto à direita ("Ver mais", "Ver todas (12)"). */
 	action?: {
 		label: string;
 		onClick?: () => void;
 	};
+	/** Ícone de 16px antes do título (blocos de categoria no catálogo). */
+	icon?: IconName;
+	/** default = título de bloco · small = título de categoria (14px bold) com link pequeno em cor de link. */
+	size?: "default" | "small";
 }
-export declare function SectionHeader({ title, action }: SectionHeaderProps): React$1.JSX.Element;
+export declare function SectionHeader({ title, action, icon, size }: SectionHeaderProps): React$1.JSX.Element;
 export declare const listRowVariants: (props?: ({
 	variant?: "menu" | "help" | null | undefined;
 	lead?: boolean | null | undefined;
@@ -1059,26 +1065,27 @@ export interface GoalCardProps {
 	reward: string;
 	points: number;
 	goal: number;
-	onChange?: () => void;
+	/** Quilos equivalentes ao que falta ("≈ 24 kg de recicláveis"). */
+	missingKg?: number;
+	/** Torna o card tocável (Tela 5: leva direto ao detalhe com "Trocar recompensa"). */
+	onPress?: () => void;
+	href?: string;
 	className?: string;
 }
 /**
- * Meta atual no topo do catálogo. No Figma é um degradê laranja com texto branco (2,05:1): aqui o fundo é
- * surface-brand com text-on-loud e o progresso em surface-inverse.
+ * Minha meta no topo do catálogo (Telas 1 e 5): "Minha meta" e "320 / 800 pontos" na primeira linha, o prêmio, a barra e,
+ * embaixo, "faltam 480 pontos" e "≈ 24 kg de recicláveis". Com a meta atingida: ícone de check, "Meta atingida! Pronta para troca."
+ * No Figma é um degradê laranja com texto branco (2,05:1): aqui o fundo é surface-brand com text-on-loud e o progresso em surface-inverse.
  */
-export declare function GoalCard({ reward, points, goal, onChange, className }: GoalCardProps): React$1.JSX.Element;
+export declare function GoalCard({ reward, points, goal, missingKg, onPress, href, className }: GoalCardProps): React$1.JSX.Element;
 export interface CampaignBannerProps {
-	title: string;
+	/** Frase curta, em uma linha ("Vidro vale 2× pontos até sexta-feira"). */
 	children: React$1.ReactNode;
 	icon?: IconName;
-	action?: {
-		label: string;
-		onClick?: () => void;
-	};
 	className?: string;
 }
-/** Campanha ativa ("Vidro vale o dobro esta semana"). Verde de sucesso com borda, raio de card. */
-export declare function CampaignBanner({ title, children, icon, action, className }: CampaignBannerProps): React$1.JSX.Element;
+/** Campanha ativa (Telas 1 e 23): faixa compacta de uma linha, verde de sucesso com borda, ícone de 16px e frase de 12px. */
+export declare function CampaignBanner({ children, icon, className }: CampaignBannerProps): React$1.JSX.Element;
 export interface RewardTag {
 	label: string;
 	tone?: "positive" | "caution" | "neutral";
@@ -1086,20 +1093,19 @@ export interface RewardTag {
 }
 export interface RewardRowProps {
 	title: string;
-	/** Parceiro ou categoria ("Restaurante Bom Prato"). */
-	partner?: string;
 	points: number;
+	/** Etiquetas curtas ao lado dos pontos: "2× vidro" (positive). */
+	tags?: RewardTag[];
+	/** Prêmio da meta atual: borda de destaque e etiqueta "Sua meta atual". */
+	current?: boolean;
+	/** Imagem ou ícone à esquerda. O Figma não usa: a linha é só título, pontos e seta. */
 	image?: string;
 	icon?: IconName;
-	/** Etiquetas curtas: "2× vidro" (positive), "Sua meta atual" (caution). */
-	tags?: RewardTag[];
-	/** Saldo abaixo do custo: a linha mostra quanto falta, sem bloquear o toque. */
-	missing?: number;
 	href?: string;
 	onClick?: () => void;
 }
-/** Linha do catálogo de recompensas. Tocável inteira; abre o detalhe. */
-export declare function RewardRow({ title, partner, points, image, icon, tags, missing, href, onClick }: RewardRowProps): React$1.JSX.Element;
+/** Linha do catálogo (Telas 1, 5, 9 e 23): título, pontos em cor de link e seta. Tocável inteira; abre o detalhe. Prêmios acima do saldo aparecem iguais. */
+export declare function RewardRow({ title, points, tags, current, image, icon, href, onClick }: RewardRowProps): React$1.JSX.Element;
 export interface RedeemCodeProps {
 	code: string;
 	/** "Válido até 5 de nov de 2026". */
@@ -1610,6 +1616,7 @@ declare global {
 			TabBar: typeof TabBar;
 			Tabs: typeof Tabs;
 			SegmentedControl: typeof SegmentedControl;
+			PillTabs: typeof PillTabs;
 			SectionHeader: typeof SectionHeader;
 			listRowVariants: typeof listRowVariants;
 			ListRow: typeof ListRow;

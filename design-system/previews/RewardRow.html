@@ -10,10 +10,11 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ return h('div',{className:'grid gap-nano'},
-  h(S.RewardRow,{title:'20% na lavagem simples',partner:'Lava-rápido Centro',points:140,icon:'drop',tags:[{label:'2× vidro',tone:'positive',icon:'bolt'}]}),
-  h(S.RewardRow,{title:'Kit 5 canetas Fine Pen',partner:'Papelaria Batel',points:2236,icon:'book',missing:1106,tags:[{label:'Sua meta atual',tone:'caution',icon:'target'}]}),
-  h(S.RewardRow,{title:'Almoço executivo',partner:'Restaurante Bom Prato',points:600,icon:'utensils'})); }
+function Demo(){ return h(F,null,
+  h(S.RewardRow,{title:'Kit 5 canetas Fine Pen',points:800,current:true}),
+  h(S.RewardRow,{title:'20% na lavagem simples',points:140,tags:[{label:'2× vidro',tone:'positive'}]}),
+  h(S.RewardRow,{title:'Almoço executivo',points:600}),
+  h(S.RewardRow,{title:'Com ícone (opcional)',points:450,icon:'utensils'})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
 <script>(function(){function s(){parent.postMessage({soma:"h",n:"RewardRow",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

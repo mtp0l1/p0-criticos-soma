@@ -249,7 +249,7 @@ export const AccordionContent = React.forwardRef<React.ElementRef<typeof Accordi
 
 /* ------------------------------------------------------------------ Tabs */
 
-type TabsVariant = 'underline' | 'segmented';
+type TabsVariant = 'underline' | 'segmented' | 'pill';
 const TabsVariantContext = React.createContext<TabsVariant>('underline');
 
 export const tabsListVariants = cva('grid grid-flow-col auto-cols-fr', {
@@ -257,6 +257,7 @@ export const tabsListVariants = cva('grid grid-flow-col auto-cols-fr', {
     variant: {
       underline: 'border-b border-border bg-surface-primary',
       segmented: 'gap-xnano rounded-md border border-border bg-surface-primary p-xnano',
+      pill: 'flex flex-wrap gap-nano',
     },
   },
   defaultVariants: { variant: 'underline' },
@@ -275,6 +276,10 @@ export const tabsTriggerVariants = cva(
         segmented: [
           'min-h-large rounded-sm text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active disabled:hover:bg-transparent data-[state=active]:hover:bg-interactive-fill-loud-hover',
           'data-[state=active]:bg-primary data-[state=active]:font-semibold data-[state=active]:text-primary-foreground',
+        ],
+        pill: [
+          'min-h-touch rounded-full border border-border-highlight bg-surface-primary px-mini font-semibold text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active disabled:hover:bg-surface-primary',
+          'data-[state=active]:border-transparent data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:hover:bg-interactive-fill-loud-hover',
         ],
       },
     },

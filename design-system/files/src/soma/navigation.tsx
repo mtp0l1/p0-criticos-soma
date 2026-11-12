@@ -163,7 +163,7 @@ export interface TabsProps {
   children?: React.ReactNode;
   className?: string;
 }
-function TabsImpl({ items, value, onChange, label, children, className, variant }: TabsProps & { variant: 'underline' | 'segmented' }) {
+function TabsImpl({ items, value, onChange, label, children, className, variant }: TabsProps & { variant: 'underline' | 'segmented' | 'pill' }) {
   return (
     <TabsRoot value={value} onValueChange={onChange} activationMode="manual" className={className}>
       <TabsList variant={variant} aria-label={label}>
@@ -180,18 +180,32 @@ function TabsImpl({ items, value, onChange, label, children, className, variant 
 export function Tabs(props: TabsProps) { return <TabsImpl {...props} variant="underline" />; }
 /** Controle em pílula (Radix Tabs, variante segmented), para alternar seções. */
 export function SegmentedControl(props: TabsProps) { return <TabsImpl {...props} variant="segmented" />; }
+/** Abas em pílulas soltas: a ativa cheia, as outras contornadas (Recompensas: Catálogo | Meus resgates). */
+export function PillTabs(props: TabsProps) { return <TabsImpl {...props} variant="pill" />; }
 
 /* ---------------------------------------------------------- SectionHeader */
 
 export interface SectionHeaderProps {
   title: string;
-  /** Link curto à direita ("Ver mais", "Ver informações"). */
+  /** Link curto à direita ("Ver mais", "Ver todas (12)"). */
   action?: { label: string; onClick?: () => void };
+  /** Ícone de 16px antes do título (blocos de categoria no catálogo). */
+  icon?: IconName;
+  /** default = título de bloco · small = título de categoria (14px bold) com link pequeno em cor de link. */
+  size?: 'default' | 'small';
 }
-export function SectionHeader({ title, action }: SectionHeaderProps) {
+export function SectionHeader({ title, action, icon, size = 'default' }: SectionHeaderProps) {
+  if (size === 'small') {
+    return (
+      <div className="flex min-h-touch items-center justify-between gap-nano text-foreground">
+        <h2 className="label m-0 flex items-center gap-nano">{icon && <Icon name={icon} size="small" />}{title}</h2>
+        {action && <button type="button" onClick={action.onClick} className={cn(pressable, 'caption rounded-xs font-semibold text-text-link')}>{action.label}</button>}
+      </div>
+    );
+  }
   return (
     <div className="flex min-h-touch items-center justify-between gap-nano text-foreground">
-      <h2 className="subtitle m-0">{title}</h2>
+      <h2 className="subtitle m-0 flex items-center gap-nano">{icon && <Icon name={icon} />}{title}</h2>
       {action && <Button hierarchy="transparent" onClick={action.onClick}>{action.label}</Button>}
     </div>
   );

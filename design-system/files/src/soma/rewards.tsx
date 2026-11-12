@@ -14,50 +14,56 @@ export interface GoalCardProps {
   reward: string;
   points: number;
   goal: number;
-  onChange?: () => void;
+  /** Quilos equivalentes ao que falta ("≈ 24 kg de recicláveis"). */
+  missingKg?: number;
+  /** Torna o card tocável (Tela 5: leva direto ao detalhe com "Trocar recompensa"). */
+  onPress?: () => void;
+  href?: string;
   className?: string;
 }
 /**
- * Meta atual no topo do catálogo. No Figma é um degradê laranja com texto branco (2,05:1): aqui o fundo é
- * surface-brand com text-on-loud e o progresso em surface-inverse.
+ * Minha meta no topo do catálogo (Telas 1 e 5): "Minha meta" e "320 / 800 pontos" na primeira linha, o prêmio, a barra e,
+ * embaixo, "faltam 480 pontos" e "≈ 24 kg de recicláveis". Com a meta atingida: ícone de check, "Meta atingida! Pronta para troca."
+ * No Figma é um degradê laranja com texto branco (2,05:1): aqui o fundo é surface-brand com text-on-loud e o progresso em surface-inverse.
  */
-export function GoalCard({ reward, points, goal, onChange, className }: GoalCardProps) {
+export function GoalCard({ reward, points, goal, missingKg, onPress, href, className }: GoalCardProps) {
   const missing = Math.max(0, goal - points);
+  const done = goal > 0 && missing === 0;
   const pct = goal > 0 ? Math.min(100, (points / goal) * 100) : 0;
-  return (
-    <section aria-label="Sua meta" className={cn('grid gap-nano rounded-lg bg-surface-brand p-mini text-primary-foreground', className)}>
-      <div className="flex items-center justify-between gap-nano">
-        <p className="eyebrow m-0 uppercase tracking-wide">Sua meta</p>
-        {onChange && <button type="button" onClick={onChange} className={cn(pressable, 'caption min-h-touch rounded-sm px-nano font-semibold underline underline-offset-2')}>Trocar meta</button>}
-      </div>
-      <p className="body-strong m-0">{reward}</p>
-      <Progress value={pct} label="Progresso da meta" className="bg-surface-primary" indicatorClassName="bg-surface-inverse" />
-      <p className="caption m-0">
-        <b className="font-semibold">{fmt(points)}</b> de {fmt(goal)} pontos · {missing === 0 ? 'você já pode resgatar' : `faltam ${fmt(missing)}`}
-      </p>
-    </section>
+  const base = cn('grid gap-micro rounded-lg bg-surface-brand p-mini text-primary-foreground', className);
+  const body = (
+    <>
+      <span className="flex items-center justify-between gap-nano">
+        <span className="eyebrow uppercase tracking-wide">Minha meta</span>
+        <span className="body-strong flex items-center gap-xnano">{done && <Icon name="circle-check" size="small" />}{fmt(points)} / {fmt(goal)} pontos</span>
+      </span>
+      <span className="subtitle block">{reward}</span>
+      <span className="grid gap-xnano">
+        <Progress value={pct} label="Progresso da meta" className="bg-surface-primary" indicatorClassName="bg-surface-inverse" />
+        {done
+          ? <span className="caption font-semibold">Meta atingida! Pronta para troca.</span>
+          : <span className="caption flex justify-between gap-nano"><span>faltam {fmt(missing)} pontos</span>{missingKg != null && <span>≈ {fmt(missingKg)} kg de recicláveis</span>}</span>}
+      </span>
+    </>
   );
+  if (onPress || href) return <PressableBase href={href} onClick={onPress} className={cn(pressable, base, 'w-full')}>{body}</PressableBase>;
+  return <section aria-label="Minha meta" className={base}>{body}</section>;
 }
 
 /* --------------------------------------------------------- CampaignBanner */
 
 export interface CampaignBannerProps {
-  title: string;
+  /** Frase curta, em uma linha ("Vidro vale 2× pontos até sexta-feira"). */
   children: React.ReactNode;
   icon?: IconName;
-  action?: { label: string; onClick?: () => void };
   className?: string;
 }
-/** Campanha ativa ("Vidro vale o dobro esta semana"). Verde de sucesso com borda, raio de card. */
-export function CampaignBanner({ title, children, icon = 'bolt', action, className }: CampaignBannerProps) {
+/** Campanha ativa (Telas 1 e 23): faixa compacta de uma linha, verde de sucesso com borda, ícone de 16px e frase de 12px. */
+export function CampaignBanner({ children, icon = 'bolt', className }: CampaignBannerProps) {
   return (
-    <section aria-label={title} className={cn('grid grid-cols-[auto_1fr] gap-x-micro gap-y-xnano rounded-lg border border-feedback-text-positive bg-feedback-fill-positive p-mini text-foreground', className)}>
-      <span className="grid size-touch place-items-center rounded-full bg-surface-primary text-feedback-text-positive"><Icon name={icon} /></span>
-      <div className="grid gap-xnano self-center">
-        <p className="label m-0">{title}</p>
-        <div className="caption m-0">{children}</div>
-        {action && <button type="button" onClick={action.onClick} className={cn(pressable, 'caption justify-self-start rounded-xs font-semibold text-feedback-text-positive underline underline-offset-2')}>{action.label}</button>}
-      </div>
+    <section aria-label="Campanha ativa" className={cn('flex items-center gap-nano rounded-md border border-feedback-text-positive bg-feedback-fill-positive px-micro py-nano text-foreground', className)}>
+      <Icon name={icon} size="small" className="shrink-0 text-feedback-text-positive" />
+      <p className="caption m-0">{children}</p>
     </section>
   );
 }
@@ -67,37 +73,32 @@ export function CampaignBanner({ title, children, icon = 'bolt', action, classNa
 export interface RewardTag { label: string; tone?: 'positive' | 'caution' | 'neutral'; icon?: IconName }
 export interface RewardRowProps {
   title: string;
-  /** Parceiro ou categoria ("Restaurante Bom Prato"). */
-  partner?: string;
   points: number;
+  /** Etiquetas curtas ao lado dos pontos: "2× vidro" (positive). */
+  tags?: RewardTag[];
+  /** Prêmio da meta atual: borda de destaque e etiqueta "Sua meta atual". */
+  current?: boolean;
+  /** Imagem ou ícone à esquerda. O Figma não usa: a linha é só título, pontos e seta. */
   image?: string;
   icon?: IconName;
-  /** Etiquetas curtas: "2× vidro" (positive), "Sua meta atual" (caution). */
-  tags?: RewardTag[];
-  /** Saldo abaixo do custo: a linha mostra quanto falta, sem bloquear o toque. */
-  missing?: number;
   href?: string;
   onClick?: () => void;
 }
-/** Linha do catálogo de recompensas. Tocável inteira; abre o detalhe. */
-export function RewardRow({ title, partner, points, image, icon = 'gift', tags, missing, href, onClick }: RewardRowProps) {
+/** Linha do catálogo (Telas 1, 5, 9 e 23): título, pontos em cor de link e seta. Tocável inteira; abre o detalhe. Prêmios acima do saldo aparecem iguais. */
+export function RewardRow({ title, points, tags, current, image, icon, href, onClick }: RewardRowProps) {
+  const all: RewardTag[] = [...(current ? [{ label: 'Sua meta atual', tone: 'caution' as const }] : []), ...(tags ?? [])];
   return (
     <PressableBase
       href={href}
       onClick={onClick}
-      className={cn(pressable, 'grid w-full grid-cols-[auto_1fr_auto] items-center gap-micro rounded-lg border border-border bg-card p-micro text-card-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active')}
+      className={cn(pressable, 'grid w-full items-center gap-micro rounded-lg border bg-card p-micro text-card-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active', image || icon ? 'grid-cols-[auto_1fr_auto]' : 'grid-cols-[1fr_auto]', current ? 'border-border-highlight' : 'border-border')}
     >
-      <Thumb src={image} icon={icon} shape="square" />
+      {(image || icon) && <Thumb src={image} icon={icon ?? 'gift'} shape="square" />}
       <span className="grid min-w-0 gap-xnano">
-        {tags && tags.length > 0 && (
-          <span className="flex flex-wrap gap-xnano">
-            {tags.map((t) => <Badge key={t.label} tone={(t.tone ?? 'neutral') as BadgeProps['tone']}>{t.icon && <Icon name={t.icon} />}{t.label}</Badge>)}
-          </span>
-        )}
         <span className="label">{title}</span>
-        {partner && <span className="caption text-muted-foreground">{partner}</span>}
-        <span className="caption font-semibold text-text-link">
-          {fmt(points)} pontos{missing != null && missing > 0 && <span className="font-normal text-muted-foreground"> · faltam {fmt(missing)}</span>}
+        <span className="flex flex-wrap items-center gap-nano">
+          <span className="caption font-semibold text-text-link">{fmt(points)} pontos</span>
+          {all.map((t) => <Badge key={t.label} tone={(t.tone ?? 'neutral') as BadgeProps['tone']}>{t.icon && <Icon name={t.icon} />}{t.label}</Badge>)}
         </span>
       </span>
       <Icon name="chevron-right" size="small" tone="brand-strong" />
@@ -128,9 +129,9 @@ export function RedeemCode({ code, validity, hint = 'Use na retirada ou no site 
   };
   return (
     <div className={cn('grid gap-mini text-foreground', className)}>
-      <div className="grid justify-items-center gap-nano rounded-lg border-[1.5px] border-dashed border-border-highlight bg-card px-mini py-small text-center">
+      <div className="grid justify-items-center gap-nano rounded-lg border-2 border-dashed border-border-highlight bg-card px-mini py-small text-center">
         <p className="caption m-0 font-semibold uppercase tracking-wide text-muted-foreground">Código de resgate</p>
-        <p className="m-0 select-all font-sans text-[28px] font-bold leading-9 tracking-[0.08em] text-text-link">{code}</p>
+        <p className="m-0 select-all font-sans text-[26px] font-bold leading-9 tracking-[0.08em] text-text-link">{code}</p>
         {validity && <p className="caption m-0 text-muted-foreground">{validity}</p>}
       </div>
       <p className="body-small m-0 text-center text-muted-foreground">{hint}</p>
@@ -159,7 +160,7 @@ export interface RewardDetailProps {
 export function RewardDetail({ image, category, title, points, tags, source, className }: RewardDetailProps) {
   return (
     <article className={cn('grid gap-mini', className)}>
-      <div className="grid h-[148px] place-items-center overflow-hidden rounded-lg bg-surface-secondary text-icon-brand-strong">
+      <div className="grid h-[150px] place-items-center overflow-hidden rounded-lg bg-surface-secondary text-icon-brand-strong">
         {image ? <img src={image} alt="" className="size-full object-cover" /> : <Icon name="gift" size="xlarge" />}
       </div>
       <div className="grid gap-xnano">

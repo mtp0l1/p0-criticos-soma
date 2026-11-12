@@ -36,7 +36,7 @@ export {
 } from './ui/overlay';
 
 /* Componentes So+ma (camada de produto) */
-export { Header, LocationBar, TabBar, Tabs, SegmentedControl, SectionHeader, ListRow, StepDots, listRowVariants, TAB_ITEMS } from './soma/navigation';
+export { Header, LocationBar, TabBar, Tabs, SegmentedControl, PillTabs, SectionHeader, ListRow, StepDots, listRowVariants, TAB_ITEMS } from './soma/navigation';
 export type { HeaderProps, LocationBarProps, TabBarProps, TabId, TabsProps, TabsItem, SectionHeaderProps, ListRowProps, StepDotsProps } from './soma/navigation';
 export { Tile, TileGrid, BalanceCard, QuestionTeaser, GoalSummaryCard, ActivityRow } from './soma/home';
 export type { TileProps, BalanceCardProps, QuestionTeaserProps, GoalSummaryCardProps, ActivityRowProps } from './soma/home';
