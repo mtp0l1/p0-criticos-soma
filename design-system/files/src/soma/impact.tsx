@@ -66,33 +66,40 @@ export interface PodiumEntry {
   kg: number;
   self?: boolean;
   photo?: string;
+  /** Letras do avatar quando diferem do nome exibido ("Você" → "P" de Policarpo). */
+  initials?: string;
   /** Aba Geral: sem nome nem foto; o avatar mostra "?". */
   anonymous?: boolean;
 }
 export interface PodiumProps { entries: PodiumEntry[] }
-const initials = (n: string) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]!.toUpperCase()).join('');
+const initials = (n: string) => n.split(/\s+/).filter((w) => /^\p{L}/u.test(w)).slice(0, 2).map((w) => w[0]!.toUpperCase()).join('');
 const STEP: Record<1 | 2 | 3, { fill: string; h: string; avatar: string }> = {
   1: { fill: 'bg-award-gold text-foreground', h: 'h-[46px]', avatar: 'size-[64px]' },
   2: { fill: 'bg-award-silver text-foreground', h: 'h-[34px]', avatar: 'size-[54px]' },
   3: { fill: 'bg-award-bronze text-text-inverse', h: 'h-[26px]', avatar: 'size-[54px]' },
 };
-/** Os três primeiros: avatares sobre degraus ouro, prata e bronze (Ranking do redesign). */
+/** A própria pessoa no pódio: avatar e degrau na cor de destaque (Figma: laranja), nome "Você" e kg em cor de link. */
+const SELF_FILL = 'bg-interactive-fill-loud text-foreground';
+/** Os três primeiros: avatares sobre degraus ouro, prata e bronze (Ranking do redesign). Colunas de 100px, degraus retos com o número centralizado. */
 export function Podium({ entries }: PodiumProps) {
   const sorted = [...entries].sort((a, b) => a.position - b.position);
   // Ordem visual 2 · 1 · 3; a lista continua em ordem de posição para o leitor de tela.
   return (
-    <ol aria-label="Os três primeiros" className="m-0 grid list-none grid-cols-3 items-end gap-nano p-0">
-      {sorted.map((e) => (
-        <li key={e.position} className={cn('grid justify-items-center gap-xnano text-center text-foreground', e.position === 1 && 'order-2', e.position === 2 && 'order-1', e.position === 3 && 'order-3')}>
-          <Avatar className={cn(STEP[e.position].avatar, e.self ? 'ring-[3px] ring-border-highlight ring-offset-2 ring-offset-background' : '')}>
-            {e.photo && <AvatarImage src={e.photo} alt="" />}
-            <AvatarFallback className={cn('body-strong', STEP[e.position].fill)}>{e.anonymous ? '?' : initials(e.name)}</AvatarFallback>
-          </Avatar>
-          <p className={cn('label m-0 max-w-full truncate', e.self && 'text-text-link')}><span className="sr-only">{e.position}º lugar: </span>{e.name}{e.self && <span className="sr-only"> (você)</span>}</p>
-          <p className="caption m-0 text-muted-foreground">{fmt(e.kg)} kg</p>
-          <span aria-hidden className={cn('grid w-full place-items-start justify-center rounded-t-[10px] pt-xnano text-[14px] font-bold leading-5', STEP[e.position].fill, STEP[e.position].h)}>{e.position}</span>
-        </li>
-      ))}
+    <ol aria-label="Os três primeiros" className="m-0 mx-auto grid max-w-[324px] list-none grid-cols-3 items-end gap-micro p-0">
+      {sorted.map((e) => {
+        const fill = e.self ? SELF_FILL : STEP[e.position].fill;
+        return (
+          <li key={e.position} className={cn('grid justify-items-center gap-xnano text-center text-foreground', e.position === 1 && 'order-2', e.position === 2 && 'order-1', e.position === 3 && 'order-3')}>
+            <Avatar className={STEP[e.position].avatar}>
+              {e.photo && <AvatarImage src={e.photo} alt="" />}
+              <AvatarFallback className={cn('body-strong', fill)}>{e.anonymous ? '?' : (e.initials ?? initials(e.name))}</AvatarFallback>
+            </Avatar>
+            <p className={cn('label m-0 max-w-full truncate', e.self && 'font-bold')}><span className="sr-only">{e.position}º lugar: </span>{e.name}{e.self && e.name !== 'Você' && <span className="sr-only"> (você)</span>}</p>
+            <p className={cn('caption m-0 font-semibold', e.self ? 'text-text-link' : 'text-muted-foreground')}>{fmt(e.kg)} kg</p>
+            <span aria-hidden className={cn('mt-xnano grid w-full place-items-center text-[16px] font-bold leading-5', fill, STEP[e.position].h)}>{e.position}</span>
+          </li>
+        );
+      })}
     </ol>
   );
 }
@@ -105,31 +112,57 @@ export interface RankingRowProps {
   /** Valor já formatado ou número em kg. */
   kg: number;
   photo?: string;
-  /** Linha da própria pessoa: fundo creme, borda de destaque e texto do que falta. */
+  /** Letras do avatar quando diferem do nome exibido ("Você (Policarpo)" → "P"). */
+  initials?: string;
+  /** Linha da própria pessoa: fundo creme, borda de destaque, nome em negrito e kg em cor de link. */
   self?: boolean;
-  /** Linha de apoio ("Faltam 6,5 kg para ultrapassar Ana"). */
+  /** Linha de apoio ("Faltam 6,5 kg para ultrapassar Ana"). Ocupa a largura da linha, alinhada ao avatar. */
   hint?: string;
 }
-/** Linha da lista do ranking, depois do pódio. Não é tocável. */
-export function RankingRow({ position, name, kg, photo, self, hint }: RankingRowProps) {
+/** Linha da lista do ranking, depois do pódio: "#4", avatar de 36px, nome e kg. Não é tocável. */
+export function RankingRow({ position, name, kg, photo, initials: letters, self, hint }: RankingRowProps) {
   return (
-    <li className={cn('grid list-none grid-cols-[28px_auto_1fr_auto] items-center gap-micro rounded-md border px-micro py-micro', self ? 'border-border-highlight bg-surface-accent' : 'border-border bg-card')}>
-      <span className={cn('text-center text-[14px] font-bold leading-5', self ? 'text-text-link' : 'text-muted-foreground')}>{position}<span className="sr-only">º lugar</span></span>
+    <li className={cn('grid list-none grid-cols-[auto_36px_1fr_auto] items-center gap-x-micro rounded-md border p-micro', self ? 'border-border-highlight bg-surface-accent' : 'border-border bg-card')}>
+      <span className={cn('min-w-[20px] text-[14px] font-bold leading-5', self ? 'text-text-link' : 'text-muted-foreground')}><span aria-hidden>#</span>{position}<span className="sr-only">º lugar</span></span>
       <Avatar className="size-[36px]">
         {photo && <AvatarImage src={photo} alt="" />}
-        <AvatarFallback className="caption bg-surface-secondary font-semibold text-foreground">{initials(name)}</AvatarFallback>
+        <AvatarFallback className={cn('caption font-semibold text-foreground', self ? 'bg-interactive-fill-loud' : 'bg-surface-secondary')}>{letters ?? initials(name)}</AvatarFallback>
       </Avatar>
-      <span className="grid min-w-0">
-        <span className={cn('label truncate', self && 'text-text-link')}>{name}{self && <span className="sr-only"> (você)</span>}</span>
-        {hint && <span className="caption text-muted-foreground">{hint}</span>}
-      </span>
-      <span className="label whitespace-nowrap">{fmt(kg)} kg</span>
+      <span className={cn('label min-w-0 truncate', self && 'font-bold')}>{name}{self && <span className="sr-only"> (você)</span>}</span>
+      <span className={cn('label whitespace-nowrap font-bold', self && 'text-text-link')}>{fmt(kg)} kg</span>
+      {hint && <span className="caption col-span-full mt-nano pl-[32px] font-bold text-foreground">{hint}</span>}
     </li>
   );
 }
 /** Lista para RankingRow (ol com espaçamento). */
 export function RankingList({ children, label = 'Classificação' }: { children: React.ReactNode; label?: string }) {
   return <ol aria-label={label} className="m-0 grid gap-nano p-0">{children}</ol>;
+}
+
+export interface RankingStarterCardProps {
+  title?: string;
+  description?: string;
+  actionLabel?: string;
+  onAction?: () => void;
+  className?: string;
+}
+/** Quem ainda não reciclou no período (Tela 4): card creme abaixo da lista, com o caminho para a primeira entrega. */
+export function RankingStarterCard({
+  title = 'Sua jornada começa na 1ª entrega.',
+  description = 'Faça a primeira e entre no ranking do seu espaço de recebimento.',
+  actionLabel = 'Agendar primeira entrega',
+  onAction,
+  className,
+}: RankingStarterCardProps) {
+  return (
+    <section aria-label="Sua jornada" className={cn('grid gap-micro rounded-lg border border-border-highlight bg-surface-accent p-mini text-foreground', className)}>
+      <div className="grid gap-xnano">
+        <p className="label m-0 font-bold">{title}</p>
+        <p className="caption m-0 text-muted-foreground">{description}</p>
+      </div>
+      <Button size="compact" fullWidth onClick={onAction}>{actionLabel}</Button>
+    </section>
+  );
 }
 
 /* --------------------------------------------------------------- StatsRow */

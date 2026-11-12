@@ -64,14 +64,27 @@ export interface ToastProps extends VariantProps<typeof toastVariants> {
   message: string;
   /** Mostra o X para dispensar. */
   onDismiss?: () => void;
+  /** Ícone próprio ("user-plus", "arrow-up"). Com `surface="card"` ele vai num círculo de 32px. */
+  icon?: IconName;
+  /** inverse = barra escura (padrão) · card = cartão claro com ícone em círculo creme, para novidades do ranking ("Ana Souza entrou no seu ranking de amigos!"). */
+  surface?: 'inverse' | 'card';
 }
 const TOAST_ICON = { error: 'circle-x', success: 'circle-check', info: 'info' } as const;
 /** Visual do aviso passageiro. No app, renderize dentro do provedor de toast (Radix Toast ou Sonner) que cuida de tempo e fila. */
-export function Toast({ message, kind = 'error', tone, onDismiss }: ToastProps) {
+export function Toast({ message, kind = 'error', tone, onDismiss, icon, surface = 'inverse' }: ToastProps) {
   const k = kind ?? 'error';
+  if (surface === 'card') {
+    return (
+      <div role="status" className="flex items-center gap-micro rounded-lg border border-border bg-card py-nano pl-nano pr-mini text-card-foreground">
+        <span aria-hidden className="grid size-[32px] shrink-0 place-items-center rounded-full bg-surface-accent text-icon-brand-strong"><Icon name={icon ?? TOAST_ICON[k]} /></span>
+        <p className="label m-0 flex-1">{message}</p>
+        {onDismiss && <IconButton icon="close" label="Dispensar" onClick={onDismiss} />}
+      </div>
+    );
+  }
   return (
     <div role={k === 'error' ? 'alert' : 'status'} className={toastVariants({ kind: k, tone })}>
-      <Icon name={TOAST_ICON[k]} className={k === 'success' ? 'text-feedback-fill-positive' : undefined} />
+      <Icon name={icon ?? TOAST_ICON[k]} className={!icon && k === 'success' ? 'text-feedback-fill-positive' : undefined} />
       <p className="label m-0 flex-1">{message}</p>
       {onDismiss && <IconButton icon="close" label="Dispensar" onClick={onDismiss} className="-my-micro -mr-nano text-text-inverse hover:bg-transparent active:bg-transparent" />}
     </div>
@@ -91,12 +104,16 @@ export interface NotifyOptions {
   duration?: number;
   /** false tira o X de dispensar. */
   dismissible?: boolean;
+  icon?: IconName;
+  surface?: 'inverse' | 'card';
+  /** Onde aparece. As novidades do ranking (Telas 5 e 10) vêm no topo; os demais avisos, embaixo. */
+  position?: 'top-center' | 'bottom-center';
 }
 /** Dispara um aviso com o visual do Toast do So+ma. Ex.: `notify('Entrega agendada', { kind: 'success' })`. */
-export function notify(message: string, { kind = 'error', duration, dismissible = true }: NotifyOptions = {}) {
+export function notify(message: string, { kind = 'error', duration, dismissible = true, icon, surface, position }: NotifyOptions = {}) {
   return sonnerToast.custom(
-    (id) => <Toast kind={kind} message={message} onDismiss={dismissible ? () => sonnerToast.dismiss(id) : undefined} />,
-    { duration: duration ?? (kind === 'error' ? 6000 : 4000) },
+    (id) => <Toast kind={kind} icon={icon} surface={surface} message={message} onDismiss={dismissible ? () => sonnerToast.dismiss(id) : undefined} />,
+    { duration: duration ?? (kind === 'error' ? 6000 : 4000), ...(position ? { position } : {}) },
   );
 }
 
@@ -128,20 +145,29 @@ export interface EmptyStateProps {
   description: string;
   /** Ícone ou ilustração. Por padrão entra num círculo creme de 160px. */
   art?: React.ReactNode;
-  /** false = mostra a `art` solta, sem o círculo (ilustração larga, como a do ranking vazio). */
-  artFrame?: boolean;
-  action?: { label: string; icon?: IconName; onClick?: () => void };
+  /** true = círculo creme de 160px (padrão) · 'rect' = retângulo cinza de 240×160 (Meu espaço antes da 1ª entrega) · false = `art` solta, sem moldura (ilustração larga, como a do ranking vazio). */
+  artFrame?: boolean | 'rect';
+  action?: { label: string; icon?: IconName; onClick?: () => void; /** loud = botão cheio (padrão do redesign) · quiet = contornado. */ hierarchy?: 'loud' | 'quiet' };
+  /** Segunda saída, contornada, abaixo da principal ("Adicionar amigo por código"). */
+  secondaryAction?: { label: string; icon?: IconName; onClick?: () => void };
   className?: string;
 }
-export function EmptyState({ title, description, art, artFrame = true, action, className }: EmptyStateProps) {
+export function EmptyState({ title, description, art, artFrame = true, action, secondaryAction, className }: EmptyStateProps) {
   return (
     <section className={cn('flex flex-col items-center gap-mini px-mini py-large text-center text-foreground', className)}>
-      {artFrame
-        ? <div className="grid size-[160px] place-items-center rounded-full bg-surface-accent text-icon-brand-strong">{art ?? <Icon name="search" size="xlarge" />}</div>
-        : art}
-      <p className="page-title m-0">{title}</p>
+      {artFrame === 'rect'
+        ? <div className="grid h-[160px] w-[240px] max-w-full place-items-center rounded-lg bg-surface-secondary text-muted-foreground">{art ?? <Icon name="search" size="xlarge" />}</div>
+        : artFrame
+          ? <div className="grid size-[160px] place-items-center rounded-full bg-surface-accent text-icon-brand-strong">{art ?? <Icon name="search" size="xlarge" />}</div>
+          : art}
+      <p className="page-title m-0 whitespace-pre-line">{title}</p>
       <p className="body m-0 max-w-[280px] text-muted-foreground">{description}</p>
-      {action && <Button hierarchy="quiet" fullWidth icon={action.icon} onClick={action.onClick}>{action.label}</Button>}
+      {(action || secondaryAction) && (
+        <div className="mt-mini grid w-full gap-nano">
+          {action && <Button hierarchy={action.hierarchy ?? 'loud'} fullWidth icon={action.icon} onClick={action.onClick}>{action.label}</Button>}
+          {secondaryAction && <Button hierarchy="quiet" fullWidth icon={secondaryAction.icon} onClick={secondaryAction.onClick}>{secondaryAction.label}</Button>}
+        </div>
+      )}
     </section>
   );
 }
@@ -159,7 +185,12 @@ export interface ResultScreenProps {
   /** Conteúdo extra entre o texto e as ações (resumo, código, pontos). */
   children?: React.ReactNode;
   primaryAction?: { label: string; onClick?: () => void; icon?: IconName };
-  secondaryAction?: { label: string; onClick?: () => void; icon?: IconName };
+  /** quiet = botão contornado (padrão) · transparent = link em texto ("Agora não", "Voltar ao ranking"). */
+  secondaryAction?: { label: string; onClick?: () => void; icon?: IconName; hierarchy?: 'quiet' | 'transparent' };
+  /** Tamanho do círculo do ícone: sm 72px (Pedido enviado!) · md 88px (permissão de contatos) · lg 96px (padrão). */
+  ringSize?: 'sm' | 'md' | 'lg';
+  /** inline = ações logo abaixo do texto, com o conteúdo no topo (Telas 12, 14 e 16) · bottom = ações no fim da tela (padrão). */
+  actionsPlacement?: 'bottom' | 'inline';
   /** "Ir para o início": obrigatório em tela de conclusão de fluxo. */
   onHome?: () => void;
   className?: string;
@@ -170,21 +201,22 @@ const RESULT = {
   neutral: { icon: 'info', ring: 'bg-surface-accent text-icon-brand-strong' },
 } as const;
 /** Tela de resultado ou pedido (sucesso, erro, permissão de contatos). Ícone a space-large do cabeçalho; ações no fim. */
-export function ResultScreen({ tone = 'positive', icon, art, title, description, children, primaryAction, secondaryAction, onHome, className }: ResultScreenProps) {
+const RING = { sm: 'size-[72px]', md: 'size-[88px]', lg: 'size-[96px]' } as const;
+export function ResultScreen({ tone = 'positive', icon, art, title, description, children, primaryAction, secondaryAction, ringSize = 'lg', actionsPlacement = 'bottom', onHome, className }: ResultScreenProps) {
   const r = RESULT[tone];
   const tid = React.useId();
   return (
     <section aria-labelledby={tid} className={cn('flex min-h-full flex-col gap-medium px-xsmall pb-small pt-large text-foreground', className)}>
       <div className="grid justify-items-center gap-mini text-center">
-        {art ?? <span className={cn('grid size-[96px] place-items-center rounded-full', r.ring)}><Icon name={icon ?? r.icon} size="xlarge" /></span>}
+        {art ?? <span className={cn('grid place-items-center rounded-full', RING[ringSize], r.ring)}><Icon name={icon ?? r.icon} size="xlarge" /></span>}
         <h1 id={tid} className="page-title m-0">{title}</h1>
         {description && <div className="body m-0 max-w-[320px] text-muted-foreground">{description}</div>}
       </div>
       {children}
       {(primaryAction || secondaryAction || onHome) && (
-        <div className="mt-auto grid gap-nano">
+        <div className={cn('grid gap-nano', actionsPlacement === 'bottom' && 'mt-auto')}>
           {primaryAction && <Button fullWidth icon={primaryAction.icon} onClick={primaryAction.onClick}>{primaryAction.label}</Button>}
-          {secondaryAction && <Button hierarchy="quiet" fullWidth icon={secondaryAction.icon} onClick={secondaryAction.onClick}>{secondaryAction.label}</Button>}
+          {secondaryAction && <Button hierarchy={secondaryAction.hierarchy ?? 'quiet'} fullWidth icon={secondaryAction.icon} onClick={secondaryAction.onClick}>{secondaryAction.label}</Button>}
           {onHome && <Button hierarchy="transparent" fullWidth onClick={onHome}>Ir para o início</Button>}
         </div>
       )}

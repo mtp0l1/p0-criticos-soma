@@ -10,7 +10,7 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ return h(S.RankingList,null, h(S.RankingRow,{position:4,name:'Carla Souza',kg:142}), h(S.RankingRow,{position:5,name:'Você',kg:136,self:true,hint:'Faltam 6,5 kg para ultrapassar Carla'}), h(S.RankingRow,{position:6,name:'Diego Alves',kg:98})); }
+function Demo(){ return h(S.RankingList,null, h(S.RankingRow,{position:1,name:'Ana Souza',kg:42.5}), h(S.RankingRow,{position:2,name:'Carlos Lima',kg:38.2}), h(S.RankingRow,{position:3,name:'Você (Policarpo)',initials:'P',kg:31.7,self:true,hint:'Faltam 6,5 kg para ultrapassar Carlos Lima'}), h(S.RankingRow,{position:4,name:'Beatriz Martins',kg:24}), h(S.RankingRow,{position:5,name:'Rafael Costa',kg:15.3})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
 <script>(function(){function s(){parent.postMessage({soma:"h",n:"RankingRow",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

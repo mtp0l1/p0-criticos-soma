@@ -107,6 +107,7 @@ export declare const ICONS: {
 	history: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	"qr-code": React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	store: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
+	building: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	camera: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	star: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	medal: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
@@ -766,13 +767,15 @@ export interface PodiumEntry {
 	kg: number;
 	self?: boolean;
 	photo?: string;
+	/** Letras do avatar quando diferem do nome exibido ("Você" → "P" de Policarpo). */
+	initials?: string;
 	/** Aba Geral: sem nome nem foto; o avatar mostra "?". */
 	anonymous?: boolean;
 }
 export interface PodiumProps {
 	entries: PodiumEntry[];
 }
-/** Os três primeiros: avatares sobre degraus ouro, prata e bronze (Ranking do redesign). */
+/** Os três primeiros: avatares sobre degraus ouro, prata e bronze (Ranking do redesign). Colunas de 100px, degraus retos com o número centralizado. */
 export declare function Podium({ entries }: PodiumProps): React$1.JSX.Element;
 export interface RankingRowProps {
 	position: number;
@@ -780,18 +783,29 @@ export interface RankingRowProps {
 	/** Valor já formatado ou número em kg. */
 	kg: number;
 	photo?: string;
-	/** Linha da própria pessoa: fundo creme, borda de destaque e texto do que falta. */
+	/** Letras do avatar quando diferem do nome exibido ("Você (Policarpo)" → "P"). */
+	initials?: string;
+	/** Linha da própria pessoa: fundo creme, borda de destaque, nome em negrito e kg em cor de link. */
 	self?: boolean;
-	/** Linha de apoio ("Faltam 6,5 kg para ultrapassar Ana"). */
+	/** Linha de apoio ("Faltam 6,5 kg para ultrapassar Ana"). Ocupa a largura da linha, alinhada ao avatar. */
 	hint?: string;
 }
-/** Linha da lista do ranking, depois do pódio. Não é tocável. */
-export declare function RankingRow({ position, name, kg, photo, self, hint }: RankingRowProps): React$1.JSX.Element;
+/** Linha da lista do ranking, depois do pódio: "#4", avatar de 36px, nome e kg. Não é tocável. */
+export declare function RankingRow({ position, name, kg, photo, initials: letters, self, hint }: RankingRowProps): React$1.JSX.Element;
 /** Lista para RankingRow (ol com espaçamento). */
 export declare function RankingList({ children, label }: {
 	children: React$1.ReactNode;
 	label?: string;
 }): React$1.JSX.Element;
+export interface RankingStarterCardProps {
+	title?: string;
+	description?: string;
+	actionLabel?: string;
+	onAction?: () => void;
+	className?: string;
+}
+/** Quem ainda não reciclou no período (Tela 4): card creme abaixo da lista, com o caminho para a primeira entrega. */
+export declare function RankingStarterCard({ title, description, actionLabel, onAction, className, }: RankingStarterCardProps): React$1.JSX.Element;
 export interface StatsRowProps {
 	items: Array<{
 		value: string;
@@ -953,9 +967,13 @@ export interface ToastProps extends VariantProps<typeof toastVariants> {
 	message: string;
 	/** Mostra o X para dispensar. */
 	onDismiss?: () => void;
+	/** Ícone próprio ("user-plus", "arrow-up"). Com `surface="card"` ele vai num círculo de 32px. */
+	icon?: IconName;
+	/** inverse = barra escura (padrão) · card = cartão claro com ícone em círculo creme, para novidades do ranking ("Ana Souza entrou no seu ranking de amigos!"). */
+	surface?: "inverse" | "card";
 }
 /** Visual do aviso passageiro. No app, renderize dentro do provedor de toast (Radix Toast ou Sonner) que cuida de tempo e fila. */
-export declare function Toast({ message, kind, tone, onDismiss }: ToastProps): React$1.JSX.Element;
+export declare function Toast({ message, kind, tone, onDismiss, icon, surface }: ToastProps): React$1.JSX.Element;
 export type ToasterProps = React$1.ComponentProps<typeof SonnerToaster>;
 /** Provedor de avisos (shadcn Sonner): cuida de fila, tempo, gesto de dispensar e anúncio. Monte uma vez na raiz do app. */
 export declare function Toaster({ position, offset, mobileOffset, ...props }: ToasterProps): React$1.JSX.Element;
@@ -965,9 +983,13 @@ export interface NotifyOptions {
 	duration?: number;
 	/** false tira o X de dispensar. */
 	dismissible?: boolean;
+	icon?: IconName;
+	surface?: "inverse" | "card";
+	/** Onde aparece. As novidades do ranking (Telas 5 e 10) vêm no topo; os demais avisos, embaixo. */
+	position?: "top-center" | "bottom-center";
 }
 /** Dispara um aviso com o visual do Toast do So+ma. Ex.: `notify('Entrega agendada', { kind: 'success' })`. */
-export declare function notify(message: string, { kind, duration, dismissible }?: NotifyOptions): string | number;
+export declare function notify(message: string, { kind, duration, dismissible, icon, surface, position }?: NotifyOptions): string | number;
 export interface MessageProps {
 	tone?: "informative" | "positive" | "caution" | "negative";
 	title?: string;
@@ -984,16 +1006,23 @@ export interface EmptyStateProps {
 	description: string;
 	/** Ícone ou ilustração. Por padrão entra num círculo creme de 160px. */
 	art?: React$1.ReactNode;
-	/** false = mostra a `art` solta, sem o círculo (ilustração larga, como a do ranking vazio). */
-	artFrame?: boolean;
+	/** true = círculo creme de 160px (padrão) · 'rect' = retângulo cinza de 240×160 (Meu espaço antes da 1ª entrega) · false = `art` solta, sem moldura (ilustração larga, como a do ranking vazio). */
+	artFrame?: boolean | "rect";
 	action?: {
+		label: string;
+		icon?: IconName;
+		onClick?: () => void; /** loud = botão cheio (padrão do redesign) · quiet = contornado. */
+		hierarchy?: "loud" | "quiet";
+	};
+	/** Segunda saída, contornada, abaixo da principal ("Adicionar amigo por código"). */
+	secondaryAction?: {
 		label: string;
 		icon?: IconName;
 		onClick?: () => void;
 	};
 	className?: string;
 }
-export declare function EmptyState({ title, description, art, artFrame, action, className }: EmptyStateProps): React$1.JSX.Element;
+export declare function EmptyState({ title, description, art, artFrame, action, secondaryAction, className }: EmptyStateProps): React$1.JSX.Element;
 export interface ResultScreenProps {
 	/** positive = deu certo (check verde) · negative = não deu (×) · neutral = aviso ou pedido (ícone livre). */
 	tone?: "positive" | "negative" | "neutral";
@@ -1009,17 +1038,22 @@ export interface ResultScreenProps {
 		onClick?: () => void;
 		icon?: IconName;
 	};
+	/** quiet = botão contornado (padrão) · transparent = link em texto ("Agora não", "Voltar ao ranking"). */
 	secondaryAction?: {
 		label: string;
 		onClick?: () => void;
 		icon?: IconName;
+		hierarchy?: "quiet" | "transparent";
 	};
+	/** Tamanho do círculo do ícone: sm 72px (Pedido enviado!) · md 88px (permissão de contatos) · lg 96px (padrão). */
+	ringSize?: "sm" | "md" | "lg";
+	/** inline = ações logo abaixo do texto, com o conteúdo no topo (Telas 12, 14 e 16) · bottom = ações no fim da tela (padrão). */
+	actionsPlacement?: "bottom" | "inline";
 	/** "Ir para o início": obrigatório em tela de conclusão de fluxo. */
 	onHome?: () => void;
 	className?: string;
 }
-/** Tela de resultado ou pedido (sucesso, erro, permissão de contatos). Ícone a space-large do cabeçalho; ações no fim. */
-export declare function ResultScreen({ tone, icon, art, title, description, children, primaryAction, secondaryAction, onHome, className }: ResultScreenProps): React$1.JSX.Element;
+export declare function ResultScreen({ tone, icon, art, title, description, children, primaryAction, secondaryAction, ringSize, actionsPlacement, onHome, className }: ResultScreenProps): React$1.JSX.Element;
 export interface GoalCardProps {
 	/** Recompensa escolhida como meta. */
 	reward: string;
@@ -1170,15 +1204,25 @@ export interface InviteCodeCardProps {
 }
 /** "Seu código" de convite com Copiar ao lado (Tela 9). O botão principal da tela é Compartilhar convite. */
 export declare function InviteCodeCard({ code, onCopy, className }: InviteCodeCardProps): React$1.JSX.Element;
-export interface FriendRequestBannerProps {
+export interface FriendRequestSheetProps {
 	/** Quem pediu ("Policarpo"). */
 	name: string;
+	open?: boolean;
+	defaultOpen?: boolean;
+	onOpenChange?: (open: boolean) => void;
+	/** false = sem película nem trava de rolagem (só para exemplos incorporados na página). Padrão true. */
+	modal?: boolean;
+	/** Elemento que abre a folha (opcional; no app ela abre sozinha ao entrar no Ranking). */
+	trigger?: React$1.ReactNode;
 	onAccept?: () => void;
 	onDecline?: () => void;
-	className?: string;
 }
-/** Aviso no topo do Ranking para quem recebeu um pedido de amizade (Tela 13): "Agora não" e "Aceitar". */
-export declare function FriendRequestBanner({ name, onAccept, onDecline, className }: FriendRequestBannerProps): React$1.JSX.Element;
+/**
+ * Pedido de amizade recebido (Tela 13): bottom sheet que aparece ao abrir o Ranking, com ícone de 56px,
+ * "Policarpo quer adicionar você como amigo no ranking." e os botões "Agora não" e "Aceitar".
+ * Não é um banner no topo da lista. Pendente no handoff: o que acontece em "Agora não" e se o pedido expira.
+ */
+export declare function FriendRequestSheet({ name, open, defaultOpen, onOpenChange, modal, trigger, onAccept, onDecline }: FriendRequestSheetProps): React$1.JSX.Element;
 export interface ContactRowProps {
 	name: string;
 	/** Espaço de recebimento do contato ("Vila Verde"). */
@@ -1606,6 +1650,7 @@ declare global {
 			Podium: typeof Podium;
 			RankingRow: typeof RankingRow;
 			RankingList: typeof RankingList;
+			RankingStarterCard: typeof RankingStarterCard;
 			StatsRow: typeof StatsRow;
 			ImpactTiles: typeof ImpactTiles;
 			StatusChip: typeof StatusChip;
@@ -1639,7 +1684,7 @@ declare global {
 			SlotPicker: typeof SlotPicker;
 			SpaceDetail: typeof SpaceDetail;
 			InviteCodeCard: typeof InviteCodeCard;
-			FriendRequestBanner: typeof FriendRequestBanner;
+			FriendRequestSheet: typeof FriendRequestSheet;
 			ContactRow: typeof ContactRow;
 			Spinner: typeof Spinner;
 			buttonGroupVariants: typeof buttonGroupVariants;

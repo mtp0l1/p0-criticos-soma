@@ -1,7 +1,9 @@
-/* So+ma · ranking social e convites: InviteCodeCard, FriendRequestBanner, ContactRow. */
+/* So+ma · ranking social e convites: InviteCodeCard, FriendRequestSheet, ContactRow. */
 import * as React from 'react';
 import { cn } from '../lib/utils';
 import { Button } from '../ui/button';
+import { Icon } from '../ui/icon';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '../ui/overlay';
 import { Avatar, AvatarImage, AvatarFallback } from '../ui/display';
 
 const initials = (n: string) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]!.toUpperCase()).join('');
@@ -35,25 +37,43 @@ export function InviteCodeCard({ code, onCopy, className }: InviteCodeCardProps)
   );
 }
 
-/* ------------------------------------------------------ FriendRequestBanner */
+/* ------------------------------------------------------ FriendRequestSheet */
 
-export interface FriendRequestBannerProps {
+export interface FriendRequestSheetProps {
   /** Quem pediu ("Policarpo"). */
   name: string;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  /** false = sem película nem trava de rolagem (só para exemplos incorporados na página). Padrão true. */
+  modal?: boolean;
+  /** Elemento que abre a folha (opcional; no app ela abre sozinha ao entrar no Ranking). */
+  trigger?: React.ReactNode;
   onAccept?: () => void;
   onDecline?: () => void;
-  className?: string;
 }
-/** Aviso no topo do Ranking para quem recebeu um pedido de amizade (Tela 13): "Agora não" e "Aceitar". */
-export function FriendRequestBanner({ name, onAccept, onDecline, className }: FriendRequestBannerProps) {
+/**
+ * Pedido de amizade recebido (Tela 13): bottom sheet que aparece ao abrir o Ranking, com ícone de 56px,
+ * "Policarpo quer adicionar você como amigo no ranking." e os botões "Agora não" e "Aceitar".
+ * Não é um banner no topo da lista. Pendente no handoff: o que acontece em "Agora não" e se o pedido expira.
+ */
+export function FriendRequestSheet({ name, open, defaultOpen, onOpenChange, modal = true, trigger, onAccept, onDecline }: FriendRequestSheetProps) {
+  const close = (fn?: () => void) => () => { fn?.(); onOpenChange?.(false); };
   return (
-    <section role="group" aria-label={`Pedido de amizade de ${name}`} className={cn('grid gap-nano rounded-lg bg-surface-accent p-mini text-foreground', className)}>
-      <p className="body m-0"><strong>{name}</strong> quer adicionar você como amigo no ranking.</p>
-      <div className="flex justify-end gap-nano">
-        <Button hierarchy="transparent" size="compact" onClick={onDecline}>Agora não</Button>
-        <Button size="compact" onClick={onAccept}>Aceitar</Button>
-      </div>
-    </section>
+    <Sheet open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange} modal={modal}>
+      {trigger && <SheetTrigger asChild>{trigger}</SheetTrigger>}
+      <SheetContent side="bottom">
+        <SheetHeader className="gap-micro text-left">
+          <span aria-hidden className="grid size-[56px] place-items-center rounded-full bg-surface-accent text-icon-brand-strong"><Icon name="user-plus" size="large" /></span>
+          <SheetTitle className="text-left">{name} quer adicionar você como amigo no ranking.</SheetTitle>
+          <SheetDescription className="sr-only">Aceite para aparecer no ranking de amigos um do outro.</SheetDescription>
+        </SheetHeader>
+        <div className="mt-small grid grid-cols-2 gap-micro">
+          <Button hierarchy="quiet" fullWidth onClick={close(onDecline)}>Agora não</Button>
+          <Button fullWidth onClick={close(onAccept)}>Aceitar</Button>
+        </div>
+      </SheetContent>
+    </Sheet>
   );
 }
 
@@ -72,7 +92,7 @@ export interface ContactRowProps {
 export function ContactRow({ name, space, photo, status = 'idle', onInvite }: ContactRowProps) {
   return (
     <li className="grid list-none grid-cols-[auto_1fr_auto] items-center gap-micro rounded-lg border border-border bg-card p-micro text-card-foreground">
-      <Avatar className="size-[44px]">
+      <Avatar className="size-[40px]">
         {photo && <AvatarImage src={photo} alt="" />}
         <AvatarFallback className="bg-surface-secondary text-foreground">{initials(name)}</AvatarFallback>
       </Avatar>

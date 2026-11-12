@@ -44,8 +44,8 @@ export { Trophy, LevelCard, LevelBadge, TierCard, ProtectionNotice, QuestionCard
 export { Illustration, ILLUSTRATIONS } from './soma/illustration';
 export type { IllustrationProps, IllustrationName } from './soma/illustration';
 export type { Tier, TrophyProps, LevelCardProps, LevelBadgeProps, TierCardProps, ProtectionNoticeProps, QuestionCardProps, PointsBadgeProps, StreakTrailProps, StreakDayState, StreakDay, StreakProgressProps, StreakSectionProps, AnswerResultProps, DailyDoneProps, HistorySummaryProps, AnswerHistoryProps, AnswerHistoryRowProps, AnswerResultKind, MilestoneResultProps } from './soma/quiz';
-export { StatTile, StatGrid, PositionCard, Podium, RankingRow, RankingList, StatsRow, ImpactTiles, statTileVariants } from './soma/impact';
-export type { StatTileProps, PositionCardProps, PodiumProps, PodiumEntry, RankingRowProps, StatsRowProps, ImpactTilesProps } from './soma/impact';
+export { StatTile, StatGrid, PositionCard, Podium, RankingRow, RankingList, RankingStarterCard, StatsRow, ImpactTiles, statTileVariants } from './soma/impact';
+export type { StatTileProps, PositionCardProps, PodiumProps, PodiumEntry, RankingRowProps, RankingStarterCardProps, StatsRowProps, ImpactTilesProps } from './soma/impact';
 export { StatusChip, Tag, Thumb, RedemptionItem, RedemptionGroup, QrCheckinCard } from './soma/account';
 export type { StatusChipProps, TagProps, ThumbProps, RedemptionItemProps, QrCheckinCardProps } from './soma/account';
 export { SearchField, TextField, ChoiceChips, RadioList, MaterialResult, HelpfulVote } from './soma/forms';
@@ -56,8 +56,8 @@ export { GoalCard, CampaignBanner, RewardRow, RedeemCode, RewardDetail, Institut
 export type { GoalCardProps, CampaignBannerProps, RewardRowProps, RewardTag, RedeemCodeProps, RewardDetailProps, InstitutionCardProps } from './soma/rewards';
 export { DeliveryCard, SpaceCard, SpaceDetail, SlotPicker } from './soma/recycle';
 export type { DeliveryCardProps, SpaceCardProps, SpaceDetailProps, SlotPickerProps, Slot } from './soma/recycle';
-export { InviteCodeCard, FriendRequestBanner, ContactRow } from './soma/social';
-export type { InviteCodeCardProps, FriendRequestBannerProps, ContactRowProps } from './soma/social';
+export { InviteCodeCard, FriendRequestSheet, ContactRow } from './soma/social';
+export type { InviteCodeCardProps, FriendRequestSheetProps, ContactRowProps } from './soma/social';
 
 /* shadcn/ui: controles */
 export { Spinner, ButtonGroup, buttonGroupVariants, Toggle, ToggleGroup, ToggleGroupItem, toggleVariants, Slider, NativeSelect, InputGroup, InputGroupInput, InputGroupAddon, InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator, FieldSet, FieldLegend, FieldGroup, Field, FieldLabel, FieldContent, FieldDescription, FieldError, FieldSeparator, fieldVariants } from './ui/controls';
