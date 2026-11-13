@@ -122,3 +122,5 @@
 
 .brand-tile figcaption{display:flex;justify-content:space-between;align-items:center;gap:var(--ds-space-150)}.brand-tile__dl{display:flex;gap:var(--ds-space-200)}.brand-tile__dl a{font-weight:var(--ds-font-weight-medium);color:var(--ds-color-fg-default);text-decoration:underline;text-underline-offset:3px}
 .brand-tile__stage img{height:auto;max-height:96px;width:auto;max-width:min(100%,260px)}.brand-tile__stage.sym img{height:96px}
+
+.brand-note{margin-top:var(--ds-space-300);max-width:62ch}.brand-note .ds-card__title{display:flex;align-items:center;gap:var(--ds-space-150)}
