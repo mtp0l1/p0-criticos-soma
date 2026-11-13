@@ -1,6 +1,6 @@
 # Campana, o design system da So+ma
 
-> Design system do app So+ma: tokens, componentes (shadcn/ui + Andes), ícones Lucide e padrões de tela.
+> Design system white label da So+ma, para qualquer produto do ecossistema: núcleo, módulos opcionais, tokens, componentes (shadcn/ui + Andes), ícones Lucide e padrões de tela.
 
 ## Para IAs
 - [AGENTS.md](files/AGENTS.md): ordem de leitura e regras
@@ -23,6 +23,7 @@
 ## Páginas
 - #/: Início
 - #/primeiros-passos: Primeiros passos
+- #/produtos: Para qualquer produto
 - #/campana: Sobre o Campana
 - #/novidades: Novidades
 - #/roadmap: Roadmap
@@ -41,7 +42,6 @@
 - #/componentes/DropdownMenu: DropdownMenu
 - #/componentes/Spinner: Spinner
 - #/componentes/Header: Header
-- #/componentes/LocationBar: LocationBar
 - #/componentes/TabBar: TabBar
 - #/componentes/Tabs: Tabs
 - #/componentes/SegmentedControl: SegmentedControl
@@ -50,78 +50,10 @@
 - #/componentes/SegmentedControl: SegmentedControl
 - #/componentes/StepDots: StepDots
 - #/componentes/ListRow: ListRow
-- #/componentes/HomeGreeting: HomeGreeting
-- #/componentes/Tile: Tile
-- #/componentes/BalanceCard: BalanceCard
-- #/componentes/QuestionTeaser: QuestionTeaser
-- #/componentes/GoalSummaryCard: GoalSummaryCard
-- #/componentes/ActivityRow: ActivityRow
-- #/componentes/Trophy: Trophy
-- #/componentes/LevelCard: LevelCard
-- #/componentes/LevelBadge: LevelBadge
-- #/componentes/TierCard: TierCard
-- #/componentes/ProtectionNotice: ProtectionNotice
-- #/componentes/QuestionCard: QuestionCard
-- #/componentes/PointsBadge: PointsBadge
-- #/componentes/StreakTrail: StreakTrail
-- #/componentes/StreakProgress: StreakProgress
-- #/componentes/StreakSection: StreakSection
-- #/componentes/AnswerResult: AnswerResult
-- #/componentes/DailyDone: DailyDone
-- #/componentes/HistorySummary: HistorySummary
-- #/componentes/AnswerHistory: AnswerHistory
-- #/componentes/MilestoneResult: MilestoneResult
-- #/componentes/Illustration: Illustration
-- #/componentes/StatTile: StatTile
-- #/componentes/PositionCard: PositionCard
-- #/componentes/Podium: Podium
-- #/componentes/RankingRow: RankingRow
-- #/componentes/RankingStarterCard: RankingStarterCard
-- #/componentes/ImpactTiles: ImpactTiles
-- #/componentes/GoalNote: GoalNote
-- #/componentes/ReminderCard: ReminderCard
-- #/componentes/ShareImpactModal: ShareImpactModal
-- #/componentes/StatsRow: StatsRow
-- #/componentes/RedemptionItem: RedemptionItem
-- #/componentes/QrCheckinCard: QrCheckinCard
-- #/componentes/Avatar: Avatar
-- #/componentes/DeliveryCard: DeliveryCard
-- #/componentes/SpaceCard: SpaceCard
-- #/componentes/SlotPicker: SlotPicker
-- #/componentes/SpaceDetail: SpaceDetail
-- #/componentes/DeliverySummaryCard: DeliverySummaryCard
-- #/componentes/DeliveryHistoryRow: DeliveryHistoryRow
-- #/componentes/DeliveryDayCard: DeliveryDayCard
-- #/componentes/GoalCard: GoalCard
-- #/componentes/CampaignBanner: CampaignBanner
-- #/componentes/RewardRow: RewardRow
-- #/componentes/RedeemCode: RedeemCode
-- #/componentes/RewardChoiceList: RewardChoiceList
-- #/componentes/GoalProgressCard: GoalProgressCard
-- #/componentes/RewardDetail: RewardDetail
-- #/componentes/InviteCodeCard: InviteCodeCard
-- #/componentes/FriendRequestSheet: FriendRequestSheet
-- #/componentes/ContactRow: ContactRow
-- #/componentes/InstitutionCard: InstitutionCard
-- #/componentes/InstitutionRow: InstitutionRow
-- #/componentes/DonationAmountCard: DonationAmountCard
-- #/componentes/DonationStateCard: DonationStateCard
-- #/componentes/InstitutionDetailModal: InstitutionDetailModal
 - #/componentes/SearchField: SearchField
-- #/componentes/MaterialResult: MaterialResult
-- #/componentes/Accordion: Accordion
-- #/componentes/HelpfulVote: HelpfulVote
-- #/componentes/Tag: Tag
 - #/componentes/Input: Input
 - #/componentes/TextField: TextField
-- #/componentes/SignupStep: SignupStep
 - #/componentes/PasswordField: PasswordField
-- #/componentes/TermsConsent: TermsConsent
-- #/componentes/InviteCodeField: InviteCodeField
-- #/componentes/NeighborhoodNote: NeighborhoodNote
-- #/componentes/InviteMessageExample: InviteMessageExample
-- #/componentes/AccountExistsSheet: AccountExistsSheet
-- #/componentes/InviteCodeHelpSheet: InviteCodeHelpSheet
 - #/componentes/Textarea: Textarea
 - #/componentes/Select: Select
 - #/componentes/Checkbox: Checkbox
@@ -141,6 +73,10 @@
 - #/componentes/Sheet: Sheet
 - #/componentes/Popover: Popover
 - #/componentes/Drawer: Drawer
+- #/componentes/Illustration: Illustration
+- #/componentes/Avatar: Avatar
+- #/componentes/Accordion: Accordion
+- #/componentes/Tag: Tag
 - #/componentes/Card: Card
 - #/componentes/Badge: Badge
 - #/componentes/StatusChip: StatusChip
@@ -158,6 +94,71 @@
 - #/componentes/ResultScreen: ResultScreen
 - #/componentes/Skeleton: Skeleton
 - #/componentes/Toaster: Toaster
+- #/modulos/HomeGreeting: HomeGreeting
+- #/modulos/Tile: Tile
+- #/modulos/BalanceCard: BalanceCard
+- #/modulos/QuestionTeaser: QuestionTeaser
+- #/modulos/GoalSummaryCard: GoalSummaryCard
+- #/modulos/ActivityRow: ActivityRow
+- #/modulos/Trophy: Trophy
+- #/modulos/LevelCard: LevelCard
+- #/modulos/LevelBadge: LevelBadge
+- #/modulos/TierCard: TierCard
+- #/modulos/ProtectionNotice: ProtectionNotice
+- #/modulos/QuestionCard: QuestionCard
+- #/modulos/PointsBadge: PointsBadge
+- #/modulos/StreakTrail: StreakTrail
+- #/modulos/StreakProgress: StreakProgress
+- #/modulos/StreakSection: StreakSection
+- #/modulos/AnswerResult: AnswerResult
+- #/modulos/DailyDone: DailyDone
+- #/modulos/HistorySummary: HistorySummary
+- #/modulos/AnswerHistory: AnswerHistory
+- #/modulos/MilestoneResult: MilestoneResult
+- #/modulos/StatTile: StatTile
+- #/modulos/PositionCard: PositionCard
+- #/modulos/Podium: Podium
+- #/modulos/RankingRow: RankingRow
+- #/modulos/RankingStarterCard: RankingStarterCard
+- #/modulos/ImpactTiles: ImpactTiles
+- #/modulos/GoalNote: GoalNote
+- #/modulos/ReminderCard: ReminderCard
+- #/modulos/ShareImpactModal: ShareImpactModal
+- #/modulos/StatsRow: StatsRow
+- #/modulos/RedemptionItem: RedemptionItem
+- #/modulos/QrCheckinCard: QrCheckinCard
+- #/modulos/LocationBar: LocationBar
+- #/modulos/DeliveryCard: DeliveryCard
+- #/modulos/SpaceCard: SpaceCard
+- #/modulos/SlotPicker: SlotPicker
+- #/modulos/SpaceDetail: SpaceDetail
+- #/modulos/DeliverySummaryCard: DeliverySummaryCard
+- #/modulos/DeliveryHistoryRow: DeliveryHistoryRow
+- #/modulos/DeliveryDayCard: DeliveryDayCard
+- #/modulos/GoalCard: GoalCard
+- #/modulos/CampaignBanner: CampaignBanner
+- #/modulos/RewardRow: RewardRow
+- #/modulos/RedeemCode: RedeemCode
+- #/modulos/RewardChoiceList: RewardChoiceList
+- #/modulos/GoalProgressCard: GoalProgressCard
+- #/modulos/RewardDetail: RewardDetail
+- #/modulos/InviteCodeCard: InviteCodeCard
+- #/modulos/FriendRequestSheet: FriendRequestSheet
+- #/modulos/ContactRow: ContactRow
+- #/modulos/InstitutionCard: InstitutionCard
+- #/modulos/InstitutionRow: InstitutionRow
+- #/modulos/DonationAmountCard: DonationAmountCard
+- #/modulos/DonationStateCard: DonationStateCard
+- #/modulos/InstitutionDetailModal: InstitutionDetailModal
+- #/modulos/MaterialResult: MaterialResult
+- #/modulos/HelpfulVote: HelpfulVote
+- #/modulos/SignupStep: SignupStep
+- #/modulos/TermsConsent: TermsConsent
+- #/modulos/InviteCodeField: InviteCodeField
+- #/modulos/NeighborhoodNote: NeighborhoodNote
+- #/modulos/InviteMessageExample: InviteMessageExample
+- #/modulos/AccountExistsSheet: AccountExistsSheet
+- #/modulos/InviteCodeHelpSheet: InviteCodeHelpSheet
 - #/padroes/padroes-de-tela: Padrões de tela
 - #/padroes/TelaCadastroCelular: Tela Cadastro Celular
 - #/padroes/TelaCadastroCelularCadastrado: Tela Cadastro Celular Cadastrado
@@ -182,7 +183,7 @@
 - #/padroes/TelaDoarLista: Tela Doar Lista
 - #/padroes/TelaDoarSaldoZero: Tela Doar Saldo Zero
 - #/padroes/TelaDoarSucesso: Tela Doar Sucesso
-- #/recursos/telas-novas: Mapa do Figma
+- #/recursos/telas-novas: Handoff de referência
 - #/recursos/engenharia: Para engenharia
 - #/recursos/gerar-telas: Gerar telas com IA
 - #/recursos/agents: Para IAs (AGENTS.md)

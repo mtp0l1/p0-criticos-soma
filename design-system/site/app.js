@@ -10,6 +10,7 @@ import { toast } from '../ds/js/toast.js';
 import { navigation } from './nav.js';
 import { CURRENT_VERSION, UPDATED } from './changelog.js';
 import { EXTRA } from './search-index.js';
+import { ALIASES } from './aliases.js';
 
 const KIND_ICON = { Cor: 'palette', Ícone: 'smile', Ilustração: 'image', Texto: 'type', Medida: 'ruler', Guia: 'book-open', Novidade: 'sparkles', Roadmap: 'milestone', Arquivos: 'download' };
 const SEEN_KEY = 'soma-ds-seen-version';
@@ -85,7 +86,8 @@ function crumbs(page) {
 
 async function render() {
   const my = ++token;
-  const { path, query } = parse();
+  let { path, query } = parse();
+  if (ALIASES[path]) { path = ALIASES[path]; history.replaceState(null, '', `#${path}`); }
   const page = byPath.get(path) ?? { path, label: 'Página não encontrada', group: '', groupId: 'main', description: '', load: null };
   cleanup.forEach((fn) => fn?.());
   cleanup = [];

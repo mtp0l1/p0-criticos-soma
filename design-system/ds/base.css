@@ -8,8 +8,8 @@ input,button,textarea,select{font:inherit;color:inherit;letter-spacing:inherit}
 button{cursor:pointer;background:none;border:0;padding:0}
 :where(a){color:var(--ds-color-fg-link);text-decoration-thickness:1px;text-underline-offset:.2em}
 :where(a:hover){color:var(--ds-color-fg-link-hover)}
-h1,h2,h3,h4,h5,h6{font-weight:var(--ds-font-weight-semibold);text-wrap:balance;overflow-wrap:break-word}
-p{text-wrap:pretty;overflow-wrap:break-word}
+h1,h2,h3,h4,h5,h6{font-weight:var(--ds-font-weight-semibold);text-wrap:wrap;overflow-wrap:break-word}
+p{text-wrap:wrap;overflow-wrap:break-word}
 :where(ul[role="list"],ol[role="list"]){list-style:none;padding:0}
 code,kbd,samp,pre{font-family:var(--ds-font-family-mono)}
 ::selection{background:color-mix(in srgb,var(--ds-color-brand-solid) 32%,transparent)}

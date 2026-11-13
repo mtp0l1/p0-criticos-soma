@@ -58,7 +58,7 @@
   --ds-size-icon-xs: 0.875rem; --ds-size-icon-sm: 1rem; --ds-size-icon-md: 1.25rem; --ds-size-icon-lg: 1.5rem; --ds-size-icon-xl: 2rem;
 
   --ds-layout-sidebar: 288px; --ds-layout-sidebar-collapsed: 76px; --ds-layout-topbar: 64px;
-  --ds-layout-frame-gap: 10px; --ds-layout-content-max: 1160px; --ds-layout-prose-max: 720px; --ds-layout-gutter: 40px;
+  --ds-layout-frame-gap: 10px; --ds-layout-content-max: 1160px; --ds-layout-prose-max: 100%; --ds-layout-gutter: 40px;
 
   --ds-breakpoint-sm: 640px; --ds-breakpoint-md: 768px; --ds-breakpoint-lg: 1024px; --ds-breakpoint-xl: 1280px; --ds-breakpoint-2xl: 1536px;
   --ds-blur-sm: 8px; --ds-blur-md: 16px; --ds-blur-lg: 32px;

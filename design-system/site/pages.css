@@ -19,7 +19,7 @@
 .doc-prose h4{margin:var(--ds-space-300) 0 var(--ds-space-100);color:var(--ds-color-fg-default);font:var(--ds-text-heading-xs)}
 .doc-prose ol{padding-inline-start:1.5rem}
 .doc-prose p+ol,.doc-prose ol+p,.doc-prose p+.tw,.doc-prose .tw+p,.doc-prose p+.ds-code-block,.doc-prose .ds-code-block+p,.doc-prose ul+.ds-code-block,.doc-prose .ds-code-block+ul{margin-top:var(--ds-space-200)}
-.doc-prose--wide{max-width:none}
+.doc-prose--wide{}
 .doc-prose a{text-underline-offset:.2em}
 .doc-prose hr{margin-block:var(--ds-space-400);border:0;border-top:1px solid var(--ds-color-border-subtle)}
 .doc-prose blockquote{margin-block:var(--ds-space-200);padding:var(--ds-space-150) var(--ds-space-250);border-inline-start:2px solid var(--ds-color-brand-solid);color:var(--ds-color-fg-muted)}
@@ -88,7 +88,7 @@
 .files b{display:block;font:var(--ds-text-code-md);font-weight:var(--ds-font-weight-medium)}
 .files small{color:var(--ds-color-fg-subtle);font:var(--ds-text-body-sm)}
 /* Primeiros passos */
-.route-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ds-space-150)}
+.route-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:var(--ds-space-150)}
 .route-grid .ds-card{display:flex;flex-direction:column;gap:var(--ds-space-100)}
 .route-grid .home-list__icon{margin-bottom:var(--ds-space-100)}
 @media (max-width:900px){.route-grid{grid-template-columns:minmax(0,1fr)}.typelist li{grid-template-columns:minmax(0,1fr);gap:var(--ds-space-100)}}
@@ -110,7 +110,7 @@
 
 /* marca e página Sobre o Campana */
 .brand-quote{margin:0 0 var(--ds-space-300);padding:var(--ds-space-400) var(--ds-space-500);border-radius:var(--ds-radius-xl);background:var(--ds-color-bg-raised);border:1px solid var(--ds-color-border-subtle,rgba(127,127,127,.2))}
-.brand-quote p{margin:0;font:var(--ds-font-weight-medium) clamp(1.375rem,2.6vw,2rem)/1.3 var(--ds-font-family-display);letter-spacing:-.02em;color:var(--ds-color-fg-default);max-width:28ch}
+.brand-quote p{margin:0;font:var(--ds-font-weight-medium) clamp(1.375rem,2.6vw,2rem)/1.3 var(--ds-font-family-display);letter-spacing:-.02em;color:var(--ds-color-fg-default);max-width:none}
 .brand-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ds-space-200)}
 .brand-tile{margin:0;display:grid;gap:var(--ds-space-100)}
 .brand-tile__stage{display:grid;place-items:center;min-height:180px;border-radius:var(--ds-radius-lg,16px);border:1px solid var(--ds-color-border-subtle,rgba(127,127,127,.2));padding:var(--ds-space-300)}
@@ -123,4 +123,4 @@
 .brand-tile figcaption{display:flex;justify-content:space-between;align-items:center;gap:var(--ds-space-150)}.brand-tile__dl{display:flex;gap:var(--ds-space-200)}.brand-tile__dl a{font-weight:var(--ds-font-weight-medium);color:var(--ds-color-fg-default);text-decoration:underline;text-underline-offset:3px}
 .brand-tile__stage img{height:auto;max-height:96px;width:auto;max-width:min(100%,260px)}.brand-tile__stage.sym img{height:96px}
 
-.brand-note{margin-top:var(--ds-space-300);max-width:62ch}.brand-note .ds-card__title{display:flex;align-items:center;gap:var(--ds-space-150)}
+.brand-note{margin-top:var(--ds-space-300)}.brand-note .ds-card__title{display:flex;align-items:center;gap:var(--ds-space-150)}

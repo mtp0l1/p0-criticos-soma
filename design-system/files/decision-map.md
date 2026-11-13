@@ -28,7 +28,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `SectionHeader` | Título de bloco dentro da tela, com um link opcional à direita. | usar como título de tela (use `Header`) nem com mais de um link à direita. |
 | `SegmentedControl` | Controle em pílula para alternar entre duas ou três seções, como Quiz e Histórico. | ter mais de três seções (use `Tabs`). |
 | `StepDots` | Pontos de progresso do cadastro: um ponto por passo, só o atual em destaque. | mostrar mais de um ponto laranja: só o passo atual tem destaque. |
-| `TabBar` | Barra de navegação inferior fixa, com os cinco destinos do app. | ter mais ou menos de cinco destinos, nem esconder em tela de fluxo (cadastro, QR). |
+| `TabBar` | Barra de navegação inferior fixa, com os cinco destinos do produto. | ter mais ou menos de cinco destinos, nem esconder em tela de fluxo (cadastro, QR). |
 | `Tabs` | Abas com sublinhado para trocar o recorte de uma mesma tela, como o período do ranking. | usar para trocar de tela inteira; só recorta o mesmo conteúdo (período). |
 | `Tile` | Tile de atalho da Home: ícone em cima, rótulo embaixo, em grade de duas colunas (`TileGrid`). | usar para dado (use `StatTile`) nem sem rótulo de texto. |
 
@@ -39,7 +39,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `Combobox` | Select com busca, para listas longas como cidade (shadcn Combobox: Popover + Command). | usar para listas curtas (use `Select`). |
 | `Command` | Lista com campo de busca e navegação por teclado (shadcn Command, sobre cmdk). | usar sozinho como tela; é a base do `Combobox`. |
 | `Field` | Estrutura de um campo de formulário: rótulo, controle, ajuda e erro (shadcn Field). | repetir rótulo, ajuda e erro à mão: a estrutura já vem pronta. |
-| `Input` | Campo de texto de uma linha (shadcn Input) e o `Label` do Radix, com a altura e a borda acessível do So+ma. | usar sem `Label` ou `aria-label`; para telas de produto prefira `TextField`. |
+| `Input` | Campo de texto de uma linha (shadcn Input) e o `Label` do Radix, com a altura e a borda acessível do Campana. | usar sem `Label` ou `aria-label`; para telas de produto prefira `TextField`. |
 | `InputGroup` | Campo com ícone, texto ou botão dentro da mesma borda (shadcn InputGroup). | pôr mais de um botão dentro da mesma borda. |
 | `InputOTP` | Código de verificação digitado em casas separadas (shadcn InputOTP, sobre input-otp). | usar para texto livre; só código de tamanho fixo. |
 | `NativeSelect` | Lista suspensa que abre o seletor do próprio aparelho (shadcn NativeSelect). | usar quando o menu precisa de ícone ou estilo próprio (use `Select`). |
@@ -158,7 +158,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `Spinner` | Indicador de espera sem duração conhecida (shadcn Spinner). | usar quando se sabe a duração (use `Progress`). |
 | `Tag` | Etiqueta de categoria (Plástico, Cartonado). | ser tocável nem passar de uma palavra ou duas. |
 | `Toast` | Aviso curto e passageiro: erro, confirmação, aviso neutro ou novidade do ranking, sempre com ícone e uma frase. | guardar informação que a pessoa precisa reler; some sozinho. |
-| `Toaster` | Provedor de avisos passageiros, com fila, tempo e gesto de dispensar (shadcn Sonner). | montar mais de um provedor por app. |
+| `Toaster` | Provedor de avisos passageiros, com fila, tempo e gesto de dispensar (shadcn Sonner). | montar mais de um provedor por produto. |
 
 ## Sobreposição
 
@@ -167,7 +167,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `Accordion` | Lista de perguntas que abrem e fecham, sobre Radix Accordion (shadcn Accordion). | abrir tudo por padrão nem esconder regra que a pessoa precisa aceitar. |
 | `AlertDialog` | Confirmação que exige resposta antes de seguir, sobre Radix AlertDialog (shadcn AlertDialog). | usar para informação sem decisão (use `Modal` ou `Message`). |
 | `Collapsible` | Um trecho que abre e fecha, com animação de altura (shadcn Collapsible, sobre Radix). | esconder informação obrigatória. |
-| `Dialog` | As primitivas do Radix Dialog no estilo So+ma (shadcn Dialog), para montar um diálogo fora do padrão do `Modal`. | usar quando o `Modal` serve; é só para diálogo fora do padrão. |
+| `Dialog` | As primitivas do Radix Dialog no estilo Campana (shadcn Dialog), para montar um diálogo fora do padrão do `Modal`. | usar quando o `Modal` serve; é só para diálogo fora do padrão. |
 | `Drawer` | Bottom sheet que acompanha o dedo e fecha ao ser arrastado para baixo (shadcn Drawer, sobre Vaul). | usar sem a alça de arrastar: a alça é o gesto de fechar. |
 | `DropdownMenu` | Menu de ações de um item, aberto por um botão (shadcn DropdownMenu, sobre Radix). | esconder ação principal da tela. |
 | `Modal` | Modal de confirmação ou de escolha, com título, texto curto ou conteúdo, e uma única ação. | ter mais de uma ação principal nem esconder a saída. |
@@ -183,7 +183,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `Avatar` | Foto ou iniciais da pessoa em círculo, sobre Radix Avatar (shadcn Avatar). | mostrar sem iniciais quando falta a foto. |
 | `Card` | Contêiner de conteúdo (shadcn Card) com cabeçalho, título, descrição, conteúdo e rodapé, em quatro variantes. | aninhar card dentro de card nem mudar o raio por `className`. |
 | `Carousel` | Slides que passam por gesto, com setas e pontos (shadcn Carousel, sobre Embla). | esconder conteúdo essencial depois do primeiro slide. |
-| `Icon` | Ícones de linha do Lucide, o mesmo set das telas novas no Figma, com nomes So+ma. | importar ícone de fora do set Lucide do sistema. |
+| `Icon` | Ícones de linha do Lucide, o mesmo set das telas novas no Figma, com nomes do Campana. | importar ícone de fora do set Lucide do sistema. |
 | `Illustration` | Mostra uma das ilustrações do sistema pelo nome, no tamanho do Figma ou em outro. | desenhar ilustração nova sem registrar em 6-ilustracoes.md. |
 | `PointsBadge` | Pílula com os pontos de uma pergunta, de um prêmio ou de um custo. | usar para outro número que não seja pontos. |
 | `ScrollArea` | Área com rolagem própria e barra visível (shadcn ScrollArea, sobre Radix). | criar rolagem aninhada dentro da rolagem da tela. |
