@@ -1076,8 +1076,8 @@ export interface ResultScreenProps {
 	titleSize?: "page" | "screen";
 	/** Contorno de 3px em laranja no círculo (Cadastro concluído). Só com `iconShape="circle"`. */
 	ringOutline?: boolean;
-	/** Tamanho do círculo do ícone: sm 72px (Pedido enviado!) · md 88px (permissão de contatos) · lg 96px (padrão). */
-	ringSize?: "sm" | "md" | "lg";
+	/** Tamanho do círculo do ícone: xs 48px (Doação realizada) · sm 72px (Pedido enviado!) · md 88px (permissão de contatos) · lg 96px (padrão). */
+	ringSize?: "xs" | "sm" | "md" | "lg";
 	/** inline = ações logo abaixo do texto, com o conteúdo no topo (Telas 12, 14 e 16) · bottom = ações no fim da tela (padrão). */
 	actionsPlacement?: "bottom" | "inline";
 	/** "Ir para o início": obrigatório em tela de conclusão de fluxo. */
@@ -1644,6 +1644,63 @@ export interface ShareImpactModalProps {
 }
 /** Modal "Compartilhar meu impacto" (Tela 16 e Meu impacto): resumo em três números, três destinos em círculos e "Fechar". */
 export declare function ShareImpactModal({ stats, options, trigger, open, defaultOpen, onOpenChange, modal }: ShareImpactModalProps): React$1.JSX.Element;
+export interface InstitutionRowProps {
+	name: string;
+	description: string;
+	/** Ícone da causa (cesta, coração, talheres…). Aparece em quadro de 40px com borda. */
+	icon?: IconName;
+	href?: string;
+	onPress?: () => void;
+}
+/** Instituição na lista "Escolha para quem você quer doar seus pontos": card cinza tocável com ícone, nome e causa. */
+export declare function InstitutionRow({ name, description, icon, href, onPress }: InstitutionRowProps): React$1.JSX.Element;
+/** Mensagem de erro do valor digitado, ou `undefined` quando vazio ou válido. Use também para desabilitar "Doar". */
+export declare function donationError(value: number | null, balance: number): string | undefined;
+export interface DonationAmountCardProps {
+	/** Saldo da pessoa, em pontos. */
+	balance: number;
+	/** Valor digitado. `null` = campo vazio. */
+	value: number | null;
+	onChange: (v: number | null) => void;
+	/** Sobrescreve a mensagem padrão (`donationError`). */
+	error?: string;
+	className?: string;
+}
+/** Cartão "Quantos pontos deseja doar?": saldo, campo numérico de inteiros e mensagem de erro embaixo (Tela de doação). */
+export declare function DonationAmountCard({ balance, value, onChange, error, className }: DonationAmountCardProps): React$1.JSX.Element;
+export interface DonationStateCardProps {
+	title: string;
+	description: string;
+	/** Mostra a barra "150 / 500 pontos" (pontos insuficientes para a instituição). */
+	progress?: {
+		points: number;
+		goal: number;
+	};
+	/** Arte de 80px. Padrão: a ilustração `doar-saldo-insuficiente` (reciclagem em círculo cinza). */
+	art?: React$1.ReactNode;
+	className?: string;
+}
+/** Estado no lugar do campo de doação: "Você ainda não tem pontos" (saldo zero) e "Pontos insuficientes" (com barra de progresso). */
+export declare function DonationStateCard({ title, description, progress, art, className }: DonationStateCardProps): React$1.JSX.Element;
+export interface InstitutionDetailModalProps {
+	name: string;
+	/** Texto longo sobre a instituição. */
+	description: string;
+	/** Endereço, telefone e site. O que faltar não aparece. */
+	address?: string;
+	phone?: string;
+	site?: string;
+	/** Banner de 160px de altura. Sem ele, aparece um quadro cinza com o ícone da causa. */
+	image?: string;
+	trigger?: React$1.ReactNode;
+	open?: boolean;
+	defaultOpen?: boolean;
+	onOpenChange?: (open: boolean) => void;
+	/** false = sem película (use só em exemplos). */
+	modal?: boolean;
+}
+/** Modal "Saber mais" da instituição (Radix Dialog): banner, nome, descrição e contatos. Fecha pelo X sobre a imagem, por Esc ou fora. */
+export declare function InstitutionDetailModal({ name, description, address, phone, site, image, trigger, open, defaultOpen, onOpenChange, modal }: InstitutionDetailModalProps): React$1.JSX.Element;
 
 export {};
 
@@ -1919,6 +1976,11 @@ declare global {
 			GoalNote: typeof GoalNote;
 			ReminderCard: typeof ReminderCard;
 			ShareImpactModal: typeof ShareImpactModal;
+			InstitutionRow: typeof InstitutionRow;
+			donationError: typeof donationError;
+			DonationAmountCard: typeof DonationAmountCard;
+			DonationStateCard: typeof DonationStateCard;
+			InstitutionDetailModal: typeof InstitutionDetailModal;
 		};
 	}
 }

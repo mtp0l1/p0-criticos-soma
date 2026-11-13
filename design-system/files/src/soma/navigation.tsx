@@ -57,7 +57,7 @@ export interface HeaderProps {
 const roundBtn = 'size-touch rounded-full bg-surface-accent text-icon-brand-strong hover:bg-surface-accent-hover active:bg-surface-accent-hover';
 export function Header({ title, onBack, action, variant = 'center', divider = true, className }: HeaderProps) {
   const round = variant === 'round' || variant === 'start';
-  const back = onBack ? <IconButton icon={round ? 'arrow-left' : 'chevron-left'} label="Voltar" onClick={onBack} className={round ? roundBtn : undefined} /> : null;
+  const back = onBack ? <IconButton icon={round ? 'arrow-left' : 'chevron-left'} label="Voltar" onClick={onBack} className={round ? roundBtn : 'text-foreground'} /> : null;
   const act = action ? <IconButton icon={action.icon} label={action.label} onClick={action.onClick} className={round ? roundBtn : undefined} /> : null;
   const shell = cn('bg-surface-primary px-xsmall py-nano text-foreground', divider && 'border-b border-border', className);
   if (variant === 'start') {

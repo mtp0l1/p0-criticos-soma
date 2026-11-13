@@ -70,3 +70,5 @@ export { DropdownMenu, DropdownMenuTrigger, DropdownMenuGroup, DropdownMenuPorta
 export type { DropdownMenuItemProps, ComboboxProps, ComboboxOption } from './ui/menus';
 export { DeliverySummaryCard, DeliveryHistoryRow, DeliveryDayCard, RewardChoiceList, GoalProgressCard, GoalNote, ReminderCard, ShareImpactModal } from './soma/delivery';
 export type { DeliverySummaryCardProps, DeliveryHistoryRowProps, DeliveryDayCardProps, RewardChoice, RewardChoiceListProps, GoalProgressCardProps, GoalNoteProps, ReminderCardProps, ShareImpactModalProps } from './soma/delivery';
+export { InstitutionRow, DonationAmountCard, DonationStateCard, InstitutionDetailModal, donationError } from './soma/donate';
+export type { InstitutionRowProps, DonationAmountCardProps, DonationStateCardProps, InstitutionDetailModalProps } from './soma/donate';

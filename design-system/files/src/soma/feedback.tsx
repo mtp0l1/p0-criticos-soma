@@ -196,8 +196,8 @@ export interface ResultScreenProps {
   titleSize?: 'page' | 'screen';
   /** Contorno de 3px em laranja no círculo (Cadastro concluído). Só com `iconShape="circle"`. */
   ringOutline?: boolean;
-  /** Tamanho do círculo do ícone: sm 72px (Pedido enviado!) · md 88px (permissão de contatos) · lg 96px (padrão). */
-  ringSize?: 'sm' | 'md' | 'lg';
+  /** Tamanho do círculo do ícone: xs 48px (Doação realizada) · sm 72px (Pedido enviado!) · md 88px (permissão de contatos) · lg 96px (padrão). */
+  ringSize?: 'xs' | 'sm' | 'md' | 'lg';
   /** inline = ações logo abaixo do texto, com o conteúdo no topo (Telas 12, 14 e 16) · bottom = ações no fim da tela (padrão). */
   actionsPlacement?: 'bottom' | 'inline';
   /** "Ir para o início": obrigatório em tela de conclusão de fluxo. */
@@ -210,7 +210,7 @@ const RESULT = {
   neutral: { icon: 'info', ring: 'bg-surface-accent text-icon-brand-strong' },
 } as const;
 /** Tela de resultado ou pedido (sucesso, erro, permissão de contatos). Ícone a space-large do cabeçalho; ações no fim. */
-const RING = { sm: 'size-[72px]', md: 'size-[88px]', lg: 'size-[96px]' } as const;
+const RING = { xs: 'size-[48px]', sm: 'size-[72px]', md: 'size-[88px]', lg: 'size-[96px]' } as const;
 export function ResultScreen({ tone = 'positive', icon, art, title, description, children, primaryAction, secondaryAction, extraLink, iconShape = 'circle', titleSize = 'page', ringOutline, ringSize = 'lg', actionsPlacement = 'bottom', onHome, className }: ResultScreenProps) {
   const r = RESULT[tone];
   const tid = React.useId();
@@ -219,7 +219,7 @@ export function ResultScreen({ tone = 'positive', icon, art, title, description,
       <div className="grid justify-items-center gap-mini text-center">
         {art ?? (iconShape === 'square'
           ? <span className={cn('grid size-[56px] place-items-center rounded-lg', r.ring)}><Icon name={icon ?? r.icon} size="large" /></span>
-          : <span className={cn('grid place-items-center rounded-full', RING[ringSize], r.ring, ringOutline && 'border-[3px] border-border-highlight')}><Icon name={icon ?? r.icon} size="xlarge" /></span>)}
+          : <span className={cn('grid place-items-center rounded-full', RING[ringSize], r.ring, ringOutline && 'border-[3px] border-border-highlight')}><Icon name={icon ?? r.icon} size={ringSize === 'xs' ? 'medium' : 'xlarge'} /></span>)}
         <h1 id={tid} className={cn(titleSize === 'screen' ? 'screen-title' : 'page-title', 'm-0')}>{title}</h1>
         {description && <div className="body m-0 max-w-[320px] text-muted-foreground">{description}</div>}
       </div>

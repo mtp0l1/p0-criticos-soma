@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/bundle.css"><script src="../assets/react.production.min.js"></script><script src="../assets/react-dom.production.min.js"></script><script src="../assets/bundle.js"></script><meta charset="utf-8"><title>DonationAmountCard</title>
+</head>
+<body class="m-0 p-small bg-background-secondary text-foreground font-sans">
+<div id="root" class="grid gap-mini" style="max-width:390px"></div>
+<script>
+var S = window.Soma, h = React.createElement, F = React.Fragment, useState = React.useState;
+function K(t){ return h('p', {className:'caption m-0 text-muted-foreground'}, t); }
+function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-center gap-nano'}].concat([].slice.call(arguments))); }
+var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
+// Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
+function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
+function Demo(){ var a=useState(null), b=useState(0), c=useState(2000), d=useState(500);
+  return h(F,null, K('Vazio'), h(S.DonationAmountCard,{balance:1130,value:a[0],onChange:a[1]}), K('Valor zero'), h(S.DonationAmountCard,{balance:1130,value:b[0],onChange:b[1]}), K('Acima do saldo'), h(S.DonationAmountCard,{balance:1130,value:c[0],onChange:c[1]}), K('Valor válido: digite para testar'), h(S.DonationAmountCard,{balance:1130,value:d[0],onChange:d[1]})); }
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+<script>(function(){function s(){parent.postMessage({soma:"h",n:"DonationAmountCard",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>
