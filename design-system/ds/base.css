@@ -1,4 +1,4 @@
-/* So+ma DS · base: reset moderno, padrões tipográficos e acessibilidade (estrutura do Lume, MIT) */
+/* So+ma DS · base: reset moderno, padrões tipográficos e acessibilidade */
 *,*::before,*::after{box-sizing:border-box}
 *{margin:0}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;background:var(--ds-color-bg-app)}

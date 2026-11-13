@@ -1,6 +1,5 @@
 /**
  * So+ma Design System · tokens da interface de documentação.
- * Estrutura e valores de interface adaptados do Lume Design System (MIT, https://lumeui.dev).
  * A fonte é a da So+ma (Lexend). Os tokens do produto ficam em tokens.json e em components/bundle.css.
  */
 :root {
@@ -203,7 +202,7 @@
   --ds-gradient-divider: linear-gradient(90deg, var(--ds-color-border-strong) 0%, transparent 100%);
 }
 
-/* No tema claro, a sidebar e a navbar continuam escuras, como no Lume. */
+/* No tema claro, a sidebar e a navbar continuam escuras. */
 [data-theme="light"] :is(.ds-sidebar, .ds-navbar) {
   color-scheme: dark;
   --ds-color-bg-sidebar: var(--ds-color-refugio-800);

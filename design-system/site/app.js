@@ -1,5 +1,5 @@
 /* So+ma Design System · app da documentação: roteador por hash, shell, busca ⌘K, tema e layout.
-   Arquitetura e interface adaptadas do Lume Design System (MIT, https://lumeui.dev); fonte e conteúdo são da So+ma. */
+   Fonte e conteúdo são da So+ma. */
 import { icon } from '../ds/icons.js';
 import { initTheme, mountThemeControls, toggleTheme, resolvedTheme } from '../ds/js/theme.js';
 import { createShell, renderSidebarNav, setActiveNavItem, renderNavbarNav } from '../ds/js/shell.js';

@@ -1,4 +1,4 @@
-/* App shell — painéis flutuantes: sidebar recolhível + painel principal com topbar (estrutura do Lume, MIT) */
+/* App shell — painéis flutuantes: sidebar recolhível + painel principal com topbar */
 .ds-shell{--_gap:var(--ds-layout-frame-gap);--_sidebar-w:var(--ds-layout-sidebar);--_dur:var(--ds-duration-slow);--_ease:var(--ds-easing-emphasized);--_inset:13px;display:flex;gap:var(--_gap);height:100dvh;padding:var(--_gap);background:var(--ds-color-bg-app)}
 .ds-sidebar{position:relative;isolation:isolate;flex:none;display:flex;flex-direction:column;width:var(--_sidebar-w);border-radius:var(--ds-radius-xl);background:var(--ds-color-bg-sidebar);border:1px solid var(--ds-color-border-subtle);box-shadow:var(--ds-shadow-lg);overflow:hidden}
 @media (min-width:1024px){.ds-shell[data-ready] .ds-sidebar{transition:width var(--_dur) var(--_ease)}}

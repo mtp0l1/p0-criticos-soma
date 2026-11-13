@@ -1,6 +1,6 @@
 # So+ma Design System
 
-> Design system do app So+ma: tokens, componentes (shadcn/ui + Andes), ícones Lucide e padrões de tela. Interface adaptada do Lume (MIT).
+> Design system do app So+ma: tokens, componentes (shadcn/ui + Andes), ícones Lucide e padrões de tela.
 
 ## Para IAs
 - [AGENTS.md](files/AGENTS.md): ordem de leitura e regras

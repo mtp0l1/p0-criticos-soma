@@ -1,4 +1,4 @@
-/* Paleta de comandos (⌘K / Ctrl K / "/"). Padrão ARIA: combobox + listbox. (Lume, MIT) */
+/* Paleta de comandos (⌘K / Ctrl K / "/"). Padrão ARIA: combobox + listbox. */
 import { icon } from '../icons.js';
 import { msg } from './i18n.js';
 

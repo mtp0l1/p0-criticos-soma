@@ -1,4 +1,4 @@
-/* Tema: claro ou escuro. Até a pessoa escolher, segue o sistema; a escolha fica salva em soma-ds-theme. (Lume, MIT) */
+/* Tema: claro ou escuro. Até a pessoa escolher, segue o sistema; a escolha fica salva em soma-ds-theme. */
 const KEY = 'soma-ds-theme';
 export const THEMES = ['light', 'dark'];
 const PREFERENCES = ['system', ...THEMES];

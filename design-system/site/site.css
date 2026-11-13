@@ -1,4 +1,4 @@
-/* Estilos do site de documentação da So+ma (composições do site, não fazem parte do DS). Estrutura do Lume (MIT). */
+/* Estilos do site de documentação da So+ma (composições do site, não fazem parte do DS). */
 .page{max-width:var(--ds-layout-content-max);margin-inline:auto;animation:page-enter var(--ds-duration-slow) var(--ds-easing-decelerate) both}
 .page--panel{max-width:820px;padding-top:var(--ds-space-300)}
 @keyframes page-enter{from{opacity:0;transform:translateY(6px)}}

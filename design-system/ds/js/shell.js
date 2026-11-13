@@ -1,4 +1,4 @@
-/* Comportamento do app shell: sidebar recolhível, gaveta no celular, grupos, item ativo, layout sidebar|navbar. (Lume, MIT) */
+/* Comportamento do app shell: sidebar recolhível, gaveta no celular, grupos, item ativo, layout sidebar|navbar. */
 import { icon } from '../icons.js';
 import { msg } from './i18n.js';
 

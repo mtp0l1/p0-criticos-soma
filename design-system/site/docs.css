@@ -1,4 +1,4 @@
-/* Páginas de documentação: .doc-header → .doc-nav (fixa) → .doc-section… (estrutura do Lume, MIT) */
+/* Páginas de documentação: .doc-header → .doc-nav (fixa) → .doc-section… */
 .doc-header{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:var(--ds-space-400) var(--ds-space-600);padding:var(--ds-space-500) 0 var(--ds-space-400)}
 .doc-header__eyebrow{color:var(--ds-color-fg-subtle);font:var(--ds-text-eyebrow)}
 .doc-header__title{margin-top:var(--ds-space-100);font:var(--ds-text-display-md);letter-spacing:var(--ds-text-display-md-tracking)}
