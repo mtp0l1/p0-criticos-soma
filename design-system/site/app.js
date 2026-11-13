@@ -8,12 +8,10 @@ import { createMenu } from '../ds/js/menu.js';
 import { initTooltips } from '../ds/js/tooltip.js';
 import { toast } from '../ds/js/toast.js';
 import { navigation } from './nav.js';
-import { CURRENT_VERSION, UPDATED } from './changelog.js';
 import { EXTRA } from './search-index.js';
 import { ALIASES } from './aliases.js';
 
 const KIND_ICON = { Cor: 'palette', Ícone: 'smile', Ilustração: 'image', Texto: 'type', Medida: 'ruler', Guia: 'book-open', Novidade: 'sparkles', Roadmap: 'milestone', Arquivos: 'download' };
-const SEEN_KEY = 'soma-ds-seen-version';
 const read = (k) => { try { return localStorage.getItem(k); } catch { return null; } };
 const write = (k, v) => { try { localStorage.setItem(k, v); } catch {} };
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
@@ -28,8 +26,7 @@ const main = root.querySelector('.ds-main');
 const navEl = document.getElementById('nav');
 
 /* ───────── Navegação ───────── */
-const seen = read(SEEN_KEY) === CURRENT_VERSION;
-const groups = navigation.map((g) => ({ ...g, items: g.items.map((i) => ({ ...i, href: `#${i.path}`, dot: i.dot && !seen })) }));
+const groups = navigation.map((g) => ({ ...g, items: g.items.map((i) => ({ ...i, href: `#${i.path}` })) }));
 const flat = groups.flatMap((g) => g.items.map((i) => ({ ...i, group: g.label, groupId: g.id })));
 const byPath = new Map(flat.map((i) => [i.path, i]));
 
@@ -106,7 +103,6 @@ async function render() {
   main.removeAttribute('data-scrolled');
   enhance(content, page, query, cleanup);
   mod?.mount?.(content, page, query)?.call?.(null);
-  if (path === '/novidades') { write(SEEN_KEY, CURRENT_VERSION); document.querySelectorAll('.ds-dot[aria-label="Novidade"]').forEach((d) => d.remove()); }
   content.focus({ preventScroll: true });
 }
 addEventListener('hashchange', render);
@@ -191,7 +187,5 @@ function enhance(rootEl, page, query, cleanups) {
 }
 
 /* ───────── Início ───────── */
-document.getElementById('account-version').textContent = `Versão ${CURRENT_VERSION}`;
-document.getElementById('account-updated').textContent = `Atualizado em ${UPDATED}`;
 if (!location.hash) history.replaceState(null, '', '#/');
 render();

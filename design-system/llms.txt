@@ -25,7 +25,6 @@
 - #/primeiros-passos: Primeiros passos
 - #/produtos: Para qualquer produto
 - #/campana: Sobre o Campana
-- #/novidades: Novidades
 - #/roadmap: Roadmap
 - #/fundamentos/cores: Cores
 - #/fundamentos/tipografia: Tipografia
