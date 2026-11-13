@@ -6,9 +6,10 @@
 .ds-brand{position:absolute;top:50%;left:25px;translate:0 -50%;display:inline-flex;align-items:center;gap:var(--ds-space-150);color:var(--ds-color-fg-default);font:var(--ds-font-weight-medium) 1.5rem/1 var(--ds-font-family-display);letter-spacing:-.03em;text-decoration:none;white-space:nowrap;border-radius:var(--ds-radius-xs);transition:opacity var(--ds-duration-base) var(--ds-easing-standard)}
 .ds-brand:hover{color:var(--ds-color-fg-default)}
 .ds-brand__mark{flex:none;width:28px;height:28px}
+.ds-brand__logo{display:block;height:36px;width:auto}
 .ds-sidebar__toggle{margin-inline-start:auto}
 .ds-sidebar__toggle-close,.ds-sidebar__toggle-mark{display:none}
-.ds-sidebar__toggle-mark{width:28px;height:28px}
+.ds-sidebar__toggle-mark{width:auto;height:26px}
 .ds-shell__edge{display:none}
 .ds-sidebar__search{flex:none;padding:0 var(--_inset) var(--ds-space-100)}
 .ds-field-btn{display:flex;align-items:center;gap:var(--ds-space-100);width:100%;height:var(--ds-size-control-md);padding-inline:12px;border:1px solid var(--ds-color-border-control);border-radius:var(--ds-radius-md);background:transparent;color:var(--ds-color-fg-subtle);font:var(--ds-text-label-md);letter-spacing:var(--ds-text-label-md-tracking);text-align:start;overflow:hidden;transition:border-color var(--ds-duration-fast) var(--ds-easing-standard)}

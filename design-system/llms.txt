@@ -8,8 +8,7 @@
 - [tokens.json](files/tokens.json): única fonte de valores
 
 ## Arquivos
-- [campana-logo.svg](assets/brand/campana-logo.svg): Logotipo do Campana, para fundo claro
-- [campana-simbolo.svg](assets/brand/campana-simbolo.svg): Símbolo do Campana
+- [campana-marca.zip](files/campana-marca.zip): Marca do Campana: SVG e PNG de todas as versões
 - [soma-design-system.zip](files/soma-design-system.zip): Pacote completo: tokens, código-fonte, bundle, tipos, marca e documentação
 - [tokens.json](files/tokens.json): Fonte única dos tokens
 - [tokens.css](files/tokens.css): Variáveis CSS e classes de texto
