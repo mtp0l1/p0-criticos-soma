@@ -48,8 +48,8 @@ export { StatTile, StatGrid, PositionCard, Podium, RankingRow, RankingList, Rank
 export type { StatTileProps, PositionCardProps, PodiumProps, PodiumEntry, RankingRowProps, RankingStarterCardProps, StatsRowProps, ImpactTilesProps } from './soma/impact';
 export { StatusChip, Tag, Thumb, RedemptionItem, RedemptionGroup, QrCheckinCard } from './soma/account';
 export type { StatusChipProps, TagProps, ThumbProps, RedemptionItemProps, QrCheckinCardProps } from './soma/account';
-export { SearchField, TextField, ChoiceChips, RadioList, MaterialResult, HelpfulVote } from './soma/forms';
-export type { SearchFieldProps, TextFieldProps, ChoiceOption, ChoiceChipsProps, RadioListProps, MaterialResultProps, HelpfulVoteProps } from './soma/forms';
+export { SearchField, TextField, PasswordField, maskCpf, maskPhone, maskCep, onlyDigits, ChoiceChips, RadioList, MaterialResult, HelpfulVote } from './soma/forms';
+export type { SearchFieldProps, TextFieldProps, PasswordFieldProps, ChoiceOption, ChoiceChipsProps, RadioListProps, MaterialResultProps, HelpfulVoteProps } from './soma/forms';
 export { Modal, Toast, Toaster, notify, Message, EmptyState, ResultScreen, toastVariants } from './soma/feedback';
 export type { ModalProps, ToastProps, ToasterProps, NotifyOptions, MessageProps, EmptyStateProps, ResultScreenProps } from './soma/feedback';
 export { GoalCard, CampaignBanner, RewardRow, RedeemCode, RewardDetail, InstitutionCard } from './soma/rewards';
@@ -72,3 +72,5 @@ export { DeliverySummaryCard, DeliveryHistoryRow, DeliveryDayCard, RewardChoiceL
 export type { DeliverySummaryCardProps, DeliveryHistoryRowProps, DeliveryDayCardProps, RewardChoice, RewardChoiceListProps, GoalProgressCardProps, GoalNoteProps, ReminderCardProps, ShareImpactModalProps } from './soma/delivery';
 export { InstitutionRow, DonationAmountCard, DonationStateCard, InstitutionDetailModal, donationError } from './soma/donate';
 export type { InstitutionRowProps, DonationAmountCardProps, DonationStateCardProps, InstitutionDetailModalProps } from './soma/donate';
+export { SignupStep, TermsConsent, InviteCodeField, NeighborhoodNote, AccountExistsSheet, InviteMessageExample, InviteCodeHelpSheet } from './soma/signup';
+export type { SignupStepProps, TermsConsentProps, InviteCodeFieldProps, NeighborhoodNoteProps, AccountExistsSheetProps, InviteMessageExampleProps, InviteCodeHelpSheetProps } from './soma/signup';

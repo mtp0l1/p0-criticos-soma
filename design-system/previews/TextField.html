@@ -10,9 +10,11 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ var a=useState('Policarpo Loures'), b=useState('123.456.789'); return h(F,null,
-  h(S.TextField,{label:'Nome completo',value:a[0],onChange:a[1],helper:'Como está no seu documento.',required:true}),
-  h(S.TextField,{label:'CPF',value:b[0],onChange:b[1],inputMode:'numeric',error:'Digite um CPF válido para continuar',required:true}));
+function Demo(){ var a=useState('Policarpo Loures'), b=useState('123.456'), c=useState('1198'), d=useState(''); return h(F,null,
+  h(S.TextField,{label:'Nome e Sobrenome',value:a[0],onChange:a[1],helper:'Como está no seu documento.',required:true}),
+  h(S.TextField,{label:'CPF',mask:'cpf',value:b[0],onChange:b[1],error:'Digite um CPF válido para continuar',required:true}),
+  h(S.TextField,{label:'Celular',mask:'phone',value:c[0],onChange:c[1],required:true}),
+  h(S.TextField,{label:'CEP',mask:'cep',value:d[0],onChange:d[1],required:true}));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>

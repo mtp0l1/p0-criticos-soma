@@ -6,7 +6,7 @@ import {
   FileText, CircleCheck, CircleX, Bell, Settings, Lock, Calendar, MessageSquare, Minus, Plus, Trash2, History, Ticket,
   ArrowLeft, ArrowUp, ArrowLeftRight, Shield, ShieldCheck, Flame, Trophy, Award, Users, Utensils, Book, ShoppingBag,
   CalendarCheck, QrCode, Link, Headphones, MessageCircle, Phone, Globe, Crosshair, TrendingUp, BottleWine, Wine,
-  Package, Copy, Contact, MailOpen, Sparkles, Ban, Target, Navigation, Volleyball, Store, Camera, Lightbulb, Building2, Flag,
+  Package, Copy, Contact, MailOpen, Sparkles, Ban, Target, Navigation, Volleyball, Store, Camera, Lightbulb, Building2, Flag, Eye, EyeOff,
   type LucideIcon,
 } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
@@ -33,7 +33,7 @@ export const ICONS = {
   'qr-code': QrCode, store: Store, building: Building2, camera: Camera,
   /* Gamificação */
   star: Star, medal: Medal, award: Award, trophy: Trophy, flame: Flame, shield: Shield, 'shield-check': ShieldCheck,
-  target: Target, flag: Flag, sparkles: Sparkles, 'trending-up': TrendingUp, lightbulb: Lightbulb,
+  target: Target, flag: Flag, eye: Eye, 'eye-off': EyeOff, sparkles: Sparkles, 'trending-up': TrendingUp, lightbulb: Lightbulb,
   /* Recompensas, pontos e categorias */
   coin: Coins, ticket: Ticket, cart: ShoppingCart, 'shopping-bag': ShoppingBag, utensils: Utensils, book: Book,
   heart: Heart, 'hand-heart': HandHeart, leaf: Leaf, sport: Volleyball,

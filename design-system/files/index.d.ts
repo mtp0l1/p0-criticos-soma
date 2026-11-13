@@ -118,6 +118,8 @@ export declare const ICONS: {
 	"shield-check": React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	target: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	flag: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
+	eye: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
+	"eye-off": React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	sparkles: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	"trending-up": React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	lightbulb: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
@@ -306,6 +308,8 @@ export declare const sheetVariants: (props?: ({
 } & ClassProp) | undefined) => string;
 export interface SheetContentProps extends React$1.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>, VariantProps<typeof sheetVariants> {
 	showClose?: boolean;
+	/** Alça cinza no topo do bottom sheet (padrão `true`). O Cadastro não usa alça. */
+	handle?: boolean;
 }
 /** Bottom sheet (shadcn Sheet com side="bottom"): alça no topo, raio radius-xlarge, sombra high. */
 export declare const SheetContent: React$1.ForwardRefExoticComponent<SheetContentProps & React$1.RefAttributes<HTMLDivElement>>;
@@ -440,7 +444,7 @@ export interface StepDotsProps {
 	total: number;
 	className?: string;
 }
-/** Pontos de progresso do cadastro ("Passo 1 de 7"). O texto vai para o leitor de tela; os pontos são decorativos. */
+/** Pontos de progresso do cadastro ("Passo 1 de 7"): 8px, só o passo atual em laranja (os anteriores voltam ao cinza, como no Figma). O texto vai para o leitor de tela; os pontos são decorativos. */
 export declare function StepDots({ current, total, className }: StepDotsProps): React$1.JSX.Element;
 export interface HomeGreetingProps {
 	/** Primeiro nome. Mostra "Olá {nome}". */
@@ -905,6 +909,34 @@ export interface SearchFieldProps extends Omit<InputProps, "onChange" | "value">
 	border?: "strong" | "app";
 }
 export declare function SearchField({ label, value, onChange, onClear, border, placeholder, className, ...props }: SearchFieldProps): React$1.JSX.Element;
+/** Só os dígitos de um texto. */
+export declare const onlyDigits: (v: string) => string;
+/** CPF: 000.000.000-00. */
+export declare function maskCpf(v: string): string;
+/** Celular: (00) 00000-0000. */
+export declare function maskPhone(v: string): string;
+/** CEP: 00000-000. */
+export declare function maskCep(v: string): string;
+declare const MASKS: {
+	readonly cpf: {
+		readonly fn: typeof maskCpf;
+		readonly placeholder: "000.000.000-00";
+		readonly max: 14;
+		readonly autoComplete: "off";
+	};
+	readonly phone: {
+		readonly fn: typeof maskPhone;
+		readonly placeholder: "(00) 00000-0000";
+		readonly max: 15;
+		readonly autoComplete: "tel-national";
+	};
+	readonly cep: {
+		readonly fn: typeof maskCep;
+		readonly placeholder: "00000-000";
+		readonly max: 9;
+		readonly autoComplete: "postal-code";
+	};
+};
 export interface TextFieldProps extends Omit<InputProps, "onChange" | "value"> {
 	label: string;
 	value: string;
@@ -913,9 +945,16 @@ export interface TextFieldProps extends Omit<InputProps, "onChange" | "value"> {
 	helper?: string;
 	/** Mensagem de erro: diz o que fazer ("Digite um CPF válido para continuar"). */
 	error?: string;
+	/** Máscara e teclado certos para o dado: `cpf`, `phone` ou `cep`. Já põe o teclado numérico e o placeholder do Figma; `onChange` recebe o texto formatado. */
+	mask?: keyof typeof MASKS;
+	/** Elemento dentro do campo, à direita (o botão de mostrar senha do `PasswordField`). */
+	trailing?: React$1.ReactNode;
 }
-/** Campo completo no padrão shadcn Form: Label + Input + descrição + mensagem, ligados por id e aria. */
-export declare function TextField({ label, value, onChange, helper, error, id, required, className, ...props }: TextFieldProps): React$1.JSX.Element;
+/** Campo completo no padrão shadcn Form: Label + Input + descrição + mensagem, ligados por id e aria. Altura de 48px (`size-input`). */
+export declare function TextField({ label, value, onChange, helper, error, id, required, mask, trailing, className, placeholder, ...props }: TextFieldProps): React$1.JSX.Element;
+export type PasswordFieldProps = Omit<TextFieldProps, "type" | "mask" | "trailing">;
+/** Campo de senha com botão "Mostrar senha" dentro do campo (ícone `eye`). O Figma desenha uma seta laranja no lugar; aqui ela vira o botão de mostrar e ocultar. */
+export declare function PasswordField(props: PasswordFieldProps): React$1.JSX.Element;
 export interface ChoiceOption {
 	value: string;
 	label: string;
@@ -1701,6 +1740,82 @@ export interface InstitutionDetailModalProps {
 }
 /** Modal "Saber mais" da instituição (Radix Dialog): banner, nome, descrição e contatos. Fecha pelo X sobre a imagem, por Esc ou fora. */
 export declare function InstitutionDetailModal({ name, description, address, phone, site, image, trigger, open, defaultOpen, onOpenChange, modal }: InstitutionDetailModalProps): React$1.JSX.Element;
+export interface SignupStepProps {
+	/** Título do passo ("Qual é o seu celular?"), em `page-title`. */
+	title: string;
+	/** Linha de apoio abaixo do título. */
+	description?: string;
+	/** Passo atual, a partir de 1. */
+	step: number;
+	/** Total de passos (padrão 7). */
+	total?: number;
+	/** Blocos do passo (campos, aceite). Cada filho fica a 40px do próximo; agrupe campos de um mesmo bloco numa `div` com `grid gap-small`. */
+	children?: React$1.ReactNode;
+	/** Botão "Continuar" (ou "Criar minha conta"). Fica 40px abaixo do último bloco, não preso no rodapé. */
+	action?: React$1.ReactNode;
+	className?: string;
+}
+/** Corpo de um passo do cadastro: título, campos, botão e pontos de progresso. Um dado por tela. Vai abaixo do `Header title="Cadastro"`. */
+export declare function SignupStep({ title, description, step, total, children, action, className }: SignupStepProps): React$1.JSX.Element;
+export interface TermsConsentProps {
+	checked: boolean;
+	onCheckedChange: (checked: boolean) => void;
+	regulationHref?: string;
+	privacyHref?: string;
+	className?: string;
+}
+/** Aceite do regulamento e aviso de privacidade do último passo. "Criar minha conta" só fica ativo com o aceite marcado. */
+export declare function TermsConsent({ checked, onCheckedChange, regulationHref, privacyHref, className }: TermsConsentProps): React$1.JSX.Element;
+export interface InviteCodeFieldProps {
+	value: string;
+	onChange: (v: string) => void;
+	/** Mostra "Código aplicado" com check. */
+	applied?: boolean;
+	/** Mensagem de código inválido ou expirado (texto ainda não definido no Figma). */
+	error?: string;
+	/** Abre a folha "Onde encontro o código?". */
+	onHelp?: () => void;
+}
+/** Campo opcional de código de convite com o estado "Código aplicado" e o link "Onde encontro o código?". */
+export declare function InviteCodeField({ value, onChange, applied, error, onHelp }: InviteCodeFieldProps): React$1.JSX.Element;
+export interface NeighborhoodNoteProps {
+	/** "Aclimação, São Paulo". */
+	neighborhood: string;
+	onFix?: () => void;
+}
+/** Bairro encontrado pelo CEP, com o link "Corrigir". Aparece quando o CEP completa 8 dígitos. */
+export declare function NeighborhoodNote({ neighborhood, onFix }: NeighborhoodNoteProps): React$1.JSX.Element;
+export interface SignupSheetProps {
+	open?: boolean;
+	defaultOpen?: boolean;
+	onOpenChange?: (open: boolean) => void;
+	/** false = sem película (só para exemplos incorporados na página). */
+	modal?: boolean;
+	trigger?: React$1.ReactNode;
+}
+export interface AccountExistsSheetProps extends SignupSheetProps {
+	/** Número já cadastrado, como foi digitado: "(11) 98765-4321". */
+	phone: string;
+	onSignIn?: () => void;
+	onUseOther?: () => void;
+}
+/** Folha "O (11) 98765-4321 já tem uma conta" (Tela 04A): Entrar na minha conta ou Usar outro número. Sem alça e sem X: as duas ações fecham. */
+export declare function AccountExistsSheet({ phone, onSignIn, onUseOther, open, defaultOpen, onOpenChange, modal, trigger }: AccountExistsSheetProps): React$1.JSX.Element;
+export interface InviteMessageExampleProps {
+	/** Quem mandou (padrão "Ana"). */
+	sender?: string;
+	/** Código destacado na mensagem. */
+	code?: string;
+	className?: string;
+}
+/** Simulação de conversa que mostra onde está o código dentro da mensagem de convite. Ilustração: o leitor de tela recebe a mensagem inteira. */
+export declare function InviteMessageExample({ sender, code, className }: InviteMessageExampleProps): React$1.JSX.Element;
+export interface InviteCodeHelpSheetProps extends SignupSheetProps {
+	sender?: string;
+	code?: string;
+}
+/** Folha "Onde encontro o código?" (Tela 07B): explica e mostra a mensagem de convite de exemplo. "Entendi" fecha. */
+export declare function InviteCodeHelpSheet({ sender, code, open, defaultOpen, onOpenChange, modal, trigger }: InviteCodeHelpSheetProps): React$1.JSX.Element;
 
 export {};
 
@@ -1857,7 +1972,12 @@ declare global {
 			RedemptionGroup: typeof RedemptionGroup;
 			QrCheckinCard: typeof QrCheckinCard;
 			SearchField: typeof SearchField;
+			onlyDigits: typeof onlyDigits;
+			maskCpf: typeof maskCpf;
+			maskPhone: typeof maskPhone;
+			maskCep: typeof maskCep;
 			TextField: typeof TextField;
+			PasswordField: typeof PasswordField;
 			ChoiceChips: typeof ChoiceChips;
 			RadioList: typeof RadioList;
 			MaterialResult: typeof MaterialResult;
@@ -1981,6 +2101,13 @@ declare global {
 			DonationAmountCard: typeof DonationAmountCard;
 			DonationStateCard: typeof DonationStateCard;
 			InstitutionDetailModal: typeof InstitutionDetailModal;
+			SignupStep: typeof SignupStep;
+			TermsConsent: typeof TermsConsent;
+			InviteCodeField: typeof InviteCodeField;
+			NeighborhoodNote: typeof NeighborhoodNote;
+			AccountExistsSheet: typeof AccountExistsSheet;
+			InviteMessageExample: typeof InviteMessageExample;
+			InviteCodeHelpSheet: typeof InviteCodeHelpSheet;
 		};
 	}
 }

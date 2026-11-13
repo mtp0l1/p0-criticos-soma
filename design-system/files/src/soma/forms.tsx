@@ -40,6 +40,32 @@ export function SearchField({ label, value, onChange, onClear, border = 'strong'
 
 /* -------------------------------------------------------------- TextField */
 
+/** Só os dígitos de um texto. */
+export const onlyDigits = (v: string) => v.replace(/\D/g, '');
+/** CPF: 000.000.000-00. */
+export function maskCpf(v: string) {
+  const d = onlyDigits(v).slice(0, 11);
+  return d.replace(/^(\d{3})(\d)/, '$1.$2').replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3').replace(/\.(\d{3})(\d)/, '.$1-$2');
+}
+/** Celular: (00) 00000-0000. */
+export function maskPhone(v: string) {
+  const d = onlyDigits(v).slice(0, 11);
+  if (d.length === 0) return '';
+  if (d.length <= 2) return `(${d}`;
+  if (d.length <= 7) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
+  return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+}
+/** CEP: 00000-000. */
+export function maskCep(v: string) {
+  const d = onlyDigits(v).slice(0, 8);
+  return d.length > 5 ? `${d.slice(0, 5)}-${d.slice(5)}` : d;
+}
+const MASKS = {
+  cpf: { fn: maskCpf, placeholder: '000.000.000-00', max: 14, autoComplete: 'off' },
+  phone: { fn: maskPhone, placeholder: '(00) 00000-0000', max: 15, autoComplete: 'tel-national' },
+  cep: { fn: maskCep, placeholder: '00000-000', max: 9, autoComplete: 'postal-code' },
+} as const;
+
 export interface TextFieldProps extends Omit<InputProps, 'onChange' | 'value'> {
   label: string;
   value: string;
@@ -48,30 +74,59 @@ export interface TextFieldProps extends Omit<InputProps, 'onChange' | 'value'> {
   helper?: string;
   /** Mensagem de erro: diz o que fazer ("Digite um CPF válido para continuar"). */
   error?: string;
+  /** Máscara e teclado certos para o dado: `cpf`, `phone` ou `cep`. Já põe o teclado numérico e o placeholder do Figma; `onChange` recebe o texto formatado. */
+  mask?: keyof typeof MASKS;
+  /** Elemento dentro do campo, à direita (o botão de mostrar senha do `PasswordField`). */
+  trailing?: React.ReactNode;
 }
-/** Campo completo no padrão shadcn Form: Label + Input + descrição + mensagem, ligados por id e aria. */
-export function TextField({ label, value, onChange, helper, error, id, required, className, ...props }: TextFieldProps) {
+/** Campo completo no padrão shadcn Form: Label + Input + descrição + mensagem, ligados por id e aria. Altura de 48px (`size-input`). */
+export function TextField({ label, value, onChange, helper, error, id, required, mask, trailing, className, placeholder, ...props }: TextFieldProps) {
   const auto = React.useId();
   const fid = id ?? auto;
   const hid = `${fid}-help`;
+  const m = mask ? MASKS[mask] : undefined;
+  const input = (
+    <Input
+      {...props}
+      id={fid}
+      value={value}
+      required={required}
+      placeholder={placeholder ?? m?.placeholder}
+      inputMode={props.inputMode ?? (m ? 'numeric' : undefined)}
+      autoComplete={props.autoComplete ?? m?.autoComplete}
+      maxLength={props.maxLength ?? m?.max}
+      aria-invalid={!!error || undefined}
+      aria-describedby={helper || error ? hid : undefined}
+      onChange={(e) => onChange?.(m ? m.fn(e.target.value) : e.target.value)}
+      className={trailing ? 'pr-xlarge' : undefined}
+    />
+  );
   return (
     <div className={cn('grid gap-nano', className)}>
-      <Label htmlFor={fid}>{label}{required && <span aria-hidden> *</span>}</Label>
-      <Input
-        {...props}
-        id={fid}
-        value={value}
-        required={required}
-        aria-invalid={!!error || undefined}
-        aria-describedby={helper || error ? hid : undefined}
-        onChange={(e) => onChange?.(e.target.value)}
-      />
+      <Label htmlFor={fid} className="body-small font-normal">{label}{required && <span aria-hidden>*</span>}</Label>
+      {trailing ? <div className="relative">{input}<div className="absolute right-xnano top-1/2 -translate-y-1/2">{trailing}</div></div> : input}
       {error ? (
         <p id={hid} className="caption m-0 flex items-start gap-xnano text-feedback-text-negative"><Icon name="alert" size="small" />{error}</p>
       ) : helper ? (
         <p id={hid} className="caption m-0 text-muted-foreground">{helper}</p>
       ) : null}
     </div>
+  );
+}
+
+/* ---------------------------------------------------------- PasswordField */
+
+export type PasswordFieldProps = Omit<TextFieldProps, 'type' | 'mask' | 'trailing'>;
+/** Campo de senha com botão "Mostrar senha" dentro do campo (ícone `eye`). O Figma desenha uma seta laranja no lugar; aqui ela vira o botão de mostrar e ocultar. */
+export function PasswordField(props: PasswordFieldProps) {
+  const [shown, setShown] = React.useState(false);
+  return (
+    <TextField
+      autoComplete="new-password"
+      {...props}
+      type={shown ? 'text' : 'password'}
+      trailing={<IconButton icon={shown ? 'eye-off' : 'eye'} label={shown ? 'Ocultar senha' : 'Mostrar senha'} aria-pressed={shown} onClick={() => setShown((v) => !v)} className="text-icon-brand-strong" />}
+    />
   );
 }
 

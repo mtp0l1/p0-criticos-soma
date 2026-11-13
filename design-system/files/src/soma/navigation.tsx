@@ -62,7 +62,7 @@ export function Header({ title, onBack, action, variant = 'center', divider = tr
   const shell = cn('bg-surface-primary px-xsmall py-nano text-foreground', divider && 'border-b border-border', className);
   if (variant === 'start') {
     return (
-      <header className={cn(shell, 'flex min-h-input items-center gap-micro')}>
+      <header className={cn(shell, 'flex min-h-header items-center gap-micro')}>
         {back}
         <h1 className="screen-title m-0 min-w-0 flex-1 truncate">{title}</h1>
         {act}
@@ -70,7 +70,7 @@ export function Header({ title, onBack, action, variant = 'center', divider = tr
     );
   }
   return (
-    <header className={cn(shell, 'grid min-h-input grid-cols-[theme(spacing.touch)_1fr_theme(spacing.touch)] items-center')}>
+    <header className={cn(shell, 'grid min-h-header grid-cols-[theme(spacing.touch)_1fr_theme(spacing.touch)] items-center')}>
       {back ?? <span />}
       <h1 className={cn('m-0 text-center', variant === 'center' ? 'line-clamp-3' : 'truncate', variant === 'round' ? 'label text-muted-foreground' : variant === 'eyebrow' ? 'eyebrow uppercase tracking-wide text-muted-foreground' : 'header-title')}>{title}</h1>
       {act ?? <span />}
@@ -257,13 +257,13 @@ export interface StepDotsProps {
   total: number;
   className?: string;
 }
-/** Pontos de progresso do cadastro ("Passo 1 de 7"). O texto vai para o leitor de tela; os pontos são decorativos. */
+/** Pontos de progresso do cadastro ("Passo 1 de 7"): 8px, só o passo atual em laranja (os anteriores voltam ao cinza, como no Figma). O texto vai para o leitor de tela; os pontos são decorativos. */
 export function StepDots({ current, total, className }: StepDotsProps) {
   return (
     <div className={cn('flex items-center justify-center gap-nano', className)}>
       <span className="sr-only">Passo {current} de {total}</span>
       {Array.from({ length: total }, (_, i) => (
-        <span key={i} aria-hidden className={cn('size-nano rounded-full', i + 1 === current ? 'bg-selected-indicator' : i + 1 < current ? 'bg-interactive-fill-loud' : 'bg-indicator-inactive')} />
+        <span key={i} aria-hidden className={cn('size-nano rounded-full', i + 1 === current ? 'bg-selected-indicator' : 'bg-indicator-inactive')} />
       ))}
     </div>
   );

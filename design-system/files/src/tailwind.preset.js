@@ -96,6 +96,7 @@ module.exports = {
       "touch": "var(--size-touch)",
       "button": "var(--size-button)",
       "input": "var(--size-input)",
+      "header": "var(--size-header)",
       "icon": "var(--size-icon)",
       "tile": "var(--size-tile)",
       "tabbar": "var(--size-tabbar)",

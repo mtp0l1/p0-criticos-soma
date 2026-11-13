@@ -103,17 +103,19 @@ export const sheetVariants = cva(
 );
 export interface SheetContentProps extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>, VariantProps<typeof sheetVariants> {
   showClose?: boolean;
+  /** Alça cinza no topo do bottom sheet (padrão `true`). O Cadastro não usa alça. */
+  handle?: boolean;
 }
 /** Bottom sheet (shadcn Sheet com side="bottom"): alça no topo, raio radius-xlarge, sombra high. */
 export const SheetContent = React.forwardRef<React.ElementRef<typeof DialogPrimitive.Content>, SheetContentProps>(function SheetContent(
-  { side, className, children, showClose = false, ...props },
+  { side, className, children, showClose = false, handle = true, ...props },
   ref,
 ) {
   return (
     <DialogPortal>
       <DialogOverlay />
       <DialogPrimitive.Content ref={ref} className={cn(sheetVariants({ side }), className)} {...props}>
-        {(side ?? 'bottom') === 'bottom' && <span aria-hidden className="mx-auto -mt-xnano block h-xnano w-large rounded-full bg-border" />}
+        {(side ?? 'bottom') === 'bottom' && handle && <span aria-hidden className="mx-auto -mt-xnano block h-xnano w-large rounded-full bg-border" />}
         {children}
         {showClose && (
           <DialogPrimitive.Close className={closeCls} aria-label="Fechar">
