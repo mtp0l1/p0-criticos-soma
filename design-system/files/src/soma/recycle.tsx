@@ -119,7 +119,7 @@ export function SlotPicker({ label, slots, value, onChange, className }: SlotPic
             aria-label={[s.sublabel, s.label, s.disabled ? 'indisponível' : ''].filter(Boolean).join(' ')}
             className={cn(
               pressable, focusRing,
-              'grid min-h-touch min-w-[42px] shrink-0 place-items-center content-center gap-xnano rounded-md border border-border bg-card px-nano py-nano text-center text-foreground',
+              'grid min-h-touch min-w-touch shrink-0 place-items-center content-center gap-xnano rounded-md border border-border bg-card px-nano py-nano text-center text-foreground',
               'hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active',
               'data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground',
               'disabled:cursor-not-allowed disabled:border-interactive-fill-disabled disabled:bg-interactive-fill-disabled disabled:text-interactive-text-disabled',

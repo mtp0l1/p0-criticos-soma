@@ -66,7 +66,7 @@ export interface LevelBadgeProps {
 /** Etiqueta do nível em maiúsculas, 10px. A cor segue o nível nas duas formas: marrom, cinza-azulado e amarelo. */
 export function LevelBadge({ tier, kind = 'name', className }: LevelBadgeProps) {
   return (
-    <span className={cn('inline-flex items-center rounded-xs px-nano py-[2px] font-sans text-[10px] uppercase leading-3 tracking-[0.5px]', TIER_FILL[tier], className)}>
+    <span className={cn('inline-flex items-center rounded-xs px-nano py-[2px] font-sans text-[12px] uppercase leading-4 tracking-[0.5px]', TIER_FILL[tier], className)}>
       {kind === 'name' ? TIER_NAME[tier] : TIER_LEVEL[tier]}
     </span>
   );
@@ -121,7 +121,7 @@ export function TierCard({ tier, current, questions = TIER_GOAL[tier], src }: Ti
       <Trophy tier={tier} src={src} />
       <div className="grid gap-xnano">
         <div className="flex flex-wrap items-center gap-nano">
-          <p className="m-0 text-[17px] font-extrabold leading-[21px] text-foreground">{TIER_NAME[tier]}</p>
+          <p className="m-0 text-[18px] font-extrabold leading-6 text-foreground">{TIER_NAME[tier]}</p>
           <LevelBadge tier={tier} kind="level" />
         </div>
         <p className="m-0 text-[12px] leading-[15px] text-muted-foreground">Responda {questions} perguntas</p>
@@ -151,7 +151,7 @@ export function ProtectionNotice({ children, variant = 'inline', onInfo }: Prote
   return (
     <div className="grid grid-cols-[auto_1fr_auto] items-center gap-micro rounded-md bg-surface-accent p-[14px]">
       <span aria-hidden className="grid size-[32px] place-items-center rounded-full bg-surface-brand text-text-on-loud"><Icon name="shield" size="small" /></span>
-      <p className="m-0 text-[13px] leading-[18px] text-muted-foreground">{children}</p>
+      <p className="m-0 text-[14px] leading-5 text-muted-foreground">{children}</p>
       {onInfo && <IconButton icon="info" label="Como funciona a proteção da sequência" onClick={onInfo} />}
     </div>
   );
@@ -185,14 +185,14 @@ export function QuestionCard({ points, question, options, value, onChange, onSub
             <PopoverContent aria-label="Como funciona o quiz">{info}</PopoverContent>
           </Popover>
         )}
-        {points != null && <PointsBadge points={points} className="ml-auto min-h-0 px-nano py-[2px] text-[10px] leading-3" />}
+        {points != null && <PointsBadge points={points} className="ml-auto min-h-0 px-nano py-[2px] text-[12px] leading-4" />}
       </div>
-      <p className="m-0 text-[15px] font-bold leading-[20px] text-foreground" id={`${qid}-q`}>{question}</p>
+      <p className="m-0 text-[16px] font-bold leading-6 text-foreground" id={`${qid}-q`}>{question}</p>
       <RadioGroup value={value} onValueChange={onChange} aria-labelledby={`${qid}-q`} className="gap-nano">
         {options.map((o, i) => (
           <label
             key={o}
-            className="flex min-h-touch cursor-pointer items-center rounded-sm border border-input bg-surface-primary p-[10px] text-[13px] leading-4 text-foreground transition-colors hover:bg-interactive-fill-quiet-hover has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring has-[[data-state=checked]]:border-[1.5px] has-[[data-state=checked]]:border-border-highlight has-[[data-state=checked]]:bg-surface-accent has-[[data-state=checked]]:font-semibold"
+            className="flex min-h-touch cursor-pointer items-center rounded-sm border border-input bg-surface-primary p-[10px] text-[14px] leading-5 text-foreground transition-colors hover:bg-interactive-fill-quiet-hover has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring has-[[data-state=checked]]:border-[1.5px] has-[[data-state=checked]]:border-border-highlight has-[[data-state=checked]]:bg-surface-accent has-[[data-state=checked]]:font-semibold"
           >
             <RadioGroupItem value={o} id={`${qid}-${i}`} className="sr-only" />
             {String.fromCharCode(97 + i)}) {o}
@@ -261,7 +261,7 @@ export function StreakTrail({ days, className }: StreakTrailProps) {
               {d.state === 'missed' && <Icon name="close" className="size-[12px]" />}
               {(d.state === 'today' || d.state === 'future') && d.label}
             </span>
-            <span className="text-[10px] leading-3 text-muted-foreground">
+            <span className="text-[12px] leading-4 text-muted-foreground">
               {d.label}<span className="sr-only">: {DAY_NAME[d.state]}{d.today && d.state !== 'today' ? ', hoje' : ''}</span>
             </span>
           </li>
@@ -313,7 +313,7 @@ export function StreakProgress({ weeks, milestones = [1, 5, 10, 20], nextReward,
           {milestones.map((m) => {
             const half = String(m).length > 1 ? 18 : 15;
             return (
-              <span key={m} className="absolute -translate-x-1/2 whitespace-nowrap text-[10px] font-semibold leading-3 text-muted-foreground" style={{ left: `min(calc(100% - ${half}px), max(${half}px, ${(m / max) * 100}%))` }}>{m} sem</span>
+              <span key={m} className="absolute -translate-x-1/2 whitespace-nowrap text-[12px] font-semibold leading-4 text-muted-foreground" style={{ left: `min(calc(100% - ${half}px), max(${half}px, ${(m / max) * 100}%))` }}>{m} sem</span>
             );
           })}
         </div>
@@ -353,7 +353,7 @@ export function StreakSection({ days, weeks, nextReward, protection, onHistory, 
 
 /* ---------------------------------------------------------- AnswerResult */
 
-const PILL = 'inline-flex items-center gap-[6px] rounded-full px-micro py-xnano text-[11px] leading-[14px]';
+const PILL = 'inline-flex items-center gap-[6px] rounded-full px-micro py-xnano text-[12px] leading-4';
 export interface AnswerResultProps {
   correct: boolean;
   /** A resposta certa, como aparece nas opções. */
@@ -379,7 +379,7 @@ export function AnswerResult({ correct, answer, explanation, points, weeks, mess
   return (
     <section aria-labelledby={id} className="grid min-h-full grid-rows-[auto_1fr_auto]">
       <header className="grid justify-items-center gap-mini border-b border-border bg-surface-primary px-mini py-mini">
-        <span className={cn('rounded-full px-micro py-xnano text-[10px] font-bold uppercase leading-3', correct ? 'bg-feedback-text-positive text-text-inverse' : 'bg-destructive text-destructive-foreground')}>
+        <span className={cn('rounded-full px-micro py-xnano text-[12px] font-bold uppercase leading-4', correct ? 'bg-feedback-text-positive text-text-inverse' : 'bg-destructive text-destructive-foreground')}>
           {correct ? 'Você acertou!' : 'Não foi dessa vez'}
         </span>
         {typeof art === 'string' || art == null ? (
@@ -388,16 +388,16 @@ export function AnswerResult({ correct, answer, explanation, points, weeks, mess
       </header>
       <div className="grid content-start gap-xsmall p-small">
         <div className="grid gap-nano">
-          <p className="m-0 text-[13px] font-bold leading-4 tracking-[0.5px] text-text-link">{correct ? 'A resposta certa é' : 'A resposta certa era'}</p>
+          <p className="m-0 text-[14px] font-bold leading-5 tracking-[0.5px] text-text-link">{correct ? 'A resposta certa é' : 'A resposta certa era'}</p>
           <h2 id={id} className="m-0 text-[18px] font-bold leading-[22px] text-foreground">{answer}</h2>
         </div>
         <div className="grid gap-nano">
-          <h3 className="m-0 text-[13px] font-bold leading-4 tracking-[0.5px] text-muted-foreground">Por quê?</h3>
+          <h3 className="m-0 text-[14px] font-bold leading-5 tracking-[0.5px] text-muted-foreground">Por quê?</h3>
           <p className="m-0 text-[14px] leading-5 text-muted-foreground">{explanation}</p>
         </div>
         {correct ? (
           <div className="grid gap-nano">
-            <h3 className="m-0 text-[13px] font-bold leading-4 tracking-[0.5px] text-muted-foreground">Pontos ganhos</h3>
+            <h3 className="m-0 text-[14px] font-bold leading-5 tracking-[0.5px] text-muted-foreground">Pontos ganhos</h3>
             <p className="m-0 text-[14px] leading-5 text-muted-foreground">{message}</p>
             <div className="mt-xnano flex flex-wrap items-center justify-center gap-nano">
               {weeks != null && (
@@ -413,14 +413,14 @@ export function AnswerResult({ correct, answer, explanation, points, weeks, mess
             </div>
           </div>
         ) : (
-          <p className="m-0 text-[13px] leading-4 text-muted-foreground">Continue aprendendo para subir de nível.</p>
+          <p className="m-0 text-[14px] leading-5 text-muted-foreground">Continue aprendendo para subir de nível.</p>
         )}
       </div>
       <footer className="grid justify-items-center gap-micro px-small pb-small pt-large">
         <Button fullWidth onClick={onContinue}>Continuar</Button>
         {secondary && (secondary.href
-          ? <a href={secondary.href} className="inline-flex min-h-touch items-center text-[13px] font-semibold leading-4 text-text-link underline">{secondary.label}</a>
-          : <button type="button" onClick={secondary.onClick} className="inline-flex min-h-touch items-center text-[13px] font-semibold leading-4 text-text-link underline">{secondary.label}</button>)}
+          ? <a href={secondary.href} className="inline-flex min-h-touch items-center text-[14px] font-semibold leading-5 text-text-link underline">{secondary.label}</a>
+          : <button type="button" onClick={secondary.onClick} className="inline-flex min-h-touch items-center text-[14px] font-semibold leading-5 text-text-link underline">{secondary.label}</button>)}
       </footer>
     </section>
   );
@@ -443,7 +443,7 @@ export function DailyDone({ title = 'Tarefa cumprida!', children = 'Você já re
       <span aria-hidden className="grid size-[48px] place-items-center rounded-full bg-feedback-fill-positive text-feedback-text-positive"><Icon name="check" size="medium" /></span>
       <div className="grid gap-xnano">
         <h2 className="m-0 text-[16px] font-bold leading-5 text-foreground">{title}</h2>
-        <p className="m-0 text-[13px] leading-[18px] text-muted-foreground">{children}</p>
+        <p className="m-0 text-[14px] leading-5 text-muted-foreground">{children}</p>
       </div>
       {countdown && <span className="rounded-sm bg-surface-secondary px-micro py-[6px] text-[12px] font-semibold leading-[15px] text-muted-foreground">Próxima pergunta em {countdown}</span>}
     </section>
@@ -469,13 +469,13 @@ export function HistorySummary({ tier, since, total, last, src }: HistorySummary
         <Trophy tier={tier} src={src} />
         <div className="grid justify-items-start gap-[2px]">
           <LevelBadge tier={tier} />
-          {since && <p className="m-0 text-[11px] leading-[13px] text-muted-foreground">Avançou de nível em {since}</p>}
+          {since && <p className="m-0 text-[12px] leading-4 text-muted-foreground">Avançou de nível em {since}</p>}
         </div>
       </div>
       <dl className="m-0 grid grid-cols-2 gap-nano">
         {[['Total de respostas', String(total)], ['Última resposta', last]].map(([k, v]) => (
           <div key={k} className="grid gap-xnano rounded-md bg-surface-secondary p-[10px]">
-            <dt className="text-[10px] leading-3 text-muted-foreground">{k}</dt>
+            <dt className="text-[12px] leading-4 text-muted-foreground">{k}</dt>
             <dd className="m-0 text-[16px] font-bold leading-[19px] text-foreground">{v}</dd>
           </div>
         ))}
@@ -520,8 +520,8 @@ export function AnswerHistoryRow({ date, question, result }: AnswerHistoryRowPro
   return (
     <li className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-micro border-b border-border bg-surface-primary p-micro last:border-b-0">
       <div className="grid min-w-0 gap-xnano">
-        <p className="m-0 text-[13px] font-semibold leading-4 text-foreground">{date}</p>
-        <p className="m-0 truncate text-[13px] leading-4 text-muted-foreground">{question}</p>
+        <p className="m-0 text-[14px] font-semibold leading-5 text-foreground">{date}</p>
+        <p className="m-0 truncate text-[14px] leading-5 text-muted-foreground">{question}</p>
       </div>
       {result.kind === 'points' && <span className="inline-flex items-center rounded-full bg-feedback-fill-positive px-[10px] py-xnano text-[12px] font-bold leading-[15px] text-feedback-text-positive">+{result.points}<span className="sr-only"> pontos</span></span>}
       {result.kind === 'kept' && <span className="inline-flex items-center gap-[3px] rounded-full bg-surface-accent px-[10px] py-xnano text-[12px] font-bold leading-[15px] text-text-link"><Icon name="shield" className="size-[12px]" />Sequência mantida</span>}
@@ -550,7 +550,7 @@ function MilestoneBlocks({ weeks, milestones }: { weeks: number; milestones: num
                 {done && <svg viewBox="0 0 12 12" className="size-[9px]" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 6.5l2.2 2.2 4.8-5" /></svg>}
               </span>
             </span>
-            <span aria-hidden className="absolute top-[30px] -translate-x-1/2 whitespace-nowrap text-[10px] font-semibold leading-3 text-muted-foreground" style={{ left: `min(calc(100% - ${String(m).length > 1 ? 18 : 15}px), max(${String(m).length > 1 ? 18 : 15}px, ${at(i)}))` }}>{m} sem</span>
+            <span aria-hidden className="absolute top-[30px] -translate-x-1/2 whitespace-nowrap text-[12px] font-semibold leading-4 text-muted-foreground" style={{ left: `min(calc(100% - ${String(m).length > 1 ? 18 : 15}px), max(${String(m).length > 1 ? 18 : 15}px, ${at(i)}))` }}>{m} sem</span>
           </React.Fragment>
         );
       })}
@@ -586,7 +586,7 @@ export function MilestoneResult({ weeks, points, nextReward, message, milestones
         {typeof art === 'string' || art == null ? (
           <img src={typeof art === 'string' ? art : ILLUSTRATIONS['conquista-bronze-148'].src} alt="" width={148} height={148} className="size-[148px] object-contain" />
         ) : art}
-        <p className="m-0 text-[36px] font-extrabold leading-[44px] text-text-link">+{fmt(points)} pontos</p>
+        <p className="m-0 text-[32px] font-extrabold leading-10 text-text-link">+{fmt(points)} pontos</p>
       </header>
       <div className="grid content-start gap-xsmall p-small">
         <h2 id={id} className="m-0 text-[18px] font-bold leading-[22px] text-foreground">Você completou {weeks} {wk(weeks)} {weeks === 1 ? 'seguida' : 'seguidas'}!</h2>

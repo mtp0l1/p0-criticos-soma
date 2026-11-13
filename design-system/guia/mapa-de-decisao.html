@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="pt-BR" data-root="../"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mapa de decisão · So+ma Design System</title>
+<meta name="description" content="Da necessidade da tela ao componente: Usar para e Nunca de cada um, gerado dos contratos.">
+<script>try{var t=localStorage.getItem('soma-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preload" href="../assets/fonts/lexend-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23FFDCC4'/%3E%3Cpath d='M16 9v14M9 16h14' stroke='%235A2700' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+</head><body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<nav class="rail" aria-label="Seções"><a class="mark sl" href="../index.html" aria-label="So+ma Design System, início"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-recycle" aria-hidden="true"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"></path><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"></path><path d="m14 16-3 3 3 3"></path><path d="M8.293 13.596 7.196 9.5 3.1 10.598"></path><path d="m9.344 5.811 1.093-1.892A1.83 1.83 0 0 1 11.985 3a1.784 1.784 0 0 1 1.546.888l3.943 6.843"></path><path d="m13.378 9.633 4.096 1.098 1.097-4.096"></path></svg></a><a class="dest" href="../index.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>Início</a><a class="dest" href="../guia/visao-geral.html" aria-current=page><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg></span>Guia</a><a class="dest" href="../fundamentos/cores.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg></span>Fundamentos</a><a class="dest" href="../componentes/index.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg></span>Componentes</a><a class="dest" href="../arquivos.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download" aria-hidden="true"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg></span>Arquivos</a></nav>
+<aside class="drawer" id="drawer" aria-label="Páginas"><div class="drawer-head"><b>So+ma Design System</b><span>Versão 14 · 12/11/2026</span></div><nav aria-label="Páginas do design system"><details open><summary class="sl">Guia<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><a class="sl" href="../guia/visao-geral.html">Visão geral</a><a class="sl" href="../guia/telas-novas.html">Telas novas e mapa do Figma</a><a class="sl" href="../guia/gerar-telas.html">Gerar telas com IA</a><a class="sl" href="../guia/padroes.html">Padrões de tela</a><a class="sl" href="../guia/engenharia.html">Para engenharia</a><a class="sl" href="../guia/auditoria-shadcn.html">Auditoria contra o shadcn/ui</a><a class="sl" href="../guia/regras.html">Regras e verificações</a><a class="sl" href="../guia/mapa-de-decisao.html" aria-current="page">Mapa de decisão</a><a class="sl" href="../guia/agents.html">AGENTS.md para IAs</a></details><details><summary class="sl">Fundamentos<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><a class="sl" href="../fundamentos/cores.html">Cores</a><a class="sl" href="../fundamentos/tipografia.html">Tipografia</a><a class="sl" href="../fundamentos/espaco-e-forma.html">Espaço e forma</a><a class="sl" href="../fundamentos/icones.html">Ícones</a><a class="sl" href="../fundamentos/ilustracoes.html">Ilustrações</a></details><details><summary class="sl">Componentes<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><a class="sl" href="../componentes/index.html">Todos os componentes</a><p class="gh">Ações</p><a class="sl dense" href="../componentes/Button.html">Button</a><a class="sl dense" href="../componentes/Icon.html">Icon</a><a class="sl dense" href="../componentes/ButtonGroup.html">ButtonGroup</a><a class="sl dense" href="../componentes/Toggle.html">Toggle</a><a class="sl dense" href="../componentes/DropdownMenu.html">DropdownMenu</a><a class="sl dense" href="../componentes/Spinner.html">Spinner</a><p class="gh">Navegação</p><a class="sl dense" href="../componentes/Header.html">Header</a><a class="sl dense" href="../componentes/LocationBar.html">LocationBar</a><a class="sl dense" href="../componentes/TabBar.html">TabBar</a><a class="sl dense" href="../componentes/Tabs.html">Tabs</a><a class="sl dense" href="../componentes/SegmentedControl.html">SegmentedControl</a><a class="sl dense" href="../componentes/SectionHeader.html">SectionHeader</a><a class="sl dense" href="../componentes/PillTabs.html">PillTabs</a><a class="sl dense" href="../componentes/SegmentedControl.html">SegmentedControl</a><a class="sl dense" href="../componentes/StepDots.html">StepDots</a><a class="sl dense" href="../componentes/ListRow.html">ListRow</a><p class="gh">Home</p><a class="sl dense" href="../componentes/HomeGreeting.html">HomeGreeting</a><a class="sl dense" href="../componentes/Tile.html">Tile</a><a class="sl dense" href="../componentes/BalanceCard.html">BalanceCard</a><a class="sl dense" href="../componentes/QuestionTeaser.html">QuestionTeaser</a><a class="sl dense" href="../componentes/GoalSummaryCard.html">GoalSummaryCard</a><a class="sl dense" href="../componentes/ActivityRow.html">ActivityRow</a><p class="gh">Quiz</p><a class="sl dense" href="../componentes/Trophy.html">Trophy</a><a class="sl dense" href="../componentes/LevelCard.html">LevelCard</a><a class="sl dense" href="../componentes/LevelBadge.html">LevelBadge</a><a class="sl dense" href="../componentes/TierCard.html">TierCard</a><a class="sl dense" href="../componentes/ProtectionNotice.html">ProtectionNotice</a><a class="sl dense" href="../componentes/QuestionCard.html">QuestionCard</a><a class="sl dense" href="../componentes/PointsBadge.html">PointsBadge</a><a class="sl dense" href="../componentes/StreakTrail.html">StreakTrail</a><a class="sl dense" href="../componentes/StreakProgress.html">StreakProgress</a><a class="sl dense" href="../componentes/StreakSection.html">StreakSection</a><a class="sl dense" href="../componentes/AnswerResult.html">AnswerResult</a><a class="sl dense" href="../componentes/DailyDone.html">DailyDone</a><a class="sl dense" href="../componentes/HistorySummary.html">HistorySummary</a><a class="sl dense" href="../componentes/AnswerHistory.html">AnswerHistory</a><a class="sl dense" href="../componentes/MilestoneResult.html">MilestoneResult</a><a class="sl dense" href="../componentes/Illustration.html">Illustration</a><p class="gh">Impacto e ranking</p><a class="sl dense" href="../componentes/StatTile.html">StatTile</a><a class="sl dense" href="../componentes/PositionCard.html">PositionCard</a><a class="sl dense" href="../componentes/Podium.html">Podium</a><a class="sl dense" href="../componentes/RankingRow.html">RankingRow</a><a class="sl dense" href="../componentes/RankingStarterCard.html">RankingStarterCard</a><a class="sl dense" href="../componentes/ImpactTiles.html">ImpactTiles</a><a class="sl dense" href="../componentes/GoalNote.html">GoalNote</a><a class="sl dense" href="../componentes/ReminderCard.html">ReminderCard</a><a class="sl dense" href="../componentes/ShareImpactModal.html">ShareImpactModal</a><a class="sl dense" href="../componentes/StatsRow.html">StatsRow</a><p class="gh">Resgates e conta</p><a class="sl dense" href="../componentes/RedemptionItem.html">RedemptionItem</a><a class="sl dense" href="../componentes/QrCheckinCard.html">QrCheckinCard</a><a class="sl dense" href="../componentes/Avatar.html">Avatar</a><p class="gh">Reciclar e agendar</p><a class="sl dense" href="../componentes/DeliveryCard.html">DeliveryCard</a><a class="sl dense" href="../componentes/SpaceCard.html">SpaceCard</a><a class="sl dense" href="../componentes/SlotPicker.html">SlotPicker</a><a class="sl dense" href="../componentes/SpaceDetail.html">SpaceDetail</a><a class="sl dense" href="../componentes/DeliverySummaryCard.html">DeliverySummaryCard</a><a class="sl dense" href="../componentes/DeliveryHistoryRow.html">DeliveryHistoryRow</a><a class="sl dense" href="../componentes/DeliveryDayCard.html">DeliveryDayCard</a><p class="gh">Recompensas e doação</p><a class="sl dense" href="../componentes/GoalCard.html">GoalCard</a><a class="sl dense" href="../componentes/CampaignBanner.html">CampaignBanner</a><a class="sl dense" href="../componentes/RewardRow.html">RewardRow</a><a class="sl dense" href="../componentes/RedeemCode.html">RedeemCode</a><a class="sl dense" href="../componentes/RewardChoiceList.html">RewardChoiceList</a><a class="sl dense" href="../componentes/GoalProgressCard.html">GoalProgressCard</a><a class="sl dense" href="../componentes/RewardDetail.html">RewardDetail</a><a class="sl dense" href="../componentes/InviteCodeCard.html">InviteCodeCard</a><a class="sl dense" href="../componentes/FriendRequestSheet.html">FriendRequestSheet</a><a class="sl dense" href="../componentes/ContactRow.html">ContactRow</a><a class="sl dense" href="../componentes/InstitutionCard.html">InstitutionCard</a><a class="sl dense" href="../componentes/InstitutionRow.html">InstitutionRow</a><a class="sl dense" href="../componentes/DonationAmountCard.html">DonationAmountCard</a><a class="sl dense" href="../componentes/DonationStateCard.html">DonationStateCard</a><a class="sl dense" href="../componentes/InstitutionDetailModal.html">InstitutionDetailModal</a><p class="gh">Busca e ajuda</p><a class="sl dense" href="../componentes/SearchField.html">SearchField</a><a class="sl dense" href="../componentes/MaterialResult.html">MaterialResult</a><a class="sl dense" href="../componentes/Accordion.html">Accordion</a><a class="sl dense" href="../componentes/HelpfulVote.html">HelpfulVote</a><a class="sl dense" href="../componentes/Tag.html">Tag</a><p class="gh">Formulários</p><a class="sl dense" href="../componentes/Input.html">Input</a><a class="sl dense" href="../componentes/TextField.html">TextField</a><a class="sl dense" href="../componentes/SignupStep.html">SignupStep</a><a class="sl dense" href="../componentes/PasswordField.html">PasswordField</a><a class="sl dense" href="../componentes/TermsConsent.html">TermsConsent</a><a class="sl dense" href="../componentes/InviteCodeField.html">InviteCodeField</a><a class="sl dense" href="../componentes/NeighborhoodNote.html">NeighborhoodNote</a><a class="sl dense" href="../componentes/InviteMessageExample.html">InviteMessageExample</a><a class="sl dense" href="../componentes/AccountExistsSheet.html">AccountExistsSheet</a><a class="sl dense" href="../componentes/InviteCodeHelpSheet.html">InviteCodeHelpSheet</a><a class="sl dense" href="../componentes/Textarea.html">Textarea</a><a class="sl dense" href="../componentes/Select.html">Select</a><a class="sl dense" href="../componentes/Checkbox.html">Checkbox</a><a class="sl dense" href="../componentes/Switch.html">Switch</a><a class="sl dense" href="../componentes/ChoiceChips.html">ChoiceChips</a><a class="sl dense" href="../componentes/RadioList.html">RadioList</a><a class="sl dense" href="../componentes/Field.html">Field</a><a class="sl dense" href="../componentes/InputGroup.html">InputGroup</a><a class="sl dense" href="../componentes/InputOTP.html">InputOTP</a><a class="sl dense" href="../componentes/NativeSelect.html">NativeSelect</a><a class="sl dense" href="../componentes/Combobox.html">Combobox</a><a class="sl dense" href="../componentes/Command.html">Command</a><a class="sl dense" href="../componentes/Slider.html">Slider</a><p class="gh">Sobreposições</p><a class="sl dense" href="../componentes/Modal.html">Modal</a><a class="sl dense" href="../componentes/Dialog.html">Dialog</a><a class="sl dense" href="../componentes/AlertDialog.html">AlertDialog</a><a class="sl dense" href="../componentes/Sheet.html">Sheet</a><a class="sl dense" href="../componentes/Popover.html">Popover</a><a class="sl dense" href="../componentes/Drawer.html">Drawer</a><p class="gh">Exibição</p><a class="sl dense" href="../componentes/Card.html">Card</a><a class="sl dense" href="../componentes/Badge.html">Badge</a><a class="sl dense" href="../componentes/StatusChip.html">StatusChip</a><a class="sl dense" href="../componentes/Progress.html">Progress</a><a class="sl dense" href="../componentes/Separator.html">Separator</a><a class="sl dense" href="../componentes/AspectRatio.html">AspectRatio</a><a class="sl dense" href="../componentes/ScrollArea.html">ScrollArea</a><a class="sl dense" href="../componentes/Collapsible.html">Collapsible</a><a class="sl dense" href="../componentes/Table.html">Table</a><a class="sl dense" href="../componentes/Pagination.html">Pagination</a><a class="sl dense" href="../componentes/Carousel.html">Carousel</a><p class="gh">Feedback</p><a class="sl dense" href="../componentes/Message.html">Message</a><a class="sl dense" href="../componentes/Toast.html">Toast</a><a class="sl dense" href="../componentes/EmptyState.html">EmptyState</a><a class="sl dense" href="../componentes/ResultScreen.html">ResultScreen</a><a class="sl dense" href="../componentes/Skeleton.html">Skeleton</a><a class="sl dense" href="../componentes/Toaster.html">Toaster</a><p class="gh">Telas de exemplo</p><a class="sl dense" href="../componentes/TelaAgendamentoConfirmado.html">TelaAgendamentoConfirmado</a><a class="sl dense" href="../componentes/TelaAgendar.html">TelaAgendar</a><a class="sl dense" href="../componentes/TelaCadastroCelular.html">TelaCadastroCelular</a><a class="sl dense" href="../componentes/TelaCadastroCelularCadastrado.html">TelaCadastroCelularCadastrado</a><a class="sl dense" href="../componentes/TelaCadastroCep.html">TelaCadastroCep</a><a class="sl dense" href="../componentes/TelaCadastroCodigoAjuda.html">TelaCadastroCodigoAjuda</a><a class="sl dense" href="../componentes/TelaCadastroConvite.html">TelaCadastroConvite</a><a class="sl dense" href="../componentes/TelaCadastroCpf.html">TelaCadastroCpf</a><a class="sl dense" href="../componentes/TelaCadastroNome.html">TelaCadastroNome</a><a class="sl dense" href="../componentes/TelaCadastroSenha.html">TelaCadastroSenha</a><a class="sl dense" href="../componentes/TelaDiaDaEntrega.html">TelaDiaDaEntrega</a><a class="sl dense" href="../componentes/TelaDoar.html">Tela Doar pontos</a><a class="sl dense" href="../componentes/TelaDoarInsuficiente.html">TelaDoarInsuficiente</a><a class="sl dense" href="../componentes/TelaDoarLista.html">TelaDoarLista</a><a class="sl dense" href="../componentes/TelaDoarSaldoZero.html">TelaDoarSaldoZero</a><a class="sl dense" href="../componentes/TelaDoarSucesso.html">TelaDoarSucesso</a><a class="sl dense" href="../componentes/TelaEntregaRegistrada.html">TelaEntregaRegistrada</a><a class="sl dense" href="../componentes/TelaInicio.html">TelaInicio</a><a class="sl dense" href="../componentes/TelaInicioComMeta.html">TelaInicioComMeta</a><a class="sl dense" href="../componentes/TelaMeta.html">TelaMeta</a><a class="sl dense" href="../componentes/TelaMeusAgendamentos.html">TelaMeusAgendamentos</a><a class="sl dense" href="../componentes/TelaQr.html">TelaQr</a><a class="sl dense" href="../componentes/TelaReciclar.html">Tela Reciclar</a></details></nav></aside>
+<div class="scrim"></div>
+<div class="app">
+<header class="topbar"><button type="button" class="ib sl" id="menu" aria-label="Abrir navegação" aria-controls="drawer" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg></button>
+<div class="search" role="search"><label class="search-bar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg><span class="sr">Buscar no design system</span><input id="q" type="search" placeholder="Buscar componente, token ou ícone" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="results" aria-autocomplete="list"><kbd aria-hidden="true">/</kbd></label><ul class="results" id="results" role="listbox" aria-label="Resultados" hidden></ul></div>
+<button type="button" class="ib sl" id="theme" aria-label="Usar tema escuro" aria-pressed="false"><span class="i-moon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg></span><span class="i-sun"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></span></button></header>
+<main id="conteudo" class="content has-toc"><article><header class="page-head"><p class="eyebrow-m3">Guia</p><h1>Mapa de decisão</h1><p class=lead>Da necessidade da tela ao componente: Usar para e Nunca de cada um, gerado dos contratos.</p></header><div class="prose"><p>Gerado dos contratos dos componentes (<code>checks/gen_decision_map.py</code>). <strong>Não edite à mão:</strong> mude o "Usar para" ou o "Nunca" no README do componente e gere de novo.</p>
+<p>Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o componente. Se não achar, é peça nova: siga a triagem em <code>7-regras-e-verificacoes.md</code>.</p>
+<h2 id="acao">Ação</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Usar para</th>
+<th>Nunca</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Button</code></td>
+<td>Botão de ação em quatro ênfases (<code>loud</code>, <code>quiet</code>, <code>transparent</code>, <code>destructive</code>), construído como o Button do shadcn/ui: <code>buttonVariants</code> (CVA), <code>asChild</code> (Radix Slot) e <code>forwardRef</code>.</td>
+<td>ter dois botões <code>loud</code> na mesma tela, nem trocar cor ou raio por <code>className</code>.</td>
+</tr>
+<tr>
+<td><code>ButtonGroup</code></td>
+<td>Botões relacionados colados lado a lado, com uma borda só entre eles (shadcn ButtonGroup).</td>
+<td>juntar ações sem relação; só opções do mesmo tipo (Dia · Semana · Mês).</td>
+</tr>
+<tr>
+<td><code>Checkbox</code></td>
+<td>Caixa de seleção, sobre Radix Checkbox (shadcn Checkbox).</td>
+<td>usar para escolha única (use <code>RadioList</code>) nem sem rótulo ao lado.</td>
+</tr>
+<tr>
+<td><code>ChoiceChips</code></td>
+<td>Chips de escolha única: valores de doação, categorias de recompensa e materiais.</td>
+<td>usar para navegação entre telas nem para marcar vários itens quando a escolha é única.</td>
+</tr>
+<tr>
+<td><code>RadioList</code></td>
+<td>Lista de opções de escolha única, como a escolha do impacto a compartilhar.</td>
+<td>usar com mais de 5 opções (use <code>Select</code>) nem para ação imediata.</td>
+</tr>
+<tr>
+<td><code>Switch</code></td>
+<td>Interruptor de liga e desliga com efeito imediato, sobre Radix Switch (shadcn Switch).</td>
+<td>exigir botão de salvar depois: o efeito é imediato; para aceite de regulamento use <code>Checkbox</code>.</td>
+</tr>
+<tr>
+<td><code>Toggle</code></td>
+<td>Botão de liga e desliga, sozinho ou em grupo (shadcn Toggle e ToggleGroup, sobre Radix).</td>
+<td>usar para enviar formulário ou navegar; só liga e desliga um estado.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="navegacao">Navegação</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Usar para</th>
+<th>Nunca</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Header</code></td>
+<td>Cabeçalho de tela com voltar, título e no máximo uma ação.</td>
+<td>pôr mais de uma ação à direita, título com mais de uma linha, nem botão "Voltar" no corpo da tela.</td>
+</tr>
+<tr>
+<td><code>ListRow</code></td>
+<td>Linha de lista em dois formatos: <code>help</code> (creme, com título, legenda e seta) e <code>menu</code> (ícone, rótulo e divisor).</td>
+<td>misturar os formatos <code>help</code> e <code>menu</code> na mesma lista.</td>
+</tr>
+<tr>
+<td><code>LocationBar</code></td>
+<td>Barra do topo que mostra o espaço de recebimento onde a pessoa entrega e abre a troca de local.</td>
+<td>esconder a troca de local; sem espaço escolhido vira chamada, não some.</td>
+</tr>
+<tr>
+<td><code>Pagination</code></td>
+<td>Navegação entre páginas de uma lista (shadcn Pagination).</td>
+<td>usar em lista curta ou rolagem infinita.</td>
+</tr>
+<tr>
+<td><code>PillTabs</code></td>
+<td>Abas em pílulas soltas: a ativa cheia e as outras contornadas.</td>
+<td>usar fora de Recompensas nem com mais de duas abas.</td>
+</tr>
+<tr>
+<td><code>SectionHeader</code></td>
+<td>Título de bloco dentro da tela, com um link opcional à direita.</td>
+<td>usar como título de tela (use <code>Header</code>) nem com mais de um link à direita.</td>
+</tr>
+<tr>
+<td><code>SegmentedControl</code></td>
+<td>Controle em pílula para alternar entre duas ou três seções, como Quiz e Histórico.</td>
+<td>ter mais de três seções (use <code>Tabs</code>).</td>
+</tr>
+<tr>
+<td><code>StepDots</code></td>
+<td>Pontos de progresso do cadastro: um ponto por passo, só o atual em destaque.</td>
+<td>mostrar mais de um ponto laranja: só o passo atual tem destaque.</td>
+</tr>
+<tr>
+<td><code>TabBar</code></td>
+<td>Barra de navegação inferior fixa, com os cinco destinos do app.</td>
+<td>ter mais ou menos de cinco destinos, nem esconder em tela de fluxo (cadastro, QR).</td>
+</tr>
+<tr>
+<td><code>Tabs</code></td>
+<td>Abas com sublinhado para trocar o recorte de uma mesma tela, como o período do ranking.</td>
+<td>usar para trocar de tela inteira; só recorta o mesmo conteúdo (período).</td>
+</tr>
+<tr>
+<td><code>Tile</code></td>
+<td>Tile de atalho da Home: ícone em cima, rótulo embaixo, em grade de duas colunas (<code>TileGrid</code>).</td>
+<td>usar para dado (use <code>StatTile</code>) nem sem rótulo de texto.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="formulario">Formulário</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Usar para</th>
+<th>Nunca</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Combobox</code></td>
+<td>Select com busca, para listas longas como cidade (shadcn Combobox: Popover + Command).</td>
+<td>usar para listas curtas (use <code>Select</code>).</td>
+</tr>
+<tr>
+<td><code>Command</code></td>
+<td>Lista com campo de busca e navegação por teclado (shadcn Command, sobre cmdk).</td>
+<td>usar sozinho como tela; é a base do <code>Combobox</code>.</td>
+</tr>
+<tr>
+<td><code>Field</code></td>
+<td>Estrutura de um campo de formulário: rótulo, controle, ajuda e erro (shadcn Field).</td>
+<td>repetir rótulo, ajuda e erro à mão: a estrutura já vem pronta.</td>
+</tr>
+<tr>
+<td><code>Input</code></td>
+<td>Campo de texto de uma linha (shadcn Input) e o <code>Label</code> do Radix, com a altura e a borda acessível do So+ma.</td>
+<td>usar sem <code>Label</code> ou <code>aria-label</code>; para telas de produto prefira <code>TextField</code>.</td>
+</tr>
+<tr>
+<td><code>InputGroup</code></td>
+<td>Campo com ícone, texto ou botão dentro da mesma borda (shadcn InputGroup).</td>
+<td>pôr mais de um botão dentro da mesma borda.</td>
+</tr>
+<tr>
+<td><code>InputOTP</code></td>
+<td>Código de verificação digitado em casas separadas (shadcn InputOTP, sobre input-otp).</td>
+<td>usar para texto livre; só código de tamanho fixo.</td>
+</tr>
+<tr>
+<td><code>NativeSelect</code></td>
+<td>Lista suspensa que abre o seletor do próprio aparelho (shadcn NativeSelect).</td>
+<td>usar quando o menu precisa de ícone ou estilo próprio (use <code>Select</code>).</td>
+</tr>
+<tr>
+<td><code>PasswordField</code></td>
+<td>Campo de senha com botão de mostrar e ocultar dentro do campo.</td>
+<td>mostrar a senha por padrão nem aceitar menos que o texto de ajuda promete (6 caracteres).</td>
+</tr>
+<tr>
+<td><code>SearchField</code></td>
+<td>Campo de busca com lupa, texto e botão de limpar.</td>
+<td>usar como filtro de uma lista já visível sem limpar (botão de limpar é obrigatório).</td>
+</tr>
+<tr>
+<td><code>Select</code></td>
+<td>Lista suspensa de escolha única, sobre Radix Select (shadcn Select).</td>
+<td>usar com menos de três opções nem com busca (use <code>Combobox</code>).</td>
+</tr>
+<tr>
+<td><code>Slider</code></td>
+<td>Escolha de um valor, ou de uma faixa, arrastando uma alça (shadcn Slider, sobre Radix).</td>
+<td>usar para valor exato digitado (use <code>Input</code>).</td>
+</tr>
+<tr>
+<td><code>TextField</code></td>
+<td>Campo de formulário com rótulo acima, texto de ajuda e mensagem de erro.</td>
+<td>trocar rótulo por placeholder nem apagar o que a pessoa digitou ao mostrar erro.</td>
+</tr>
+<tr>
+<td><code>Textarea</code></td>
+<td>Campo de texto de várias linhas (shadcn Textarea).</td>
+<td>usar para resposta curta (use <code>Input</code>).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="cadastro">Cadastro</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Usar para</th>
+<th>Nunca</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AccountExistsSheet</code></td>
+<td>Bottom sheet "O (11) 98765-4321 já tem uma conta": aparece no passo do celular quando o número já está cadastrado.</td>
+<td>bloquear a pessoa: as duas saídas (entrar, usar outro número) sempre aparecem.</td>
+</tr>
+<tr>
+<td><code>InviteCodeField</code></td>
+<td>Campo opcional de código de convite, com o estado "Código aplicado" e o link "Onde encontro o código?".</td>
+<td>bloquear o cadastro por código inválido: o campo é opcional.</td>
+</tr>
+<tr>
+<td><code>InviteCodeHelpSheet</code></td>
+<td>Bottom sheet "Onde encontro o código?": explica e mostra a mensagem de convite de exemplo.</td>
+<td>abrir fora do passo do código de convite.</td>
+</tr>
+<tr>
+<td><code>InviteMessageExample</code></td>
+<td>Simulação de conversa que mostra onde está o código dentro da mensagem de convite.</td>
+<td>usar como mensagem real de envio; é só uma simulação.</td>
+</tr>
+<tr>
+<td><code>NeighborhoodNote</code></td>
+<td>Bairro encontrado pelo CEP, com o link "Corrigir".</td>
+<td>mostrar sem o link "Corrigir".</td>
+</tr>
+<tr>
+<td><code>SignupStep</code></td>
+<td>Corpo de um passo do cadastro: título, campos, botão e pontos de progresso.</td>
+<td>pôr mais de um dado por tela nem prender o botão no rodapé: ele segue o conteúdo.</td>
+</tr>
+<tr>
+<td><code>TermsConsent</code></td>
+<td>Aceite do regulamento e aviso de privacidade, no último passo do cadastro.</td>
+<td>pré-marcar o aceite nem liberar o botão sem ele.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="inicio">Início</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Usar para</th>
+<th>Nunca</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ActivityRow</code></td>
+<td>Linha de atividade recente no Início: o que aconteceu e quando, com uma ação opcional.</td>
+<td>passar de uma ação por linha.</td>
+</tr>
+<tr>
+<td><code>BalanceCard</code></td>
+<td>Card com o saldo de pontos e uma legenda de apoio; leva ao extrato.</td>
+<td>mostrar saldo sem a ação que leva ao extrato.</td>
+</tr>
+<tr>
+<td><code>CampaignBanner</code></td>
+<td>Campanha ativa no catálogo e no Início: uma faixa de uma linha.</td>
+<td>passar de uma linha.</td>
+</tr>
+<tr>
+<td><code>GoalSummaryCard</code></td>
+<td>Resumo da meta de pontos no Início: a recompensa escolhida e quanto falta.</td>
+<td>aparecer sem meta definida (use <code>GoalCard</code> ou a chamada de escolher meta).</td>
+</tr>
+<tr>
+<td><code>HomeGreeting</code></td>
+<td>Saudação do Início: "Olá Mônica", o botão do cartão QR e a ajuda.</td>
+<td>trocar o nome da pessoa por texto genérico quando ele existe.</td>
+</tr>
+<tr>
+<td><code>QrCheckinCard</code></td>
+<td>Cartão do QR de atendimento: a pessoa mostra o QR no espaço para a equipe registrar a entrega.</td>
+<td>usar para outro código que não seja o QR de atendimento; o cartão de membro da versão antiga saiu.</td>
+</tr>
+<tr>
+<td><code>QuestionTeaser</code></td>
+<td>Card "Pergunta do dia" no Início, que chama para o Quiz.</td>
+<td>mostrar a resposta no Início.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="quiz">Quiz</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Usar para</th>
+<th>Nunca</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AnswerHistory</code></td>
+<td>Lista de respostas do Quiz por mês, com navegação entre os meses (Tela 4).</td>
+<td>misturar meses numa lista só: a navegação é mês a mês.</td>
+</tr>
+<tr>
+<td><code>AnswerResult</code></td>
+<td>Tela cheia com o resultado da pergunta do dia, no acerto (2A) ou no erro (2B).</td>
+<td>mostrar medalha: o nível é troféu (<code>Trophy</code>).</td>
+</tr>
+<tr>
+<td><code>DailyDone</code></td>
+<td>Estado do Quiz depois de responder (Tela 3): "Tarefa cumprida!" e o tempo até a próxima pergunta.</td>
+<td>tirar o contador de tempo até a próxima pergunta.</td>
+</tr>
+<tr>
+<td><code>HelpfulVote</code></td>
+<td>Pergunta "Essa resposta foi útil?" com Sim e Não, ao fim de um artigo de ajuda.</td>
+<td>usar fora do fim de um artigo de ajuda.</td>
+</tr>
+<tr>
+<td><code>HistorySummary</code></td>
+<td>Topo do Histórico do Quiz (Tela 4): o troféu do nível, quando subiu e os totais.</td>
+<td>misturar medalha e troféu.</td>
+</tr>
+<tr>
+<td><code>LevelBadge</code></td>
+<td>Etiqueta do nível do Quiz, em maiúsculas: o nome ("BRONZE") ou a dificuldade ("INICIANTE").</td>
+<td>usar para texto que não seja nível ou dificuldade.</td>
+</tr>
+<tr>
+<td><code>LevelCard</code></td>
+<td>Topo do Quiz (Telas 1 e 3): o troféu do nível, a etiqueta e quantas perguntas faltam para o próximo.</td>
+<td>mostrar Ferro ou Platina: só Bronze, Prata e Ouro existem.</td>
+</tr>
+<tr>
+<td><code>MilestoneResult</code></td>
+<td>Tela cheia de conquista quando a pessoa completa um marco de semanas seguidas (Telas 7 e 8).</td>
+<td>disparar fora de marco de semanas seguidas.</td>
+</tr>
+<tr>
+<td><code>QuestionCard</code></td>
+<td>Card da "Pergunta do dia" no Quiz (Tela 1): pergunta, opções "a) …" e envio.</td>
+<td>revelar a resposta certa antes do envio.</td>
+</tr>
+<tr>
+<td><code>StreakProgress</code></td>
+<td>Barra da sequência em semanas, com os marcos que dão pontos extras.</td>
+<td>mostrar marco sem os pontos extras que ele dá.</td>
+</tr>
+<tr>
+<td><code>StreakSection</code></td>
+<td>Bloco "Sua trilha" das Telas 1 e 3 do Quiz: título, os sete dias, a barra de semanas, o aviso de proteção e o link "Ver histórico".</td>
+<td>esconder o link "Ver histórico".</td>
+</tr>
+<tr>
+<td><code>StreakTrail</code></td>
+<td>Os sete dias da semana na trilha do Quiz, com o estado de cada um.</td>
+<td>mostrar mais de sete dias.</td>
+</tr>
+<tr>
+<td><code>TierCard</code></td>
+<td>Um nível na tela "Campeão da Reciclagem" (Tela 5): troféu, nome, etiqueta de dificuldade e quantas perguntas pede.</td>
+<td>mostrar nível sem troféu e sem a etiqueta de dificuldade.</td>
+</tr>
+<tr>
+<td><code>Trophy</code></td>
+<td>Troféu ilustrado do nível no Quiz: uma pilha de pontos com uma estrela, dentro de um círculo.</td>
+<td>trocar por medalha ou por ilustração nova sem registro.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="ranking-e-social">Ranking e social</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Usar para</th>
+<th>Nunca</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ContactRow</code></td>
+<td>Linha de contato para convidar: avatar, nome, espaço e o botão "Convidar".</td>
+<td>trocar o botão "Convidar" por outra ação.</td>
+</tr>
+<tr>
+<td><code>FriendRequestSheet</code></td>
+<td>Pedido de amizade recebido: bottom sheet com "Agora não" e "Aceitar".</td>
+<td>pôr outra ação além de "Agora não" e "Aceitar".</td>
+</tr>
+<tr>
+<td><code>InviteCodeCard</code></td>
+<td>Seu código de convite, com botão de copiar.</td>
+<td>esconder o botão de copiar.</td>
+</tr>
+<tr>
+<td><code>Podium</code></td>
+<td>Os três primeiros do período: avatares sobre degraus ouro, prata e bronze.</td>
+<td>ordenar visualmente sem manter a ordem 1 · 2 · 3 para o leitor de tela.</td>
+</tr>
+<tr>
+<td><code>PositionCard</code></td>
+<td>Card "Sua posição" no ranking, com o percentual de participantes que a pessoa superou.</td>
+<td>comparar a pessoa a um indivíduo; só ao percentual de participantes.</td>
+</tr>
+<tr>
+<td><code>RankingRow</code></td>
+<td>Linha da classificação depois do pódio: "#4", avatar, nome e quilos.</td>
+<td>mostrar posição sem o nome da pessoa.</td>
+</tr>
+<tr>
+<td><code>RankingStarterCard</code></td>
+<td>Card da primeira entrega no Ranking, para quem ainda não reciclou no período.</td>
+<td>aparecer para quem já entregou no período.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="recompensas">Recompensas</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Usar para</th>
+<th>Nunca</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GoalCard</code></td>
+<td>Minha meta no topo do catálogo de recompensas: o prêmio escolhido e o quanto falta.</td>
+<td>mostrar meta sem quanto falta.</td>
+</tr>
+<tr>
+<td><code>GoalNote</code></td>
+<td>Nota "Sua meta" na tela Entrega registrada: caixa tracejada que liga o que a pessoa acabou de ganhar com a recompensa que quer.</td>
+<td>usar fora da tela Entrega registrada.</td>
+</tr>
+<tr>
+<td><code>GoalProgressCard</code></td>
+<td>Progresso da recompensa escolhida como meta: pontos atuais, o custo e quantos quilos faltam.</td>
+<td>esconder quantos quilos faltam.</td>
+</tr>
+<tr>
+<td><code>MaterialResult</code></td>
+<td>Resultado da busca de material: foto, nome, se é aceito no local, se é reciclável e a categoria.</td>
+<td>omitir se o material é aceito no local ou se é reciclável.</td>
+</tr>
+<tr>
+<td><code>RedeemCode</code></td>
+<td>Código do resgate em caixa tracejada, com botão de copiar em largura total.</td>
+<td>mostrar o código sem o botão de copiar.</td>
+</tr>
+<tr>
+<td><code>RedemptionItem</code></td>
+<td>Item do histórico de resgates: logo do parceiro, nome da recompensa, pontos e hora, e o status.</td>
+<td>escrever o status em texto livre: use <code>StatusChip</code>.</td>
+</tr>
+<tr>
+<td><code>RewardChoiceList</code></td>
+<td>Lista de recompensas para escolher a meta durante o cadastro.</td>
+<td>usar fora do cadastro (no catálogo use <code>RewardRow</code>).</td>
+</tr>
+<tr>
+<td><code>RewardDetail</code></td>
+<td>Detalhe de uma recompensa: imagem, categoria, nome, custo, etiquetas e "De onde vêm os pontos".</td>
+<td>esconder "De onde vêm os pontos".</td>
+</tr>
+<tr>
+<td><code>RewardRow</code></td>
+<td>Linha do catálogo de recompensas: título, pontos e seta.</td>
+<td>ter área tocável menor que a linha inteira.</td>
+</tr>
+<tr>
+<td><code>StatusChip</code></td>
+<td>Chip em pílula com o estado de um resgate: Concluído, Aguardando retirada ou Expirado.</td>
+<td>criar um quarto estado: são três (Concluído, Aguardando retirada, Expirado).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="reciclar-e-entrega">Reciclar e entrega</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Usar para</th>
+<th>Nunca</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DeliveryCard</code></td>
+<td>Card "Sua próxima entrega", na aba Reciclar e no Início.</td>
+<td>usar como resumo de confirmação (use <code>DeliverySummaryCard</code>).</td>
+</tr>
+<tr>
+<td><code>DeliveryDayCard</code></td>
+<td>Card de espera no dia da entrega: lembra o endereço e o horário do espaço antes de a pessoa abrir o QR.</td>
+<td>trocar o lembrete de endereço e horário pelo próprio QR (ele vive no <code>QrCheckinCard</code>).</td>
+</tr>
+<tr>
+<td><code>DeliveryHistoryRow</code></td>
+<td>Entrega anterior na lista de Meus agendamentos: onde foi, quando e a situação.</td>
+<td>misturar entrega futura e passada.</td>
+</tr>
+<tr>
+<td><code>DeliverySummaryCard</code></td>
+<td>Resumo do agendamento: quando, onde e a que horas a pessoa entrega.</td>
+<td>mudar de forma entre confirmação, agendamentos e calendário: é o mesmo card.</td>
+</tr>
+<tr>
+<td><code>ImpactTiles</code></td>
+<td>Três números do impacto da entrega: quilos, pontos ganhos e água economizada.</td>
+<td>passar de três números.</td>
+</tr>
+<tr>
+<td><code>ReminderCard</code></td>
+<td>Lembrete da próxima entrega: data sugerida e botão "Adicionar ao calendário".</td>
+<td>trocar o botão "Adicionar ao calendário" por outra ação.</td>
+</tr>
+<tr>
+<td><code>SlotPicker</code></td>
+<td>Escolha de data ou horário em fileira rolável, no agendamento da entrega.</td>
+<td>mostrar horário cheio sem marcar "indisponível" para o leitor de tela.</td>
+</tr>
+<tr>
+<td><code>SpaceCard</code></td>
+<td>Espaço de recebimento: na lista "perto de você" ou como opção na escolha do agendamento.</td>
+<td>mostrar espaço sem endereço.</td>
+</tr>
+<tr>
+<td><code>SpaceDetail</code></td>
+<td>Detalhe de um espaço de recebimento: nome, endereço, horário e "Como chegar".</td>
+<td>aparecer antes de um espaço ser escolhido.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="doar">Doar</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Usar para</th>
+<th>Nunca</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DonationAmountCard</code></td>
+<td>Cartão "Quantos pontos deseja doar?" da tela de doação: saldo, campo de quantidade e mensagem de erro.</td>
+<td>esconder o saldo: ele aparece no cartão junto do campo.</td>
+</tr>
+<tr>
+<td><code>DonationStateCard</code></td>
+<td>Estado que toma o lugar do campo de doação quando a pessoa não pode doar ainda.</td>
+<td>aparecer junto do campo de doação.</td>
+</tr>
+<tr>
+<td><code>InstitutionCard</code></td>
+<td>Instituição que recebe a doação de pontos.</td>
+<td>esconder o "Saber mais".</td>
+</tr>
+<tr>
+<td><code>InstitutionDetailModal</code></td>
+<td>Modal "Saber mais" de uma instituição: banner, nome, texto longo e contatos.</td>
+<td>servir de tela de doação: ele abre pelo "Saber mais", a doação fica na tela de doar.</td>
+</tr>
+<tr>
+<td><code>InstitutionRow</code></td>
+<td>Instituição na lista "Escolha para quem você quer doar seus pontos".</td>
+<td>pôr dois alvos de toque na mesma linha.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="feedback-e-estados">Feedback e estados</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Usar para</th>
+<th>Nunca</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Badge</code></td>
+<td>Selo não interativo em pílula (shadcn Badge), em seis tons.</td>
+<td>ser tocável (use <code>Button</code> ou <code>Tag</code>) nem carregar texto longo.</td>
+</tr>
+<tr>
+<td><code>EmptyState</code></td>
+<td>Estado vazio centralizado com ilustração, título, explicação e um próximo passo.</td>
+<td>mostrar sem próximo passo nem usar ilustração fora do catálogo.</td>
+</tr>
+<tr>
+<td><code>Message</code></td>
+<td>Mensagem em linha que fica na tela, em quatro tons: informativa, positiva, de atenção e de erro.</td>
+<td>usar para aviso passageiro (use <code>Toast</code>) nem sem ícone ou texto.</td>
+</tr>
+<tr>
+<td><code>Progress</code></td>
+<td>Barra de progresso contínua, sobre Radix Progress (shadcn Progress).</td>
+<td>usar para etapas discretas (use <code>StepDots</code>).</td>
+</tr>
+<tr>
+<td><code>ProtectionNotice</code></td>
+<td>Aviso da proteção semanal da sequência: "se você perder um dia, a sequência continua".</td>
+<td>prometer proteção que a regra semanal não dá.</td>
+</tr>
+<tr>
+<td><code>ResultScreen</code></td>
+<td>Tela de resultado ou pedido: sucesso, erro ou permissão (contatos, notificação).</td>
+<td>deixar o fluxo sem uma ação principal clara.</td>
+</tr>
+<tr>
+<td><code>Skeleton</code></td>
+<td>Esqueleto de carregamento para texto, linha com miniatura e card.</td>
+<td>ficar no lugar do erro: se a carga falhar, mostre <code>Message</code>.</td>
+</tr>
+<tr>
+<td><code>Spinner</code></td>
+<td>Indicador de espera sem duração conhecida (shadcn Spinner).</td>
+<td>usar quando se sabe a duração (use <code>Progress</code>).</td>
+</tr>
+<tr>
+<td><code>Tag</code></td>
+<td>Etiqueta de categoria (Plástico, Cartonado).</td>
+<td>ser tocável nem passar de uma palavra ou duas.</td>
+</tr>
+<tr>
+<td><code>Toast</code></td>
+<td>Aviso curto e passageiro: erro, confirmação, aviso neutro ou novidade do ranking, sempre com ícone e uma frase.</td>
+<td>guardar informação que a pessoa precisa reler; some sozinho.</td>
+</tr>
+<tr>
+<td><code>Toaster</code></td>
+<td>Provedor de avisos passageiros, com fila, tempo e gesto de dispensar (shadcn Sonner).</td>
+<td>montar mais de um provedor por app.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="sobreposicao">Sobreposição</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Usar para</th>
+<th>Nunca</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Accordion</code></td>
+<td>Lista de perguntas que abrem e fecham, sobre Radix Accordion (shadcn Accordion).</td>
+<td>abrir tudo por padrão nem esconder regra que a pessoa precisa aceitar.</td>
+</tr>
+<tr>
+<td><code>AlertDialog</code></td>
+<td>Confirmação que exige resposta antes de seguir, sobre Radix AlertDialog (shadcn AlertDialog).</td>
+<td>usar para informação sem decisão (use <code>Modal</code> ou <code>Message</code>).</td>
+</tr>
+<tr>
+<td><code>Collapsible</code></td>
+<td>Um trecho que abre e fecha, com animação de altura (shadcn Collapsible, sobre Radix).</td>
+<td>esconder informação obrigatória.</td>
+</tr>
+<tr>
+<td><code>Dialog</code></td>
+<td>As primitivas do Radix Dialog no estilo So+ma (shadcn Dialog), para montar um diálogo fora do padrão do <code>Modal</code>.</td>
+<td>usar quando o <code>Modal</code> serve; é só para diálogo fora do padrão.</td>
+</tr>
+<tr>
+<td><code>Drawer</code></td>
+<td>Bottom sheet que acompanha o dedo e fecha ao ser arrastado para baixo (shadcn Drawer, sobre Vaul).</td>
+<td>usar sem a alça de arrastar: a alça é o gesto de fechar.</td>
+</tr>
+<tr>
+<td><code>DropdownMenu</code></td>
+<td>Menu de ações de um item, aberto por um botão (shadcn DropdownMenu, sobre Radix).</td>
+<td>esconder ação principal da tela.</td>
+</tr>
+<tr>
+<td><code>Modal</code></td>
+<td>Modal de confirmação ou de escolha, com título, texto curto ou conteúdo, e uma única ação.</td>
+<td>ter mais de uma ação principal nem esconder a saída.</td>
+</tr>
+<tr>
+<td><code>Popover</code></td>
+<td>Balão de ajuda curta que abre ao tocar, sobre Radix Popover (shadcn Popover).</td>
+<td>guardar ação obrigatória; é só ajuda curta.</td>
+</tr>
+<tr>
+<td><code>ShareImpactModal</code></td>
+<td>Modal "Compartilhar meu impacto": resume os números da entrega e oferece três caminhos para compartilhar.</td>
+<td>passar de três caminhos de compartilhar.</td>
+</tr>
+<tr>
+<td><code>Sheet</code></td>
+<td>Bottom sheet, sobre Radix Dialog (shadcn Sheet com <code>side="bottom"</code>).</td>
+<td>usar para confirmação destrutiva (use <code>AlertDialog</code>).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="layout-e-conteudo">Layout e conteúdo</h2>
+<div class="tw" tabindex="0" role="region" aria-label="Tabela"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Usar para</th>
+<th>Nunca</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AspectRatio</code></td>
+<td>Mantém a proporção de uma imagem, vídeo ou mapa enquanto a largura muda (shadcn AspectRatio, sobre Radix).</td>
+<td>usar sem proporção definida.</td>
+</tr>
+<tr>
+<td><code>Avatar</code></td>
+<td>Foto ou iniciais da pessoa em círculo, sobre Radix Avatar (shadcn Avatar).</td>
+<td>mostrar sem iniciais quando falta a foto.</td>
+</tr>
+<tr>
+<td><code>Card</code></td>
+<td>Contêiner de conteúdo (shadcn Card) com cabeçalho, título, descrição, conteúdo e rodapé, em quatro variantes.</td>
+<td>aninhar card dentro de card nem mudar o raio por <code>className</code>.</td>
+</tr>
+<tr>
+<td><code>Carousel</code></td>
+<td>Slides que passam por gesto, com setas e pontos (shadcn Carousel, sobre Embla).</td>
+<td>esconder conteúdo essencial depois do primeiro slide.</td>
+</tr>
+<tr>
+<td><code>Icon</code></td>
+<td>Ícones de linha do Lucide, o mesmo set das telas novas no Figma, com nomes So+ma.</td>
+<td>importar ícone de fora do set Lucide do sistema.</td>
+</tr>
+<tr>
+<td><code>Illustration</code></td>
+<td>Mostra uma das ilustrações do sistema pelo nome, no tamanho do Figma ou em outro.</td>
+<td>desenhar ilustração nova sem registrar em 6-ilustracoes.md.</td>
+</tr>
+<tr>
+<td><code>PointsBadge</code></td>
+<td>Pílula com os pontos de uma pergunta, de um prêmio ou de um custo.</td>
+<td>usar para outro número que não seja pontos.</td>
+</tr>
+<tr>
+<td><code>ScrollArea</code></td>
+<td>Área com rolagem própria e barra visível (shadcn ScrollArea, sobre Radix).</td>
+<td>criar rolagem aninhada dentro da rolagem da tela.</td>
+</tr>
+<tr>
+<td><code>Separator</code></td>
+<td>Linha divisória horizontal ou vertical, sobre Radix Separator (shadcn Separator).</td>
+<td>usar só para espaçar: o espaço vem da escala.</td>
+</tr>
+<tr>
+<td><code>StatTile</code></td>
+<td>Indicador de impacto: ícone, frase de entrada, valor e equivalência.</td>
+<td>usar sem equivalência quando o dado a tem.</td>
+</tr>
+<tr>
+<td><code>StatsRow</code></td>
+<td>Números lado a lado (entregas, quilos, pontos) num bloco neutro.</td>
+<td>passar de três números.</td>
+</tr>
+<tr>
+<td><code>Table</code></td>
+<td>Tabela de dados simples, como o extrato de pontos (shadcn Table).</td>
+<td>usar para lista de itens tocáveis (use <code>ListRow</code>).</td>
+</tr>
+</tbody>
+</table></div></div><nav class="pager" aria-label="Páginas vizinhas"><a class="sl" href="regras.html"><small><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Anterior</small><b>Regras e verificações</b></a><a class="sl next" href="agents.html"><small>Próximo<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></small><b>AGENTS.md para IAs</b></a></nav></article><aside class="toc" aria-label="Nesta página"><p>Nesta página</p><a class="l2" href="#acao">Ação</a><a class="l2" href="#navegacao">Navegação</a><a class="l2" href="#formulario">Formulário</a><a class="l2" href="#cadastro">Cadastro</a><a class="l2" href="#inicio">Início</a><a class="l2" href="#quiz">Quiz</a><a class="l2" href="#ranking-e-social">Ranking e social</a><a class="l2" href="#recompensas">Recompensas</a><a class="l2" href="#reciclar-e-entrega">Reciclar e entrega</a><a class="l2" href="#doar">Doar</a><a class="l2" href="#feedback-e-estados">Feedback e estados</a><a class="l2" href="#sobreposicao">Sobreposição</a><a class="l2" href="#layout-e-conteudo">Layout e conteúdo</a></aside></main>
+<footer class="foot"><span>So+ma Design System · Versão 14 · atualizado em 12/11/2026</span><span>Componentes em shadcn/ui com a estrutura do Andes · documentação no padrão Material Design 3</span></footer>
+</div>
+<nav class="navbar" aria-label="Seções"><a class="dest" href="../index.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>Início</a><a class="dest" href="../guia/visao-geral.html" aria-current=page><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg></span>Guia</a><a class="dest" href="../fundamentos/cores.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg></span>Fundamentos</a><a class="dest" href="../componentes/index.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg></span>Componentes</a><a class="dest" href="../arquivos.html"><span class="ind sl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download" aria-hidden="true"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg></span>Arquivos</a></nav>
+<div class="snack" role="status" aria-live="polite"></div>
+<script src="../assets/search-index.js"></script><script src="../assets/site.js"></script>
+</body></html>

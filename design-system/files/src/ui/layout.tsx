@@ -207,7 +207,7 @@ export function CarouselDots({ className, ...props }: React.HTMLAttributes<HTMLD
           aria-label={`Ir para o slide ${i + 1} de ${count}`}
           aria-current={i === selected ? 'true' : undefined}
           onClick={() => api?.scrollTo(i)}
-          className={cn('group grid size-small cursor-pointer place-items-center rounded-full', focusRing)}
+          className={cn('group grid size-touch cursor-pointer place-items-center rounded-full', focusRing)}
         >
           <span className="block size-nano rounded-full bg-indicator-inactive transition-colors group-hover:bg-text-secondary group-aria-[current=true]:bg-selected-indicator" />
         </button>

@@ -95,7 +95,7 @@ export function QrCheckinCard({
         <h2 className="screen-title m-0 text-left">{title}</h2>
         <p className="body-small m-0 text-left text-muted-foreground">{description}</p>
       </div>
-      <div className="grid size-qr place-items-center rounded-lg border border-border bg-surface-primary p-mini shadow-low [&>*]:size-full">{qr}</div>
+      <div className="grid size-qr place-items-center rounded-lg border border-border bg-surface-primary p-mini [&>*]:size-full">{qr}</div>
       <p className="body-strong m-0 uppercase tracking-[0.5px]">{name}</p>
       <ol className="caption m-0 grid list-none gap-xnano p-0 text-muted-foreground">
         {steps.map((t, i) => <li key={t}>{i + 1}. {t}</li>)}

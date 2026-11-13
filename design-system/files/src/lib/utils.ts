@@ -33,5 +33,8 @@ export const disabledState =
 /** Aumenta a área tocável de controles pequenos (checkbox, rádio, switch, thumb) para 44px sem mudar o desenho. */
 export const hitArea = "relative after:absolute after:left-1/2 after:top-1/2 after:size-touch after:-translate-x-1/2 after:-translate-y-1/2 after:content-['']";
 
+/** Igual a hitArea, mas só na altura: links e botões de texto curtos ganham 44px de altura tocável e mantêm a largura do texto. */
+export const hitAreaY = "relative after:absolute after:inset-x-0 after:top-1/2 after:h-touch after:-translate-y-1/2 after:content-['']";
+
 /** Número no padrão brasileiro (9.057). */
 export const fmt = (n: number) => n.toLocaleString('pt-BR');

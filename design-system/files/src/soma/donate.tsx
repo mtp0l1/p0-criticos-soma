@@ -1,6 +1,6 @@
 /* So+ma · Doar pontos: InstitutionRow, DonationAmountCard, DonationStateCard, InstitutionDetailModal. */
 import * as React from 'react';
-import { cn, fmt, focusRing, hitArea } from '../lib/utils';
+import { cn, fmt, focusRing, hitArea, hitAreaY } from '../lib/utils';
 import { Icon, type IconName } from '../ui/icon';
 import { Progress } from '../ui/display';
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose } from '../ui/overlay';
@@ -143,7 +143,7 @@ export function InstitutionDetailModal({ name, description, address, phone, site
             : <span aria-hidden className="grid size-full place-items-center text-icon-brand-strong"><Icon name="hand-heart" size="xlarge" /></span>}
           <DialogClose
             aria-label="Fechar"
-            className={cn(hitArea, focusRing, 'absolute right-nano top-nano grid size-[32px] place-items-center rounded-full border border-border bg-white/90 text-foreground')}
+            className={cn(hitArea, focusRing, 'absolute right-nano top-nano grid size-[32px] place-items-center rounded-full border border-border bg-surface-primary text-foreground')}
           >
             <Icon name="close" size="small" />
           </DialogClose>
@@ -156,8 +156,8 @@ export function InstitutionDetailModal({ name, description, address, phone, site
               <hr className="m-0 border-0 border-t border-border" />
               <ul className="m-0 grid list-none gap-nano p-0 body-small text-muted-foreground">
                 {address && <li className={infoRow}><span aria-hidden className={infoIcon}><Icon name="pin" size="small" /></span>{address}</li>}
-                {phone && <li className={infoRow}><span aria-hidden className={infoIcon}><Icon name="phone" size="small" /></span><a href={`tel:${phone.replace(/\D/g, '')}`} className={cn(focusRing, 'rounded-xs text-inherit')}>{phone}</a></li>}
-                {site && <li className={infoRow}><span aria-hidden className={infoIcon}><Icon name="globe" size="small" /></span><a href={site.startsWith('http') ? site : `https://${site}`} className={cn(focusRing, 'rounded-xs font-medium text-foreground underline underline-offset-2')}>{site.replace(/^https?:\/\//, '')}</a></li>}
+                {phone && <li className={infoRow}><span aria-hidden className={infoIcon}><Icon name="phone" size="small" /></span><a href={`tel:${phone.replace(/\D/g, '')}`} className={cn(focusRing, hitAreaY, 'rounded-xs text-inherit')}>{phone}</a></li>}
+                {site && <li className={infoRow}><span aria-hidden className={infoIcon}><Icon name="globe" size="small" /></span><a href={site.startsWith('http') ? site : `https://${site}`} className={cn(focusRing, hitAreaY, 'rounded-xs font-medium text-foreground underline underline-offset-2')}>{site.replace(/^https?:\/\//, '')}</a></li>}
               </ul>
             </>
           )}

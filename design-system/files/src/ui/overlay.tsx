@@ -276,7 +276,7 @@ export const tabsTriggerVariants = cva(
           'data-[state=active]:after:bg-selected-indicator',
         ],
         segmented: [
-          'min-h-large rounded-sm text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active disabled:hover:bg-transparent data-[state=active]:hover:bg-interactive-fill-loud-hover',
+          'min-h-touch rounded-sm text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active disabled:hover:bg-transparent data-[state=active]:hover:bg-interactive-fill-loud-hover',
           'data-[state=active]:bg-primary data-[state=active]:font-semibold data-[state=active]:text-primary-foreground',
         ],
         pill: [

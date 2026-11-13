@@ -1,6 +1,6 @@
 /* So+ma · recompensas e doação: GoalCard, CampaignBanner, RewardRow, RedeemCode, RewardDetail, InstitutionCard. */
 import * as React from 'react';
-import { cn, fmt } from '../lib/utils';
+import { cn, fmt, hitAreaY } from '../lib/utils';
 import { Icon, type IconName } from '../ui/icon';
 import { Button } from '../ui/button';
 import { Badge, Progress, type BadgeProps } from '../ui/display';
@@ -131,7 +131,7 @@ export function RedeemCode({ code, validity, hint = 'Use na retirada ou no site 
     <div className={cn('grid gap-mini text-foreground', className)}>
       <div className="grid justify-items-center gap-nano rounded-lg border-2 border-dashed border-border-highlight bg-card px-mini py-small text-center">
         <p className="caption m-0 font-semibold uppercase tracking-wide text-muted-foreground">Código de resgate</p>
-        <p className="m-0 select-all font-sans text-[26px] font-bold leading-9 tracking-[0.08em] text-text-link">{code}</p>
+        <p className="m-0 select-all font-sans text-[24px] font-bold leading-8 tracking-[0.08em] text-text-link">{code}</p>
         {validity && <p className="caption m-0 text-muted-foreground">{validity}</p>}
       </div>
       <p className="body-small m-0 text-center text-muted-foreground">{hint}</p>
@@ -192,7 +192,7 @@ export interface InstitutionCardProps {
 }
 /** Instituição que recebe a doação de pontos. */
 export function InstitutionCard({ name, description, image, onMore, href, className }: InstitutionCardProps) {
-  const more = 'caption justify-self-start rounded-xs font-semibold text-text-link underline underline-offset-2';
+  const more = cn(hitAreaY, 'caption justify-self-start rounded-xs font-semibold text-text-link underline underline-offset-2');
   return (
     <article className={cn('grid grid-cols-[auto_1fr] items-center gap-micro rounded-lg border border-border bg-card p-mini text-card-foreground', className)}>
       <span className="grid size-[64px] place-items-center overflow-hidden rounded-md bg-surface-secondary text-icon-brand-strong">
