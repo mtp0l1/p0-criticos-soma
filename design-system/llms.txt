@@ -1,0 +1,190 @@
+# So+ma Design System
+
+> Design system do app So+ma: tokens, componentes (shadcn/ui + Andes), ícones Lucide e padrões de tela. Interface adaptada do Lume (MIT).
+
+## Para IAs
+- [AGENTS.md](files/AGENTS.md): ordem de leitura e regras
+- [decision-map.md](files/decision-map.md): da necessidade ao componente
+- [tokens.json](files/tokens.json): única fonte de valores
+
+## Arquivos
+- [soma-design-system.zip](files/soma-design-system.zip): Pacote completo: tokens, código-fonte, bundle, tipos e documentação
+- [tokens.json](files/tokens.json): Fonte única dos tokens
+- [tokens.css](files/tokens.css): Variáveis CSS e classes de texto
+- [index.d.ts](files/index.d.ts): Tipos e props de cada componente
+- [tailwind.preset.js](files/src/tailwind.preset.js): Preset Tailwind com as escalas fechadas
+- [src/index.ts](files/src/index.ts): Exportações; os componentes ficam em src/ui e src/soma
+- [AGENTS.md](files/AGENTS.md): Instruções para qualquer IA que use o sistema
+- [decision-map.md](files/decision-map.md): Mapa de decisão gerado dos contratos
+- [bundle.js](assets/bundle.js): Tudo em window.Soma, para protótipo sem build (React 18)
+- [bundle.css](assets/bundle.css): Tailwind compilado com o preset
+
+## Páginas
+- #/: Início
+- #/primeiros-passos: Primeiros passos
+- #/novidades: Novidades
+- #/roadmap: Roadmap
+- #/fundamentos/cores: Cores
+- #/fundamentos/tipografia: Tipografia
+- #/fundamentos/icones: Ícones
+- #/fundamentos/ilustracoes: Ilustrações
+- #/fundamentos/espacamento: Espaçamento
+- #/fundamentos/raios: Raios
+- #/fundamentos/tamanhos: Tamanhos
+- #/fundamentos/elevacao: Elevação
+- #/componentes/Button: Button
+- #/componentes/Icon: Icon
+- #/componentes/ButtonGroup: ButtonGroup
+- #/componentes/Toggle: Toggle
+- #/componentes/DropdownMenu: DropdownMenu
+- #/componentes/Spinner: Spinner
+- #/componentes/Header: Header
+- #/componentes/LocationBar: LocationBar
+- #/componentes/TabBar: TabBar
+- #/componentes/Tabs: Tabs
+- #/componentes/SegmentedControl: SegmentedControl
+- #/componentes/SectionHeader: SectionHeader
+- #/componentes/PillTabs: PillTabs
+- #/componentes/SegmentedControl: SegmentedControl
+- #/componentes/StepDots: StepDots
+- #/componentes/ListRow: ListRow
+- #/componentes/HomeGreeting: HomeGreeting
+- #/componentes/Tile: Tile
+- #/componentes/BalanceCard: BalanceCard
+- #/componentes/QuestionTeaser: QuestionTeaser
+- #/componentes/GoalSummaryCard: GoalSummaryCard
+- #/componentes/ActivityRow: ActivityRow
+- #/componentes/Trophy: Trophy
+- #/componentes/LevelCard: LevelCard
+- #/componentes/LevelBadge: LevelBadge
+- #/componentes/TierCard: TierCard
+- #/componentes/ProtectionNotice: ProtectionNotice
+- #/componentes/QuestionCard: QuestionCard
+- #/componentes/PointsBadge: PointsBadge
+- #/componentes/StreakTrail: StreakTrail
+- #/componentes/StreakProgress: StreakProgress
+- #/componentes/StreakSection: StreakSection
+- #/componentes/AnswerResult: AnswerResult
+- #/componentes/DailyDone: DailyDone
+- #/componentes/HistorySummary: HistorySummary
+- #/componentes/AnswerHistory: AnswerHistory
+- #/componentes/MilestoneResult: MilestoneResult
+- #/componentes/Illustration: Illustration
+- #/componentes/StatTile: StatTile
+- #/componentes/PositionCard: PositionCard
+- #/componentes/Podium: Podium
+- #/componentes/RankingRow: RankingRow
+- #/componentes/RankingStarterCard: RankingStarterCard
+- #/componentes/ImpactTiles: ImpactTiles
+- #/componentes/GoalNote: GoalNote
+- #/componentes/ReminderCard: ReminderCard
+- #/componentes/ShareImpactModal: ShareImpactModal
+- #/componentes/StatsRow: StatsRow
+- #/componentes/RedemptionItem: RedemptionItem
+- #/componentes/QrCheckinCard: QrCheckinCard
+- #/componentes/Avatar: Avatar
+- #/componentes/DeliveryCard: DeliveryCard
+- #/componentes/SpaceCard: SpaceCard
+- #/componentes/SlotPicker: SlotPicker
+- #/componentes/SpaceDetail: SpaceDetail
+- #/componentes/DeliverySummaryCard: DeliverySummaryCard
+- #/componentes/DeliveryHistoryRow: DeliveryHistoryRow
+- #/componentes/DeliveryDayCard: DeliveryDayCard
+- #/componentes/GoalCard: GoalCard
+- #/componentes/CampaignBanner: CampaignBanner
+- #/componentes/RewardRow: RewardRow
+- #/componentes/RedeemCode: RedeemCode
+- #/componentes/RewardChoiceList: RewardChoiceList
+- #/componentes/GoalProgressCard: GoalProgressCard
+- #/componentes/RewardDetail: RewardDetail
+- #/componentes/InviteCodeCard: InviteCodeCard
+- #/componentes/FriendRequestSheet: FriendRequestSheet
+- #/componentes/ContactRow: ContactRow
+- #/componentes/InstitutionCard: InstitutionCard
+- #/componentes/InstitutionRow: InstitutionRow
+- #/componentes/DonationAmountCard: DonationAmountCard
+- #/componentes/DonationStateCard: DonationStateCard
+- #/componentes/InstitutionDetailModal: InstitutionDetailModal
+- #/componentes/SearchField: SearchField
+- #/componentes/MaterialResult: MaterialResult
+- #/componentes/Accordion: Accordion
+- #/componentes/HelpfulVote: HelpfulVote
+- #/componentes/Tag: Tag
+- #/componentes/Input: Input
+- #/componentes/TextField: TextField
+- #/componentes/SignupStep: SignupStep
+- #/componentes/PasswordField: PasswordField
+- #/componentes/TermsConsent: TermsConsent
+- #/componentes/InviteCodeField: InviteCodeField
+- #/componentes/NeighborhoodNote: NeighborhoodNote
+- #/componentes/InviteMessageExample: InviteMessageExample
+- #/componentes/AccountExistsSheet: AccountExistsSheet
+- #/componentes/InviteCodeHelpSheet: InviteCodeHelpSheet
+- #/componentes/Textarea: Textarea
+- #/componentes/Select: Select
+- #/componentes/Checkbox: Checkbox
+- #/componentes/Switch: Switch
+- #/componentes/ChoiceChips: ChoiceChips
+- #/componentes/RadioList: RadioList
+- #/componentes/Field: Field
+- #/componentes/InputGroup: InputGroup
+- #/componentes/InputOTP: InputOTP
+- #/componentes/NativeSelect: NativeSelect
+- #/componentes/Combobox: Combobox
+- #/componentes/Command: Command
+- #/componentes/Slider: Slider
+- #/componentes/Modal: Modal
+- #/componentes/Dialog: Dialog
+- #/componentes/AlertDialog: AlertDialog
+- #/componentes/Sheet: Sheet
+- #/componentes/Popover: Popover
+- #/componentes/Drawer: Drawer
+- #/componentes/Card: Card
+- #/componentes/Badge: Badge
+- #/componentes/StatusChip: StatusChip
+- #/componentes/Progress: Progress
+- #/componentes/Separator: Separator
+- #/componentes/AspectRatio: AspectRatio
+- #/componentes/ScrollArea: ScrollArea
+- #/componentes/Collapsible: Collapsible
+- #/componentes/Table: Table
+- #/componentes/Pagination: Pagination
+- #/componentes/Carousel: Carousel
+- #/componentes/Message: Message
+- #/componentes/Toast: Toast
+- #/componentes/EmptyState: EmptyState
+- #/componentes/ResultScreen: ResultScreen
+- #/componentes/Skeleton: Skeleton
+- #/componentes/Toaster: Toaster
+- #/padroes/padroes-de-tela: Padrões de tela
+- #/padroes/TelaCadastroCelular: Tela Cadastro Celular
+- #/padroes/TelaCadastroCelularCadastrado: Tela Cadastro Celular Cadastrado
+- #/padroes/TelaCadastroCep: Tela Cadastro CEP
+- #/padroes/TelaCadastroCodigoAjuda: Tela Cadastro Código Ajuda
+- #/padroes/TelaCadastroConvite: Tela Cadastro Convite
+- #/padroes/TelaCadastroCpf: Tela Cadastro CPF
+- #/padroes/TelaCadastroNome: Tela Cadastro Nome
+- #/padroes/TelaCadastroSenha: Tela Cadastro Senha
+- #/padroes/TelaInicio: Tela Início
+- #/padroes/TelaInicioComMeta: Tela Início com Meta
+- #/padroes/TelaAgendamentoConfirmado: Tela Agendamento Confirmado
+- #/padroes/TelaAgendar: Tela Agendar
+- #/padroes/TelaDiaDaEntrega: Tela Dia da Entrega
+- #/padroes/TelaEntregaRegistrada: Tela Entrega Registrada
+- #/padroes/TelaMeusAgendamentos: Tela Meus Agendamentos
+- #/padroes/TelaQr: Tela QR
+- #/padroes/TelaReciclar: Tela Reciclar
+- #/padroes/TelaMeta: Tela Meta
+- #/padroes/TelaDoar: Tela Doar pontos
+- #/padroes/TelaDoarInsuficiente: Tela Doar Insuficiente
+- #/padroes/TelaDoarLista: Tela Doar Lista
+- #/padroes/TelaDoarSaldoZero: Tela Doar Saldo Zero
+- #/padroes/TelaDoarSucesso: Tela Doar Sucesso
+- #/recursos/telas-novas: Mapa do Figma
+- #/recursos/engenharia: Para engenharia
+- #/recursos/gerar-telas: Gerar telas com IA
+- #/recursos/agents: Para IAs (AGENTS.md)
+- #/recursos/mapa-de-decisao: Mapa de decisão
+- #/recursos/regras: Regras e verificações
+- #/recursos/auditoria-shadcn: Auditoria shadcn/ui
+- #/recursos/arquivos: Arquivos para baixar

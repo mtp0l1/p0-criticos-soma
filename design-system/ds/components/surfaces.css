@@ -1,0 +1,8 @@
+/* Superfícies: card, divisor, indicador, avatar */
+.ds-card{position:relative;padding:var(--ds-space-300);border-radius:var(--ds-radius-xl);background:var(--ds-color-bg-surface);border:1px solid var(--ds-color-border-subtle)}
+.ds-divider{height:1px;border:0;background:var(--ds-color-border-subtle)}
+.ds-divider--fade{background:var(--ds-gradient-divider)}
+.ds-dot{flex:none;width:6px;height:6px;border-radius:var(--ds-radius-full);background:var(--ds-color-brand-indicator)}
+.ds-avatar{--_size:40px;position:relative;flex:none;display:inline-grid;place-items:center;width:var(--_size);height:var(--_size);border-radius:var(--ds-radius-full);background:var(--ds-color-bg-muted);border:1px solid var(--ds-color-border-subtle);color:var(--ds-color-fg-muted);font:var(--ds-font-weight-semibold) max(10px,calc(var(--_size)*.38))/1 var(--ds-font-family-sans);user-select:none}
+.ds-avatar--sm{--_size:32px}
+.ds-avatar--lg{--_size:48px}
