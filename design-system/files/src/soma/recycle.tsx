@@ -76,7 +76,7 @@ export function SpaceCard({ name, distance, address, hours, selected, onSelect, 
   );
   return (
     <div className={cn(
-      'grid gap-nano rounded-lg p-micro text-foreground',
+      'grid gap-nano rounded-md p-micro text-foreground',
       selectable ? cn('border bg-card', selected ? 'border-2 border-border-highlight' : 'border-border') : 'bg-surface-secondary',
       className,
     )}>
@@ -119,10 +119,10 @@ export function SlotPicker({ label, slots, value, onChange, className }: SlotPic
             aria-label={[s.sublabel, s.label, s.disabled ? 'indisponível' : ''].filter(Boolean).join(' ')}
             className={cn(
               pressable, focusRing,
-              'grid min-h-touch min-w-[48px] shrink-0 place-items-center content-center gap-xnano rounded-sm border border-border bg-card px-nano py-nano text-center text-foreground',
+              'grid min-h-touch min-w-[42px] shrink-0 place-items-center content-center gap-xnano rounded-md border border-border bg-card px-nano py-nano text-center text-foreground',
               'hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active',
               'data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground',
-              'disabled:cursor-not-allowed disabled:border-interactive-fill-disabled disabled:bg-interactive-fill-disabled disabled:text-interactive-text-disabled disabled:line-through',
+              'disabled:cursor-not-allowed disabled:border-interactive-fill-disabled disabled:bg-interactive-fill-disabled disabled:text-interactive-text-disabled',
             )}
           >
             {s.sublabel && <span aria-hidden className="caption">{s.sublabel}</span>}
@@ -144,10 +144,10 @@ export interface SpaceDetailProps {
   onDirections?: () => void;
   className?: string;
 }
-/** Painel salmão que aparece sob a lista de espaços quando um está escolhido (Tela 27): endereço, horário e "Como chegar". */
+/** Painel creme que aparece sob a lista de espaços quando um está escolhido (Tela 27): endereço, horário e "Como chegar". */
 export function SpaceDetail({ name, address, onDirections, className }: SpaceDetailProps) {
   return (
-    <section aria-label={`Detalhes de ${name}`} className={cn('grid gap-nano rounded-lg bg-surface-accent p-mini text-foreground', className)}>
+    <section aria-label={`Detalhes de ${name}`} className={cn('grid gap-nano rounded-md bg-surface-accent p-micro text-foreground', className)}>
       <p className="label m-0">{name}</p>
       <p className="caption m-0 text-muted-foreground">{address}</p>
       {onDirections && <Button hierarchy="quiet" size="compact" fullWidth icon="pin" onClick={onDirections} className="rounded-full">Como chegar<span className="sr-only"> a {name}</span></Button>}

@@ -202,15 +202,15 @@ export function ImpactTiles({ title, items, onShare, className }: ImpactTilesPro
     <section aria-label={title ?? 'Seu impacto'} className={cn('grid gap-nano', className)}>
       {(title || onShare) && (
         <div className="flex items-center justify-between gap-nano">
-          {title && <h2 className="body-strong m-0">{title}</h2>}
+          {title && <h2 className="label m-0">{title}</h2>}
           {onShare && <Button hierarchy="transparent" size="compact" icon="share" onClick={onShare} className="rounded-full bg-surface-accent">Compartilhar</Button>}
         </div>
       )}
       <dl className="m-0 grid auto-cols-fr grid-flow-col gap-nano">
         {items.map((it) => (
-          <div key={it.label} className={cn('grid content-between gap-xnano rounded-lg border bg-card p-micro', it.highlight ? 'border-[1.5px] border-border-highlight' : 'border-border')}>
+          <div key={it.label} className={cn('grid content-between gap-xnano rounded-lg border bg-card p-micro', 'border-[1.5px]', it.highlight ? 'border-border-highlight' : 'border-border')}>
             <dd className={cn('m-0 text-[24px] font-bold leading-8', it.highlight ? 'text-text-link' : 'text-foreground')}>{it.value}</dd>
-            <dt className="caption order-last text-muted-foreground">{it.label}</dt>
+            <dt className={cn('caption order-last', it.highlight ? 'font-bold text-text-link' : 'text-muted-foreground')}>{it.label}</dt>
           </div>
         ))}
       </dl>

@@ -47,15 +47,16 @@ export interface HeaderProps {
    * center = título centralizado, seta solta (padrão; Doar, Cadastro, telas anteriores).
    * round = voltar em círculo creme, título centralizado em text-secondary (Quiz).
    * start = título de tela raiz à esquerda em screen-title, botões em círculo (Ranking).
+   * eyebrow = seta solta e título pequeno em maiúsculas, apagado (QR do dia da entrega: "VILA VERDE").
    */
-  variant?: 'center' | 'round' | 'start';
+  variant?: 'center' | 'round' | 'start' | 'eyebrow';
   /** Divisor embaixo, como nas telas novas. Padrão true. */
   divider?: boolean;
   className?: string;
 }
 const roundBtn = 'size-touch rounded-full bg-surface-accent text-icon-brand-strong hover:bg-surface-accent-hover active:bg-surface-accent-hover';
 export function Header({ title, onBack, action, variant = 'center', divider = true, className }: HeaderProps) {
-  const round = variant !== 'center';
+  const round = variant === 'round' || variant === 'start';
   const back = onBack ? <IconButton icon={round ? 'arrow-left' : 'chevron-left'} label="Voltar" onClick={onBack} className={round ? roundBtn : undefined} /> : null;
   const act = action ? <IconButton icon={action.icon} label={action.label} onClick={action.onClick} className={round ? roundBtn : undefined} /> : null;
   const shell = cn('bg-surface-primary px-xsmall py-nano text-foreground', divider && 'border-b border-border', className);
@@ -71,7 +72,7 @@ export function Header({ title, onBack, action, variant = 'center', divider = tr
   return (
     <header className={cn(shell, 'grid min-h-input grid-cols-[theme(spacing.touch)_1fr_theme(spacing.touch)] items-center')}>
       {back ?? <span />}
-      <h1 className={cn('m-0 truncate text-center', variant === 'round' ? 'label text-muted-foreground' : 'header-title')}>{title}</h1>
+      <h1 className={cn('m-0 text-center', variant === 'center' ? 'line-clamp-3' : 'truncate', variant === 'round' ? 'label text-muted-foreground' : variant === 'eyebrow' ? 'eyebrow uppercase tracking-wide text-muted-foreground' : 'header-title')}>{title}</h1>
       {act ?? <span />}
     </header>
   );
@@ -189,10 +190,13 @@ export interface SectionHeaderProps {
   action?: { label: string; onClick?: () => void };
   /** Ícone de 16px antes do título (blocos de categoria no catálogo). */
   icon?: IconName;
-  /** default = título de bloco · small = título de categoria (14px bold) com link pequeno em cor de link. */
-  size?: 'default' | 'small';
+  /** default = título de bloco · small = título de categoria (14px bold) com link pequeno em cor de link · eyebrow = rótulo em maiúsculas de 12px, sem link ("PRÓXIMAS ENTREGAS", "ESCOLHA O ESPAÇO"). */
+  size?: 'default' | 'small' | 'eyebrow';
 }
 export function SectionHeader({ title, action, icon, size = 'default' }: SectionHeaderProps) {
+  if (size === 'eyebrow') {
+    return <h2 className="eyebrow m-0 flex min-h-6 items-center gap-nano uppercase tracking-wide text-foreground">{title}</h2>;
+  }
   if (size === 'small') {
     return (
       <div className={cn('flex items-center justify-between gap-nano text-foreground', action ? 'min-h-touch' : 'min-h-6')}>

@@ -68,3 +68,5 @@ export type { PaginationLinkProps, CarouselProps } from './ui/layout';
 /* shadcn/ui: menus e sobreposição */
 export { DropdownMenu, DropdownMenuTrigger, DropdownMenuGroup, DropdownMenuPortal, DropdownMenuSub, DropdownMenuRadioGroup, DropdownMenuContent, DropdownMenuItem, DropdownMenuCheckboxItem, DropdownMenuRadioItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuSubTrigger, DropdownMenuSubContent, Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandSeparator, CommandItem, Combobox, Drawer, DrawerTrigger, DrawerPortal, DrawerClose, DrawerOverlay, DrawerContent, DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription } from './ui/menus';
 export type { DropdownMenuItemProps, ComboboxProps, ComboboxOption } from './ui/menus';
+export { DeliverySummaryCard, DeliveryHistoryRow, DeliveryDayCard, RewardChoiceList, GoalProgressCard, GoalNote, ReminderCard, ShareImpactModal } from './soma/delivery';
+export type { DeliverySummaryCardProps, DeliveryHistoryRowProps, DeliveryDayCardProps, RewardChoice, RewardChoiceListProps, GoalProgressCardProps, GoalNoteProps, ReminderCardProps, ShareImpactModalProps } from './soma/delivery';

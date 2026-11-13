@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/bundle.css"><script src="../assets/react.production.min.js"></script><script src="../assets/react-dom.production.min.js"></script><script src="../assets/bundle.js"></script><meta charset="utf-8"><title>TelaAgendamentoConfirmado</title>
+</head>
+<body class="m-0 p-0 bg-background-secondary text-foreground font-sans">
+<div id="root" class="grid gap-mini" style="max-width:360px"></div>
+<script>
+var S = window.Soma, h = React.createElement, F = React.Fragment, useState = React.useState;
+function K(t){ return h('p', {className:'caption m-0 text-muted-foreground'}, t); }
+function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-center gap-nano'}].concat([].slice.call(arguments))); }
+var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
+// Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
+function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
+function Demo(){ var a=useState(false); return h('div',{className:'flex min-h-[880px] flex-col bg-background'},
+  h(S.ResultScreen,{tone:'neutral',icon:'calendar-check',iconShape:'square',titleSize:'screen',actionsPlacement:'inline',
+    title:'Sua primeira entrega está marcada',
+    description:a[0]?'Salvamos no seu e-mail e no seu calendário. Você vai receber um aviso no dia.':'Guardamos os detalhes no seu e-mail.',
+    primaryAction:a[0]?{label:'Adicionado ao calendário',done:true}:{label:'Adicionar ao calendário',onClick:function(){a[1](true);}},
+    extraLink:a[0]?{label:'Ver meus agendamentos'}:undefined, onHome:function(){}},
+    h(S.DeliverySummaryCard,{date:'Segunda, 7 de setembro',space:'Vila Verde',address:'Rua das Flores, 120 · 800 m',onDirections:function(){},time:'09h',notice:a[0]?'1 hora antes':undefined}))); }
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+<script>(function(){function s(){parent.postMessage({soma:"h",n:"TelaAgendamentoConfirmado",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

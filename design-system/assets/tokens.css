@@ -131,7 +131,7 @@
 --size-thumb:48px;
 --size-medal:40px;
 --size-avatar:96px;
---size-qr:184px;
+--size-qr:200px;
 --font-sans:"Lexend", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 .page-title{font-family:var(--font-sans);font-size:24px;line-height:32px;font-weight:700}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/bundle.css"><script src="../assets/react.production.min.js"></script><script src="../assets/react-dom.production.min.js"></script><script src="../assets/bundle.js"></script><meta charset="utf-8"><title>TelaAgendar</title>
+</head>
+<body class="m-0 p-0 bg-background-secondary text-foreground font-sans">
+<div id="root" class="grid gap-mini" style="max-width:360px"></div>
+<script>
+var S = window.Soma, h = React.createElement, F = React.Fragment, useState = React.useState;
+function K(t){ return h('p', {className:'caption m-0 text-muted-foreground'}, t); }
+function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-center gap-nano'}].concat([].slice.call(arguments))); }
+var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
+// Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
+function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
+function Demo(){ var sp=useState('vila'), d=useState('07'), t=useState('09');
+  var days=[['Qui','03'],['Sex','04'],['Sáb','05'],['Dom','06',1],['Seg','07'],['Ter','08'],['Qua','09']].map(function(x){ return {value:x[1],label:x[1],sublabel:x[0],disabled:!!x[2]}; });
+  var hours=['08','09','10','11','12','13','14'].map(function(x){ return {value:x,label:x+'h'}; });
+  return h('div',{className:'flex min-h-[980px] flex-col bg-background'},
+  h(S.Header,{title:'Em qual espaço de recebimento você vai entregar?',onBack:function(){},action:{icon:'help',label:'Ajuda'},divider:false}),
+  h('main',{className:'grid flex-1 content-start gap-small px-xsmall pt-small'},
+    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{size:'eyebrow',title:'Escolha o espaço'}),
+      h(S.SpaceCard,{name:'Vila Verde',distance:'800 m',address:'Rua das Flores, 120',selected:sp[0]==='vila',onSelect:function(){sp[1]('vila');}}),
+      h(S.SpaceCard,{name:'Praça Central',distance:'1,2 km',address:'Praça da Matriz, s/n',selected:sp[0]==='praca',onSelect:function(){sp[1]('praca');}}),
+      h(S.SpaceDetail,{name:sp[0]==='vila'?'Vila Verde':'Praça Central',address:sp[0]==='vila'?'Rua das Flores, 120 · Seg a sáb, 8h às 18h':'Praça da Matriz, s/n · Seg a sáb, 8h às 18h',onDirections:function(){}})),
+    h(S.SlotPicker,{label:'Escolha a data',slots:days,value:d[0],onChange:d[1]}),
+    h(S.SlotPicker,{label:'Escolha o horário',slots:hours,value:t[0],onChange:t[1]})),
+  h('div',{className:'px-xsmall pb-small pt-medium'}, h(S.Button,{fullWidth:true},'Agendar entrega'))); }
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+<script>(function(){function s(){parent.postMessage({soma:"h",n:"TelaAgendar",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

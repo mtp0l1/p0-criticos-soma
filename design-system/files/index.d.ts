@@ -117,6 +117,7 @@ export declare const ICONS: {
 	shield: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	"shield-check": React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	target: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
+	flag: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	sparkles: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	"trending-up": React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	lightbulb: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
@@ -358,8 +359,9 @@ export interface HeaderProps {
 	 * center = título centralizado, seta solta (padrão; Doar, Cadastro, telas anteriores).
 	 * round = voltar em círculo creme, título centralizado em text-secondary (Quiz).
 	 * start = título de tela raiz à esquerda em screen-title, botões em círculo (Ranking).
+	 * eyebrow = seta solta e título pequeno em maiúsculas, apagado (QR do dia da entrega: "VILA VERDE").
 	 */
-	variant?: "center" | "round" | "start";
+	variant?: "center" | "round" | "start" | "eyebrow";
 	/** Divisor embaixo, como nas telas novas. Padrão true. */
 	divider?: boolean;
 	className?: string;
@@ -416,8 +418,8 @@ export interface SectionHeaderProps {
 	};
 	/** Ícone de 16px antes do título (blocos de categoria no catálogo). */
 	icon?: IconName;
-	/** default = título de bloco · small = título de categoria (14px bold) com link pequeno em cor de link. */
-	size?: "default" | "small";
+	/** default = título de bloco · small = título de categoria (14px bold) com link pequeno em cor de link · eyebrow = rótulo em maiúsculas de 12px, sem link ("PRÓXIMAS ENTREGAS", "ESCOLHA O ESPAÇO"). */
+	size?: "default" | "small" | "eyebrow";
 }
 export declare function SectionHeader({ title, action, icon, size }: SectionHeaderProps): React$1.JSX.Element;
 export declare const listRowVariants: (props?: ({
@@ -1049,10 +1051,12 @@ export interface ResultScreenProps {
 	description?: React$1.ReactNode;
 	/** Conteúdo extra entre o texto e as ações (resumo, código, pontos). */
 	children?: React$1.ReactNode;
+	/** done = já feito: botão cinza com check e sem toque ("Adicionado ao calendário"). */
 	primaryAction?: {
 		label: string;
 		onClick?: () => void;
 		icon?: IconName;
+		done?: boolean;
 	};
 	/** quiet = botão contornado (padrão) · transparent = link em texto ("Agora não", "Voltar ao ranking"). */
 	secondaryAction?: {
@@ -1061,6 +1065,17 @@ export interface ResultScreenProps {
 		icon?: IconName;
 		hierarchy?: "quiet" | "transparent";
 	};
+	/** Segundo link em texto ao lado de "Ir para o início" ("Ver meus agendamentos"). */
+	extraLink?: {
+		label: string;
+		onClick?: () => void;
+	};
+	/** circle = círculo (padrão) · square = caixa de 56px com cantos de 16px, para telas de confirmação menores (agendamento). */
+	iconShape?: "circle" | "square";
+	/** page = título de 24px (padrão) · screen = 20px. */
+	titleSize?: "page" | "screen";
+	/** Contorno de 3px em laranja no círculo (Cadastro concluído). Só com `iconShape="circle"`. */
+	ringOutline?: boolean;
 	/** Tamanho do círculo do ícone: sm 72px (Pedido enviado!) · md 88px (permissão de contatos) · lg 96px (padrão). */
 	ringSize?: "sm" | "md" | "lg";
 	/** inline = ações logo abaixo do texto, com o conteúdo no topo (Telas 12, 14 e 16) · bottom = ações no fim da tela (padrão). */
@@ -1069,7 +1084,7 @@ export interface ResultScreenProps {
 	onHome?: () => void;
 	className?: string;
 }
-export declare function ResultScreen({ tone, icon, art, title, description, children, primaryAction, secondaryAction, ringSize, actionsPlacement, onHome, className }: ResultScreenProps): React$1.JSX.Element;
+export declare function ResultScreen({ tone, icon, art, title, description, children, primaryAction, secondaryAction, extraLink, iconShape, titleSize, ringOutline, ringSize, actionsPlacement, onHome, className }: ResultScreenProps): React$1.JSX.Element;
 export interface GoalCardProps {
 	/** Recompensa escolhida como meta. */
 	reward: string;
@@ -1210,7 +1225,7 @@ export interface SpaceDetailProps {
 	onDirections?: () => void;
 	className?: string;
 }
-/** Painel salmão que aparece sob a lista de espaços quando um está escolhido (Tela 27): endereço, horário e "Como chegar". */
+/** Painel creme que aparece sob a lista de espaços quando um está escolhido (Tela 27): endereço, horário e "Como chegar". */
 export declare function SpaceDetail({ name, address, onDirections, className }: SpaceDetailProps): React$1.JSX.Element;
 export interface InviteCodeCardProps {
 	code: string;
@@ -1522,6 +1537,113 @@ export declare function DrawerHeader({ className, ...props }: React$1.HTMLAttrib
 export declare function DrawerFooter({ className, ...props }: React$1.HTMLAttributes<HTMLDivElement>): React$1.JSX.Element;
 export declare const DrawerTitle: React$1.ForwardRefExoticComponent<Omit<import("@radix-ui/react-dialog").DialogTitleProps & React$1.RefAttributes<HTMLHeadingElement>, "ref"> & React$1.RefAttributes<HTMLHeadingElement>>;
 export declare const DrawerDescription: React$1.ForwardRefExoticComponent<Omit<import("@radix-ui/react-dialog").DialogDescriptionProps & React$1.RefAttributes<HTMLParagraphElement>, "ref"> & React$1.RefAttributes<HTMLParagraphElement>>;
+export interface DeliverySummaryCardProps {
+	/** "Segunda, 7 de setembro". */
+	date: string;
+	/** Nome do espaço de recebimento ("Vila Verde"). */
+	space: string;
+	/** "Rua das Flores, 120 · 800 m". */
+	address?: string;
+	/** Abre o mapa. Sem ele, "Como chegar" não aparece. */
+	onDirections?: () => void;
+	/** "09h". */
+	time: string;
+	/** Antecedência do lembrete ("1 hora antes"). Só depois de salvar no calendário. */
+	notice?: string;
+	className?: string;
+}
+/** Resumo do agendamento (Telas 6, 7, 28 e 29): Quando, Onde, Horário e, depois do calendário, Aviso. Rótulos à esquerda, valores à direita. */
+export declare function DeliverySummaryCard({ date, space, address, onDirections, time, notice, className }: DeliverySummaryCardProps): React$1.JSX.Element;
+export interface DeliveryHistoryRowProps {
+	space: string;
+	/** "31 de agosto". */
+	date: string;
+	/** "Entrega registrada às 09h". */
+	status: string;
+	className?: string;
+}
+/** Entrega anterior em Meus agendamentos (Tela 7): espaço e data na primeira linha, situação embaixo. */
+export declare function DeliveryHistoryRow({ space, date, status, className }: DeliveryHistoryRowProps): React$1.JSX.Element;
+export interface DeliveryDayCardProps {
+	/** Padrão: "Hoje é o dia da sua entrega!". */
+	title?: string;
+	/** "Rua das Flores, 120 · 800 m". */
+	address: string;
+	/** "Vila Verde recebe até 18h". */
+	hours: string;
+	className?: string;
+}
+/** Estado de espera no dia da entrega (Tela 31): relógio, título, endereço e horário do espaço. O "Como chegar" e o "Cheguei ao espaço" ficam fora do card. */
+export declare function DeliveryDayCard({ title, address, hours, className }: DeliveryDayCardProps): React$1.JSX.Element;
+export interface RewardChoice {
+	value: string;
+	title: string;
+	points: number; /** Sem estoque: aparece cinza, com "Indisponível no momento", e não é escolhível. */
+	unavailable?: boolean;
+}
+export interface RewardChoiceListProps {
+	/** Rótulo do grupo para leitor de tela ("Recompensa da meta"). */
+	label: string;
+	options: RewardChoice[];
+	value?: string;
+	onChange?: (v: string) => void;
+	className?: string;
+}
+/** Escolha da recompensa que vira a meta, no cadastro (Telas 25 e 26): cards de rádio com "Nome · 800 pontos". */
+export declare function RewardChoiceList({ label, options, value, onChange, className }: RewardChoiceListProps): React$1.JSX.Element;
+export interface GoalProgressCardProps {
+	points: number;
+	goal: number;
+	/** Quilos que faltam ("Faltam 36 kg de recicláveis"). */
+	missingKg?: number;
+	className?: string;
+}
+/** Progresso da meta escolhida (Telas 25 e 26): eyebrow, barra, "80 / 800 pontos" e quanto falta em kg. */
+export declare function GoalProgressCard({ points, goal, missingKg, className }: GoalProgressCardProps): React$1.JSX.Element;
+export interface GoalNoteProps {
+	title?: string;
+	children: React$1.ReactNode;
+	className?: string;
+}
+/** Nota "Sua meta" na Entrega registrada (Tela 12): caixa tracejada com o quanto já tem e quanto falta. */
+export declare function GoalNote({ title, children, className }: GoalNoteProps): React$1.JSX.Element;
+export interface ReminderCardProps {
+	/** Padrão: "Lembrar da próxima entrega". */
+	title?: string;
+	/** Padrão: "Em 1 semana, no mesmo dia e horário. Você pode mudar a data.". */
+	description?: string;
+	/** "Segunda, 14 de setembro · 08:00". A linha abre o seletor de data e horário. */
+	date: string;
+	onDatePress?: () => void;
+	/** Já salvo no calendário: o botão vira "Adicionado ao calendário" com check, sem toque. */
+	added?: boolean;
+	onAdd?: () => void;
+	className?: string;
+}
+/** Lembrete da próxima entrega (Telas 12 a 15): data sugerida e "Adicionar ao calendário". */
+export declare function ReminderCard({ title, description, date, onDatePress, added, onAdd, className }: ReminderCardProps): React$1.JSX.Element;
+export interface ShareImpactModalProps {
+	/** Três números da entrega, como em `ImpactTiles` ("3,2 kg" · "reciclados"). `highlight` pinta os pontos. */
+	stats: Array<{
+		value: string;
+		label: string;
+		highlight?: boolean;
+	}>;
+	/** Destinos do compartilhamento: Mensagem, Rede social, Copiar link. */
+	options: Array<{
+		icon: IconName;
+		label: string;
+		onClick?: () => void;
+	}>;
+	trigger?: React$1.ReactNode;
+	open?: boolean;
+	defaultOpen?: boolean;
+	onOpenChange?: (open: boolean) => void;
+	/** false = sem película (use só em exemplos). */
+	modal?: boolean;
+}
+/** Modal "Compartilhar meu impacto" (Tela 16 e Meu impacto): resumo em três números, três destinos em círculos e "Fechar". */
+export declare function ShareImpactModal({ stats, options, trigger, open, defaultOpen, onOpenChange, modal }: ShareImpactModalProps): React$1.JSX.Element;
 
 export {};
 
@@ -1789,6 +1911,14 @@ declare global {
 			DrawerFooter: typeof DrawerFooter;
 			DrawerTitle: typeof DrawerTitle;
 			DrawerDescription: typeof DrawerDescription;
+			DeliverySummaryCard: typeof DeliverySummaryCard;
+			DeliveryHistoryRow: typeof DeliveryHistoryRow;
+			DeliveryDayCard: typeof DeliveryDayCard;
+			RewardChoiceList: typeof RewardChoiceList;
+			GoalProgressCard: typeof GoalProgressCard;
+			GoalNote: typeof GoalNote;
+			ReminderCard: typeof ReminderCard;
+			ShareImpactModal: typeof ShareImpactModal;
 		};
 	}
 }

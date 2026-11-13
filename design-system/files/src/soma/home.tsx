@@ -1,6 +1,6 @@
 /* So+ma · Início: HomeGreeting, Tile, TileGrid, BalanceCard, QuestionTeaser, GoalSummaryCard, ActivityRow. */
 import * as React from 'react';
-import { cn, fmt } from '../lib/utils';
+import { cn, fmt, hitArea } from '../lib/utils';
 import { Icon, type IconName } from '../ui/icon';
 import { Button, IconButton } from '../ui/button';
 import { pressable, PressableBase } from './navigation';
@@ -65,7 +65,7 @@ export function BalanceCard({ points, hint, href, onPress, tone = 'light', actio
       <section aria-label="Saldo atual" className="grid grid-cols-[1fr_auto] items-center gap-nano rounded-lg bg-surface-inverse p-mini text-text-inverse">
         <span className="grid gap-xnano">
           <span className="eyebrow uppercase text-icon-brand">Seu saldo atual</span>
-          <span className="text-[28px] font-bold leading-8">{fmt(points)} {points === 1 ? 'ponto' : 'pontos'}</span>
+          <span className="page-title">{fmt(points)} {points === 1 ? 'ponto' : 'pontos'}</span>
           {text && <span className="caption">{text}</span>}
         </span>
         {action && <Button size="compact" asChild={!!action.href} onClick={action.onClick}>{action.href ? <a href={action.href}>{action.label}</a> : action.label}</Button>}
@@ -130,13 +130,13 @@ export function GoalSummaryCard({ title, goal, remaining, icon = 'gift', href, o
     <PressableBase
       href={href}
       onClick={onPress}
-      className={cn(pressable, 'grid w-full gap-nano rounded-lg border-[1.5px] border-border-highlight bg-surface-primary p-mini text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active')}
+      className={cn(pressable, 'grid w-full gap-nano rounded-lg border-2 border-border-highlight bg-surface-primary p-mini text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active')}
     >
       <span className="grid grid-cols-[auto_1fr] items-center gap-micro">
-        <span aria-hidden className="grid size-[44px] place-items-center rounded-md bg-surface-accent text-icon-brand-strong"><Icon name={icon} /></span>
+        <span aria-hidden className="grid size-[40px] place-items-center rounded-md bg-surface-accent text-icon-brand-strong"><Icon name={icon} /></span>
         <span className="grid gap-xnano"><span className="body-strong">{title}</span><span className="caption text-muted-foreground">Meta: {fmt(goal)} pontos</span></span>
       </span>
-      <span className="flex items-center gap-xnano rounded-md bg-surface-accent px-micro py-xnano caption text-foreground"><Icon name="target" size="small" tone="brand-strong" />Faltam {fmt(remaining)} pontos para a meta</span>
+      <span className="flex items-center gap-xnano rounded-sm bg-surface-accent px-nano py-xnano caption font-medium text-foreground"><Icon name="flag" size="small" tone="brand-strong" />Faltam {fmt(remaining)} pontos para a meta</span>
     </PressableBase>
   );
 }
@@ -153,9 +153,11 @@ export interface ActivityRowProps {
 export function ActivityRow({ title, detail, icon = 'recycle', action }: ActivityRowProps) {
   return (
     <div className="grid grid-cols-[auto_1fr_auto] items-center gap-micro rounded-lg border border-border bg-card p-mini text-card-foreground">
-      <span aria-hidden className="grid size-[40px] place-items-center rounded-full bg-feedback-fill-positive text-feedback-text-positive"><Icon name={icon} /></span>
-      <span className="grid gap-xnano"><span className="body-strong">{title}</span><span className="caption text-muted-foreground">{detail}</span></span>
-      {action && <Button hierarchy="transparent" size="compact" asChild={!!action.href} onClick={action.onClick}>{action.href ? <a href={action.href}>{action.label}</a> : action.label}</Button>}
+      <span aria-hidden className="grid size-[32px] place-items-center rounded-full bg-feedback-fill-positive text-feedback-text-positive"><Icon name={icon} size="small" /></span>
+      <span className="grid gap-xnano"><span className="label">{title}</span><span className="caption font-semibold">{detail}</span></span>
+      {action && (action.href
+        ? <a href={action.href} onClick={action.onClick} className={cn(pressable, hitArea, 'caption rounded-xs font-bold text-text-link')}>{action.label}</a>
+        : <button type="button" onClick={action.onClick} className={cn(pressable, hitArea, 'caption rounded-xs font-bold text-text-link')}>{action.label}</button>)}
     </div>
   );
 }

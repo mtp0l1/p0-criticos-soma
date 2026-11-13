@@ -14,6 +14,7 @@ function Demo(){ return h(F,null,
   K('variant="center" (padrão): Doar pontos, Cadastro'), h(S.Header,{title:'Doar pontos',onBack:function(){},action:{icon:'help',label:'Ajuda'}}),
   K('variant="round": Quiz'), h(S.Header,{variant:'round',title:'Quiz',onBack:function(){},action:{icon:'help',label:'Ajuda'}}),
   K('variant="start": Ranking'), h(S.Header,{variant:'start',title:'Ranking',onBack:function(){},action:{icon:'share',label:'Compartilhar'}}),
+  K('variant="eyebrow": QR do dia da entrega'), h(S.Header,{variant:'eyebrow',title:'Vila Verde',onBack:function(){}}),
   K('divider={false}: telas anteriores'), h(S.Header,{title:'Menu',divider:false})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
