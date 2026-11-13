@@ -1,4 +1,4 @@
-/* So+ma Design System · app da documentação: roteador por hash, shell, busca ⌘K, tema e layout.
+/* Campana · app da documentação: roteador por hash, shell, busca ⌘K, tema e layout.
    Fonte e conteúdo são da So+ma. */
 import { icon } from '../ds/icons.js';
 import { initTheme, mountThemeControls, toggleTheme, resolvedTheme } from '../ds/js/theme.js';
@@ -89,7 +89,7 @@ async function render() {
   const page = byPath.get(path) ?? { path, label: 'Página não encontrada', group: '', groupId: 'main', description: '', load: null };
   cleanup.forEach((fn) => fn?.());
   cleanup = [];
-  document.title = path === '/' ? 'So+ma Design System' : `${page.label} · So+ma Design System`;
+  document.title = path === '/' ? 'Campana · Design system da So+ma' : `${page.label} · Campana`;
   setActiveNavItem(navEl, `#${path}`);
   navbar.setActive(`#${path}`);
   crumbs(page);

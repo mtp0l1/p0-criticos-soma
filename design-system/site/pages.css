@@ -107,3 +107,15 @@
 .stage-card__title{font:var(--ds-text-heading-sm);letter-spacing:var(--ds-text-heading-sm-tracking)}
 .stage-card p{color:var(--ds-color-fg-muted);font:var(--ds-text-body-sm)}
 .stage-card ul{margin:0;padding-inline-start:1.25rem;color:var(--ds-color-fg-muted);font:var(--ds-text-body-sm)}
+
+/* marca e página Sobre o Campana */
+.brand-quote{margin:0 0 var(--ds-space-300);padding:var(--ds-space-400) var(--ds-space-500);border-radius:var(--ds-radius-xl);background:var(--ds-color-bg-raised);border:1px solid var(--ds-color-border-subtle,rgba(127,127,127,.2))}
+.brand-quote p{margin:0;font:var(--ds-font-weight-medium) clamp(1.375rem,2.6vw,2rem)/1.3 var(--ds-font-family-display);letter-spacing:-.02em;color:var(--ds-color-fg-default);max-width:28ch}
+.brand-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ds-space-200)}
+.brand-tile{margin:0;display:grid;gap:var(--ds-space-100)}
+.brand-tile__stage{display:grid;place-items:center;min-height:180px;border-radius:var(--ds-radius-lg,16px);border:1px solid var(--ds-color-border-subtle,rgba(127,127,127,.2));padding:var(--ds-space-300)}
+.brand-tile__stage--light{background:#FDFEFF}.brand-tile__stage--dark{background:#21344E}
+.brand-tile__stage img{height:56px;width:auto;max-width:100%}.brand-tile__stage.sym img{height:88px}
+.brand-tile figcaption{font-size:.875rem;color:var(--ds-color-fg-muted)}
+@media (max-width:640px){.brand-grid{grid-template-columns:1fr}.brand-tile__stage img{height:44px}}
+.brand-sw .sw *{font-family:var(--ds-font-family-sans)}

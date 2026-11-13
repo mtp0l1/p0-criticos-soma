@@ -1,4 +1,4 @@
-# So+ma Design System
+# Campana, o design system da So+ma
 
 > Design system do app So+ma: tokens, componentes (shadcn/ui + Andes), ícones Lucide e padrões de tela.
 
@@ -8,7 +8,9 @@
 - [tokens.json](files/tokens.json): única fonte de valores
 
 ## Arquivos
-- [soma-design-system.zip](files/soma-design-system.zip): Pacote completo: tokens, código-fonte, bundle, tipos e documentação
+- [campana-logo.svg](assets/brand/campana-logo.svg): Logotipo do Campana, para fundo claro
+- [campana-simbolo.svg](assets/brand/campana-simbolo.svg): Símbolo do Campana
+- [soma-design-system.zip](files/soma-design-system.zip): Pacote completo: tokens, código-fonte, bundle, tipos, marca e documentação
 - [tokens.json](files/tokens.json): Fonte única dos tokens
 - [tokens.css](files/tokens.css): Variáveis CSS e classes de texto
 - [index.d.ts](files/index.d.ts): Tipos e props de cada componente
@@ -22,6 +24,7 @@
 ## Páginas
 - #/: Início
 - #/primeiros-passos: Primeiros passos
+- #/campana: Sobre o Campana
 - #/novidades: Novidades
 - #/roadmap: Roadmap
 - #/fundamentos/cores: Cores
