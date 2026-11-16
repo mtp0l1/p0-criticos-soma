@@ -11,7 +11,7 @@ import { navigation } from './nav.js';
 import { EXTRA } from './search-index.js';
 import { ALIASES } from './aliases.js';
 
-const KIND_ICON = { Cor: 'palette', Ícone: 'smile', Ilustração: 'image', Texto: 'type', Medida: 'ruler', Guia: 'book-open', Novidade: 'sparkles', Roadmap: 'milestone', Arquivos: 'download' };
+const KIND_ICON = { Cor: 'palette', Ícone: 'smile', Ilustração: 'image', Texto: 'type', Medida: 'ruler', Guia: 'book-open', Novidade: 'sparkles', Arquivos: 'download' };
 const read = (k) => { try { return localStorage.getItem(k); } catch { return null; } };
 const write = (k, v) => { try { localStorage.setItem(k, v); } catch {} };
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');

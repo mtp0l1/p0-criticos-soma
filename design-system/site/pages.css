@@ -1,4 +1,4 @@
-/* Composições das páginas do site da So+ma (exemplos, cores, tipografia, ícones, ilustrações, guias, roadmap). */
+/* Composições das páginas do site da So+ma (exemplos, cores, tipografia, ícones, ilustrações, guias). */
 .ds-input-wrap{display:flex;align-items:center;gap:var(--ds-space-100);height:var(--ds-size-control-md);padding-inline:12px;border:1px solid var(--ds-color-border-field);border-radius:var(--ds-radius-md);background:var(--ds-color-bg-field);color:var(--ds-color-fg-subtle);min-width:0;flex:1;max-width:420px;transition:border-color var(--ds-duration-fast) var(--ds-easing-standard)}
 .ds-input-wrap:hover{border-color:var(--ds-color-border-field-hover)}
 .ds-input-wrap:focus-within{outline:var(--ds-focus-ring-width) solid var(--ds-color-border-focus);outline-offset:var(--ds-focus-ring-offset)}
@@ -92,21 +92,6 @@
 .route-grid .ds-card{display:flex;flex-direction:column;gap:var(--ds-space-100)}
 .route-grid .home-list__icon{margin-bottom:var(--ds-space-100)}
 @media (max-width:900px){.route-grid{grid-template-columns:minmax(0,1fr)}.typelist li{grid-template-columns:minmax(0,1fr);gap:var(--ds-space-100)}}
-/* Novidades e roadmap */
-.release{display:grid;gap:var(--ds-space-150)}
-.release__head{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--ds-space-150)}
-.release__version{font:var(--ds-text-heading-lg);letter-spacing:var(--ds-text-heading-lg-tracking);font-variant-numeric:tabular-nums}
-.release__date{color:var(--ds-color-fg-subtle);font:var(--ds-text-caption)}
-.release__title{font:var(--ds-text-heading-sm);letter-spacing:var(--ds-text-heading-sm-tracking)}
-.release ul{margin:0;padding-inline-start:1.25rem;color:var(--ds-color-fg-muted);font:var(--ds-text-body-sm)}
-.release li+li{margin-top:var(--ds-space-075)}
-.release p{color:var(--ds-color-fg-muted);font:var(--ds-text-body-md)}
-.stage-list{display:grid;gap:var(--ds-space-150)}
-.stage-card{display:grid;gap:var(--ds-space-100);padding:var(--ds-space-300)}
-.stage-card__head{display:flex;flex-wrap:wrap;align-items:center;gap:var(--ds-space-150)}
-.stage-card__title{font:var(--ds-text-heading-sm);letter-spacing:var(--ds-text-heading-sm-tracking)}
-.stage-card p{color:var(--ds-color-fg-muted);font:var(--ds-text-body-sm)}
-.stage-card ul{margin:0;padding-inline-start:1.25rem;color:var(--ds-color-fg-muted);font:var(--ds-text-body-sm)}
 
 /* marca e página Sobre o Campana */
 .brand-quote{margin:0 0 var(--ds-space-300);padding:var(--ds-space-400) var(--ds-space-500);border-radius:var(--ds-radius-xl);background:var(--ds-color-bg-raised);border:1px solid var(--ds-color-border-subtle,rgba(127,127,127,.2))}

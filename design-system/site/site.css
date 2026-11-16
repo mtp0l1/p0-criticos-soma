@@ -78,9 +78,6 @@
 .home-list__label{font:var(--ds-text-label-md);letter-spacing:var(--ds-text-label-md-tracking)}
 .home-list__desc{color:var(--ds-color-fg-subtle);font:var(--ds-text-body-sm)}
 .home-list__chevron{color:var(--ds-color-fg-subtle)}
-.home-roadmap{display:flex;flex-direction:column;gap:var(--ds-space-300);margin-bottom:var(--ds-space-300)}
-.home-roadmap__title{color:var(--ds-color-fg-default);font:var(--ds-text-label-md)}
-.home-roadmap__text{margin-top:var(--ds-space-075);color:var(--ds-color-fg-muted);font:var(--ds-text-body-sm);letter-spacing:var(--ds-text-body-sm-tracking)}
 .site-footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--ds-space-100) var(--ds-space-300);margin-top:var(--ds-space-800);padding-top:var(--ds-space-300);border-top:1px solid var(--ds-color-border-subtle);color:var(--ds-color-fg-subtle);font:var(--ds-text-caption)}
 .site-footer p:first-child{color:var(--ds-color-fg-muted);font-weight:var(--ds-font-weight-semibold)}
 @media (max-width:1280px){.home-hero{grid-template-columns:minmax(0,1fr);gap:var(--ds-space-600)}.tile-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
