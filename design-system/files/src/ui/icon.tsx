@@ -70,6 +70,12 @@ export const isVectorIcon = (name: string): name is VectorIconName => name in VE
 /** Nomes do set vetorial que o Lucide já cobre. Nesses, `name` usa o Lucide; para o vetorial, passe `source="vector"`. */
 export const VECTOR_SHADOWED = VECTOR_ICON_NAMES.filter(n => n in ICONS || n in ICON_ALIASES);
 
+/** Onde o navegador busca os grupos do set vetorial. Por padrão: a pasta `icons-chunks/` ao lado do script do bundle. Defina antes do primeiro ícone
+ *  quando o bundle for inline, vier de blob ou de outra origem: `Soma.configureVectorIcons({ chunkBase: '/assets/icons-chunks/' })`. */
+export function configureVectorIcons(opts: { chunkBase: string }): void {
+  (globalThis as { __SOMA_ICON_BASE__?: string }).__SOMA_ICON_BASE__ = opts.chunkBase.endsWith('/') ? opts.chunkBase : opts.chunkBase + '/';
+}
+
 const vectorCache = new Map<VectorIconGroup, VectorPaths>();
 const vectorPending = new Map<VectorIconGroup, Promise<void>>();
 const vectorListeners = new Set<() => void>();

@@ -347,6 +347,11 @@ export type IconName = LucideIconName | VectorIconName;
 export declare const isVectorIcon: (name: string) => name is VectorIconName;
 /** Nomes do set vetorial que o Lucide já cobre. Nesses, `name` usa o Lucide; para o vetorial, passe `source="vector"`. */
 export declare const VECTOR_SHADOWED: ("box" | "scale" | "bell-ring" | "file-signature" | "folder" | "headphones" | "inbox" | "mail-minus" | "megaphone" | "microphone" | "paperclip" | "pencil" | "radio" | "send" | "smartphone" | "tv" | "volume-2" | "anchor" | "caliper" | "cloud" | "drill" | "flashlight" | "key" | "key-round" | "ladder" | "link" | "lock" | "lock-open" | "magnet" | "pliers" | "saw" | "search" | "shield" | "shield-check" | "bandage" | "brain" | "cross" | "dna" | "heart-pulse" | "paintbrush" | "thermometer" | "atom" | "book-open" | "flask" | "graduation-cap" | "microscope" | "acid-rain" | "air-quality" | "bamboo" | "biodegrade" | "bioplastic" | "brick" | "carbon-offset" | "cardboard" | "ceramic" | "chemical-safety" | "circular" | "clay" | "cloud-rain" | "cloud-snow" | "coal" | "compostable" | "conservation" | "deforestation" | "desert" | "droplet" | "durability" | "eco-audit" | "eco-construction" | "fabric" | "feather" | "fish" | "forest-fire" | "glass" | "globe" | "globe-americas" | "green-building" | "hemp" | "hydropower" | "leather" | "melting-ice" | "metal" | "moon" | "noise-pollution" | "oil" | "organic-cotton" | "packaging" | "paw-print" | "plastic" | "pollution" | "repair" | "safe-resource" | "sand" | "satellite" | "stone" | "sun" | "telescope" | "umbrella" | "upcycle" | "water-save" | "zero-waste" | "camera" | "circle-play" | "compass" | "crown" | "dice-5" | "dumbbell" | "film" | "gamepad" | "gem" | "ghost" | "gift" | "map" | "music" | "puzzle" | "target" | "trophy" | "burger" | "cake-slice" | "chef-hat" | "coffee" | "donut" | "ice-cream-cone" | "pizza" | "wine" | "bridge" | "building" | "church" | "door-closed" | "factory" | "hotel" | "house" | "warehouse" | "window" | "bike" | "bus" | "car" | "motorbike" | "train" | "truck" | "barcode" | "briefcase" | "credit-card" | "landmark" | "piggy-bank" | "qr-code" | "receipt" | "shopping-bag" | "shopping-cart" | "tag" | "wallet")[];
+/** Onde o navegador busca os grupos do set vetorial. Por padrão: a pasta `icons-chunks/` ao lado do script do bundle. Defina antes do primeiro ícone
+ *  quando o bundle for inline, vier de blob ou de outra origem: `Soma.configureVectorIcons({ chunkBase: '/assets/icons-chunks/' })`. */
+export declare function configureVectorIcons(opts: {
+	chunkBase: string;
+}): void;
 /** Baixa antes da hora o grupo (ou o grupo de cada nome) do set vetorial: use na rota que vai precisar deles. Sem argumento, baixa todos. */
 export declare function loadVectorIcons(target?: VectorIconGroup | VectorIconName | Array<VectorIconGroup | VectorIconName>): Promise<void>;
 export declare const iconVariants: (props?: ({
@@ -2016,6 +2021,7 @@ declare global {
 			ICON_ALIASES: typeof ICON_ALIASES;
 			isVectorIcon: typeof isVectorIcon;
 			VECTOR_SHADOWED: typeof VECTOR_SHADOWED;
+			configureVectorIcons: typeof configureVectorIcons;
 			loadVectorIcons: typeof loadVectorIcons;
 			iconVariants: typeof iconVariants;
 			Icon: typeof Icon;
