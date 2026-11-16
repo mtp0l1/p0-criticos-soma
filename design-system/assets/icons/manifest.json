@@ -4,9 +4,36 @@
   "viewBox": 24,
   "strokeTarget": 2.0,
   "count": 109,
+  "categories": [
+    "Comunicação e Escrita",
+    "Saúde e Bem-estar",
+    "Ferramentas e Configuração",
+    "Educação e Ciência",
+    "Natureza e Ambiente",
+    "Atividades e Entretenimento",
+    "Instrumentos e Ferramentas",
+    "Comunicação e Mídia",
+    "Lazer e Esportes",
+    "Alimentos e Cozinha",
+    "Casa e Conforto",
+    "Jogos e Lúdico",
+    "Transporte e Mobilidade",
+    "Finanças e Negócios",
+    "Dispositivos e Mídia",
+    "Alimentos e Consumo",
+    "Natureza e Clima",
+    "Saúde e Diversos",
+    "Arquitetura e Espaço",
+    "Tecnologia e Rede",
+    "Clima e Astronomia",
+    "Comércio e Logística",
+    "Natureza e Vida",
+    "Utilitários e Objetos"
+  ],
   "icons": [
     {
       "name": "anchor",
+      "category": "Utilitários e Objetos",
       "file": "anchor.svg",
       "source": "S3R4C4",
       "stroke": 2.0,
@@ -16,6 +43,7 @@
     },
     {
       "name": "atom",
+      "category": "Educação e Ciência",
       "file": "atom.svg",
       "source": "S1R3C3",
       "stroke": 2.0,
@@ -25,6 +53,7 @@
     },
     {
       "name": "bandage",
+      "category": "Saúde e Bem-estar",
       "file": "bandage.svg",
       "source": "S1R2C8",
       "stroke": 2.0,
@@ -34,6 +63,7 @@
     },
     {
       "name": "barcode",
+      "category": "Comércio e Logística",
       "file": "barcode.svg",
       "source": "S4R4C2",
       "stroke": 2.0,
@@ -43,6 +73,7 @@
     },
     {
       "name": "bell-ring",
+      "category": "Comunicação e Mídia",
       "file": "bell-ring.svg",
       "source": "S2R2C7",
       "stroke": 2.0,
@@ -52,6 +83,7 @@
     },
     {
       "name": "bike",
+      "category": "Transporte e Mobilidade",
       "file": "bike.svg",
       "source": "S3R1C3",
       "stroke": 2.0,
@@ -61,6 +93,7 @@
     },
     {
       "name": "book-open",
+      "category": "Educação e Ciência",
       "file": "book-open.svg",
       "source": "S1R3C2",
       "stroke": 2.0,
@@ -70,6 +103,7 @@
     },
     {
       "name": "box",
+      "category": "Comércio e Logística",
       "file": "box.svg",
       "source": "S4R3C4",
       "stroke": 2.0,
@@ -79,6 +113,7 @@
     },
     {
       "name": "brain",
+      "category": "Saúde e Diversos",
       "file": "brain.svg",
       "source": "S1R2C6",
       "stroke": 2.0,
@@ -88,6 +123,7 @@
     },
     {
       "name": "bridge",
+      "category": "Arquitetura e Espaço",
       "file": "bridge.svg",
       "source": "S4R1C4",
       "stroke": 2.0,
@@ -97,6 +133,7 @@
     },
     {
       "name": "briefcase",
+      "category": "Finanças e Negócios",
       "file": "briefcase.svg",
       "source": "S3R2C4",
       "stroke": 2.0,
@@ -106,6 +143,7 @@
     },
     {
       "name": "building",
+      "category": "Arquitetura e Espaço",
       "file": "building.svg",
       "source": "S4R1C1",
       "stroke": 2.0,
@@ -115,6 +153,7 @@
     },
     {
       "name": "burger",
+      "category": "Alimentos e Consumo",
       "file": "burger.svg",
       "source": "S3R4C1",
       "stroke": 2.0,
@@ -124,6 +163,7 @@
     },
     {
       "name": "bus",
+      "category": "Transporte e Mobilidade",
       "file": "bus.svg",
       "source": "S3R1C2",
       "stroke": 2.0,
@@ -133,6 +173,7 @@
     },
     {
       "name": "cake-slice",
+      "category": "Alimentos e Consumo",
       "file": "cake-slice.svg",
       "source": "S3R4C3",
       "stroke": 2.0,
@@ -142,6 +183,7 @@
     },
     {
       "name": "caliper",
+      "category": "Instrumentos e Ferramentas",
       "file": "caliper.svg",
       "source": "S2R1C1",
       "stroke": 2.0,
@@ -151,6 +193,7 @@
     },
     {
       "name": "camera",
+      "category": "Atividades e Entretenimento",
       "file": "camera.svg",
       "source": "S1R4C4",
       "stroke": 2.0,
@@ -160,6 +203,7 @@
     },
     {
       "name": "car",
+      "category": "Transporte e Mobilidade",
       "file": "car.svg",
       "source": "S3R1C1",
       "stroke": 2.0,
@@ -169,6 +213,7 @@
     },
     {
       "name": "chef-hat",
+      "category": "Alimentos e Cozinha",
       "file": "chef-hat.svg",
       "source": "S2R3C1",
       "stroke": 2.0,
@@ -178,6 +223,7 @@
     },
     {
       "name": "church",
+      "category": "Arquitetura e Espaço",
       "file": "church.svg",
       "source": "S4R2C3",
       "stroke": 2.0,
@@ -187,6 +233,7 @@
     },
     {
       "name": "circle-play",
+      "category": "Atividades e Entretenimento",
       "file": "circle-play.svg",
       "source": "S3R2C8",
       "stroke": 2.0,
@@ -196,6 +243,7 @@
     },
     {
       "name": "cloud",
+      "category": "Tecnologia e Rede",
       "file": "cloud.svg",
       "source": "S4R1C5",
       "stroke": 2.0,
@@ -205,6 +253,7 @@
     },
     {
       "name": "cloud-rain",
+      "category": "Clima e Astronomia",
       "file": "cloud-rain.svg",
       "source": "S3R3C6",
       "stroke": 2.0,
@@ -214,6 +263,7 @@
     },
     {
       "name": "cloud-snow",
+      "category": "Clima e Astronomia",
       "file": "cloud-snow.svg",
       "source": "S4R1C8",
       "stroke": 2.0,
@@ -223,6 +273,7 @@
     },
     {
       "name": "coffee",
+      "category": "Alimentos e Consumo",
       "file": "coffee.svg",
       "source": "S2R3C4",
       "stroke": 2.0,
@@ -232,6 +283,7 @@
     },
     {
       "name": "compass",
+      "category": "Lazer e Esportes",
       "file": "compass.svg",
       "source": "S1R4C3",
       "stroke": 2.0,
@@ -241,6 +293,7 @@
     },
     {
       "name": "credit-card",
+      "category": "Finanças e Negócios",
       "file": "credit-card.svg",
       "source": "S3R1C4",
       "stroke": 2.0,
@@ -250,6 +303,7 @@
     },
     {
       "name": "cross",
+      "category": "Saúde e Bem-estar",
       "file": "cross.svg",
       "source": "S1R1C6",
       "stroke": 2.0,
@@ -259,6 +313,7 @@
     },
     {
       "name": "crown",
+      "category": "Jogos e Lúdico",
       "file": "crown.svg",
       "source": "S1R4C6",
       "stroke": 2.0,
@@ -268,6 +323,7 @@
     },
     {
       "name": "dice-5",
+      "category": "Jogos e Lúdico",
       "file": "dice-5.svg",
       "source": "S2R4C2",
       "stroke": 2.0,
@@ -277,6 +333,7 @@
     },
     {
       "name": "dna",
+      "category": "Saúde e Diversos",
       "file": "dna.svg",
       "source": "S1R1C7",
       "stroke": 2.0,
@@ -286,6 +343,7 @@
     },
     {
       "name": "donut",
+      "category": "Alimentos e Cozinha",
       "file": "donut.svg",
       "source": "S2R3C3",
       "stroke": 2.0,
@@ -295,6 +353,7 @@
     },
     {
       "name": "door-closed",
+      "category": "Casa e Conforto",
       "file": "door-closed.svg",
       "source": "S2R3C7",
       "stroke": 2.0,
@@ -304,6 +363,7 @@
     },
     {
       "name": "drill",
+      "category": "Instrumentos e Ferramentas",
       "file": "drill.svg",
       "source": "S2R1C4",
       "stroke": 2.0,
@@ -313,6 +373,7 @@
     },
     {
       "name": "droplet",
+      "category": "Natureza e Ambiente",
       "file": "droplet.svg",
       "source": "S1R3C4",
       "stroke": 2.0,
@@ -322,6 +383,7 @@
     },
     {
       "name": "dumbbell",
+      "category": "Lazer e Esportes",
       "file": "dumbbell.svg",
       "source": "S1R2C7",
       "stroke": 2.0,
@@ -331,6 +393,7 @@
     },
     {
       "name": "factory",
+      "category": "Arquitetura e Espaço",
       "file": "factory.svg",
       "source": "S4R2C1",
       "stroke": 2.0,
@@ -340,6 +403,7 @@
     },
     {
       "name": "feather",
+      "category": "Natureza e Vida",
       "file": "feather.svg",
       "source": "S1R3C5",
       "stroke": 2.0,
@@ -349,6 +413,7 @@
     },
     {
       "name": "file-signature",
+      "category": "Comunicação e Escrita",
       "file": "file-signature.svg",
       "source": "S1R2C2",
       "stroke": 2.0,
@@ -358,6 +423,7 @@
     },
     {
       "name": "film",
+      "category": "Atividades e Entretenimento",
       "file": "film.svg",
       "source": "S1R3C7a",
       "stroke": 2.0,
@@ -367,6 +433,7 @@
     },
     {
       "name": "fish",
+      "category": "Natureza e Vida",
       "file": "fish.svg",
       "source": "S2R3C6",
       "stroke": 2.0,
@@ -376,6 +443,7 @@
     },
     {
       "name": "flashlight",
+      "category": "Utilitários e Objetos",
       "file": "flashlight.svg",
       "source": "S4R3C7",
       "stroke": 2.0,
@@ -385,6 +453,7 @@
     },
     {
       "name": "flask",
+      "category": "Educação e Ciência",
       "file": "flask.svg",
       "source": "S1R4C2",
       "stroke": 2.0,
@@ -394,6 +463,7 @@
     },
     {
       "name": "folder",
+      "category": "Comunicação e Escrita",
       "file": "folder.svg",
       "source": "S1R2C4",
       "stroke": 2.0,
@@ -403,6 +473,7 @@
     },
     {
       "name": "gamepad",
+      "category": "Jogos e Lúdico",
       "file": "gamepad.svg",
       "source": "S1R3C7b",
       "stroke": 2.0,
@@ -412,6 +483,7 @@
     },
     {
       "name": "gem",
+      "category": "Jogos e Lúdico",
       "file": "gem.svg",
       "source": "S2R4C7",
       "stroke": 2.0,
@@ -421,6 +493,7 @@
     },
     {
       "name": "ghost",
+      "category": "Jogos e Lúdico",
       "file": "ghost.svg",
       "source": "S2R4C8",
       "stroke": 2.0,
@@ -430,6 +503,7 @@
     },
     {
       "name": "gift",
+      "category": "Atividades e Entretenimento",
       "file": "gift.svg",
       "source": "S1R4C8",
       "stroke": 2.0,
@@ -439,6 +513,7 @@
     },
     {
       "name": "globe",
+      "category": "Natureza e Ambiente",
       "file": "globe.svg",
       "source": "S1R4C1",
       "stroke": 2.0,
@@ -448,6 +523,7 @@
     },
     {
       "name": "globe-americas",
+      "category": "Natureza e Ambiente",
       "file": "globe-americas.svg",
       "source": "S3R4C5",
       "stroke": 2.0,
@@ -457,6 +533,7 @@
     },
     {
       "name": "graduation-cap",
+      "category": "Educação e Ciência",
       "file": "graduation-cap.svg",
       "source": "S1R3C1",
       "stroke": 2.0,
@@ -466,6 +543,7 @@
     },
     {
       "name": "headphones",
+      "category": "Comunicação e Mídia",
       "file": "headphones.svg",
       "source": "S1R4C5",
       "stroke": 2.0,
@@ -475,6 +553,7 @@
     },
     {
       "name": "heart-pulse",
+      "category": "Saúde e Bem-estar",
       "file": "heart-pulse.svg",
       "source": "S1R1C5",
       "stroke": 2.0,
@@ -484,6 +563,7 @@
     },
     {
       "name": "hotel",
+      "category": "Arquitetura e Espaço",
       "file": "hotel.svg",
       "source": "S4R1C3",
       "stroke": 2.0,
@@ -493,6 +573,7 @@
     },
     {
       "name": "house",
+      "category": "Casa e Conforto",
       "file": "house.svg",
       "source": "S4R1C2",
       "stroke": 2.0,
@@ -502,6 +583,7 @@
     },
     {
       "name": "ice-cream-cone",
+      "category": "Alimentos e Consumo",
       "file": "ice-cream-cone.svg",
       "source": "S3R4C2",
       "stroke": 2.0,
@@ -511,6 +593,7 @@
     },
     {
       "name": "inbox",
+      "category": "Comunicação e Escrita",
       "file": "inbox.svg",
       "source": "S1R1C3",
       "stroke": 2.0,
@@ -520,6 +603,7 @@
     },
     {
       "name": "key",
+      "category": "Utilitários e Objetos",
       "file": "key.svg",
       "source": "S3R3C8",
       "stroke": 2.0,
@@ -529,6 +613,7 @@
     },
     {
       "name": "key-round",
+      "category": "Utilitários e Objetos",
       "file": "key-round.svg",
       "source": "S4R4C8",
       "stroke": 2.0,
@@ -538,6 +623,7 @@
     },
     {
       "name": "ladder",
+      "category": "Instrumentos e Ferramentas",
       "file": "ladder.svg",
       "source": "S2R2C3",
       "stroke": 2.0,
@@ -547,6 +633,7 @@
     },
     {
       "name": "landmark",
+      "category": "Finanças e Negócios",
       "file": "landmark.svg",
       "source": "S3R1C6",
       "stroke": 2.0,
@@ -556,6 +643,7 @@
     },
     {
       "name": "link",
+      "category": "Tecnologia e Rede",
       "file": "link.svg",
       "source": "S4R2C5",
       "stroke": 2.0,
@@ -565,6 +653,7 @@
     },
     {
       "name": "lock",
+      "category": "Ferramentas e Configuração",
       "file": "lock.svg",
       "source": "S4R2C8",
       "stroke": 2.0,
@@ -574,6 +663,7 @@
     },
     {
       "name": "lock-open",
+      "category": "Ferramentas e Configuração",
       "file": "lock-open.svg",
       "source": "S1R1C8",
       "stroke": 2.0,
@@ -583,6 +673,7 @@
     },
     {
       "name": "magnet",
+      "category": "Instrumentos e Ferramentas",
       "file": "magnet.svg",
       "source": "S2R2C4",
       "stroke": 2.0,
@@ -592,6 +683,7 @@
     },
     {
       "name": "mail-minus",
+      "category": "Comunicação e Escrita",
       "file": "mail-minus.svg",
       "source": "S2R2C8",
       "stroke": 2.0,
@@ -601,6 +693,7 @@
     },
     {
       "name": "map",
+      "category": "Atividades e Entretenimento",
       "file": "map.svg",
       "source": "S1R4C7",
       "stroke": 2.0,
@@ -610,6 +703,7 @@
     },
     {
       "name": "megaphone",
+      "category": "Comunicação e Mídia",
       "file": "megaphone.svg",
       "source": "S1R2C3",
       "stroke": 2.0,
@@ -619,6 +713,7 @@
     },
     {
       "name": "microphone",
+      "category": "Comunicação e Mídia",
       "file": "microphone.svg",
       "source": "S2R1C5",
       "stroke": 2.0,
@@ -628,6 +723,7 @@
     },
     {
       "name": "microscope",
+      "category": "Educação e Ciência",
       "file": "microscope.svg",
       "source": "S2R1C2",
       "stroke": 2.0,
@@ -637,6 +733,7 @@
     },
     {
       "name": "moon",
+      "category": "Natureza e Clima",
       "file": "moon.svg",
       "source": "S3R3C5",
       "stroke": 2.0,
@@ -646,6 +743,7 @@
     },
     {
       "name": "motorbike",
+      "category": "Transporte e Mobilidade",
       "file": "motorbike.svg",
       "source": "S3R2C2",
       "stroke": 2.0,
@@ -655,6 +753,7 @@
     },
     {
       "name": "music",
+      "category": "Atividades e Entretenimento",
       "file": "music.svg",
       "source": "S1R3C6",
       "stroke": 2.0,
@@ -664,6 +763,7 @@
     },
     {
       "name": "paintbrush",
+      "category": "Saúde e Diversos",
       "file": "paintbrush.svg",
       "source": "S3R4C8",
       "stroke": 2.0,
@@ -673,6 +773,7 @@
     },
     {
       "name": "paperclip",
+      "category": "Comunicação e Escrita",
       "file": "paperclip.svg",
       "source": "S1R1C1",
       "stroke": 2.0,
@@ -682,6 +783,7 @@
     },
     {
       "name": "paw-print",
+      "category": "Natureza e Vida",
       "file": "paw-print.svg",
       "source": "S4R4C4",
       "stroke": 2.0,
@@ -691,6 +793,7 @@
     },
     {
       "name": "pencil",
+      "category": "Comunicação e Escrita",
       "file": "pencil.svg",
       "source": "S1R1C2",
       "stroke": 2.0,
@@ -700,6 +803,7 @@
     },
     {
       "name": "piggy-bank",
+      "category": "Finanças e Negócios",
       "file": "piggy-bank.svg",
       "source": "S3R2C5",
       "stroke": 2.0,
@@ -709,6 +813,7 @@
     },
     {
       "name": "pizza",
+      "category": "Alimentos e Cozinha",
       "file": "pizza.svg",
       "source": "S2R3C2",
       "stroke": 2.0,
@@ -718,6 +823,7 @@
     },
     {
       "name": "pliers",
+      "category": "Instrumentos e Ferramentas",
       "file": "pliers.svg",
       "source": "S2R2C1",
       "stroke": 2.0,
@@ -727,6 +833,7 @@
     },
     {
       "name": "puzzle",
+      "category": "Jogos e Lúdico",
       "file": "puzzle.svg",
       "source": "S2R4C3",
       "stroke": 2.0,
@@ -736,6 +843,7 @@
     },
     {
       "name": "qr-code",
+      "category": "Comércio e Logística",
       "file": "qr-code.svg",
       "source": "S4R4C3",
       "stroke": 2.0,
@@ -745,6 +853,7 @@
     },
     {
       "name": "radio",
+      "category": "Dispositivos e Mídia",
       "file": "radio.svg",
       "source": "S2R1C7",
       "stroke": 2.0,
@@ -754,6 +863,7 @@
     },
     {
       "name": "receipt",
+      "category": "Finanças e Negócios",
       "file": "receipt.svg",
       "source": "S3R2C6",
       "stroke": 2.0,
@@ -763,6 +873,7 @@
     },
     {
       "name": "satellite",
+      "category": "Clima e Astronomia",
       "file": "satellite.svg",
       "source": "S4R2C4",
       "stroke": 2.0,
@@ -772,6 +883,7 @@
     },
     {
       "name": "saw",
+      "category": "Instrumentos e Ferramentas",
       "file": "saw.svg",
       "source": "S2R2C2",
       "stroke": 2.0,
@@ -781,6 +893,7 @@
     },
     {
       "name": "scale",
+      "category": "Comércio e Logística",
       "file": "scale.svg",
       "source": "S4R4C1",
       "stroke": 2.0,
@@ -790,6 +903,7 @@
     },
     {
       "name": "search",
+      "category": "Tecnologia e Rede",
       "file": "search.svg",
       "source": "S4R3C8",
       "stroke": 2.0,
@@ -799,6 +913,7 @@
     },
     {
       "name": "send",
+      "category": "Comunicação e Escrita",
       "file": "send.svg",
       "source": "S1R1C4",
       "stroke": 2.0,
@@ -808,6 +923,7 @@
     },
     {
       "name": "shield",
+      "category": "Ferramentas e Configuração",
       "file": "shield.svg",
       "source": "S4R2C6",
       "stroke": 2.0,
@@ -817,6 +933,7 @@
     },
     {
       "name": "shield-check",
+      "category": "Ferramentas e Configuração",
       "file": "shield-check.svg",
       "source": "S3R3C7",
       "stroke": 2.0,
@@ -826,6 +943,7 @@
     },
     {
       "name": "shopping-bag",
+      "category": "Comércio e Logística",
       "file": "shopping-bag.svg",
       "source": "S4R3C1",
       "stroke": 2.0,
@@ -835,6 +953,7 @@
     },
     {
       "name": "shopping-cart",
+      "category": "Comércio e Logística",
       "file": "shopping-cart.svg",
       "source": "S3R3C3",
       "stroke": 2.0,
@@ -844,6 +963,7 @@
     },
     {
       "name": "smartphone",
+      "category": "Dispositivos e Mídia",
       "file": "smartphone.svg",
       "source": "S3R1C7",
       "stroke": 2.0,
@@ -853,6 +973,7 @@
     },
     {
       "name": "sun",
+      "category": "Natureza e Clima",
       "file": "sun.svg",
       "source": "S3R3C4",
       "stroke": 2.0,
@@ -862,6 +983,7 @@
     },
     {
       "name": "tag",
+      "category": "Comércio e Logística",
       "file": "tag.svg",
       "source": "S4R3C3",
       "stroke": 2.0,
@@ -871,6 +993,7 @@
     },
     {
       "name": "target",
+      "category": "Lazer e Esportes",
       "file": "target.svg",
       "source": "S2R4C5",
       "stroke": 2.0,
@@ -880,6 +1003,7 @@
     },
     {
       "name": "telescope",
+      "category": "Clima e Astronomia",
       "file": "telescope.svg",
       "source": "S2R1C3",
       "stroke": 2.0,
@@ -889,6 +1013,7 @@
     },
     {
       "name": "thermometer",
+      "category": "Saúde e Bem-estar",
       "file": "thermometer.svg",
       "source": "S1R2C5",
       "stroke": 2.0,
@@ -898,6 +1023,7 @@
     },
     {
       "name": "train",
+      "category": "Transporte e Mobilidade",
       "file": "train.svg",
       "source": "S3R2C1",
       "stroke": 2.0,
@@ -907,6 +1033,7 @@
     },
     {
       "name": "trophy",
+      "category": "Lazer e Esportes",
       "file": "trophy.svg",
       "source": "S1R3C8",
       "stroke": 2.0,
@@ -916,6 +1043,7 @@
     },
     {
       "name": "truck",
+      "category": "Transporte e Mobilidade",
       "file": "truck.svg",
       "source": "S3R2C3",
       "stroke": 2.0,
@@ -925,6 +1053,7 @@
     },
     {
       "name": "tv",
+      "category": "Dispositivos e Mídia",
       "file": "tv.svg",
       "source": "S3R1C8",
       "stroke": 2.0,
@@ -934,6 +1063,7 @@
     },
     {
       "name": "umbrella",
+      "category": "Clima e Astronomia",
       "file": "umbrella.svg",
       "source": "S4R3C6",
       "stroke": 2.0,
@@ -943,6 +1073,7 @@
     },
     {
       "name": "volume-2",
+      "category": "Comunicação e Mídia",
       "file": "volume-2.svg",
       "source": "S1R2C1",
       "stroke": 2.0,
@@ -952,6 +1083,7 @@
     },
     {
       "name": "wallet",
+      "category": "Finanças e Negócios",
       "file": "wallet.svg",
       "source": "S3R1C5",
       "stroke": 2.0,
@@ -961,6 +1093,7 @@
     },
     {
       "name": "warehouse",
+      "category": "Arquitetura e Espaço",
       "file": "warehouse.svg",
       "source": "S4R2C2",
       "stroke": 2.0,
@@ -970,6 +1103,7 @@
     },
     {
       "name": "window",
+      "category": "Casa e Conforto",
       "file": "window.svg",
       "source": "S2R3C8",
       "stroke": 2.0,
@@ -979,6 +1113,7 @@
     },
     {
       "name": "wine",
+      "category": "Alimentos e Cozinha",
       "file": "wine.svg",
       "source": "S2R3C5",
       "stroke": 2.0,
