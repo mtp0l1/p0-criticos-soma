@@ -3,7 +3,59 @@
   "format": "svg",
   "viewBox": 24,
   "strokeTarget": 2.0,
-  "count": 109,
+  "count": 151,
+  "groups": [
+    {
+      "title": "Comunicação e mídia",
+      "slug": "comunicacao-e-midia",
+      "count": 15
+    },
+    {
+      "title": "Tecnologia e ferramentas",
+      "slug": "tecnologia-e-ferramentas",
+      "count": 17
+    },
+    {
+      "title": "Saúde e bem-estar",
+      "slug": "saude-e-bem-estar",
+      "count": 7
+    },
+    {
+      "title": "Educação e ciência",
+      "slug": "educacao-e-ciencia",
+      "count": 5
+    },
+    {
+      "title": "Natureza, clima e impacto",
+      "slug": "natureza-clima-e-impacto",
+      "count": 55
+    },
+    {
+      "title": "Lazer, esportes e jogos",
+      "slug": "lazer-esportes-e-jogos",
+      "count": 16
+    },
+    {
+      "title": "Alimentos e cozinha",
+      "slug": "alimentos-e-cozinha",
+      "count": 8
+    },
+    {
+      "title": "Casa e arquitetura",
+      "slug": "casa-e-arquitetura",
+      "count": 9
+    },
+    {
+      "title": "Transporte e mobilidade",
+      "slug": "transporte-e-mobilidade",
+      "count": 6
+    },
+    {
+      "title": "Finanças e comércio",
+      "slug": "financas-e-comercio",
+      "count": 13
+    }
+  ],
   "categories": [
     "Comunicação e Escrita",
     "Saúde e Bem-estar",
@@ -28,15 +80,42 @@
     "Clima e Astronomia",
     "Comércio e Logística",
     "Natureza e Vida",
-    "Utilitários e Objetos"
+    "Utilitários e Objetos",
+    "Materiais e impacto"
   ],
   "icons": [
     {
+      "name": "acid-rain",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "acid-rain.svg",
+      "source": "S6R6C2",
+      "stroke": 2.0,
+      "mode": "simplificado",
+      "width": 18.1,
+      "height": 18.8,
+      "bytes": 885
+    },
+    {
+      "name": "air-quality",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "air-quality.svg",
+      "source": "S5R3C4",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 20.0,
+      "height": 14.8,
+      "bytes": 1809
+    },
+    {
       "name": "anchor",
       "category": "Utilitários e Objetos",
+      "group": "Tecnologia e ferramentas",
       "file": "anchor.svg",
       "source": "S3R4C4",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.1,
       "height": 18.8,
       "bytes": 1308
@@ -44,19 +123,35 @@
     {
       "name": "atom",
       "category": "Educação e Ciência",
+      "group": "Educação e ciência",
       "file": "atom.svg",
       "source": "S1R3C3",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.4,
       "height": 20.8,
       "bytes": 3014
     },
     {
+      "name": "bamboo",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "bamboo.svg",
+      "source": "S5R1C1",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 17.8,
+      "height": 16.0,
+      "bytes": 2953
+    },
+    {
       "name": "bandage",
       "category": "Saúde e Bem-estar",
+      "group": "Saúde e bem-estar",
       "file": "bandage.svg",
       "source": "S1R2C8",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.2,
       "height": 19.2,
       "bytes": 2825
@@ -64,9 +159,11 @@
     {
       "name": "barcode",
       "category": "Comércio e Logística",
+      "group": "Finanças e comércio",
       "file": "barcode.svg",
       "source": "S4R4C2",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.5,
       "height": 15.0,
       "bytes": 1102
@@ -74,9 +171,11 @@
     {
       "name": "bell-ring",
       "category": "Comunicação e Mídia",
+      "group": "Comunicação e mídia",
       "file": "bell-ring.svg",
       "source": "S2R2C7",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.8,
       "height": 19.6,
       "bytes": 1534
@@ -84,19 +183,47 @@
     {
       "name": "bike",
       "category": "Transporte e Mobilidade",
+      "group": "Transporte e mobilidade",
       "file": "bike.svg",
       "source": "S3R1C3",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 22.1,
       "height": 14.4,
       "bytes": 2456
     },
     {
+      "name": "biodegrade",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "biodegrade.svg",
+      "source": "S6R3C5",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 17.6,
+      "height": 17.9,
+      "bytes": 2771
+    },
+    {
+      "name": "bioplastic",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "bioplastic.svg",
+      "source": "S5R1C6",
+      "stroke": 2.0,
+      "mode": "simplificado",
+      "width": 17.6,
+      "height": 16.2,
+      "bytes": 929
+    },
+    {
       "name": "book-open",
       "category": "Educação e Ciência",
+      "group": "Educação e ciência",
       "file": "book-open.svg",
       "source": "S1R3C2",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.8,
       "height": 17.6,
       "bytes": 1797
@@ -104,9 +231,11 @@
     {
       "name": "box",
       "category": "Comércio e Logística",
+      "group": "Finanças e comércio",
       "file": "box.svg",
       "source": "S4R3C4",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.7,
       "height": 20.0,
       "bytes": 2135
@@ -114,19 +243,35 @@
     {
       "name": "brain",
       "category": "Saúde e Diversos",
+      "group": "Saúde e bem-estar",
       "file": "brain.svg",
       "source": "S1R2C6",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.5,
       "height": 19.5,
       "bytes": 2258
     },
     {
+      "name": "brick",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "brick.svg",
+      "source": "S6R1C4",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 21.0,
+      "height": 16.7,
+      "bytes": 1884
+    },
+    {
       "name": "bridge",
       "category": "Arquitetura e Espaço",
+      "group": "Casa e arquitetura",
       "file": "bridge.svg",
       "source": "S4R1C4",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 22.0,
       "height": 15.1,
       "bytes": 1300
@@ -134,9 +279,11 @@
     {
       "name": "briefcase",
       "category": "Finanças e Negócios",
+      "group": "Finanças e comércio",
       "file": "briefcase.svg",
       "source": "S3R2C4",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.8,
       "height": 18.3,
       "bytes": 1310
@@ -144,9 +291,11 @@
     {
       "name": "building",
       "category": "Arquitetura e Espaço",
+      "group": "Casa e arquitetura",
       "file": "building.svg",
       "source": "S4R1C1",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.4,
       "height": 19.0,
       "bytes": 1547
@@ -154,9 +303,11 @@
     {
       "name": "burger",
       "category": "Alimentos e Consumo",
+      "group": "Alimentos e cozinha",
       "file": "burger.svg",
       "source": "S3R4C1",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.3,
       "height": 17.2,
       "bytes": 1469
@@ -164,9 +315,11 @@
     {
       "name": "bus",
       "category": "Transporte e Mobilidade",
+      "group": "Transporte e mobilidade",
       "file": "bus.svg",
       "source": "S3R1C2",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 21.7,
       "height": 20.5,
       "bytes": 2021
@@ -174,9 +327,11 @@
     {
       "name": "cake-slice",
       "category": "Alimentos e Consumo",
+      "group": "Alimentos e cozinha",
       "file": "cake-slice.svg",
       "source": "S3R4C3",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.6,
       "height": 19.4,
       "bytes": 1543
@@ -184,9 +339,11 @@
     {
       "name": "caliper",
       "category": "Instrumentos e Ferramentas",
+      "group": "Tecnologia e ferramentas",
       "file": "caliper.svg",
       "source": "S2R1C1",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 15.2,
       "height": 20.1,
       "bytes": 2456
@@ -194,9 +351,11 @@
     {
       "name": "camera",
       "category": "Atividades e Entretenimento",
+      "group": "Lazer, esportes e jogos",
       "file": "camera.svg",
       "source": "S1R4C4",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.9,
       "height": 16.3,
       "bytes": 959
@@ -204,29 +363,83 @@
     {
       "name": "car",
       "category": "Transporte e Mobilidade",
+      "group": "Transporte e mobilidade",
       "file": "car.svg",
       "source": "S3R1C1",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.4,
       "height": 15.5,
       "bytes": 1507
     },
     {
+      "name": "carbon-offset",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "carbon-offset.svg",
+      "source": "S6R6C9",
+      "stroke": 2.0,
+      "mode": "simplificado",
+      "width": 19.0,
+      "height": 18.8,
+      "bytes": 1477
+    },
+    {
+      "name": "cardboard",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "cardboard.svg",
+      "source": "S6R2C1",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 20.3,
+      "height": 17.6,
+      "bytes": 3712
+    },
+    {
+      "name": "ceramic",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "ceramic.svg",
+      "source": "S6R2C6",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 16.1,
+      "height": 18.5,
+      "bytes": 2099
+    },
+    {
       "name": "chef-hat",
       "category": "Alimentos e Cozinha",
+      "group": "Alimentos e cozinha",
       "file": "chef-hat.svg",
       "source": "S2R3C1",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.6,
       "height": 19.1,
       "bytes": 1011
     },
     {
+      "name": "chemical-safety",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "chemical-safety.svg",
+      "source": "S5R6C2",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 19.2,
+      "height": 16.4,
+      "bytes": 2100
+    },
+    {
       "name": "church",
       "category": "Arquitetura e Espaço",
+      "group": "Casa e arquitetura",
       "file": "church.svg",
       "source": "S4R2C3",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 21.1,
       "height": 20.3,
       "bytes": 1344
@@ -234,19 +447,47 @@
     {
       "name": "circle-play",
       "category": "Atividades e Entretenimento",
+      "group": "Lazer, esportes e jogos",
       "file": "circle-play.svg",
       "source": "S3R2C8",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.1,
       "height": 19.4,
       "bytes": 1523
     },
     {
+      "name": "circular",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "circular.svg",
+      "source": "S6R5C2",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 18.8,
+      "height": 18.5,
+      "bytes": 2012
+    },
+    {
+      "name": "clay",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "clay.svg",
+      "source": "S5R1C4",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 20.0,
+      "height": 14.8,
+      "bytes": 2812
+    },
+    {
       "name": "cloud",
       "category": "Tecnologia e Rede",
+      "group": "Tecnologia e ferramentas",
       "file": "cloud.svg",
       "source": "S4R1C5",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.5,
       "height": 13.4,
       "bytes": 647
@@ -254,9 +495,11 @@
     {
       "name": "cloud-rain",
       "category": "Clima e Astronomia",
+      "group": "Natureza, clima e impacto",
       "file": "cloud-rain.svg",
       "source": "S3R3C6",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.7,
       "height": 18.6,
       "bytes": 1397
@@ -264,19 +507,35 @@
     {
       "name": "cloud-snow",
       "category": "Clima e Astronomia",
+      "group": "Natureza, clima e impacto",
       "file": "cloud-snow.svg",
       "source": "S4R1C8",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.8,
       "height": 20.5,
       "bytes": 2089
     },
     {
+      "name": "coal",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "coal.svg",
+      "source": "S6R4C8",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 18.5,
+      "height": 17.9,
+      "bytes": 3691
+    },
+    {
       "name": "coffee",
       "category": "Alimentos e Consumo",
+      "group": "Alimentos e cozinha",
       "file": "coffee.svg",
       "source": "S2R3C4",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.6,
       "height": 19.1,
       "bytes": 1353
@@ -284,19 +543,47 @@
     {
       "name": "compass",
       "category": "Lazer e Esportes",
+      "group": "Lazer, esportes e jogos",
       "file": "compass.svg",
       "source": "S1R4C3",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.9,
       "height": 18.9,
       "bytes": 1357
     },
     {
+      "name": "compostable",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "compostable.svg",
+      "source": "S5R1C5",
+      "stroke": 2.0,
+      "mode": "simplificado",
+      "width": 19.8,
+      "height": 16.2,
+      "bytes": 1279
+    },
+    {
+      "name": "conservation",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "conservation.svg",
+      "source": "S5R6C8",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 19.2,
+      "height": 16.8,
+      "bytes": 4348
+    },
+    {
       "name": "credit-card",
       "category": "Finanças e Negócios",
+      "group": "Finanças e comércio",
       "file": "credit-card.svg",
       "source": "S3R1C4",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 21.1,
       "height": 15.5,
       "bytes": 764
@@ -304,9 +591,11 @@
     {
       "name": "cross",
       "category": "Saúde e Bem-estar",
+      "group": "Saúde e bem-estar",
       "file": "cross.svg",
       "source": "S1R1C6",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.9,
       "height": 19.2,
       "bytes": 1033
@@ -314,19 +603,47 @@
     {
       "name": "crown",
       "category": "Jogos e Lúdico",
+      "group": "Lazer, esportes e jogos",
       "file": "crown.svg",
       "source": "S1R4C6",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.8,
       "height": 17.1,
       "bytes": 2097
     },
     {
+      "name": "deforestation",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "deforestation.svg",
+      "source": "S6R3C6",
+      "stroke": 2.0,
+      "mode": "simplificado",
+      "width": 18.5,
+      "height": 18.1,
+      "bytes": 1031
+    },
+    {
+      "name": "desert",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "desert.svg",
+      "source": "S6R6C4",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 20.1,
+      "height": 19.2,
+      "bytes": 4266
+    },
+    {
       "name": "dice-5",
       "category": "Jogos e Lúdico",
+      "group": "Lazer, esportes e jogos",
       "file": "dice-5.svg",
       "source": "S2R4C2",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.6,
       "height": 18.8,
       "bytes": 892
@@ -334,9 +651,11 @@
     {
       "name": "dna",
       "category": "Saúde e Diversos",
+      "group": "Saúde e bem-estar",
       "file": "dna.svg",
       "source": "S1R1C7",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 13.1,
       "height": 19.5,
       "bytes": 1629
@@ -344,9 +663,11 @@
     {
       "name": "donut",
       "category": "Alimentos e Cozinha",
+      "group": "Alimentos e cozinha",
       "file": "donut.svg",
       "source": "S2R3C3",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.8,
       "height": 19.1,
       "bytes": 2548
@@ -354,9 +675,11 @@
     {
       "name": "door-closed",
       "category": "Casa e Conforto",
+      "group": "Casa e arquitetura",
       "file": "door-closed.svg",
       "source": "S2R3C7",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 17.9,
       "height": 18.8,
       "bytes": 1098
@@ -364,9 +687,11 @@
     {
       "name": "drill",
       "category": "Instrumentos e Ferramentas",
+      "group": "Tecnologia e ferramentas",
       "file": "drill.svg",
       "source": "S2R1C4",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 21.7,
       "height": 18.2,
       "bytes": 1726
@@ -374,9 +699,11 @@
     {
       "name": "droplet",
       "category": "Natureza e Ambiente",
+      "group": "Natureza, clima e impacto",
       "file": "droplet.svg",
       "source": "S1R3C4",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 14.1,
       "height": 19.5,
       "bytes": 1008
@@ -384,19 +711,71 @@
     {
       "name": "dumbbell",
       "category": "Lazer e Esportes",
+      "group": "Lazer, esportes e jogos",
       "file": "dumbbell.svg",
       "source": "S1R2C7",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 22.1,
       "height": 12.8,
       "bytes": 1730
     },
     {
+      "name": "durability",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "durability.svg",
+      "source": "S5R5C8",
+      "stroke": 2.0,
+      "mode": "simplificado",
+      "width": 16.6,
+      "height": 16.8,
+      "bytes": 1035
+    },
+    {
+      "name": "eco-audit",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "eco-audit.svg",
+      "source": "S6R6C8",
+      "stroke": 2.0,
+      "mode": "simplificado",
+      "width": 19.0,
+      "height": 18.8,
+      "bytes": 1208
+    },
+    {
+      "name": "eco-construction",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "eco-construction.svg",
+      "source": "S5R4C7",
+      "stroke": 2.0,
+      "mode": "simplificado",
+      "width": 20.8,
+      "height": 16.6,
+      "bytes": 980
+    },
+    {
+      "name": "fabric",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "fabric.svg",
+      "source": "S6R1C7",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 21.5,
+      "height": 16.8,
+      "bytes": 1756
+    },
+    {
       "name": "factory",
       "category": "Arquitetura e Espaço",
+      "group": "Casa e arquitetura",
       "file": "factory.svg",
       "source": "S4R2C1",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.8,
       "height": 19.8,
       "bytes": 1640
@@ -404,9 +783,11 @@
     {
       "name": "feather",
       "category": "Natureza e Vida",
+      "group": "Natureza, clima e impacto",
       "file": "feather.svg",
       "source": "S1R3C5",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.1,
       "height": 19.2,
       "bytes": 1787
@@ -414,9 +795,11 @@
     {
       "name": "file-signature",
       "category": "Comunicação e Escrita",
+      "group": "Comunicação e mídia",
       "file": "file-signature.svg",
       "source": "S1R2C2",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.5,
       "height": 19.5,
       "bytes": 2053
@@ -424,9 +807,11 @@
     {
       "name": "film",
       "category": "Atividades e Entretenimento",
+      "group": "Lazer, esportes e jogos",
       "file": "film.svg",
       "source": "S1R3C7a",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.8,
       "height": 18.4,
       "bytes": 2183
@@ -434,9 +819,11 @@
     {
       "name": "fish",
       "category": "Natureza e Vida",
+      "group": "Natureza, clima e impacto",
       "file": "fish.svg",
       "source": "S2R3C6",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.8,
       "height": 14.4,
       "bytes": 2020
@@ -444,9 +831,11 @@
     {
       "name": "flashlight",
       "category": "Utilitários e Objetos",
+      "group": "Tecnologia e ferramentas",
       "file": "flashlight.svg",
       "source": "S4R3C7",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.8,
       "height": 20.0,
       "bytes": 1263
@@ -454,9 +843,11 @@
     {
       "name": "flask",
       "category": "Educação e Ciência",
+      "group": "Educação e ciência",
       "file": "flask.svg",
       "source": "S1R4C2",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 16.3,
       "height": 18.9,
       "bytes": 1310
@@ -464,19 +855,35 @@
     {
       "name": "folder",
       "category": "Comunicação e Escrita",
+      "group": "Comunicação e mídia",
       "file": "folder.svg",
       "source": "S1R2C4",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.0,
       "height": 15.7,
       "bytes": 578
     },
     {
+      "name": "forest-fire",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "forest-fire.svg",
+      "source": "S5R3C3",
+      "stroke": 2.0,
+      "mode": "simplificado",
+      "width": 19.4,
+      "height": 16.4,
+      "bytes": 1413
+    },
+    {
       "name": "gamepad",
       "category": "Jogos e Lúdico",
+      "group": "Lazer, esportes e jogos",
       "file": "gamepad.svg",
       "source": "S1R3C7b",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 21.9,
       "height": 14.8,
       "bytes": 1909
@@ -484,9 +891,11 @@
     {
       "name": "gem",
       "category": "Jogos e Lúdico",
+      "group": "Lazer, esportes e jogos",
       "file": "gem.svg",
       "source": "S2R4C7",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.8,
       "height": 16.4,
       "bytes": 3267
@@ -494,9 +903,11 @@
     {
       "name": "ghost",
       "category": "Jogos e Lúdico",
+      "group": "Lazer, esportes e jogos",
       "file": "ghost.svg",
       "source": "S2R4C8",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 15.4,
       "height": 18.8,
       "bytes": 1092
@@ -504,19 +915,35 @@
     {
       "name": "gift",
       "category": "Atividades e Entretenimento",
+      "group": "Lazer, esportes e jogos",
       "file": "gift.svg",
       "source": "S1R4C8",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.7,
       "height": 18.9,
       "bytes": 1552
     },
     {
+      "name": "glass",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "glass.svg",
+      "source": "S6R1C5",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 16.1,
+      "height": 18.3,
+      "bytes": 1138
+    },
+    {
       "name": "globe",
       "category": "Natureza e Ambiente",
+      "group": "Natureza, clima e impacto",
       "file": "globe.svg",
       "source": "S1R4C1",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.7,
       "height": 18.9,
       "bytes": 2734
@@ -524,9 +951,11 @@
     {
       "name": "globe-americas",
       "category": "Natureza e Ambiente",
+      "group": "Natureza, clima e impacto",
       "file": "globe-americas.svg",
       "source": "S3R4C5",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.1,
       "height": 19.1,
       "bytes": 1763
@@ -534,19 +963,35 @@
     {
       "name": "graduation-cap",
       "category": "Educação e Ciência",
+      "group": "Educação e ciência",
       "file": "graduation-cap.svg",
       "source": "S1R3C1",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 21.6,
       "height": 14.7,
       "bytes": 2283
     },
     {
+      "name": "green-building",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "green-building.svg",
+      "source": "S6R5C7",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 21.3,
+      "height": 18.2,
+      "bytes": 5162
+    },
+    {
       "name": "headphones",
       "category": "Comunicação e Mídia",
+      "group": "Comunicação e mídia",
       "file": "headphones.svg",
       "source": "S1R4C5",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 17.6,
       "height": 17.3,
       "bytes": 946
@@ -554,19 +999,35 @@
     {
       "name": "heart-pulse",
       "category": "Saúde e Bem-estar",
+      "group": "Saúde e bem-estar",
       "file": "heart-pulse.svg",
       "source": "S1R1C5",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.8,
       "height": 18.7,
       "bytes": 2147
     },
     {
+      "name": "hemp",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "hemp.svg",
+      "source": "S5R1C3",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 20.4,
+      "height": 16.0,
+      "bytes": 3180
+    },
+    {
       "name": "hotel",
       "category": "Arquitetura e Espaço",
+      "group": "Casa e arquitetura",
       "file": "hotel.svg",
       "source": "S4R1C3",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.2,
       "height": 19.8,
       "bytes": 1514
@@ -574,19 +1035,35 @@
     {
       "name": "house",
       "category": "Casa e Conforto",
+      "group": "Casa e arquitetura",
       "file": "house.svg",
       "source": "S4R1C2",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 17.1,
       "height": 18.7,
       "bytes": 1195
     },
     {
+      "name": "hydropower",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "hydropower.svg",
+      "source": "S6R4C4",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 20.8,
+      "height": 18.3,
+      "bytes": 3732
+    },
+    {
       "name": "ice-cream-cone",
       "category": "Alimentos e Consumo",
+      "group": "Alimentos e cozinha",
       "file": "ice-cream-cone.svg",
       "source": "S3R4C2",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 12.1,
       "height": 19.1,
       "bytes": 1546
@@ -594,9 +1071,11 @@
     {
       "name": "inbox",
       "category": "Comunicação e Escrita",
+      "group": "Comunicação e mídia",
       "file": "inbox.svg",
       "source": "S1R1C3",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.3,
       "height": 16.0,
       "bytes": 1209
@@ -604,9 +1083,11 @@
     {
       "name": "key",
       "category": "Utilitários e Objetos",
+      "group": "Tecnologia e ferramentas",
       "file": "key.svg",
       "source": "S3R3C8",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.1,
       "height": 18.8,
       "bytes": 948
@@ -614,9 +1095,11 @@
     {
       "name": "key-round",
       "category": "Utilitários e Objetos",
+      "group": "Tecnologia e ferramentas",
       "file": "key-round.svg",
       "source": "S4R4C8",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 22.0,
       "height": 11.2,
       "bytes": 1252
@@ -624,9 +1107,11 @@
     {
       "name": "ladder",
       "category": "Instrumentos e Ferramentas",
+      "group": "Tecnologia e ferramentas",
       "file": "ladder.svg",
       "source": "S2R2C3",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 14.7,
       "height": 20.1,
       "bytes": 2006
@@ -634,19 +1119,35 @@
     {
       "name": "landmark",
       "category": "Finanças e Negócios",
+      "group": "Finanças e comércio",
       "file": "landmark.svg",
       "source": "S3R1C6",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.4,
       "height": 19.1,
       "bytes": 1853
     },
     {
+      "name": "leather",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "leather.svg",
+      "source": "S6R2C5",
+      "stroke": 2.0,
+      "mode": "simplificado",
+      "width": 17.6,
+      "height": 18.3,
+      "bytes": 1158
+    },
+    {
       "name": "link",
       "category": "Tecnologia e Rede",
+      "group": "Tecnologia e ferramentas",
       "file": "link.svg",
       "source": "S4R2C5",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.7,
       "height": 18.7,
       "bytes": 871
@@ -654,9 +1155,11 @@
     {
       "name": "lock",
       "category": "Ferramentas e Configuração",
+      "group": "Tecnologia e ferramentas",
       "file": "lock.svg",
       "source": "S4R2C8",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 15.8,
       "height": 19.5,
       "bytes": 689
@@ -664,9 +1167,11 @@
     {
       "name": "lock-open",
       "category": "Ferramentas e Configuração",
+      "group": "Tecnologia e ferramentas",
       "file": "lock-open.svg",
       "source": "S1R1C8",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 15.5,
       "height": 19.5,
       "bytes": 778
@@ -674,9 +1179,11 @@
     {
       "name": "magnet",
       "category": "Instrumentos e Ferramentas",
+      "group": "Tecnologia e ferramentas",
       "file": "magnet.svg",
       "source": "S2R2C4",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.3,
       "height": 20.3,
       "bytes": 1555
@@ -684,9 +1191,11 @@
     {
       "name": "mail-minus",
       "category": "Comunicação e Escrita",
+      "group": "Comunicação e mídia",
       "file": "mail-minus.svg",
       "source": "S2R2C8",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 21.0,
       "height": 17.9,
       "bytes": 2325
@@ -694,9 +1203,11 @@
     {
       "name": "map",
       "category": "Atividades e Entretenimento",
+      "group": "Lazer, esportes e jogos",
       "file": "map.svg",
       "source": "S1R4C7",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.3,
       "height": 18.1,
       "bytes": 1997
@@ -704,19 +1215,47 @@
     {
       "name": "megaphone",
       "category": "Comunicação e Mídia",
+      "group": "Comunicação e mídia",
       "file": "megaphone.svg",
       "source": "S1R2C3",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.3,
       "height": 18.1,
       "bytes": 2061
     },
     {
+      "name": "melting-ice",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "melting-ice.svg",
+      "source": "S5R3C2",
+      "stroke": 2.0,
+      "mode": "simplificado",
+      "width": 20.6,
+      "height": 16.4,
+      "bytes": 1221
+    },
+    {
+      "name": "metal",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "metal.svg",
+      "source": "S6R2C4",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 21.0,
+      "height": 17.9,
+      "bytes": 2336
+    },
+    {
       "name": "microphone",
       "category": "Comunicação e Mídia",
+      "group": "Comunicação e mídia",
       "file": "microphone.svg",
       "source": "S2R1C5",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 17.4,
       "height": 20.1,
       "bytes": 2031
@@ -724,9 +1263,11 @@
     {
       "name": "microscope",
       "category": "Educação e Ciência",
+      "group": "Educação e ciência",
       "file": "microscope.svg",
       "source": "S2R1C2",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 15.4,
       "height": 20.3,
       "bytes": 2018
@@ -734,9 +1275,11 @@
     {
       "name": "moon",
       "category": "Natureza e Clima",
+      "group": "Natureza, clima e impacto",
       "file": "moon.svg",
       "source": "S3R3C5",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.6,
       "height": 19.1,
       "bytes": 855
@@ -744,9 +1287,11 @@
     {
       "name": "motorbike",
       "category": "Transporte e Mobilidade",
+      "group": "Transporte e mobilidade",
       "file": "motorbike.svg",
       "source": "S3R2C2",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 21.9,
       "height": 14.2,
       "bytes": 2287
@@ -754,19 +1299,71 @@
     {
       "name": "music",
       "category": "Atividades e Entretenimento",
+      "group": "Lazer, esportes e jogos",
       "file": "music.svg",
       "source": "S1R3C6",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 17.3,
       "height": 18.4,
       "bytes": 1197
     },
     {
+      "name": "noise-pollution",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "noise-pollution.svg",
+      "source": "S5R6C4",
+      "stroke": 2.0,
+      "mode": "simplificado",
+      "width": 14.2,
+      "height": 14.7,
+      "bytes": 1052
+    },
+    {
+      "name": "oil",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "oil.svg",
+      "source": "S6R4C6",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 13.8,
+      "height": 18.5,
+      "bytes": 2141
+    },
+    {
+      "name": "organic-cotton",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "organic-cotton.svg",
+      "source": "S5R1C7",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 19.0,
+      "height": 16.2,
+      "bytes": 2417
+    },
+    {
+      "name": "packaging",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "packaging.svg",
+      "source": "S5R2C8",
+      "stroke": 2.0,
+      "mode": "simplificado",
+      "width": 20.2,
+      "height": 15.8,
+      "bytes": 2208
+    },
+    {
       "name": "paintbrush",
       "category": "Saúde e Diversos",
+      "group": "Saúde e bem-estar",
       "file": "paintbrush.svg",
       "source": "S3R4C8",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.4,
       "height": 19.4,
       "bytes": 1565
@@ -774,9 +1371,11 @@
     {
       "name": "paperclip",
       "category": "Comunicação e Escrita",
+      "group": "Comunicação e mídia",
       "file": "paperclip.svg",
       "source": "S1R1C1",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 10.4,
       "height": 19.5,
       "bytes": 695
@@ -784,9 +1383,11 @@
     {
       "name": "paw-print",
       "category": "Natureza e Vida",
+      "group": "Natureza, clima e impacto",
       "file": "paw-print.svg",
       "source": "S4R4C4",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.5,
       "height": 19.0,
       "bytes": 1643
@@ -794,9 +1395,11 @@
     {
       "name": "pencil",
       "category": "Comunicação e Escrita",
+      "group": "Comunicação e mídia",
       "file": "pencil.svg",
       "source": "S1R1C2",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.9,
       "height": 19.2,
       "bytes": 1477
@@ -804,9 +1407,11 @@
     {
       "name": "piggy-bank",
       "category": "Finanças e Negócios",
+      "group": "Finanças e comércio",
       "file": "piggy-bank.svg",
       "source": "S3R2C5",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.8,
       "height": 18.3,
       "bytes": 1764
@@ -814,29 +1419,59 @@
     {
       "name": "pizza",
       "category": "Alimentos e Cozinha",
+      "group": "Alimentos e cozinha",
       "file": "pizza.svg",
       "source": "S2R3C2",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.3,
       "height": 18.6,
       "bytes": 2411
     },
     {
+      "name": "plastic",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "plastic.svg",
+      "source": "S6R1C8",
+      "stroke": 2.0,
+      "mode": "simplificado",
+      "width": 9.5,
+      "height": 18.1,
+      "bytes": 768
+    },
+    {
       "name": "pliers",
       "category": "Instrumentos e Ferramentas",
+      "group": "Tecnologia e ferramentas",
       "file": "pliers.svg",
       "source": "S2R2C1",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.1,
       "height": 20.6,
       "bytes": 2015
     },
     {
+      "name": "pollution",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "pollution.svg",
+      "source": "S6R3C8",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 18.3,
+      "height": 18.1,
+      "bytes": 2510
+    },
+    {
       "name": "puzzle",
       "category": "Jogos e Lúdico",
+      "group": "Lazer, esportes e jogos",
       "file": "puzzle.svg",
       "source": "S2R4C3",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.8,
       "height": 18.8,
       "bytes": 1858
@@ -844,9 +1479,11 @@
     {
       "name": "qr-code",
       "category": "Comércio e Logística",
+      "group": "Finanças e comércio",
       "file": "qr-code.svg",
       "source": "S4R4C3",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.2,
       "height": 19.5,
       "bytes": 3526
@@ -854,9 +1491,11 @@
     {
       "name": "radio",
       "category": "Dispositivos e Mídia",
+      "group": "Comunicação e mídia",
       "file": "radio.svg",
       "source": "S2R1C7",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 21.0,
       "height": 18.3,
       "bytes": 2033
@@ -864,19 +1503,59 @@
     {
       "name": "receipt",
       "category": "Finanças e Negócios",
+      "group": "Finanças e comércio",
       "file": "receipt.svg",
       "source": "S3R2C6",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 14.9,
       "height": 19.4,
       "bytes": 1454
     },
     {
+      "name": "repair",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "repair.svg",
+      "source": "S6R5C6",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 20.1,
+      "height": 18.5,
+      "bytes": 3219
+    },
+    {
+      "name": "safe-resource",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "safe-resource.svg",
+      "source": "S6R6C10",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 19.4,
+      "height": 19.0,
+      "bytes": 4500
+    },
+    {
+      "name": "sand",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "sand.svg",
+      "source": "S6R2C3",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 13.8,
+      "height": 18.3,
+      "bytes": 2563
+    },
+    {
       "name": "satellite",
       "category": "Clima e Astronomia",
+      "group": "Natureza, clima e impacto",
       "file": "satellite.svg",
       "source": "S4R2C4",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.3,
       "height": 20.3,
       "bytes": 2448
@@ -884,9 +1563,11 @@
     {
       "name": "saw",
       "category": "Instrumentos e Ferramentas",
+      "group": "Tecnologia e ferramentas",
       "file": "saw.svg",
       "source": "S2R2C2",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.8,
       "height": 20.1,
       "bytes": 2335
@@ -894,9 +1575,11 @@
     {
       "name": "scale",
       "category": "Comércio e Logística",
+      "group": "Finanças e comércio",
       "file": "scale.svg",
       "source": "S4R4C1",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.2,
       "height": 19.8,
       "bytes": 1384
@@ -904,9 +1587,11 @@
     {
       "name": "search",
       "category": "Tecnologia e Rede",
+      "group": "Tecnologia e ferramentas",
       "file": "search.svg",
       "source": "S4R3C8",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 17.6,
       "height": 17.9,
       "bytes": 546
@@ -914,9 +1599,11 @@
     {
       "name": "send",
       "category": "Comunicação e Escrita",
+      "group": "Comunicação e mídia",
       "file": "send.svg",
       "source": "S1R1C4",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.9,
       "height": 19.5,
       "bytes": 2473
@@ -924,9 +1611,11 @@
     {
       "name": "shield",
       "category": "Ferramentas e Configuração",
+      "group": "Tecnologia e ferramentas",
       "file": "shield.svg",
       "source": "S4R2C6",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 16.1,
       "height": 19.2,
       "bytes": 780
@@ -934,9 +1623,11 @@
     {
       "name": "shield-check",
       "category": "Ferramentas e Configuração",
+      "group": "Tecnologia e ferramentas",
       "file": "shield-check.svg",
       "source": "S3R3C7",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 16.9,
       "height": 19.1,
       "bytes": 1545
@@ -944,9 +1635,11 @@
     {
       "name": "shopping-bag",
       "category": "Comércio e Logística",
+      "group": "Finanças e comércio",
       "file": "shopping-bag.svg",
       "source": "S4R3C1",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 17.1,
       "height": 19.8,
       "bytes": 910
@@ -954,9 +1647,11 @@
     {
       "name": "shopping-cart",
       "category": "Comércio e Logística",
+      "group": "Finanças e comércio",
       "file": "shopping-cart.svg",
       "source": "S3R3C3",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.6,
       "height": 18.0,
       "bytes": 1570
@@ -964,19 +1659,35 @@
     {
       "name": "smartphone",
       "category": "Dispositivos e Mídia",
+      "group": "Comunicação e mídia",
       "file": "smartphone.svg",
       "source": "S3R1C7",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 13.2,
       "height": 20.2,
       "bytes": 862
     },
     {
+      "name": "stone",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "stone.svg",
+      "source": "S6R1C2",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 21.2,
+      "height": 17.2,
+      "bytes": 2585
+    },
+    {
       "name": "sun",
       "category": "Natureza e Clima",
+      "group": "Natureza, clima e impacto",
       "file": "sun.svg",
       "source": "S3R3C4",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.1,
       "height": 19.1,
       "bytes": 1271
@@ -984,9 +1695,11 @@
     {
       "name": "tag",
       "category": "Comércio e Logística",
+      "group": "Finanças e comércio",
       "file": "tag.svg",
       "source": "S4R3C3",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.0,
       "height": 19.0,
       "bytes": 713
@@ -994,9 +1707,11 @@
     {
       "name": "target",
       "category": "Lazer e Esportes",
+      "group": "Lazer, esportes e jogos",
       "file": "target.svg",
       "source": "S2R4C5",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.6,
       "height": 18.8,
       "bytes": 1966
@@ -1004,9 +1719,11 @@
     {
       "name": "telescope",
       "category": "Clima e Astronomia",
+      "group": "Natureza, clima e impacto",
       "file": "telescope.svg",
       "source": "S2R1C3",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 21.8,
       "height": 20.0,
       "bytes": 3328
@@ -1014,9 +1731,11 @@
     {
       "name": "thermometer",
       "category": "Saúde e Bem-estar",
+      "group": "Saúde e bem-estar",
       "file": "thermometer.svg",
       "source": "S1R2C5",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 12.8,
       "height": 19.2,
       "bytes": 1310
@@ -1024,9 +1743,11 @@
     {
       "name": "train",
       "category": "Transporte e Mobilidade",
+      "group": "Transporte e mobilidade",
       "file": "train.svg",
       "source": "S3R2C1",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 15.2,
       "height": 20.5,
       "bytes": 1329
@@ -1034,9 +1755,11 @@
     {
       "name": "trophy",
       "category": "Lazer e Esportes",
+      "group": "Lazer, esportes e jogos",
       "file": "trophy.svg",
       "source": "S1R3C8",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.2,
       "height": 18.1,
       "bytes": 1632
@@ -1044,9 +1767,11 @@
     {
       "name": "truck",
       "category": "Transporte e Mobilidade",
+      "group": "Transporte e mobilidade",
       "file": "truck.svg",
       "source": "S3R2C3",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 21.9,
       "height": 15.2,
       "bytes": 1441
@@ -1054,9 +1779,11 @@
     {
       "name": "tv",
       "category": "Dispositivos e Mídia",
+      "group": "Comunicação e mídia",
       "file": "tv.svg",
       "source": "S3R1C8",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 21.7,
       "height": 17.4,
       "bytes": 540
@@ -1064,19 +1791,35 @@
     {
       "name": "umbrella",
       "category": "Clima e Astronomia",
+      "group": "Natureza, clima e impacto",
       "file": "umbrella.svg",
       "source": "S4R3C6",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 19.8,
       "height": 19.8,
       "bytes": 1804
     },
     {
+      "name": "upcycle",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "upcycle.svg",
+      "source": "S6R5C4",
+      "stroke": 2.0,
+      "mode": "simplificado",
+      "width": 19.9,
+      "height": 18.5,
+      "bytes": 1464
+    },
+    {
       "name": "volume-2",
       "category": "Comunicação e Mídia",
+      "group": "Comunicação e mídia",
       "file": "volume-2.svg",
       "source": "S1R2C1",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.0,
       "height": 17.1,
       "bytes": 1374
@@ -1084,9 +1827,11 @@
     {
       "name": "wallet",
       "category": "Finanças e Negócios",
+      "group": "Finanças e comércio",
       "file": "wallet.svg",
       "source": "S3R1C5",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.0,
       "height": 18.6,
       "bytes": 1781
@@ -1094,19 +1839,35 @@
     {
       "name": "warehouse",
       "category": "Arquitetura e Espaço",
+      "group": "Casa e arquitetura",
       "file": "warehouse.svg",
       "source": "S4R2C2",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 20.8,
       "height": 18.7,
       "bytes": 1920
     },
     {
+      "name": "water-save",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "water-save.svg",
+      "source": "S6R5C3",
+      "stroke": 2.0,
+      "mode": "exato",
+      "width": 18.3,
+      "height": 19.0,
+      "bytes": 1913
+    },
+    {
       "name": "window",
       "category": "Casa e Conforto",
+      "group": "Casa e arquitetura",
       "file": "window.svg",
       "source": "S2R3C8",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 18.3,
       "height": 18.8,
       "bytes": 1044
@@ -1114,12 +1875,26 @@
     {
       "name": "wine",
       "category": "Alimentos e Cozinha",
+      "group": "Alimentos e cozinha",
       "file": "wine.svg",
       "source": "S2R3C5",
       "stroke": 2.0,
+      "mode": "exato",
       "width": 11.8,
       "height": 18.8,
       "bytes": 962
+    },
+    {
+      "name": "zero-waste",
+      "category": "Materiais e impacto",
+      "group": "Natureza, clima e impacto",
+      "file": "zero-waste.svg",
+      "source": "S6R5C1",
+      "stroke": 2.0,
+      "mode": "simplificado",
+      "width": 20.3,
+      "height": 11.3,
+      "bytes": 575
     }
   ],
   "duplicates": [
@@ -1223,5 +1998,65 @@
       "cell": "S4R4C7",
       "keptFrom": "S3R4C4"
     }
+  ],
+  "discarded": [
+    "cork",
+    "wool",
+    "glass-recycle",
+    "scrap-metal",
+    "e-waste",
+    "battery-recycle",
+    "biohazard",
+    "industrial-waste",
+    "microplastics",
+    "greenhouse",
+    "water-pollution",
+    "habitat-loss",
+    "biodiversity",
+    "overfishing",
+    "energy-storage",
+    "geothermal",
+    "hydrogen",
+    "rainwater",
+    "carbon-capture",
+    "rewilding",
+    "green-roof",
+    "circular-design",
+    "cradle-to-cradle",
+    "supply-chain",
+    "fair-trade",
+    "local-sourcing",
+    "shared-economy",
+    "lifecycle",
+    "footprint-water",
+    "eco-standards",
+    "soil-health",
+    "natural-resources",
+    "ocean-acidification",
+    "eco-advocacy",
+    "sustainable-goal",
+    "wood",
+    "steel",
+    "paper",
+    "concrete",
+    "fiber",
+    "rubber",
+    "footprint",
+    "co2",
+    "recycle-bin",
+    "compost",
+    "landfill",
+    "renewable",
+    "solar",
+    "wind-turbine",
+    "bioenergy",
+    "gas",
+    "reuse",
+    "eco-label",
+    "climate-change",
+    "soil-erosion",
+    "energy-efficiency",
+    "hazardous",
+    "ocean-waste"
   ]
 }

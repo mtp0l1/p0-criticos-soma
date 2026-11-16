@@ -52,9 +52,174 @@ export type ClassProp = {
 };
 export type OmitUndefined<T> = T extends undefined ? never : T;
 export type VariantProps<Component extends (...args: any) => any> = Omit<OmitUndefined<Parameters<Component>[0]>, "class" | "className">;
-export type VectorIconName = "anchor" | "atom" | "bandage" | "barcode" | "bell-ring" | "bike" | "book-open" | "box" | "brain" | "bridge" | "briefcase" | "building" | "burger" | "bus" | "cake-slice" | "caliper" | "camera" | "car" | "chef-hat" | "church" | "circle-play" | "cloud" | "cloud-rain" | "cloud-snow" | "coffee" | "compass" | "credit-card" | "cross" | "crown" | "dice-5" | "dna" | "donut" | "door-closed" | "drill" | "droplet" | "dumbbell" | "factory" | "feather" | "file-signature" | "film" | "fish" | "flashlight" | "flask" | "folder" | "gamepad" | "gem" | "ghost" | "gift" | "globe" | "globe-americas" | "graduation-cap" | "headphones" | "heart-pulse" | "hotel" | "house" | "ice-cream-cone" | "inbox" | "key" | "key-round" | "ladder" | "landmark" | "link" | "lock" | "lock-open" | "magnet" | "mail-minus" | "map" | "megaphone" | "microphone" | "microscope" | "moon" | "motorbike" | "music" | "paintbrush" | "paperclip" | "paw-print" | "pencil" | "piggy-bank" | "pizza" | "pliers" | "puzzle" | "qr-code" | "radio" | "receipt" | "satellite" | "saw" | "scale" | "search" | "send" | "shield" | "shield-check" | "shopping-bag" | "shopping-cart" | "smartphone" | "sun" | "tag" | "target" | "telescope" | "thermometer" | "train" | "trophy" | "truck" | "tv" | "umbrella" | "volume-2" | "wallet" | "warehouse" | "window" | "wine";
-/** nome → dado do <path> (viewBox 24×24, fill="currentColor", fill-rule evenodd). Traço equivalente a stroke-width 2. */
-export declare const VECTOR_ICON_PATHS: Record<VectorIconName, string>;
+export declare const VECTOR_ICON_GROUPS: readonly [
+	"comunicacao-e-midia",
+	"tecnologia-e-ferramentas",
+	"saude-e-bem-estar",
+	"educacao-e-ciencia",
+	"natureza-clima-e-impacto",
+	"lazer-esportes-e-jogos",
+	"alimentos-e-cozinha",
+	"casa-e-arquitetura",
+	"transporte-e-mobilidade",
+	"financas-e-comercio"
+];
+export type VectorIconGroup = (typeof VECTOR_ICON_GROUPS)[number];
+/** nome → grupo (de onde o path é carregado). */
+export declare const VECTOR_ICON_GROUP: {
+	readonly "acid-rain": "natureza-clima-e-impacto";
+	readonly "air-quality": "natureza-clima-e-impacto";
+	readonly anchor: "tecnologia-e-ferramentas";
+	readonly atom: "educacao-e-ciencia";
+	readonly bamboo: "natureza-clima-e-impacto";
+	readonly bandage: "saude-e-bem-estar";
+	readonly barcode: "financas-e-comercio";
+	readonly "bell-ring": "comunicacao-e-midia";
+	readonly bike: "transporte-e-mobilidade";
+	readonly biodegrade: "natureza-clima-e-impacto";
+	readonly bioplastic: "natureza-clima-e-impacto";
+	readonly "book-open": "educacao-e-ciencia";
+	readonly box: "financas-e-comercio";
+	readonly brain: "saude-e-bem-estar";
+	readonly brick: "natureza-clima-e-impacto";
+	readonly bridge: "casa-e-arquitetura";
+	readonly briefcase: "financas-e-comercio";
+	readonly building: "casa-e-arquitetura";
+	readonly burger: "alimentos-e-cozinha";
+	readonly bus: "transporte-e-mobilidade";
+	readonly "cake-slice": "alimentos-e-cozinha";
+	readonly caliper: "tecnologia-e-ferramentas";
+	readonly camera: "lazer-esportes-e-jogos";
+	readonly car: "transporte-e-mobilidade";
+	readonly "carbon-offset": "natureza-clima-e-impacto";
+	readonly cardboard: "natureza-clima-e-impacto";
+	readonly ceramic: "natureza-clima-e-impacto";
+	readonly "chef-hat": "alimentos-e-cozinha";
+	readonly "chemical-safety": "natureza-clima-e-impacto";
+	readonly church: "casa-e-arquitetura";
+	readonly "circle-play": "lazer-esportes-e-jogos";
+	readonly circular: "natureza-clima-e-impacto";
+	readonly clay: "natureza-clima-e-impacto";
+	readonly cloud: "tecnologia-e-ferramentas";
+	readonly "cloud-rain": "natureza-clima-e-impacto";
+	readonly "cloud-snow": "natureza-clima-e-impacto";
+	readonly coal: "natureza-clima-e-impacto";
+	readonly coffee: "alimentos-e-cozinha";
+	readonly compass: "lazer-esportes-e-jogos";
+	readonly compostable: "natureza-clima-e-impacto";
+	readonly conservation: "natureza-clima-e-impacto";
+	readonly "credit-card": "financas-e-comercio";
+	readonly cross: "saude-e-bem-estar";
+	readonly crown: "lazer-esportes-e-jogos";
+	readonly deforestation: "natureza-clima-e-impacto";
+	readonly desert: "natureza-clima-e-impacto";
+	readonly "dice-5": "lazer-esportes-e-jogos";
+	readonly dna: "saude-e-bem-estar";
+	readonly donut: "alimentos-e-cozinha";
+	readonly "door-closed": "casa-e-arquitetura";
+	readonly drill: "tecnologia-e-ferramentas";
+	readonly droplet: "natureza-clima-e-impacto";
+	readonly dumbbell: "lazer-esportes-e-jogos";
+	readonly durability: "natureza-clima-e-impacto";
+	readonly "eco-audit": "natureza-clima-e-impacto";
+	readonly "eco-construction": "natureza-clima-e-impacto";
+	readonly fabric: "natureza-clima-e-impacto";
+	readonly factory: "casa-e-arquitetura";
+	readonly feather: "natureza-clima-e-impacto";
+	readonly "file-signature": "comunicacao-e-midia";
+	readonly film: "lazer-esportes-e-jogos";
+	readonly fish: "natureza-clima-e-impacto";
+	readonly flashlight: "tecnologia-e-ferramentas";
+	readonly flask: "educacao-e-ciencia";
+	readonly folder: "comunicacao-e-midia";
+	readonly "forest-fire": "natureza-clima-e-impacto";
+	readonly gamepad: "lazer-esportes-e-jogos";
+	readonly gem: "lazer-esportes-e-jogos";
+	readonly ghost: "lazer-esportes-e-jogos";
+	readonly gift: "lazer-esportes-e-jogos";
+	readonly glass: "natureza-clima-e-impacto";
+	readonly globe: "natureza-clima-e-impacto";
+	readonly "globe-americas": "natureza-clima-e-impacto";
+	readonly "graduation-cap": "educacao-e-ciencia";
+	readonly "green-building": "natureza-clima-e-impacto";
+	readonly headphones: "comunicacao-e-midia";
+	readonly "heart-pulse": "saude-e-bem-estar";
+	readonly hemp: "natureza-clima-e-impacto";
+	readonly hotel: "casa-e-arquitetura";
+	readonly house: "casa-e-arquitetura";
+	readonly hydropower: "natureza-clima-e-impacto";
+	readonly "ice-cream-cone": "alimentos-e-cozinha";
+	readonly inbox: "comunicacao-e-midia";
+	readonly key: "tecnologia-e-ferramentas";
+	readonly "key-round": "tecnologia-e-ferramentas";
+	readonly ladder: "tecnologia-e-ferramentas";
+	readonly landmark: "financas-e-comercio";
+	readonly leather: "natureza-clima-e-impacto";
+	readonly link: "tecnologia-e-ferramentas";
+	readonly lock: "tecnologia-e-ferramentas";
+	readonly "lock-open": "tecnologia-e-ferramentas";
+	readonly magnet: "tecnologia-e-ferramentas";
+	readonly "mail-minus": "comunicacao-e-midia";
+	readonly map: "lazer-esportes-e-jogos";
+	readonly megaphone: "comunicacao-e-midia";
+	readonly "melting-ice": "natureza-clima-e-impacto";
+	readonly metal: "natureza-clima-e-impacto";
+	readonly microphone: "comunicacao-e-midia";
+	readonly microscope: "educacao-e-ciencia";
+	readonly moon: "natureza-clima-e-impacto";
+	readonly motorbike: "transporte-e-mobilidade";
+	readonly music: "lazer-esportes-e-jogos";
+	readonly "noise-pollution": "natureza-clima-e-impacto";
+	readonly oil: "natureza-clima-e-impacto";
+	readonly "organic-cotton": "natureza-clima-e-impacto";
+	readonly packaging: "natureza-clima-e-impacto";
+	readonly paintbrush: "saude-e-bem-estar";
+	readonly paperclip: "comunicacao-e-midia";
+	readonly "paw-print": "natureza-clima-e-impacto";
+	readonly pencil: "comunicacao-e-midia";
+	readonly "piggy-bank": "financas-e-comercio";
+	readonly pizza: "alimentos-e-cozinha";
+	readonly plastic: "natureza-clima-e-impacto";
+	readonly pliers: "tecnologia-e-ferramentas";
+	readonly pollution: "natureza-clima-e-impacto";
+	readonly puzzle: "lazer-esportes-e-jogos";
+	readonly "qr-code": "financas-e-comercio";
+	readonly radio: "comunicacao-e-midia";
+	readonly receipt: "financas-e-comercio";
+	readonly repair: "natureza-clima-e-impacto";
+	readonly "safe-resource": "natureza-clima-e-impacto";
+	readonly sand: "natureza-clima-e-impacto";
+	readonly satellite: "natureza-clima-e-impacto";
+	readonly saw: "tecnologia-e-ferramentas";
+	readonly scale: "financas-e-comercio";
+	readonly search: "tecnologia-e-ferramentas";
+	readonly send: "comunicacao-e-midia";
+	readonly shield: "tecnologia-e-ferramentas";
+	readonly "shield-check": "tecnologia-e-ferramentas";
+	readonly "shopping-bag": "financas-e-comercio";
+	readonly "shopping-cart": "financas-e-comercio";
+	readonly smartphone: "comunicacao-e-midia";
+	readonly stone: "natureza-clima-e-impacto";
+	readonly sun: "natureza-clima-e-impacto";
+	readonly tag: "financas-e-comercio";
+	readonly target: "lazer-esportes-e-jogos";
+	readonly telescope: "natureza-clima-e-impacto";
+	readonly thermometer: "saude-e-bem-estar";
+	readonly train: "transporte-e-mobilidade";
+	readonly trophy: "lazer-esportes-e-jogos";
+	readonly truck: "transporte-e-mobilidade";
+	readonly tv: "comunicacao-e-midia";
+	readonly umbrella: "natureza-clima-e-impacto";
+	readonly upcycle: "natureza-clima-e-impacto";
+	readonly "volume-2": "comunicacao-e-midia";
+	readonly wallet: "financas-e-comercio";
+	readonly warehouse: "casa-e-arquitetura";
+	readonly "water-save": "natureza-clima-e-impacto";
+	readonly window: "casa-e-arquitetura";
+	readonly wine: "alimentos-e-cozinha";
+	readonly "zero-waste": "natureza-clima-e-impacto";
+};
+export type VectorIconName = keyof typeof VECTOR_ICON_GROUP;
 export declare const VECTOR_ICON_NAMES: VectorIconName[];
 /**
  * Ícones de linha do sistema: Lucide (o set do shadcn/ui), o mesmo set das telas novas no Figma.
@@ -181,7 +346,9 @@ export type LucideIconName = keyof typeof ICONS | keyof typeof ICON_ALIASES;
 export type IconName = LucideIconName | VectorIconName;
 export declare const isVectorIcon: (name: string) => name is VectorIconName;
 /** Nomes do set vetorial que o Lucide já cobre. Nesses, `name` usa o Lucide; para o vetorial, passe `source="vector"`. */
-export declare const VECTOR_SHADOWED: VectorIconName[];
+export declare const VECTOR_SHADOWED: ("box" | "scale" | "bell-ring" | "file-signature" | "folder" | "headphones" | "inbox" | "mail-minus" | "megaphone" | "microphone" | "paperclip" | "pencil" | "radio" | "send" | "smartphone" | "tv" | "volume-2" | "anchor" | "caliper" | "cloud" | "drill" | "flashlight" | "key" | "key-round" | "ladder" | "link" | "lock" | "lock-open" | "magnet" | "pliers" | "saw" | "search" | "shield" | "shield-check" | "bandage" | "brain" | "cross" | "dna" | "heart-pulse" | "paintbrush" | "thermometer" | "atom" | "book-open" | "flask" | "graduation-cap" | "microscope" | "acid-rain" | "air-quality" | "bamboo" | "biodegrade" | "bioplastic" | "brick" | "carbon-offset" | "cardboard" | "ceramic" | "chemical-safety" | "circular" | "clay" | "cloud-rain" | "cloud-snow" | "coal" | "compostable" | "conservation" | "deforestation" | "desert" | "droplet" | "durability" | "eco-audit" | "eco-construction" | "fabric" | "feather" | "fish" | "forest-fire" | "glass" | "globe" | "globe-americas" | "green-building" | "hemp" | "hydropower" | "leather" | "melting-ice" | "metal" | "moon" | "noise-pollution" | "oil" | "organic-cotton" | "packaging" | "paw-print" | "plastic" | "pollution" | "repair" | "safe-resource" | "sand" | "satellite" | "stone" | "sun" | "telescope" | "umbrella" | "upcycle" | "water-save" | "zero-waste" | "camera" | "circle-play" | "compass" | "crown" | "dice-5" | "dumbbell" | "film" | "gamepad" | "gem" | "ghost" | "gift" | "map" | "music" | "puzzle" | "target" | "trophy" | "burger" | "cake-slice" | "chef-hat" | "coffee" | "donut" | "ice-cream-cone" | "pizza" | "wine" | "bridge" | "building" | "church" | "door-closed" | "factory" | "hotel" | "house" | "warehouse" | "window" | "bike" | "bus" | "car" | "motorbike" | "train" | "truck" | "barcode" | "briefcase" | "credit-card" | "landmark" | "piggy-bank" | "qr-code" | "receipt" | "shopping-bag" | "shopping-cart" | "tag" | "wallet")[];
+/** Baixa antes da hora o grupo (ou o grupo de cada nome) do set vetorial: use na rota que vai precisar deles. Sem argumento, baixa todos. */
+export declare function loadVectorIcons(target?: VectorIconGroup | VectorIconName | Array<VectorIconGroup | VectorIconName>): Promise<void>;
 export declare const iconVariants: (props?: ({
 	size?: "small" | "medium" | "large" | "xlarge" | null | undefined;
 	tone?: "info" | "inherit" | "brand" | "brand-strong" | "primary" | "secondary" | "positive" | "negative" | null | undefined;
@@ -230,7 +397,7 @@ export interface BadgeProps extends React$1.HTMLAttributes<HTMLSpanElement>, Var
 /** Selo (shadcn Badge). Não interativo por padrão; com asChild vira link ou botão. Base de Tag e StatusChip. */
 export declare function Badge({ className, tone, asChild, ...props }: BadgeProps): React$1.JSX.Element;
 export declare const cardVariants: (props?: ({
-	variant?: "accent" | "outline" | "flat" | "inverse" | null | undefined;
+	variant?: "accent" | "flat" | "outline" | "inverse" | null | undefined;
 	padding?: "none" | "default" | null | undefined;
 } & ClassProp) | undefined) => string;
 export interface CardProps extends React$1.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardVariants> {
@@ -1842,12 +2009,14 @@ declare global {
 			focusRing: typeof focusRing;
 			disabledState: typeof disabledState;
 			hitArea: typeof hitArea;
-			VECTOR_ICON_PATHS: typeof VECTOR_ICON_PATHS;
+			VECTOR_ICON_GROUPS: typeof VECTOR_ICON_GROUPS;
+			VECTOR_ICON_GROUP: typeof VECTOR_ICON_GROUP;
 			VECTOR_ICON_NAMES: typeof VECTOR_ICON_NAMES;
 			ICONS: typeof ICONS;
 			ICON_ALIASES: typeof ICON_ALIASES;
 			isVectorIcon: typeof isVectorIcon;
 			VECTOR_SHADOWED: typeof VECTOR_SHADOWED;
+			loadVectorIcons: typeof loadVectorIcons;
 			iconVariants: typeof iconVariants;
 			Icon: typeof Icon;
 			buttonVariants: typeof buttonVariants;

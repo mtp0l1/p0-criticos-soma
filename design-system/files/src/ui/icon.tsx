@@ -11,7 +11,10 @@ import {
 } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
-import { VECTOR_ICON_PATHS, VECTOR_ICON_NAMES, type VectorIconName } from '../assets/icons';
+import {
+  VECTOR_ICON_GROUP, VECTOR_ICON_GROUPS, VECTOR_ICON_NAMES, VECTOR_GROUP_LOADERS,
+  type VectorIconName, type VectorIconGroup, type VectorPaths,
+} from '../assets/icons';
 
 /**
  * Ícones de linha do sistema: Lucide (o set do shadcn/ui), o mesmo set das telas novas no Figma.
@@ -59,11 +62,53 @@ export type LucideIconName = keyof typeof ICONS | keyof typeof ICON_ALIASES;
 /** Qualquer ícone do sistema: Lucide ou do set vetorial (SVG em assets/icons, gerado por extrair_icones.py). */
 export type IconName = LucideIconName | VectorIconName;
 
-/* ---- set vetorial: contornos SVG com o equivalente a traço de 2px na grade de 24, desenhados com currentColor ---- */
-export { VECTOR_ICON_PATHS, VECTOR_ICON_NAMES, type VectorIconName };
-export const isVectorIcon = (name: string): name is VectorIconName => name in VECTOR_ICON_PATHS;
+/* ---- set vetorial: contornos SVG com o equivalente a traço de 2px na grade de 24, desenhados com currentColor ----
+   Os paths NÃO ficam no bundle inicial: cada grupo (assets/vector/<grupo>) é um import dinâmico, carregado na primeira vez que um
+   ícone dele aparece (ou antes, com loadVectorIcons). Enquanto carrega, o ícone ocupa o espaço certo e fica vazio. */
+export { VECTOR_ICON_NAMES, VECTOR_ICON_GROUPS, VECTOR_ICON_GROUP, type VectorIconName, type VectorIconGroup };
+export const isVectorIcon = (name: string): name is VectorIconName => name in VECTOR_ICON_GROUP;
 /** Nomes do set vetorial que o Lucide já cobre. Nesses, `name` usa o Lucide; para o vetorial, passe `source="vector"`. */
 export const VECTOR_SHADOWED = VECTOR_ICON_NAMES.filter(n => n in ICONS || n in ICON_ALIASES);
+
+const vectorCache = new Map<VectorIconGroup, VectorPaths>();
+const vectorPending = new Map<VectorIconGroup, Promise<void>>();
+const vectorListeners = new Set<() => void>();
+let vectorVersion = 0;
+const subscribeVector = (cb: () => void) => { vectorListeners.add(cb); return () => { vectorListeners.delete(cb); }; };
+const getVectorVersion = () => vectorVersion;
+
+function loadVectorGroup(group: VectorIconGroup): Promise<void> {
+  if (vectorCache.has(group)) return Promise.resolve();
+  let p = vectorPending.get(group);
+  if (!p) {
+    p = VECTOR_GROUP_LOADERS[group]().then(
+      m => { vectorCache.set(group, m.default); vectorVersion++; vectorListeners.forEach(f => f()); },
+      err => { vectorPending.delete(group); console.warn(`[Icon] não carregou o grupo de ícones "${group}"`, err); },
+    );
+    vectorPending.set(group, p);
+  }
+  return p;
+}
+
+/** Baixa antes da hora o grupo (ou o grupo de cada nome) do set vetorial: use na rota que vai precisar deles. Sem argumento, baixa todos. */
+export function loadVectorIcons(target?: VectorIconGroup | VectorIconName | Array<VectorIconGroup | VectorIconName>): Promise<void> {
+  const list = target === undefined ? [...VECTOR_ICON_GROUPS] : Array.isArray(target) ? target : [target];
+  const groups = new Set<VectorIconGroup>(list.map(t => ((VECTOR_ICON_GROUPS as readonly string[]).includes(t) ? t : VECTOR_ICON_GROUP[t as VectorIconName]) as VectorIconGroup).filter(Boolean));
+  return Promise.all([...groups].map(loadVectorGroup)).then(() => undefined);
+}
+
+function useVectorPath(name: VectorIconName): string | undefined {
+  React.useSyncExternalStore(subscribeVector, getVectorVersion, getVectorVersion);
+  const group = VECTOR_ICON_GROUP[name];
+  const path = vectorCache.get(group)?.[name];
+  React.useEffect(() => { if (!path) void loadVectorGroup(group); }, [group, path]);
+  return path;
+}
+
+function VectorGlyph({ name, ...rest }: { name: VectorIconName } & React.SVGProps<SVGSVGElement>) {
+  const d = useVectorPath(name);
+  return <svg viewBox="0 0 24 24" fill="currentColor" fillRule="evenodd" focusable="false" {...rest}>{d ? <path d={d} /> : null}</svg>;
+}
 
 export const iconVariants = cva('shrink-0', {
   variants: {
@@ -105,19 +150,7 @@ export function Icon({ name, size, tone, color, source = 'auto', label, classNam
   const lucideKey = (name in ICONS ? name : ICON_ALIASES[name as keyof typeof ICON_ALIASES]) as keyof typeof ICONS | undefined;
   const useVector = isVectorIcon(name) && (source === 'vector' || !lucideKey);
   if (useVector) {
-    return (
-      <svg
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        fillRule="evenodd"
-        className={cn(iconVariants({ size: variant, tone }), className)}
-        style={style}
-        focusable="false"
-        {...a11y}
-      >
-        <path d={VECTOR_ICON_PATHS[name]} />
-      </svg>
-    );
+    return <VectorGlyph name={name} className={cn(iconVariants({ size: variant, tone }), className)} style={style} {...a11y} />;
   }
   const Cmp = lucideKey ? ICONS[lucideKey] : undefined;
   if (!Cmp) return null;

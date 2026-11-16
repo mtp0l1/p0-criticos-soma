@@ -6,7 +6,7 @@
 export { cn, focusRing, disabledState, hitArea } from './lib/utils';
 
 /* Primitivas (camada shadcn/ui) */
-export { Icon, ICONS, ICON_ALIASES, iconVariants, isVectorIcon, VECTOR_ICON_PATHS, VECTOR_ICON_NAMES, VECTOR_SHADOWED, type IconName, type LucideIconName, type VectorIconName, type IconProps } from './ui/icon';
+export { Icon, ICONS, ICON_ALIASES, iconVariants, isVectorIcon, loadVectorIcons, VECTOR_ICON_GROUPS, VECTOR_ICON_GROUP, VECTOR_ICON_NAMES, VECTOR_SHADOWED, type IconName, type LucideIconName, type VectorIconName, type VectorIconGroup, type IconProps } from './ui/icon';
 export { Button, IconButton, buttonVariants, type ButtonProps, type IconButtonProps } from './ui/button';
 export {
   Badge, badgeVariants, type BadgeProps,
