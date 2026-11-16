@@ -1,0 +1,1092 @@
+{
+  "version": 2,
+  "format": "svg",
+  "viewBox": 24,
+  "strokeTarget": 2.0,
+  "count": 109,
+  "icons": [
+    {
+      "name": "anchor",
+      "file": "anchor.svg",
+      "source": "S3R4C4",
+      "stroke": 2.0,
+      "width": 19.1,
+      "height": 18.8,
+      "bytes": 1308
+    },
+    {
+      "name": "atom",
+      "file": "atom.svg",
+      "source": "S1R3C3",
+      "stroke": 2.0,
+      "width": 18.4,
+      "height": 20.8,
+      "bytes": 3014
+    },
+    {
+      "name": "bandage",
+      "file": "bandage.svg",
+      "source": "S1R2C8",
+      "stroke": 2.0,
+      "width": 19.2,
+      "height": 19.2,
+      "bytes": 2825
+    },
+    {
+      "name": "barcode",
+      "file": "barcode.svg",
+      "source": "S4R4C2",
+      "stroke": 2.0,
+      "width": 20.5,
+      "height": 15.0,
+      "bytes": 1102
+    },
+    {
+      "name": "bell-ring",
+      "file": "bell-ring.svg",
+      "source": "S2R2C7",
+      "stroke": 2.0,
+      "width": 20.8,
+      "height": 19.6,
+      "bytes": 1534
+    },
+    {
+      "name": "bike",
+      "file": "bike.svg",
+      "source": "S3R1C3",
+      "stroke": 2.0,
+      "width": 22.1,
+      "height": 14.4,
+      "bytes": 2456
+    },
+    {
+      "name": "book-open",
+      "file": "book-open.svg",
+      "source": "S1R3C2",
+      "stroke": 2.0,
+      "width": 20.8,
+      "height": 17.6,
+      "bytes": 1797
+    },
+    {
+      "name": "box",
+      "file": "box.svg",
+      "source": "S4R3C4",
+      "stroke": 2.0,
+      "width": 18.7,
+      "height": 20.0,
+      "bytes": 2135
+    },
+    {
+      "name": "brain",
+      "file": "brain.svg",
+      "source": "S1R2C6",
+      "stroke": 2.0,
+      "width": 20.5,
+      "height": 19.5,
+      "bytes": 2258
+    },
+    {
+      "name": "bridge",
+      "file": "bridge.svg",
+      "source": "S4R1C4",
+      "stroke": 2.0,
+      "width": 22.0,
+      "height": 15.1,
+      "bytes": 1300
+    },
+    {
+      "name": "briefcase",
+      "file": "briefcase.svg",
+      "source": "S3R2C4",
+      "stroke": 2.0,
+      "width": 20.8,
+      "height": 18.3,
+      "bytes": 1310
+    },
+    {
+      "name": "building",
+      "file": "building.svg",
+      "source": "S4R1C1",
+      "stroke": 2.0,
+      "width": 18.4,
+      "height": 19.0,
+      "bytes": 1547
+    },
+    {
+      "name": "burger",
+      "file": "burger.svg",
+      "source": "S3R4C1",
+      "stroke": 2.0,
+      "width": 18.3,
+      "height": 17.2,
+      "bytes": 1469
+    },
+    {
+      "name": "bus",
+      "file": "bus.svg",
+      "source": "S3R1C2",
+      "stroke": 2.0,
+      "width": 21.7,
+      "height": 20.5,
+      "bytes": 2021
+    },
+    {
+      "name": "cake-slice",
+      "file": "cake-slice.svg",
+      "source": "S3R4C3",
+      "stroke": 2.0,
+      "width": 18.6,
+      "height": 19.4,
+      "bytes": 1543
+    },
+    {
+      "name": "caliper",
+      "file": "caliper.svg",
+      "source": "S2R1C1",
+      "stroke": 2.0,
+      "width": 15.2,
+      "height": 20.1,
+      "bytes": 2456
+    },
+    {
+      "name": "camera",
+      "file": "camera.svg",
+      "source": "S1R4C4",
+      "stroke": 2.0,
+      "width": 18.9,
+      "height": 16.3,
+      "bytes": 959
+    },
+    {
+      "name": "car",
+      "file": "car.svg",
+      "source": "S3R1C1",
+      "stroke": 2.0,
+      "width": 19.4,
+      "height": 15.5,
+      "bytes": 1507
+    },
+    {
+      "name": "chef-hat",
+      "file": "chef-hat.svg",
+      "source": "S2R3C1",
+      "stroke": 2.0,
+      "width": 19.6,
+      "height": 19.1,
+      "bytes": 1011
+    },
+    {
+      "name": "church",
+      "file": "church.svg",
+      "source": "S4R2C3",
+      "stroke": 2.0,
+      "width": 21.1,
+      "height": 20.3,
+      "bytes": 1344
+    },
+    {
+      "name": "circle-play",
+      "file": "circle-play.svg",
+      "source": "S3R2C8",
+      "stroke": 2.0,
+      "width": 19.1,
+      "height": 19.4,
+      "bytes": 1523
+    },
+    {
+      "name": "cloud",
+      "file": "cloud.svg",
+      "source": "S4R1C5",
+      "stroke": 2.0,
+      "width": 20.5,
+      "height": 13.4,
+      "bytes": 647
+    },
+    {
+      "name": "cloud-rain",
+      "file": "cloud-rain.svg",
+      "source": "S3R3C6",
+      "stroke": 2.0,
+      "width": 19.7,
+      "height": 18.6,
+      "bytes": 1397
+    },
+    {
+      "name": "cloud-snow",
+      "file": "cloud-snow.svg",
+      "source": "S4R1C8",
+      "stroke": 2.0,
+      "width": 19.8,
+      "height": 20.5,
+      "bytes": 2089
+    },
+    {
+      "name": "coffee",
+      "file": "coffee.svg",
+      "source": "S2R3C4",
+      "stroke": 2.0,
+      "width": 18.6,
+      "height": 19.1,
+      "bytes": 1353
+    },
+    {
+      "name": "compass",
+      "file": "compass.svg",
+      "source": "S1R4C3",
+      "stroke": 2.0,
+      "width": 18.9,
+      "height": 18.9,
+      "bytes": 1357
+    },
+    {
+      "name": "credit-card",
+      "file": "credit-card.svg",
+      "source": "S3R1C4",
+      "stroke": 2.0,
+      "width": 21.1,
+      "height": 15.5,
+      "bytes": 764
+    },
+    {
+      "name": "cross",
+      "file": "cross.svg",
+      "source": "S1R1C6",
+      "stroke": 2.0,
+      "width": 18.9,
+      "height": 19.2,
+      "bytes": 1033
+    },
+    {
+      "name": "crown",
+      "file": "crown.svg",
+      "source": "S1R4C6",
+      "stroke": 2.0,
+      "width": 20.8,
+      "height": 17.1,
+      "bytes": 2097
+    },
+    {
+      "name": "dice-5",
+      "file": "dice-5.svg",
+      "source": "S2R4C2",
+      "stroke": 2.0,
+      "width": 18.6,
+      "height": 18.8,
+      "bytes": 892
+    },
+    {
+      "name": "dna",
+      "file": "dna.svg",
+      "source": "S1R1C7",
+      "stroke": 2.0,
+      "width": 13.1,
+      "height": 19.5,
+      "bytes": 1629
+    },
+    {
+      "name": "donut",
+      "file": "donut.svg",
+      "source": "S2R3C3",
+      "stroke": 2.0,
+      "width": 18.8,
+      "height": 19.1,
+      "bytes": 2548
+    },
+    {
+      "name": "door-closed",
+      "file": "door-closed.svg",
+      "source": "S2R3C7",
+      "stroke": 2.0,
+      "width": 17.9,
+      "height": 18.8,
+      "bytes": 1098
+    },
+    {
+      "name": "drill",
+      "file": "drill.svg",
+      "source": "S2R1C4",
+      "stroke": 2.0,
+      "width": 21.7,
+      "height": 18.2,
+      "bytes": 1726
+    },
+    {
+      "name": "droplet",
+      "file": "droplet.svg",
+      "source": "S1R3C4",
+      "stroke": 2.0,
+      "width": 14.1,
+      "height": 19.5,
+      "bytes": 1008
+    },
+    {
+      "name": "dumbbell",
+      "file": "dumbbell.svg",
+      "source": "S1R2C7",
+      "stroke": 2.0,
+      "width": 22.1,
+      "height": 12.8,
+      "bytes": 1730
+    },
+    {
+      "name": "factory",
+      "file": "factory.svg",
+      "source": "S4R2C1",
+      "stroke": 2.0,
+      "width": 19.8,
+      "height": 19.8,
+      "bytes": 1640
+    },
+    {
+      "name": "feather",
+      "file": "feather.svg",
+      "source": "S1R3C5",
+      "stroke": 2.0,
+      "width": 18.1,
+      "height": 19.2,
+      "bytes": 1787
+    },
+    {
+      "name": "file-signature",
+      "file": "file-signature.svg",
+      "source": "S1R2C2",
+      "stroke": 2.0,
+      "width": 20.5,
+      "height": 19.5,
+      "bytes": 2053
+    },
+    {
+      "name": "film",
+      "file": "film.svg",
+      "source": "S1R3C7a",
+      "stroke": 2.0,
+      "width": 20.8,
+      "height": 18.4,
+      "bytes": 2183
+    },
+    {
+      "name": "fish",
+      "file": "fish.svg",
+      "source": "S2R3C6",
+      "stroke": 2.0,
+      "width": 20.8,
+      "height": 14.4,
+      "bytes": 2020
+    },
+    {
+      "name": "flashlight",
+      "file": "flashlight.svg",
+      "source": "S4R3C7",
+      "stroke": 2.0,
+      "width": 19.8,
+      "height": 20.0,
+      "bytes": 1263
+    },
+    {
+      "name": "flask",
+      "file": "flask.svg",
+      "source": "S1R4C2",
+      "stroke": 2.0,
+      "width": 16.3,
+      "height": 18.9,
+      "bytes": 1310
+    },
+    {
+      "name": "folder",
+      "file": "folder.svg",
+      "source": "S1R2C4",
+      "stroke": 2.0,
+      "width": 20.0,
+      "height": 15.7,
+      "bytes": 578
+    },
+    {
+      "name": "gamepad",
+      "file": "gamepad.svg",
+      "source": "S1R3C7b",
+      "stroke": 2.0,
+      "width": 21.9,
+      "height": 14.8,
+      "bytes": 1909
+    },
+    {
+      "name": "gem",
+      "file": "gem.svg",
+      "source": "S2R4C7",
+      "stroke": 2.0,
+      "width": 18.8,
+      "height": 16.4,
+      "bytes": 3267
+    },
+    {
+      "name": "ghost",
+      "file": "ghost.svg",
+      "source": "S2R4C8",
+      "stroke": 2.0,
+      "width": 15.4,
+      "height": 18.8,
+      "bytes": 1092
+    },
+    {
+      "name": "gift",
+      "file": "gift.svg",
+      "source": "S1R4C8",
+      "stroke": 2.0,
+      "width": 18.7,
+      "height": 18.9,
+      "bytes": 1552
+    },
+    {
+      "name": "globe",
+      "file": "globe.svg",
+      "source": "S1R4C1",
+      "stroke": 2.0,
+      "width": 18.7,
+      "height": 18.9,
+      "bytes": 2734
+    },
+    {
+      "name": "globe-americas",
+      "file": "globe-americas.svg",
+      "source": "S3R4C5",
+      "stroke": 2.0,
+      "width": 19.1,
+      "height": 19.1,
+      "bytes": 1763
+    },
+    {
+      "name": "graduation-cap",
+      "file": "graduation-cap.svg",
+      "source": "S1R3C1",
+      "stroke": 2.0,
+      "width": 21.6,
+      "height": 14.7,
+      "bytes": 2283
+    },
+    {
+      "name": "headphones",
+      "file": "headphones.svg",
+      "source": "S1R4C5",
+      "stroke": 2.0,
+      "width": 17.6,
+      "height": 17.3,
+      "bytes": 946
+    },
+    {
+      "name": "heart-pulse",
+      "file": "heart-pulse.svg",
+      "source": "S1R1C5",
+      "stroke": 2.0,
+      "width": 20.8,
+      "height": 18.7,
+      "bytes": 2147
+    },
+    {
+      "name": "hotel",
+      "file": "hotel.svg",
+      "source": "S4R1C3",
+      "stroke": 2.0,
+      "width": 18.2,
+      "height": 19.8,
+      "bytes": 1514
+    },
+    {
+      "name": "house",
+      "file": "house.svg",
+      "source": "S4R1C2",
+      "stroke": 2.0,
+      "width": 17.1,
+      "height": 18.7,
+      "bytes": 1195
+    },
+    {
+      "name": "ice-cream-cone",
+      "file": "ice-cream-cone.svg",
+      "source": "S3R4C2",
+      "stroke": 2.0,
+      "width": 12.1,
+      "height": 19.1,
+      "bytes": 1546
+    },
+    {
+      "name": "inbox",
+      "file": "inbox.svg",
+      "source": "S1R1C3",
+      "stroke": 2.0,
+      "width": 20.3,
+      "height": 16.0,
+      "bytes": 1209
+    },
+    {
+      "name": "key",
+      "file": "key.svg",
+      "source": "S3R3C8",
+      "stroke": 2.0,
+      "width": 19.1,
+      "height": 18.8,
+      "bytes": 948
+    },
+    {
+      "name": "key-round",
+      "file": "key-round.svg",
+      "source": "S4R4C8",
+      "stroke": 2.0,
+      "width": 22.0,
+      "height": 11.2,
+      "bytes": 1252
+    },
+    {
+      "name": "ladder",
+      "file": "ladder.svg",
+      "source": "S2R2C3",
+      "stroke": 2.0,
+      "width": 14.7,
+      "height": 20.1,
+      "bytes": 2006
+    },
+    {
+      "name": "landmark",
+      "file": "landmark.svg",
+      "source": "S3R1C6",
+      "stroke": 2.0,
+      "width": 19.4,
+      "height": 19.1,
+      "bytes": 1853
+    },
+    {
+      "name": "link",
+      "file": "link.svg",
+      "source": "S4R2C5",
+      "stroke": 2.0,
+      "width": 18.7,
+      "height": 18.7,
+      "bytes": 871
+    },
+    {
+      "name": "lock",
+      "file": "lock.svg",
+      "source": "S4R2C8",
+      "stroke": 2.0,
+      "width": 15.8,
+      "height": 19.5,
+      "bytes": 689
+    },
+    {
+      "name": "lock-open",
+      "file": "lock-open.svg",
+      "source": "S1R1C8",
+      "stroke": 2.0,
+      "width": 15.5,
+      "height": 19.5,
+      "bytes": 778
+    },
+    {
+      "name": "magnet",
+      "file": "magnet.svg",
+      "source": "S2R2C4",
+      "stroke": 2.0,
+      "width": 20.3,
+      "height": 20.3,
+      "bytes": 1555
+    },
+    {
+      "name": "mail-minus",
+      "file": "mail-minus.svg",
+      "source": "S2R2C8",
+      "stroke": 2.0,
+      "width": 21.0,
+      "height": 17.9,
+      "bytes": 2325
+    },
+    {
+      "name": "map",
+      "file": "map.svg",
+      "source": "S1R4C7",
+      "stroke": 2.0,
+      "width": 20.3,
+      "height": 18.1,
+      "bytes": 1997
+    },
+    {
+      "name": "megaphone",
+      "file": "megaphone.svg",
+      "source": "S1R2C3",
+      "stroke": 2.0,
+      "width": 20.3,
+      "height": 18.1,
+      "bytes": 2061
+    },
+    {
+      "name": "microphone",
+      "file": "microphone.svg",
+      "source": "S2R1C5",
+      "stroke": 2.0,
+      "width": 17.4,
+      "height": 20.1,
+      "bytes": 2031
+    },
+    {
+      "name": "microscope",
+      "file": "microscope.svg",
+      "source": "S2R1C2",
+      "stroke": 2.0,
+      "width": 15.4,
+      "height": 20.3,
+      "bytes": 2018
+    },
+    {
+      "name": "moon",
+      "file": "moon.svg",
+      "source": "S3R3C5",
+      "stroke": 2.0,
+      "width": 18.6,
+      "height": 19.1,
+      "bytes": 855
+    },
+    {
+      "name": "motorbike",
+      "file": "motorbike.svg",
+      "source": "S3R2C2",
+      "stroke": 2.0,
+      "width": 21.9,
+      "height": 14.2,
+      "bytes": 2287
+    },
+    {
+      "name": "music",
+      "file": "music.svg",
+      "source": "S1R3C6",
+      "stroke": 2.0,
+      "width": 17.3,
+      "height": 18.4,
+      "bytes": 1197
+    },
+    {
+      "name": "paintbrush",
+      "file": "paintbrush.svg",
+      "source": "S3R4C8",
+      "stroke": 2.0,
+      "width": 19.4,
+      "height": 19.4,
+      "bytes": 1565
+    },
+    {
+      "name": "paperclip",
+      "file": "paperclip.svg",
+      "source": "S1R1C1",
+      "stroke": 2.0,
+      "width": 10.4,
+      "height": 19.5,
+      "bytes": 695
+    },
+    {
+      "name": "paw-print",
+      "file": "paw-print.svg",
+      "source": "S4R4C4",
+      "stroke": 2.0,
+      "width": 20.5,
+      "height": 19.0,
+      "bytes": 1643
+    },
+    {
+      "name": "pencil",
+      "file": "pencil.svg",
+      "source": "S1R1C2",
+      "stroke": 2.0,
+      "width": 18.9,
+      "height": 19.2,
+      "bytes": 1477
+    },
+    {
+      "name": "piggy-bank",
+      "file": "piggy-bank.svg",
+      "source": "S3R2C5",
+      "stroke": 2.0,
+      "width": 20.8,
+      "height": 18.3,
+      "bytes": 1764
+    },
+    {
+      "name": "pizza",
+      "file": "pizza.svg",
+      "source": "S2R3C2",
+      "stroke": 2.0,
+      "width": 18.3,
+      "height": 18.6,
+      "bytes": 2411
+    },
+    {
+      "name": "pliers",
+      "file": "pliers.svg",
+      "source": "S2R2C1",
+      "stroke": 2.0,
+      "width": 20.1,
+      "height": 20.6,
+      "bytes": 2015
+    },
+    {
+      "name": "puzzle",
+      "file": "puzzle.svg",
+      "source": "S2R4C3",
+      "stroke": 2.0,
+      "width": 18.8,
+      "height": 18.8,
+      "bytes": 1858
+    },
+    {
+      "name": "qr-code",
+      "file": "qr-code.svg",
+      "source": "S4R4C3",
+      "stroke": 2.0,
+      "width": 19.2,
+      "height": 19.5,
+      "bytes": 3526
+    },
+    {
+      "name": "radio",
+      "file": "radio.svg",
+      "source": "S2R1C7",
+      "stroke": 2.0,
+      "width": 21.0,
+      "height": 18.3,
+      "bytes": 2033
+    },
+    {
+      "name": "receipt",
+      "file": "receipt.svg",
+      "source": "S3R2C6",
+      "stroke": 2.0,
+      "width": 14.9,
+      "height": 19.4,
+      "bytes": 1454
+    },
+    {
+      "name": "satellite",
+      "file": "satellite.svg",
+      "source": "S4R2C4",
+      "stroke": 2.0,
+      "width": 20.3,
+      "height": 20.3,
+      "bytes": 2448
+    },
+    {
+      "name": "saw",
+      "file": "saw.svg",
+      "source": "S2R2C2",
+      "stroke": 2.0,
+      "width": 20.8,
+      "height": 20.1,
+      "bytes": 2335
+    },
+    {
+      "name": "scale",
+      "file": "scale.svg",
+      "source": "S4R4C1",
+      "stroke": 2.0,
+      "width": 18.2,
+      "height": 19.8,
+      "bytes": 1384
+    },
+    {
+      "name": "search",
+      "file": "search.svg",
+      "source": "S4R3C8",
+      "stroke": 2.0,
+      "width": 17.6,
+      "height": 17.9,
+      "bytes": 546
+    },
+    {
+      "name": "send",
+      "file": "send.svg",
+      "source": "S1R1C4",
+      "stroke": 2.0,
+      "width": 18.9,
+      "height": 19.5,
+      "bytes": 2473
+    },
+    {
+      "name": "shield",
+      "file": "shield.svg",
+      "source": "S4R2C6",
+      "stroke": 2.0,
+      "width": 16.1,
+      "height": 19.2,
+      "bytes": 780
+    },
+    {
+      "name": "shield-check",
+      "file": "shield-check.svg",
+      "source": "S3R3C7",
+      "stroke": 2.0,
+      "width": 16.9,
+      "height": 19.1,
+      "bytes": 1545
+    },
+    {
+      "name": "shopping-bag",
+      "file": "shopping-bag.svg",
+      "source": "S4R3C1",
+      "stroke": 2.0,
+      "width": 17.1,
+      "height": 19.8,
+      "bytes": 910
+    },
+    {
+      "name": "shopping-cart",
+      "file": "shopping-cart.svg",
+      "source": "S3R3C3",
+      "stroke": 2.0,
+      "width": 18.6,
+      "height": 18.0,
+      "bytes": 1570
+    },
+    {
+      "name": "smartphone",
+      "file": "smartphone.svg",
+      "source": "S3R1C7",
+      "stroke": 2.0,
+      "width": 13.2,
+      "height": 20.2,
+      "bytes": 862
+    },
+    {
+      "name": "sun",
+      "file": "sun.svg",
+      "source": "S3R3C4",
+      "stroke": 2.0,
+      "width": 19.1,
+      "height": 19.1,
+      "bytes": 1271
+    },
+    {
+      "name": "tag",
+      "file": "tag.svg",
+      "source": "S4R3C3",
+      "stroke": 2.0,
+      "width": 19.0,
+      "height": 19.0,
+      "bytes": 713
+    },
+    {
+      "name": "target",
+      "file": "target.svg",
+      "source": "S2R4C5",
+      "stroke": 2.0,
+      "width": 18.6,
+      "height": 18.8,
+      "bytes": 1966
+    },
+    {
+      "name": "telescope",
+      "file": "telescope.svg",
+      "source": "S2R1C3",
+      "stroke": 2.0,
+      "width": 21.8,
+      "height": 20.0,
+      "bytes": 3328
+    },
+    {
+      "name": "thermometer",
+      "file": "thermometer.svg",
+      "source": "S1R2C5",
+      "stroke": 2.0,
+      "width": 12.8,
+      "height": 19.2,
+      "bytes": 1310
+    },
+    {
+      "name": "train",
+      "file": "train.svg",
+      "source": "S3R2C1",
+      "stroke": 2.0,
+      "width": 15.2,
+      "height": 20.5,
+      "bytes": 1329
+    },
+    {
+      "name": "trophy",
+      "file": "trophy.svg",
+      "source": "S1R3C8",
+      "stroke": 2.0,
+      "width": 19.2,
+      "height": 18.1,
+      "bytes": 1632
+    },
+    {
+      "name": "truck",
+      "file": "truck.svg",
+      "source": "S3R2C3",
+      "stroke": 2.0,
+      "width": 21.9,
+      "height": 15.2,
+      "bytes": 1441
+    },
+    {
+      "name": "tv",
+      "file": "tv.svg",
+      "source": "S3R1C8",
+      "stroke": 2.0,
+      "width": 21.7,
+      "height": 17.4,
+      "bytes": 540
+    },
+    {
+      "name": "umbrella",
+      "file": "umbrella.svg",
+      "source": "S4R3C6",
+      "stroke": 2.0,
+      "width": 19.8,
+      "height": 19.8,
+      "bytes": 1804
+    },
+    {
+      "name": "volume-2",
+      "file": "volume-2.svg",
+      "source": "S1R2C1",
+      "stroke": 2.0,
+      "width": 20.0,
+      "height": 17.1,
+      "bytes": 1374
+    },
+    {
+      "name": "wallet",
+      "file": "wallet.svg",
+      "source": "S3R1C5",
+      "stroke": 2.0,
+      "width": 20.0,
+      "height": 18.6,
+      "bytes": 1781
+    },
+    {
+      "name": "warehouse",
+      "file": "warehouse.svg",
+      "source": "S4R2C2",
+      "stroke": 2.0,
+      "width": 20.8,
+      "height": 18.7,
+      "bytes": 1920
+    },
+    {
+      "name": "window",
+      "file": "window.svg",
+      "source": "S2R3C8",
+      "stroke": 2.0,
+      "width": 18.3,
+      "height": 18.8,
+      "bytes": 1044
+    },
+    {
+      "name": "wine",
+      "file": "wine.svg",
+      "source": "S2R3C5",
+      "stroke": 2.0,
+      "width": 11.8,
+      "height": 18.8,
+      "bytes": 962
+    }
+  ],
+  "duplicates": [
+    {
+      "name": "headphones",
+      "cell": "S2R1C6",
+      "keptFrom": "S1R4C5"
+    },
+    {
+      "name": "compass",
+      "cell": "S2R1C8",
+      "keptFrom": "S1R4C3"
+    },
+    {
+      "name": "film",
+      "cell": "S2R2C5",
+      "keptFrom": "S1R3C7a"
+    },
+    {
+      "name": "volume-2",
+      "cell": "S2R2C6",
+      "keptFrom": "S1R2C1"
+    },
+    {
+      "name": "gamepad",
+      "cell": "S2R4C1",
+      "keptFrom": "S1R3C7b"
+    },
+    {
+      "name": "trophy",
+      "cell": "S2R4C4",
+      "keptFrom": "S1R3C8"
+    },
+    {
+      "name": "crown",
+      "cell": "S2R4C6",
+      "keptFrom": "S1R4C6"
+    },
+    {
+      "name": "volume-2",
+      "cell": "S3R2C7",
+      "keptFrom": "S1R2C1"
+    },
+    {
+      "name": "coffee",
+      "cell": "S3R3C1",
+      "keptFrom": "S2R3C4"
+    },
+    {
+      "name": "pizza",
+      "cell": "S3R3C2",
+      "keptFrom": "S2R3C2"
+    },
+    {
+      "name": "crown",
+      "cell": "S3R4C6",
+      "keptFrom": "S1R4C6"
+    },
+    {
+      "name": "puzzle",
+      "cell": "S3R4C7",
+      "keptFrom": "S2R4C3"
+    },
+    {
+      "name": "sun",
+      "cell": "S4R1C6",
+      "keptFrom": "S3R3C4"
+    },
+    {
+      "name": "cloud-rain",
+      "cell": "S4R1C7",
+      "keptFrom": "S3R3C6"
+    },
+    {
+      "name": "key",
+      "cell": "S4R2C7",
+      "keptFrom": "S3R3C8"
+    },
+    {
+      "name": "shopping-cart",
+      "cell": "S4R3C2",
+      "keptFrom": "S3R3C3"
+    },
+    {
+      "name": "truck",
+      "cell": "S4R3C5",
+      "keptFrom": "S3R2C3"
+    },
+    {
+      "name": "fish",
+      "cell": "S4R4C5",
+      "keptFrom": "S2R3C6"
+    },
+    {
+      "name": "compass",
+      "cell": "S4R4C6",
+      "keptFrom": "S1R4C3"
+    },
+    {
+      "name": "anchor",
+      "cell": "S4R4C7",
+      "keptFrom": "S3R4C4"
+    }
+  ]
+}

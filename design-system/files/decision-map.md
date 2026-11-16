@@ -183,7 +183,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `Avatar` | Foto ou iniciais da pessoa em círculo, sobre Radix Avatar (shadcn Avatar). | mostrar sem iniciais quando falta a foto. |
 | `Card` | Contêiner de conteúdo (shadcn Card) com cabeçalho, título, descrição, conteúdo e rodapé, em quatro variantes. | aninhar card dentro de card nem mudar o raio por `className`. |
 | `Carousel` | Slides que passam por gesto, com setas e pontos (shadcn Carousel, sobre Embla). | esconder conteúdo essencial depois do primeiro slide. |
-| `Icon` | Ícones de linha do Lucide, o mesmo set das telas novas no Figma, com nomes do Campana. | importar ícone de fora do set Lucide do sistema. |
+| `Icon` | Ícones de linha do sistema: Lucide e o set vetorial (SVG), com tamanho e cor por papel. | importar ícone de fora dos dois sets do sistema (Lucide e assets/icons) ou usar PNG/máscara para ícone de linha. |
 | `Illustration` | Mostra uma das ilustrações do sistema pelo nome, no tamanho do Figma ou em outro. | desenhar ilustração nova sem registrar em 6-ilustracoes.md. |
 | `PointsBadge` | Pílula com os pontos de uma pergunta, de um prêmio ou de um custo. | usar para outro número que não seja pontos. |
 | `ScrollArea` | Área com rolagem própria e barra visível (shadcn ScrollArea, sobre Radix). | criar rolagem aninhada dentro da rolagem da tela. |

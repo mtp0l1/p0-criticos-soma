@@ -52,6 +52,10 @@ export type ClassProp = {
 };
 export type OmitUndefined<T> = T extends undefined ? never : T;
 export type VariantProps<Component extends (...args: any) => any> = Omit<OmitUndefined<Parameters<Component>[0]>, "class" | "className">;
+export type VectorIconName = "anchor" | "atom" | "bandage" | "barcode" | "bell-ring" | "bike" | "book-open" | "box" | "brain" | "bridge" | "briefcase" | "building" | "burger" | "bus" | "cake-slice" | "caliper" | "camera" | "car" | "chef-hat" | "church" | "circle-play" | "cloud" | "cloud-rain" | "cloud-snow" | "coffee" | "compass" | "credit-card" | "cross" | "crown" | "dice-5" | "dna" | "donut" | "door-closed" | "drill" | "droplet" | "dumbbell" | "factory" | "feather" | "file-signature" | "film" | "fish" | "flashlight" | "flask" | "folder" | "gamepad" | "gem" | "ghost" | "gift" | "globe" | "globe-americas" | "graduation-cap" | "headphones" | "heart-pulse" | "hotel" | "house" | "ice-cream-cone" | "inbox" | "key" | "key-round" | "ladder" | "landmark" | "link" | "lock" | "lock-open" | "magnet" | "mail-minus" | "map" | "megaphone" | "microphone" | "microscope" | "moon" | "motorbike" | "music" | "paintbrush" | "paperclip" | "paw-print" | "pencil" | "piggy-bank" | "pizza" | "pliers" | "puzzle" | "qr-code" | "radio" | "receipt" | "satellite" | "saw" | "scale" | "search" | "send" | "shield" | "shield-check" | "shopping-bag" | "shopping-cart" | "smartphone" | "sun" | "tag" | "target" | "telescope" | "thermometer" | "train" | "trophy" | "truck" | "tv" | "umbrella" | "volume-2" | "wallet" | "warehouse" | "window" | "wine";
+/** nome → dado do <path> (viewBox 24×24, fill="currentColor", fill-rule evenodd). Traço equivalente a stroke-width 2. */
+export declare const VECTOR_ICON_PATHS: Record<VectorIconName, string>;
+export declare const VECTOR_ICON_NAMES: VectorIconName[];
 /**
  * Ícones de linha do sistema: Lucide (o set do shadcn/ui), o mesmo set das telas novas no Figma.
  * Os ícones "SVG fornecido" do Figma também são Lucide: Reciclar = recycle, Meu impacto = chart,
@@ -171,20 +175,32 @@ export declare const ICON_ALIASES: {
 	readonly "Meu impacto \u2014 SVG fornecido": "chart";
 	readonly "Pino \u2014 SVG fornecido": "pin";
 };
-export type IconName = keyof typeof ICONS | keyof typeof ICON_ALIASES;
+/** Nomes do Lucide (e apelidos). */
+export type LucideIconName = keyof typeof ICONS | keyof typeof ICON_ALIASES;
+/** Qualquer ícone do sistema: Lucide ou do set vetorial (SVG em assets/icons, gerado por extrair_icones.py). */
+export type IconName = LucideIconName | VectorIconName;
+export declare const isVectorIcon: (name: string) => name is VectorIconName;
+/** Nomes do set vetorial que o Lucide já cobre. Nesses, `name` usa o Lucide; para o vetorial, passe `source="vector"`. */
+export declare const VECTOR_SHADOWED: VectorIconName[];
 export declare const iconVariants: (props?: ({
 	size?: "small" | "medium" | "large" | "xlarge" | null | undefined;
 	tone?: "info" | "inherit" | "brand" | "brand-strong" | "primary" | "secondary" | "positive" | "negative" | null | undefined;
 } & ClassProp) | undefined) => string;
-export interface IconProps extends VariantProps<typeof iconVariants> {
+export interface IconProps extends Omit<VariantProps<typeof iconVariants>, "size"> {
 	name: IconName;
+	/** small 16 · medium 24 (padrão) · large 32 · xlarge 56, ou um número em px para um caso fora da escala. */
+	size?: VariantProps<typeof iconVariants>["size"] | number;
+	/** Cor CSS avulsa (ex.: `var(--token)`). Prefira `tone`, que usa o papel da cor. Vence o `tone` quando os dois vêm. */
+	color?: string;
+	/** auto: Lucide primeiro, depois o set vetorial. vector: força o set vetorial quando o nome existe nos dois. */
+	source?: "auto" | "vector";
 	/** Rótulo acessível. Sem ele o ícone é decorativo (aria-hidden). */
 	label?: string;
 	className?: string;
 }
-export declare function Icon({ name, size, tone, label, className }: IconProps): React$1.JSX.Element;
+export declare function Icon({ name, size, tone, color, source, label, className }: IconProps): React$1.JSX.Element | null;
 export declare const buttonVariants: (props?: ({
-	hierarchy?: "loud" | "quiet" | "transparent" | "destructive" | null | undefined;
+	hierarchy?: "transparent" | "loud" | "quiet" | "destructive" | null | undefined;
 	size?: "large" | "icon" | "compact" | null | undefined;
 	fullWidth?: boolean | null | undefined;
 } & ClassProp) | undefined) => string;
@@ -1318,7 +1334,7 @@ export interface ButtonGroupProps extends React$1.HTMLAttributes<HTMLDivElement>
 /** Botões relacionados colados lado a lado (shadcn ButtonGroup). Dê um nome com aria-label. */
 export declare function ButtonGroup({ className, orientation, ...props }: ButtonGroupProps): React$1.JSX.Element;
 export declare const toggleVariants: (props?: ({
-	variant?: "outline" | "ghost" | null | undefined;
+	variant?: "ghost" | "outline" | null | undefined;
 	size?: "large" | "compact" | null | undefined;
 } & ClassProp) | undefined) => string;
 export interface ToggleProps extends React$1.ComponentPropsWithoutRef<typeof TogglePrimitive.Root>, VariantProps<typeof toggleVariants> {
@@ -1329,7 +1345,7 @@ export type ToggleGroupProps = React$1.ComponentPropsWithoutRef<typeof ToggleGro
 /** Grupo de Toggles: escolha única (type="single") ou múltipla (type="multiple"), com setas do teclado. */
 export declare const ToggleGroup: React$1.ForwardRefExoticComponent<ToggleGroupProps & React$1.RefAttributes<HTMLDivElement>>;
 export declare const ToggleGroupItem: React$1.ForwardRefExoticComponent<Omit<ToggleGroupPrimitive.ToggleGroupItemProps & React$1.RefAttributes<HTMLButtonElement>, "ref"> & VariantProps<(props?: ({
-	variant?: "outline" | "ghost" | null | undefined;
+	variant?: "ghost" | "outline" | null | undefined;
 	size?: "large" | "compact" | null | undefined;
 } & ClassProp) | undefined) => string> & React$1.RefAttributes<HTMLButtonElement>>;
 export interface SliderProps extends React$1.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> {
@@ -1826,8 +1842,12 @@ declare global {
 			focusRing: typeof focusRing;
 			disabledState: typeof disabledState;
 			hitArea: typeof hitArea;
+			VECTOR_ICON_PATHS: typeof VECTOR_ICON_PATHS;
+			VECTOR_ICON_NAMES: typeof VECTOR_ICON_NAMES;
 			ICONS: typeof ICONS;
 			ICON_ALIASES: typeof ICON_ALIASES;
+			isVectorIcon: typeof isVectorIcon;
+			VECTOR_SHADOWED: typeof VECTOR_SHADOWED;
 			iconVariants: typeof iconVariants;
 			Icon: typeof Icon;
 			buttonVariants: typeof buttonVariants;

@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
+import { VECTOR_ICON_PATHS, VECTOR_ICON_NAMES, type VectorIconName } from '../assets/icons';
 
 /**
  * Ícones de linha do sistema: Lucide (o set do shadcn/ui), o mesmo set das telas novas no Figma.
@@ -53,7 +54,16 @@ export const ICON_ALIASES = {
   'Reciclar — SVG fornecido': 'recycle', 'Meu impacto — SVG fornecido': 'chart', 'Pino — SVG fornecido': 'pin',
 } as const satisfies Record<string, keyof typeof ICONS>;
 
-export type IconName = keyof typeof ICONS | keyof typeof ICON_ALIASES;
+/** Nomes do Lucide (e apelidos). */
+export type LucideIconName = keyof typeof ICONS | keyof typeof ICON_ALIASES;
+/** Qualquer ícone do sistema: Lucide ou do set vetorial (SVG em assets/icons, gerado por extrair_icones.py). */
+export type IconName = LucideIconName | VectorIconName;
+
+/* ---- set vetorial: contornos SVG com o equivalente a traço de 2px na grade de 24, desenhados com currentColor ---- */
+export { VECTOR_ICON_PATHS, VECTOR_ICON_NAMES, type VectorIconName };
+export const isVectorIcon = (name: string): name is VectorIconName => name in VECTOR_ICON_PATHS;
+/** Nomes do set vetorial que o Lucide já cobre. Nesses, `name` usa o Lucide; para o vetorial, passe `source="vector"`. */
+export const VECTOR_SHADOWED = VECTOR_ICON_NAMES.filter(n => n in ICONS || n in ICON_ALIASES);
 
 export const iconVariants = cva('shrink-0', {
   variants: {
@@ -74,24 +84,50 @@ export const iconVariants = cva('shrink-0', {
   defaultVariants: { size: 'medium', tone: 'inherit' },
 });
 
-export interface IconProps extends VariantProps<typeof iconVariants> {
+export interface IconProps extends Omit<VariantProps<typeof iconVariants>, 'size'> {
   name: IconName;
+  /** small 16 · medium 24 (padrão) · large 32 · xlarge 56, ou um número em px para um caso fora da escala. */
+  size?: VariantProps<typeof iconVariants>['size'] | number;
+  /** Cor CSS avulsa (ex.: `var(--token)`). Prefira `tone`, que usa o papel da cor. Vence o `tone` quando os dois vêm. */
+  color?: string;
+  /** auto: Lucide primeiro, depois o set vetorial. vector: força o set vetorial quando o nome existe nos dois. */
+  source?: 'auto' | 'vector';
   /** Rótulo acessível. Sem ele o ícone é decorativo (aria-hidden). */
   label?: string;
   className?: string;
 }
 
-export function Icon({ name, size, tone, label, className }: IconProps) {
-  const key = (name in ICONS ? name : ICON_ALIASES[name as keyof typeof ICON_ALIASES]) as keyof typeof ICONS;
-  const Cmp = ICONS[key];
+export function Icon({ name, size, tone, color, source = 'auto', label, className }: IconProps) {
+  const px = typeof size === 'number' ? size : undefined;
+  const variant = typeof size === 'number' ? undefined : size;
+  const style: React.CSSProperties | undefined = px || color ? { width: px, height: px, color } : undefined;
+  const a11y = { role: label ? 'img' : undefined, 'aria-label': label, 'aria-hidden': label ? undefined : true } as const;
+  const lucideKey = (name in ICONS ? name : ICON_ALIASES[name as keyof typeof ICON_ALIASES]) as keyof typeof ICONS | undefined;
+  const useVector = isVectorIcon(name) && (source === 'vector' || !lucideKey);
+  if (useVector) {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        fillRule="evenodd"
+        className={cn(iconVariants({ size: variant, tone }), className)}
+        style={style}
+        focusable="false"
+        {...a11y}
+      >
+        <path d={VECTOR_ICON_PATHS[name]} />
+      </svg>
+    );
+  }
+  const Cmp = lucideKey ? ICONS[lucideKey] : undefined;
+  if (!Cmp) return null;
   return (
     <Cmp
-      className={cn(iconVariants({ size, tone }), className)}
+      className={cn(iconVariants({ size: variant, tone }), className)}
+      style={style}
       strokeWidth={2}
-      role={label ? 'img' : undefined}
-      aria-label={label}
-      aria-hidden={label ? undefined : true}
       focusable="false"
+      {...a11y}
     />
   );
 }
