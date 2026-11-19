@@ -263,7 +263,7 @@ export const DrawerContent = React.forwardRef<React.ElementRef<typeof DrawerPrim
         <DrawerOverlay />
         <DrawerPrimitive.Content
           ref={ref}
-          className={cn('fixed inset-x-0 bottom-0 z-50 flex max-h-[90dvh] flex-col gap-mini rounded-t-xl bg-popover p-mini pb-small text-popover-foreground shadow-high outline-none', className)}
+          className={cn('fixed inset-x-0 bottom-0 z-50 flex max-h-[90dvh] flex-col gap-mini rounded-t-sheet bg-background p-mini pb-small text-popover-foreground shadow-sheet outline-none', className)}
           {...props}
         >
           <span aria-hidden className="mx-auto -mt-xnano block h-xnano w-large shrink-0 rounded-full bg-border" />

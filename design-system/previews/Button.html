@@ -11,13 +11,13 @@ var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
 function Demo(){ return h(F,null,
-  K('hierarchy: loud · quiet · transparent · destructive'),
-  Row(h(S.Button,null,'Ok, entendi'), h(S.Button,{hierarchy:'quiet',icon:'user-plus',iconPosition:'end'},'Convidar amigos'), h(S.Button,{hierarchy:'transparent'},'Ver níveis'), h(S.Button,{hierarchy:'destructive'},'Sair')),
+  K('hierarchy: loud · dark · quiet · transparent · destructive'),
+  Row(h(S.Button,null,'Ok, entendi'), h(S.Button,{hierarchy:'dark',icon:'qr-code'},'Mostrar meu QR'), h(S.Button,{hierarchy:'quiet',icon:'user-plus',iconPosition:'end'},'Convidar amigos'), h(S.Button,{hierarchy:'transparent'},'Ver níveis'), h(S.Button,{hierarchy:'destructive'},'Sair')),
   K('Estados do loud: padrão · hover · pressionado · foco · carregando · desabilitado'),
   Row(h(S.Button,null,'Padrão'), h(S.Button,{className:'bg-interactive-fill-loud-hover'},'Hover'), h(S.Button,{className:'bg-interactive-fill-loud-active'},'Pressionado'), h(S.Button,{className:'ring-2 ring-ring ring-offset-2 ring-offset-background'},'Foco'), h(S.Button,{loading:true},'Enviando'), h(S.Button,{disabled:true},'Desabilitado')),
   K('Estados do quiet'),
   Row(h(S.Button,{hierarchy:'quiet'},'Padrão'), h(S.Button,{hierarchy:'quiet',className:'bg-interactive-fill-quiet-hover'},'Hover'), h(S.Button,{hierarchy:'quiet',className:'bg-interactive-fill-quiet-active'},'Pressionado'), h(S.Button,{hierarchy:'quiet',disabled:true},'Desabilitado')),
-  K('size: large (48) · compact (44) · icon (44) · asChild com link'),
+  K('size: large (56) · compact (48) · icon (44) · asChild com link'),
   Row(h(S.Button,{size:'large'},'Large'), h(S.Button,{size:'compact',hierarchy:'quiet'},'Compact'), h(S.IconButton,{icon:'help',label:'Ajuda'}), h(S.Button,{asChild:true,hierarchy:'quiet'},h('a',{href:'#'},'Link com cara de botão'))),
   h(S.Button,{fullWidth:true},'Largura total'));
 }

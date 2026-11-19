@@ -41,7 +41,7 @@ export function ButtonGroup({ className, orientation, ...props }: ButtonGroupPro
 
 export const toggleVariants = cva(
   [
-    'label inline-flex cursor-pointer select-none items-center justify-center gap-nano rounded-md border-[1.5px] font-sans text-foreground transition-colors motion-reduce:transition-none',
+    'label inline-flex cursor-pointer select-none items-center justify-center gap-nano rounded-full border-[1.5px] font-sans text-foreground transition-colors motion-reduce:transition-none',
     '[&_svg]:pointer-events-none [&_svg]:size-icon [&_svg]:shrink-0',
     'hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active',
     focusRing,
@@ -147,7 +147,7 @@ export function InputGroup({ className, ...props }: React.HTMLAttributes<HTMLDiv
     <div
       role="group"
       className={cn(
-        'flex h-input w-full items-center rounded-md border border-input bg-surface-primary text-foreground transition-colors motion-reduce:transition-none',
+        'flex h-button w-full items-center rounded-full border border-border bg-surface-primary text-foreground shadow-card transition-colors motion-reduce:transition-none',
         'hover:border-text-secondary',
         'has-[input:focus-visible]:border-border-highlight has-[input:focus-visible]:ring-2 has-[input:focus-visible]:ring-ring has-[input:focus-visible]:ring-offset-2 has-[input:focus-visible]:ring-offset-background',
         'has-[input[aria-invalid=true]]:border-feedback-text-negative has-[input[aria-invalid=true]:focus-visible]:ring-destructive',
@@ -163,7 +163,7 @@ export const InputGroupInput = React.forwardRef<HTMLInputElement, React.InputHTM
     <input
       ref={ref}
       type={type}
-      className={cn('body h-full min-w-0 flex-1 rounded-md border-0 bg-transparent px-mini font-sans text-foreground outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:text-interactive-text-disabled', className)}
+      className={cn('body h-full min-w-0 flex-1 rounded-full border-0 bg-transparent px-mini font-sans text-foreground outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:text-interactive-text-disabled', className)}
       {...props}
     />
   );
@@ -206,7 +206,7 @@ export function InputOTPSlot({ index, invalid, className, ...props }: InputOTPSl
     <div
       data-active={slot?.isActive || undefined}
       className={cn(
-        'relative grid h-input w-button place-items-center rounded-md border border-input bg-surface-primary font-sans text-[20px] font-semibold leading-7 text-foreground transition-colors motion-reduce:transition-none',
+        'relative grid h-button w-button place-items-center rounded-lg border border-border bg-surface-primary shadow-card font-sans text-[20px] font-semibold leading-7 text-foreground transition-colors motion-reduce:transition-none',
         'data-[active]:border-border-highlight data-[active]:ring-2 data-[active]:ring-ring data-[active]:ring-offset-2 data-[active]:ring-offset-background',
         invalid && 'border-feedback-text-negative data-[active]:ring-destructive',
         className,

@@ -101,6 +101,12 @@ module.exports = {
       "tile": "var(--size-tile)",
       "tabbar": "var(--size-tabbar)",
       "icon-small": "var(--size-icon-small)",
+      "chip": "var(--size-chip)",
+      "row": "var(--size-row)",
+      "tab-item": "var(--size-tab-item)",
+      "back": "var(--size-back)",
+      "disc": "var(--size-disc)",
+      "disc-small": "var(--size-disc-small)",
       "thumb": "var(--size-thumb)",
       "medal": "var(--size-medal)",
       "avatar": "var(--size-avatar)",
@@ -113,6 +119,9 @@ module.exports = {
       "md": "var(--radius-medium)",
       "lg": "var(--radius-large)",
       "xl": "var(--radius-xlarge)",
+      "2xl": "var(--radius-2xlarge)",
+      "3xl": "var(--radius-3xlarge)",
+      "sheet": "var(--radius-sheet)",
       "full": "var(--radius-full)"
     },
     "fontFamily": {
@@ -122,7 +131,12 @@ module.exports = {
     },
     "boxShadow": {
       "none": "none",
-      "high": "var(--shadow-high)"
+      "card": "var(--shadow-card)",
+      "high": "var(--shadow-high)",
+      "float": "var(--shadow-float)",
+      "sheet": "var(--shadow-sheet)",
+      "dark": "var(--shadow-dark)",
+      "glow": "var(--shadow-glow)"
     },
     "extend": {
       "keyframes": {

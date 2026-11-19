@@ -54,12 +54,12 @@ export interface HeaderProps {
   divider?: boolean;
   className?: string;
 }
-const roundBtn = 'size-touch rounded-full bg-surface-accent text-icon-brand-strong hover:bg-surface-accent-hover active:bg-surface-accent-hover';
+const roundBtn = 'size-back rounded-full bg-surface-primary text-icon-primary shadow-card hover:bg-surface-accent active:bg-surface-accent';
 export function Header({ title, onBack, action, variant = 'center', divider = true, className }: HeaderProps) {
-  const round = variant === 'round' || variant === 'start';
+  const round = true;
   const back = onBack ? <IconButton icon={round ? 'arrow-left' : 'chevron-left'} label="Voltar" onClick={onBack} className={round ? roundBtn : 'text-foreground'} /> : null;
   const act = action ? <IconButton icon={action.icon} label={action.label} onClick={action.onClick} className={round ? roundBtn : undefined} /> : null;
-  const shell = cn('bg-surface-primary px-xsmall py-nano text-foreground', divider && 'border-b border-border', className);
+  const shell = cn('bg-transparent px-xsmall py-nano text-foreground', className);
   if (variant === 'start') {
     return (
       <header className={cn(shell, 'flex min-h-header items-center gap-micro')}>
@@ -72,7 +72,7 @@ export function Header({ title, onBack, action, variant = 'center', divider = tr
   return (
     <header className={cn(shell, 'grid min-h-header grid-cols-[theme(spacing.touch)_1fr_theme(spacing.touch)] items-center')}>
       {back ?? <span />}
-      <h1 className={cn('m-0 text-center', variant === 'center' ? 'line-clamp-3' : 'truncate', variant === 'round' ? 'label text-muted-foreground' : variant === 'eyebrow' ? 'eyebrow uppercase tracking-wide text-muted-foreground' : 'header-title')}>{title}</h1>
+      <h1 className={cn('m-0 text-center', variant === 'center' ? 'line-clamp-3' : 'truncate', variant === 'round' ? 'subtitle text-foreground' : variant === 'eyebrow' ? 'eyebrow uppercase tracking-wide text-muted-foreground' : 'header-title')}>{title}</h1>
       {act ?? <span />}
     </header>
   );
@@ -125,7 +125,7 @@ export interface TabBarProps {
 /** Navegação inferior fixa. É navegação (nav + aria-current), não abas: por isso não usa Radix Tabs. */
 export function TabBar({ active, onNavigate }: TabBarProps) {
   return (
-    <nav aria-label="Navegação principal" className="grid min-h-tabbar grid-cols-5 border-t border-border bg-surface-primary">
+    <nav aria-label="Navegação principal" className="mx-mini mb-small flex min-h-tabbar w-[calc(100%-32px)] items-center justify-between rounded-3xl bg-surface-primary/[.86] px-nano shadow-float backdrop-blur-[24px] motion-reduce:backdrop-blur-none motion-reduce:bg-surface-primary">
       {TAB_ITEMS.map((t) => {
         const on = t.id === active;
         return (
@@ -136,12 +136,12 @@ export function TabBar({ active, onNavigate }: TabBarProps) {
             onClick={() => onNavigate?.(t.id)}
             className={cn(
               pressable,
-              'tab-label flex min-h-touch flex-col items-center justify-center gap-xnano py-nano text-muted-foreground hover:text-foreground',
-              'aria-[current=page]:font-semibold aria-[current=page]:text-text-link',
+              'flex size-tab-item items-center justify-center rounded-full text-icon-secondary hover:text-foreground',
+              'aria-[current=page]:w-auto aria-[current=page]:gap-[6px] aria-[current=page]:bg-primary aria-[current=page]:px-micro aria-[current=page]:text-text-on-loud',
             )}
           >
             <Icon name={t.icon} />
-            {t.label}
+            <span className={on ? 'caption font-bold' : 'sr-only'}>{t.label}</span>
           </button>
         );
       })}
@@ -221,7 +221,7 @@ export const listRowVariants = cva(
     variants: {
       /** help = linha creme com legenda e seta (Ajuda) · menu = linha do Menu com ícone e divisor. */
       variant: {
-        help: 'rounded-md bg-surface-accent px-mini py-micro hover:bg-surface-accent-hover active:bg-surface-accent-hover',
+        help: 'min-h-row rounded-lg bg-surface-primary px-micro py-nano shadow-card hover:bg-surface-accent active:bg-surface-accent',
         menu: 'border-b border-border bg-surface-primary py-micro hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active',
       },
       lead: { true: 'grid-cols-[auto_1fr_auto]', false: 'grid-cols-[1fr_auto]' },
@@ -260,11 +260,13 @@ export interface StepDotsProps {
 /** Pontos de progresso do cadastro ("Passo 1 de 7"): 8px, só o passo atual em laranja (os anteriores voltam ao cinza, como no Figma). O texto vai para o leitor de tela; os pontos são decorativos. */
 export function StepDots({ current, total, className }: StepDotsProps) {
   return (
-    <div className={cn('flex items-center justify-center gap-nano', className)}>
-      <span className="sr-only">Passo {current} de {total}</span>
-      {Array.from({ length: total }, (_, i) => (
-        <span key={i} aria-hidden className={cn('size-nano rounded-full', i + 1 === current ? 'bg-selected-indicator' : 'bg-indicator-inactive')} />
-      ))}
+    <div className={cn('grid justify-items-center gap-[6px]', className)}>
+      <div aria-hidden className="flex items-center gap-[6px]">
+        {Array.from({ length: total }, (_, i) => (
+          <span key={i} className={cn('h-[6px] rounded-full', i + 1 === current ? 'w-[28px]' : 'w-[20px]', i + 1 <= current ? 'bg-selected-indicator' : 'bg-surface-track')} />
+        ))}
+      </div>
+      <span className="micro text-muted-foreground">Passo {current} de {total}</span>
     </div>
   );
 }
