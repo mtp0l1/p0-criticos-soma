@@ -64,19 +64,19 @@ main{position:relative;display:flex;flex-direction:column;align-items:center;jus
 .phone{padding:12px;border-radius:56px;background:#1b2a3f;box-shadow:var(--shadow-lg),inset 0 0 0 2px #2c3f5a;position:relative}
 .screen{position:relative;border-radius:44px;overflow:hidden;background:var(--bg);touch-action:none;user-select:none;-webkit-user-select:none}
 .screen svg{display:block;width:100%;height:100%}
-.screen svg.in-fwd{animation:inF .28s var(--ease)}
-.screen svg.in-back{animation:inB .28s var(--ease)}
+.screen svg.in-fwd{animation:inF .4s var(--spring-push,var(--ease))}
+.screen svg.in-back{animation:inB .4s var(--spring-push,var(--ease))}
 @keyframes inF{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
 @keyframes inB{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
 .screen .tap{cursor:pointer}
-.screen .tap.press{animation:press .28s var(--ease)}
+.screen .tap{transform-box:fill-box;transform-origin:center;transition:scale .25s var(--ease)}.screen .tap.down{scale:.97;transition:scale .1s ease-out}.screen .tap.press{animation:none}
 @keyframes press{0%{opacity:.55}100%{opacity:1}}
 .hotbox{display:none;pointer-events:none}
 body.showhot .hotbox{display:block;animation:pulse 1.8s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
 .hint{position:absolute;left:50%;bottom:104px;transform:translateX(-50%);background:rgba(33,52,78,.88);color:#fff;font-size:12px;font-weight:600;padding:7px 14px;border-radius:999px;display:flex;gap:6px;align-items:center;pointer-events:none;transition:opacity .3s,transform .3s var(--ease);box-shadow:0 8px 20px rgba(33,52,78,.25);z-index:2}
 .hint.hide{opacity:0;transform:translateX(-50%) translateY(8px)}
-.toast{z-index:6;position:absolute;left:50%;bottom:112px;transform:translate(-50%,12px);background:rgba(33,52,78,.95);color:#fff;font-size:12.5px;font-weight:600;padding:10px 16px;border-radius:14px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s var(--ease);max-width:300px;text-align:center;box-shadow:0 12px 30px rgba(33,52,78,.3);z-index:3}
+.toast{z-index:6;position:absolute;left:50%;top:28px;transform:translate(-50%,-12px);background:rgba(33,52,78,.95);color:#fff;font-size:12.5px;font-weight:600;padding:10px 16px;border-radius:14px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s var(--ease);max-width:300px;text-align:center;box-shadow:0 12px 30px rgba(33,52,78,.3);z-index:3}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 .nav{margin-top:14px;display:flex;align-items:center;gap:12px;z-index:1}
 .nbtn{width:44px;height:44px;border-radius:50%;background:var(--white);box-shadow:var(--shadow);display:grid;place-items:center;transition:transform .12s var(--ease),background .15s,opacity .15s}
@@ -150,7 +150,7 @@ kbd{font:600 11px "Lexend",system-ui;background:var(--sand);padding:2px 7px;bord
 .sheetlayer.on{display:block;pointer-events:auto}
 .sheetlayer .scrim{position:absolute;inset:0;background:rgba(33,52,78,.5);opacity:0;transition:opacity .28s var(--ease)}
 .sheetlayer.show .scrim{opacity:1}
-.sheetlayer .box{position:absolute;left:0;right:0;bottom:0;transform:translateY(102%);transition:transform .34s var(--ease);filter:drop-shadow(0 -8px 24px rgba(33,52,78,.18))}
+.sheetlayer .box{position:absolute;left:0;right:0;bottom:0;transform:translateY(102%);transition:transform .5s var(--spring-sheet,cubic-bezier(.23,1,.32,1));filter:drop-shadow(0 -8px 24px rgba(33,52,78,.18))}.sheetlayer .box::after{content:'';position:absolute;left:0;right:0;top:100%;height:48px;background:#FBF7F1}
 .sheetlayer.show .box{transform:none}
 .sheetlayer .box svg{display:block}
 .sheetlayer.center .box{left:50%;right:auto;top:50%;bottom:auto;transform:translate(-50%,-46%) scale(.94);opacity:0;transition:transform .3s var(--ease),opacity .22s}
@@ -398,6 +398,16 @@ function scaleF(){ const r=ctx.svg.getBoundingClientRect(); return r.width/ctx.W
 
 /* arrastar / rolar / clicar */
 let drag=null, inertia=null;
+/* movimento: mola (resposta/amortecimento), estado de pressão e elástico nas bordas do carrossel */
+(function(){ try{ if(!(window.CSS&&CSS.supports&&CSS.supports('transition-timing-function','linear(0,1)'))) return;
+  const spring=(resp,zeta,dur)=>{ const w=2*Math.PI/resp, pts=[]; for(let i=0;i<=40;i++){ const t=dur*i/40; let x; if(zeta>=1){ x=1-(1+w*t)*Math.exp(-w*t); } else { const wd=w*Math.sqrt(1-zeta*zeta); x=1-Math.exp(-zeta*w*t)*(Math.cos(wd*t)+(zeta*w/wd)*Math.sin(wd*t)); } pts.push(+x.toFixed(4)); } pts[pts.length-1]=1; return 'linear('+pts.join(',')+')'; };
+  const r=document.documentElement.style; r.setProperty('--spring-sheet',spring(.3,.8,.5)); r.setProperty('--spring-push',spring(.4,1,.4)); }catch(e){} })();
+let downEl=null; const pressUp=()=>{ if(downEl){ downEl.classList.remove('down'); downEl=null; } };
+screenEl.addEventListener('pointerdown',e=>{ if(!ctx||e.button>0||(e.target.closest&&e.target.closest('foreignObject'))) return; const t=resolveTap(e,screenEl); if(t){ downEl=t; t.classList.add('down'); } },true);
+addEventListener('pointerup',pressUp,true); addEventListener('pointercancel',pressUp,true); addEventListener('pointermove',()=>{ if(ctx&&ctx.dragged) pressUp(); },true);
+const elastic=(o,dim)=>(o*dim*.55)/(dim+.55*Math.abs(o));
+const rubber=(v,max,dim)=>v<0?-elastic(-v,dim):v>max?max+elastic(v-max,dim):v;
+const setCarX=c=>c.mover.setAttribute('transform',`translate(${-c.sx},0)`);
 screenEl.addEventListener('pointerdown',e=>{
   if(!ctx||e.button>0) return; cancelAnimationFrame(inertia);
   drag={x:e.clientX,y:e.clientY,sy:ctx.sy,car:hcarOf(e.target),mode:null,vy:0,ly:e.clientY,lt:performance.now(),sx0:0};
@@ -406,11 +416,12 @@ screenEl.addEventListener('pointerdown',e=>{
 addEventListener('pointermove',e=>{
   if(!drag||!ctx) return; const dx=e.clientX-drag.x, dy=e.clientY-drag.y, k=scaleF();
   if(!drag.mode){ if(Math.hypot(dx,dy)<6) return; drag.mode=(drag.car&&Math.abs(dx)>Math.abs(dy))?'h':'v'; if(drag.mode==='v'&&ctx.max<=0){ drag.mode='none'; } ctx.dragged=true; try{screenEl.setPointerCapture(e.pointerId);}catch(_){} }
-  if(drag.mode==='h'){ drag.car.sx=Math.max(0,Math.min(drag.car.max,drag.sx0-dx/k)); drag.car.mover.setAttribute('transform',`translate(${-drag.car.sx},0)`); }
+  if(drag.mode==='h'){ const now=performance.now(), dt=now-(drag.lxt||now); const nx=rubber(drag.sx0-dx/k,drag.car.max,ctx.W); if(dt>0) drag.vx=(nx-drag.car.sx)/dt; drag.lxt=now; drag.car.sx=nx; setCarX(drag.car); }
   else if(drag.mode==='v'){ ctx.sy=drag.sy-dy/k; applyScroll(); const now=performance.now(); const dt=now-drag.lt; if(dt>0){ drag.vy=(drag.ly-e.clientY)/k/dt; } drag.ly=e.clientY; drag.lt=now; }
 });
 addEventListener('pointerup',e=>{
   if(!drag) return; const d=drag; drag=null;
+  if(d.mode==='h'&&d.car){ const c=d.car; let v=(d.vx||0)*16; const step=()=>{ const out=c.sx<0?c.sx:c.sx>c.max?c.sx-c.max:0; if(out){ c.sx-=out*.22; v*=.5; } else { c.sx+=v; v*=.95; } if(!out&&(c.sx<0||c.sx>c.max)){ /* passou do limite: o resto vira elástico */ } setCarX(c); if(Math.abs(v)>.15||Math.abs(out)>.4) inertia=requestAnimationFrame(step); else { c.sx=Math.max(0,Math.min(c.max,c.sx)); setCarX(c); } }; inertia=requestAnimationFrame(step); }
   if(d.mode==='v'&&Math.abs(d.vy)>0.05){ let v=d.vy*16; const step=()=>{ ctx.sy+=v; v*=0.94; applyScroll(); if(Math.abs(v)>0.3&&ctx.sy>0&&ctx.sy<ctx.max) inertia=requestAnimationFrame(step); }; inertia=requestAnimationFrame(step); }
   setTimeout(()=>{ if(ctx) ctx.dragged=false; },0);
 });
