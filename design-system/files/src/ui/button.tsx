@@ -7,28 +7,30 @@ import { Icon, type IconName } from './icon';
 
 export const buttonVariants = cva(
   [
-    'button relative inline-flex items-center justify-center gap-nano whitespace-nowrap rounded-md border-[1.5px] border-transparent',
-    'font-sans transition-colors duration-150 motion-reduce:transition-none select-none cursor-pointer',
+    'button relative inline-flex items-center justify-center gap-nano whitespace-nowrap rounded-full border-[1.5px] border-transparent',
+    'font-sans transition-[background-color,box-shadow,transform] duration-100 ease-out active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 select-none cursor-pointer',
     focusRing,
     '[&_svg]:pointer-events-none [&_svg]:shrink-0',
-    'disabled:pointer-events-none disabled:border-transparent disabled:bg-interactive-fill-disabled disabled:text-interactive-text-disabled disabled:[&_svg]:text-interactive-text-disabled',
+    'disabled:pointer-events-none disabled:border-transparent disabled:shadow-none disabled:bg-interactive-fill-disabled disabled:text-interactive-text-disabled disabled:[&_svg]:text-interactive-text-disabled',
     // Link com cara de botão (asChild) não tem `disabled`: usa aria-disabled com o mesmo visual.
-    'aria-disabled:pointer-events-none aria-disabled:border-transparent aria-disabled:bg-interactive-fill-disabled aria-disabled:text-interactive-text-disabled aria-disabled:[&_svg]:text-interactive-text-disabled',
+    'aria-disabled:pointer-events-none aria-disabled:border-transparent aria-disabled:shadow-none aria-disabled:bg-interactive-fill-disabled aria-disabled:text-interactive-text-disabled aria-disabled:[&_svg]:text-interactive-text-disabled',
     'aria-[busy=true]:cursor-progress',
   ],
   {
     variants: {
-      /** loud = primário (um por tela) · quiet = outline · transparent = texto/link · destructive = ação que apaga ou sai. */
+      /** loud = primário laranja (um por tela) · dark = escuro · quiet = claro com sombra · transparent = texto/link · destructive = ação que apaga ou sai. */
       hierarchy: {
-        loud: 'bg-primary text-primary-foreground hover:bg-interactive-fill-loud-hover active:bg-interactive-fill-loud-active',
-        quiet: 'border-interactive-border-quiet bg-surface-primary text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active [&_svg]:text-icon-brand',
+        loud: 'bg-primary text-primary-foreground shadow-glow hover:bg-interactive-fill-loud-hover active:bg-interactive-fill-loud-active',
+        quiet: 'bg-surface-primary text-foreground shadow-card hover:bg-surface-accent active:bg-interactive-fill-quiet-active [&_svg]:text-icon-primary',
+        /** dark = ação forte secundária (Mostrar meu QR, Compartilhar). */
+        dark: 'bg-surface-inverse text-text-inverse shadow-dark hover:bg-ink active:bg-ink [&_svg]:text-icon-brand',
         transparent: 'bg-transparent text-text-link hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active active:text-foreground disabled:bg-transparent aria-disabled:bg-transparent',
         destructive: 'bg-destructive text-destructive-foreground hover:bg-interactive-fill-destructive-hover active:bg-interactive-fill-destructive-active',
       },
-      /** large = 48px (padrão) · compact = 44px, para listas e cards densos · icon = quadrado de 44px. */
+      /** large = 56px (padrão) · compact = 48px, para listas e cards densos · icon = disco de 44px. */
       size: {
         large: 'min-h-button px-small',
-        compact: 'min-h-touch px-mini',
+        compact: 'min-h-tab-item px-mini',
         icon: 'size-touch p-0',
       },
       fullWidth: { true: 'flex w-full', false: '' },

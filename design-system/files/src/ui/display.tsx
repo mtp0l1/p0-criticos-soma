@@ -10,7 +10,7 @@ import { cn, focusRing } from '../lib/utils';
 /* ---------------------------------------------------------------- Badge */
 
 export const badgeVariants = cva(
-  'inline-flex items-center gap-xnano min-h-small px-micro rounded-full font-sans text-[12px] leading-4 font-medium whitespace-nowrap [&_svg]:size-[14px] [&_svg]:shrink-0',
+  'inline-flex items-center gap-xnano min-h-[24px] px-[10px] py-[4px] rounded-full font-sans text-[12px] leading-4 font-bold whitespace-nowrap [&_svg]:size-[14px] [&_svg]:shrink-0',
   {
     variants: {
       /** Papel do selo. Sempre com palavra; ícone para estado. */
@@ -38,14 +38,14 @@ export function Badge({ className, tone, asChild, ...props }: BadgeProps) {
 
 /* ----------------------------------------------------------------- Card */
 
-export const cardVariants = cva('grid rounded-lg text-card-foreground', {
+export const cardVariants = cva('grid rounded-xl text-card-foreground', {
   variants: {
     /** outline = borda clara sobre fundo branco · flat = sem borda, sobre background-secondary · accent = creme · inverse = navy. */
     variant: {
-      outline: 'border border-border bg-card',
+      outline: 'bg-card shadow-card',
       flat: 'bg-card',
       accent: 'bg-surface-accent',
-      inverse: 'bg-surface-inverse text-text-inverse',
+      inverse: 'bg-surface-inverse text-text-inverse shadow-dark',
     },
     padding: { none: '', default: 'gap-micro p-mini' },
   },

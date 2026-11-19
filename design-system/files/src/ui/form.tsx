@@ -19,9 +19,9 @@ export const Label = React.forwardRef<React.ElementRef<typeof LabelPrimitive.Roo
 /* ---------------------------------------------------------- Input/Textarea */
 
 export const fieldBase = cn(
-  'body w-full rounded-md border border-input bg-surface-primary px-mini text-foreground font-sans',
+  'body w-full rounded-lg border border-border bg-surface-primary px-[18px] text-foreground font-sans shadow-card',
   'placeholder:text-muted-foreground transition-colors duration-150 motion-reduce:transition-none',
-  'hover:border-text-secondary focus-visible:border-border-highlight',
+  'hover:border-input focus-visible:border-border-highlight',
   focusRing,
   'disabled:cursor-not-allowed disabled:border-transparent disabled:bg-interactive-fill-disabled disabled:text-interactive-text-disabled',
   '[&[readonly]]:bg-surface-secondary [&[readonly]]:hover:border-input',
@@ -47,12 +47,12 @@ export const Checkbox = React.forwardRef<React.ElementRef<typeof CheckboxPrimiti
       <CheckboxPrimitive.Root
         ref={ref}
         className={cn(
-          'peer group grid size-xsmall shrink-0 cursor-pointer place-items-center rounded-xs border-[1.5px] border-input bg-surface-primary transition-colors',
+          'peer group grid size-[26px] shrink-0 cursor-pointer place-items-center rounded-xs border-2 border-input bg-surface-primary transition-colors',
           hitArea,
           'hover:border-text-primary active:bg-interactive-fill-quiet-active',
           focusRing,
-          'data-[state=checked]:border-text-primary data-[state=checked]:bg-surface-inverse data-[state=checked]:text-text-inverse',
-          'data-[state=indeterminate]:border-text-primary data-[state=indeterminate]:bg-surface-inverse data-[state=indeterminate]:text-text-inverse',
+          'data-[state=checked]:border-transparent data-[state=checked]:bg-primary data-[state=checked]:text-text-on-loud',
+          'data-[state=indeterminate]:border-transparent data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-text-on-loud',
           'aria-[invalid=true]:border-feedback-text-negative',
           'disabled:cursor-not-allowed disabled:border-border disabled:bg-interactive-fill-disabled disabled:text-interactive-text-disabled disabled:data-[state=checked]:bg-interactive-fill-disabled disabled:data-[state=checked]:text-interactive-text-disabled',
           className,
@@ -77,8 +77,8 @@ export const Switch = React.forwardRef<React.ElementRef<typeof SwitchPrimitive.R
       <SwitchPrimitive.Root
         ref={ref}
         className={cn(
-          'peer inline-flex h-small w-touch shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors',
-          'bg-text-secondary hover:bg-text-primary data-[state=checked]:bg-surface-inverse',
+          'peer inline-flex h-[32px] w-[52px] shrink-0 cursor-pointer items-center rounded-full border-0 transition-colors',
+          'bg-interactive-fill-disabled hover:bg-surface-track data-[state=checked]:bg-primary',
           hitArea,
           focusRing,
           'disabled:cursor-not-allowed disabled:bg-border disabled:hover:bg-border disabled:data-[state=checked]:bg-border',
@@ -88,8 +88,8 @@ export const Switch = React.forwardRef<React.ElementRef<typeof SwitchPrimitive.R
       >
         <SwitchPrimitive.Thumb
           className={cn(
-            'pointer-events-none block size-xsmall rounded-full bg-surface-primary transition-transform motion-reduce:transition-none',
-            'data-[state=checked]:translate-x-xsmall data-[state=checked]:bg-primary data-[state=unchecked]:translate-x-0 data-[disabled]:bg-interactive-fill-disabled',
+            'pointer-events-none block size-[26px] rounded-full bg-surface-primary shadow-card transition-transform duration-200 motion-reduce:transition-none',
+            'data-[state=checked]:translate-x-[23px] data-[state=unchecked]:translate-x-[3px]',
           )}
         />
       </SwitchPrimitive.Root>
@@ -110,9 +110,9 @@ export const RadioGroupItem = React.forwardRef<React.ElementRef<typeof RadioGrou
       <RadioGroupPrimitive.Item
         ref={ref}
         className={cn(
-          'peer grid aspect-square size-xsmall shrink-0 cursor-pointer place-items-center rounded-full border-[1.5px] border-input bg-surface-primary text-text-primary transition-colors',
+          'peer grid aspect-square size-[26px] shrink-0 cursor-pointer place-items-center rounded-full border-2 border-input bg-surface-primary text-text-primary transition-colors',
           hitArea,
-          'hover:border-text-primary active:bg-interactive-fill-quiet-active data-[state=checked]:border-text-primary',
+          'hover:border-text-primary active:bg-interactive-fill-quiet-active data-[state=checked]:border-transparent data-[state=checked]:bg-primary',
           focusRing,
           'aria-[invalid=true]:border-feedback-text-negative',
           'disabled:cursor-not-allowed disabled:border-border disabled:bg-interactive-fill-disabled disabled:text-interactive-text-disabled',

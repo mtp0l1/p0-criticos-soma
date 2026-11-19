@@ -29,7 +29,7 @@ export function SearchField({ label, value, onChange, onClear, border = 'strong'
         value={value}
         placeholder={placeholder}
         onChange={(e) => onChange?.(e.target.value)}
-        className={cn('pl-xlarge pr-xlarge [&::-webkit-search-cancel-button]:hidden', border === 'app' && 'border-border')}
+        className={cn('h-button rounded-full pl-xlarge pr-xlarge [&::-webkit-search-cancel-button]:hidden', border === 'app' && 'border-border')}
       />
       {value && (
         <IconButton icon="close" label="Limpar busca" className="absolute right-xnano top-1/2 -translate-y-1/2 text-icon-secondary" onClick={() => (onClear ? onClear() : onChange?.(''))} />
@@ -98,13 +98,16 @@ export function TextField({ label, value, onChange, helper, error, id, required,
       aria-invalid={!!error || undefined}
       aria-describedby={helper || error ? hid : undefined}
       onChange={(e) => onChange?.(m ? m.fn(e.target.value) : e.target.value)}
-      className={trailing ? 'pr-xlarge' : undefined}
+      className={cn('pb-[8px] pt-[26px]', trailing && 'pr-xlarge')}
     />
   );
   return (
     <div className={cn('grid gap-nano', className)}>
-      <Label htmlFor={fid} className="body-small font-normal">{label}{required && <span aria-hidden>*</span>}</Label>
-      {trailing ? <div className="relative">{input}<div className="absolute right-xnano top-1/2 -translate-y-1/2">{trailing}</div></div> : input}
+      <div className="group relative">
+        {input}
+        <Label htmlFor={fid} className="micro pointer-events-none absolute left-[18px] top-[12px] z-10 font-bold text-muted-foreground group-focus-within:text-text-link group-has-[[aria-invalid=true]]:text-feedback-text-negative">{label}{required && <span aria-hidden>*</span>}</Label>
+        {trailing && <div className="absolute right-xnano top-1/2 -translate-y-1/2">{trailing}</div>}
+      </div>
       {error ? (
         <p id={hid} className="caption m-0 flex items-start gap-xnano text-feedback-text-negative"><Icon name="alert" size="small" />{error}</p>
       ) : helper ? (

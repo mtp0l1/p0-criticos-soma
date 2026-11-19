@@ -50,7 +50,7 @@ export function Modal({ title, children, art, actionLabel, onAction, actionDisab
 
 /* ----------------------------------------------------------------- Toast */
 
-export const toastVariants = cva('flex items-center gap-nano rounded-sm px-mini py-micro text-text-inverse', {
+export const toastVariants = cva('flex items-center gap-nano rounded-md px-mini py-micro text-text-inverse shadow-high', {
   variants: {
     /** error = erro (padrão) · success = confirmação ("Código copiado", "Entrega agendada") · info = aviso neutro. */
     kind: { error: 'bg-destructive', success: 'bg-surface-inverse', info: 'bg-surface-inverse' },
@@ -75,7 +75,7 @@ export function Toast({ message, kind = 'error', tone, onDismiss, icon, surface 
   const k = kind ?? 'error';
   if (surface === 'card') {
     return (
-      <div role="status" className="flex items-center gap-micro rounded-lg border border-border bg-card py-nano pl-nano pr-mini text-card-foreground">
+      <div role="status" className="flex items-center gap-micro rounded-xl bg-card py-nano pl-nano pr-mini text-card-foreground shadow-high">
         <span aria-hidden className="grid size-[32px] shrink-0 place-items-center rounded-full bg-surface-accent text-icon-brand-strong"><Icon name={icon ?? TOAST_ICON[k]} /></span>
         <p className="label m-0 flex-1">{message}</p>
         {onDismiss && <IconButton icon="close" label="Dispensar" onClick={onDismiss} />}

@@ -25,20 +25,29 @@ Leia isto primeiro. Vale para qualquer IA (Claude, Claude Design, IA do Figma, C
 | Regra | Valor |
 |---|---|
 | Margem lateral da tela | 20px (`space-xsmall`) |
+| Botão | 56px, pílula, largura total (`size-button`) |
+| Campo de texto | 68px, rótulo flutuante (`size-input`) |
+| Bloco de ação fixo | termina 12px acima da barra inferior; nunca fica sob ela |
+| Botão | 56px, pílula, largura total (`size-button`) |
+| Campo de texto | 68px, rótulo flutuante (`size-input`) |
+| Bloco de ação fixo | termina 12px acima da barra inferior; nunca fica sob ela |
+| Botão | 56px, pílula, largura total (`size-button`) |
+| Campo de texto | 68px, rótulo flutuante (`size-input`) |
+| Bloco de ação fixo | termina 12px acima da barra inferior; nunca fica sob ela |
 | Título de bloco → conteúdo | 8px (`space-nano`) |
 | Entre blocos da tela | 24px (`space-small`) |
-| Escala de espaço | 4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 |
-| Escala de texto | 12 · 14 · 16 · 18 · 20 · 24 · 32px (só `tab-label` tem 11px) |
-| Raios | 4 · 8 · 12 · 16 · 24 · pílula |
+| Escala de espaço | 4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 (meios-passos de 6, 10, 14 e 18 só dentro de componentes) |
+| Escala de texto | 12 · 14 · 15 · 16 · 17 · 18 · 22 · 28 · 32 · 48px, em 16 estilos (só `tab-label` tem 11px). Tracking acompanha o tamanho. |
+| Raios | 8 · 12 · 16 · 20 · 24 · 28 · 32 · 36 · pílula |
 | Alvo de toque | 44px de altura e de largura |
 | Contraste | 4,5:1 para texto, 3:1 para ícone e borda de controle |
 | Botão `loud` | um por tela |
-| Largura de desenho | 360px |
+| Largura de desenho | 390px (de 360 a 430: margem fixa, conteúdo estica) |
 | Fonte | Lexend |
 
 ## O que NÃO usar
 
-Telas marcadas `ATUAL` (produção) ou `PROPOSTA` (caso de borda sem confirmação) em um handoff do Figma. O sistema segue só o que está marcado `NOVO`.
+Telas marcadas `ATUAL` (produção) ou `PROPOSTA` (caso de borda sem confirmação) em um handoff do Figma. O sistema segue a versão 2 do app (as telas marcadas `NOVO`).
 
 ## Antes de entregar
 

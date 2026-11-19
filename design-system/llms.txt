@@ -157,6 +157,7 @@
 - #/modulos/InviteMessageExample: InviteMessageExample
 - #/modulos/AccountExistsSheet: AccountExistsSheet
 - #/modulos/InviteCodeHelpSheet: InviteCodeHelpSheet
+- #/padroes/telas-v2: Telas da v2 (as 199 telas oficiais, com link para o protótipo navegável)
 - #/padroes/padroes-de-tela: Padrões de tela
 - #/padroes/TelaCadastroCelular: Tela Cadastro Celular
 - #/padroes/TelaCadastroCelularCadastrado: Tela Cadastro Celular Cadastrado

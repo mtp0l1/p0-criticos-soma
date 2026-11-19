@@ -44,7 +44,7 @@ export const DialogContent = React.forwardRef<React.ElementRef<typeof DialogPrim
       <DialogPrimitive.Content
         ref={ref}
         className={cn(
-          'fixed left-1/2 top-1/2 z-50 grid max-h-[calc(100dvh-48px)] w-[calc(100%-48px)] max-w-[340px] -translate-x-1/2 -translate-y-1/2 gap-mini overflow-y-auto rounded-lg bg-popover p-mini pt-medium text-popover-foreground',
+          'fixed left-1/2 top-1/2 z-50 grid max-h-[calc(100dvh-48px)] w-[calc(100%-48px)] max-w-[340px] -translate-x-1/2 -translate-y-1/2 gap-mini overflow-y-auto rounded-xl bg-popover shadow-high p-mini pt-medium text-popover-foreground',
           'data-[state=open]:animate-zoom-in data-[state=closed]:animate-zoom-out motion-reduce:animate-none outline-none',
           className,
         )}
@@ -88,11 +88,11 @@ export const SheetHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDi
 export const SheetFooter = DialogFooter;
 
 export const sheetVariants = cva(
-  'fixed z-50 grid gap-mini bg-popover p-mini pb-small text-popover-foreground shadow-high outline-none motion-reduce:animate-none',
+  'fixed z-50 grid gap-mini bg-background p-mini pb-small text-popover-foreground shadow-sheet outline-none motion-reduce:animate-none',
   {
     variants: {
       side: {
-        bottom: 'inset-x-0 bottom-0 max-h-[90dvh] overflow-y-auto rounded-t-xl data-[state=open]:animate-slide-up data-[state=closed]:animate-slide-down',
+        bottom: 'inset-x-0 bottom-0 max-h-[90dvh] overflow-y-auto rounded-t-sheet data-[state=open]:animate-slide-up data-[state=closed]:animate-slide-down',
         top: 'inset-x-0 top-0 max-h-[90dvh] overflow-y-auto rounded-b-xl data-[state=open]:animate-slide-in-top data-[state=closed]:animate-slide-out-top',
         left: 'inset-y-0 left-0 h-full w-[85%] max-w-[360px] content-start overflow-y-auto data-[state=open]:animate-slide-in-left data-[state=closed]:animate-slide-out-left',
         right: 'inset-y-0 right-0 h-full w-[85%] max-w-[360px] content-start overflow-y-auto data-[state=open]:animate-slide-in-right data-[state=closed]:animate-slide-out-right',
@@ -140,7 +140,7 @@ export const AlertDialogContent = React.forwardRef<React.ElementRef<typeof Alert
         <AlertDialogPrimitive.Content
           ref={ref}
           className={cn(
-            'fixed left-1/2 top-1/2 z-50 grid max-h-[calc(100dvh-48px)] w-[calc(100%-48px)] max-w-[340px] -translate-x-1/2 -translate-y-1/2 gap-mini overflow-y-auto rounded-lg bg-popover p-mini text-popover-foreground',
+            'fixed left-1/2 top-1/2 z-50 grid max-h-[calc(100dvh-48px)] w-[calc(100%-48px)] max-w-[340px] -translate-x-1/2 -translate-y-1/2 gap-mini overflow-y-auto rounded-xl bg-popover shadow-high p-mini text-popover-foreground',
             'data-[state=open]:animate-zoom-in data-[state=closed]:animate-zoom-out motion-reduce:animate-none outline-none',
             className,
           )}
@@ -258,7 +258,7 @@ export const tabsListVariants = cva('grid grid-flow-col auto-cols-fr', {
   variants: {
     variant: {
       underline: 'border-b border-border bg-surface-primary',
-      segmented: 'gap-xnano rounded-md border border-border bg-surface-primary p-xnano',
+      segmented: 'gap-0 rounded-full bg-surface-secondary p-xnano',
       pill: 'flex flex-wrap gap-nano',
     },
   },
@@ -276,12 +276,12 @@ export const tabsTriggerVariants = cva(
           'data-[state=active]:after:bg-selected-indicator',
         ],
         segmented: [
-          'min-h-touch rounded-sm text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active disabled:hover:bg-transparent data-[state=active]:hover:bg-interactive-fill-loud-hover',
-          'data-[state=active]:bg-primary data-[state=active]:font-semibold data-[state=active]:text-primary-foreground',
+          'min-h-[40px] rounded-full text-muted-foreground hover:text-foreground disabled:hover:bg-transparent data-[state=active]:hover:bg-surface-inverse',
+          'data-[state=active]:bg-surface-inverse data-[state=active]:font-semibold data-[state=active]:text-text-inverse',
         ],
         pill: [
-          'min-h-touch rounded-full border border-border-highlight bg-surface-primary px-mini font-semibold text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active disabled:hover:bg-surface-primary',
-          'data-[state=active]:border-transparent data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:hover:bg-interactive-fill-loud-hover',
+          'min-h-chip rounded-full bg-surface-primary px-mini font-semibold text-foreground shadow-card hover:bg-surface-accent active:bg-interactive-fill-quiet-active disabled:hover:bg-surface-primary',
+          'data-[state=active]:bg-surface-inverse data-[state=active]:text-text-inverse data-[state=active]:shadow-none data-[state=active]:hover:bg-surface-inverse',
         ],
       },
     },

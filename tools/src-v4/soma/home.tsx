@@ -1,0 +1,163 @@
+/* So+ma · Início: HomeGreeting, Tile, TileGrid, BalanceCard, QuestionTeaser, GoalSummaryCard, ActivityRow. */
+import * as React from 'react';
+import { cn, fmt, hitArea } from '../lib/utils';
+import { Icon, type IconName } from '../ui/icon';
+import { Button, IconButton } from '../ui/button';
+import { pressable, PressableBase } from './navigation';
+
+export interface HomeGreetingProps {
+  /** Primeiro nome. Mostra "Olá {nome}". */
+  name: string;
+  /** Abre o cartão QR da pessoa (botão redondo ao lado do nome). Sem ele, o botão não aparece. */
+  onQr?: () => void;
+  /** Abre a ajuda (ícone à direita). Sem ele, o ícone não aparece. */
+  onHelp?: () => void;
+}
+/** Saudação do Início (Figma, Home): "Olá Mônica" em screen-title, botão do QR em círculo e ajuda à direita. */
+export function HomeGreeting({ name, onQr, onHelp }: HomeGreetingProps) {
+  return (
+    <div className="flex items-center justify-between gap-nano text-foreground">
+      <div className="flex min-w-0 items-center gap-nano">
+        <h1 className="screen-title m-0 truncate">Olá {name}</h1>
+        {onQr && <IconButton icon="qr-code" label="Meu cartão QR" onClick={onQr} className="size-touch shrink-0 rounded-full bg-surface-secondary text-icon-brand hover:bg-surface-secondary-hover active:bg-surface-secondary-hover" />}
+      </div>
+      {onHelp && <IconButton icon="help" label="Ajuda" onClick={onHelp} className="text-icon-brand" />}
+    </div>
+  );
+}
+
+export interface TileProps { icon: IconName; label: string; href?: string; onClick?: () => void }
+export function Tile({ icon, label, href, onClick }: TileProps) {
+  return (
+    <PressableBase
+      href={href}
+      onClick={onClick}
+      className={cn(
+        pressable,
+        'flex min-h-tile flex-col items-start justify-center gap-xnano rounded-lg bg-surface-secondary px-mini py-nano text-foreground',
+        'hover:bg-surface-secondary-hover active:bg-surface-secondary-hover',
+      )}
+    >
+      <Icon name={icon} tone="brand" />
+      <span className="label">{label}</span>
+    </PressableBase>
+  );
+}
+export function TileGrid({ children, className }: { children?: React.ReactNode; className?: string }) {
+  return <div className={cn('grid grid-cols-2 gap-mini', className)}>{children}</div>;
+}
+
+export interface BalanceCardProps {
+  points: number;
+  /** Legenda de apoio. Com saldo zero e sem hint, o card chama para a primeira entrega. */
+  hint?: string;
+  href?: string;
+  onPress?: () => void;
+  /** light = card creme tocável com seta (Início) · dark = faixa escura com botão (Início com meta, Tela 17). */
+  tone?: 'light' | 'dark';
+  /** Só no tone dark: o botão à direita ("Ver meta"). */
+  action?: { label: string; onClick?: () => void; href?: string };
+}
+export function BalanceCard({ points, hint, href, onPress, tone = 'light', action }: BalanceCardProps) {
+  const text = hint ?? (points === 0 ? 'Faça sua primeira entrega e comece a pontuar' : undefined);
+  if (tone === 'dark') {
+    return (
+      <section aria-label="Saldo atual" className="grid grid-cols-[1fr_auto] items-center gap-nano rounded-lg bg-surface-inverse p-mini text-text-inverse">
+        <span className="grid gap-xnano">
+          <span className="eyebrow uppercase text-icon-brand">Seu saldo atual</span>
+          <span className="page-title">{fmt(points)} {points === 1 ? 'ponto' : 'pontos'}</span>
+          {text && <span className="caption">{text}</span>}
+        </span>
+        {action && <Button size="compact" asChild={!!action.href} onClick={action.onClick}>{action.href ? <a href={action.href}>{action.label}</a> : action.label}</Button>}
+      </section>
+    );
+  }
+  return (
+    <PressableBase
+      href={href}
+      onClick={onPress}
+      className={cn(pressable, 'grid min-h-[104px] w-full grid-cols-[1fr_auto] items-center gap-nano rounded-lg bg-surface-accent p-mini text-foreground hover:bg-surface-accent-hover active:bg-surface-accent-hover')}
+    >
+      <span className="grid gap-0 self-start">
+        <span className="caption">Saldo atual</span>
+        <span className="flex items-baseline gap-nano"><span className="balance-number font-normal">{fmt(points)}</span><span className="subtitle">{points === 1 ? 'ponto' : 'pontos'}</span></span>
+        {text && <span className="caption text-muted-foreground">{text}</span>}
+      </span>
+      <Icon name="chevron-right" tone="brand-strong" />
+    </PressableBase>
+  );
+}
+
+export interface QuestionTeaserProps {
+  /** A pergunta do dia, curta ("Isopor é reciclável?"). */
+  question: string;
+  /** Padrão: "Responda para somar pontos e trocar por recompensas.". */
+  hint?: string;
+  href?: string;
+  onPress?: () => void;
+}
+/** Card "Pergunta do dia" do Início, sob um `SectionHeader` "Pergunta do dia". Leva ao Quiz; no lugar do banner antigo de quiz. */
+export function QuestionTeaser({ question, hint = 'Responda para somar pontos e trocar por recompensas.', href, onPress }: QuestionTeaserProps) {
+  return (
+    <PressableBase
+      href={href}
+      onClick={onPress}
+      className={cn(pressable, 'grid w-full grid-cols-[auto_1fr] items-center gap-micro rounded-lg border border-border-highlight bg-surface-primary p-mini text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active')}
+    >
+      <Icon name="help" tone="brand" />
+      <span className="grid gap-xnano">
+        <span className="label">{question}</span>
+        <span className="caption text-muted-foreground">{hint}</span>
+      </span>
+    </PressableBase>
+  );
+}
+
+export interface GoalSummaryCardProps {
+  /** Nome do prêmio escolhido como meta. */
+  title: string;
+  /** Pontos que o prêmio custa. */
+  goal: number;
+  /** Pontos que faltam. */
+  remaining: number;
+  icon?: IconName;
+  href?: string;
+  onPress?: () => void;
+}
+/** Meta ativa no topo do Início (Tela 17): prêmio, custo e quanto falta. Para o card laranja do catálogo use GoalCard. */
+export function GoalSummaryCard({ title, goal, remaining, icon = 'gift', href, onPress }: GoalSummaryCardProps) {
+  return (
+    <PressableBase
+      href={href}
+      onClick={onPress}
+      className={cn(pressable, 'grid w-full gap-nano rounded-lg border-2 border-border-highlight bg-surface-primary p-mini text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active')}
+    >
+      <span className="grid grid-cols-[auto_1fr] items-center gap-micro">
+        <span aria-hidden className="grid size-[40px] place-items-center rounded-md bg-surface-accent text-icon-brand-strong"><Icon name={icon} /></span>
+        <span className="grid gap-xnano"><span className="body-strong">{title}</span><span className="caption text-muted-foreground">Meta: {fmt(goal)} pontos</span></span>
+      </span>
+      <span className="flex items-center gap-xnano rounded-sm bg-surface-accent px-nano py-xnano caption font-medium text-foreground"><Icon name="flag" size="small" tone="brand-strong" />Faltam {fmt(remaining)} pontos para a meta</span>
+    </PressableBase>
+  );
+}
+
+export interface ActivityRowProps {
+  title: string;
+  /** "3,2 kg de PET · +64 pontos". */
+  detail: string;
+  icon?: IconName;
+  /** Ação à direita ("Ver recibo"). */
+  action?: { label: string; onClick?: () => void; href?: string };
+}
+/** Linha de "Atividade recente" do Início (Tela 17). */
+export function ActivityRow({ title, detail, icon = 'recycle', action }: ActivityRowProps) {
+  return (
+    <div className="grid grid-cols-[auto_1fr_auto] items-center gap-micro rounded-lg border border-border bg-card p-mini text-card-foreground">
+      <span aria-hidden className="grid size-[32px] place-items-center rounded-full bg-feedback-fill-positive text-feedback-text-positive"><Icon name={icon} size="small" /></span>
+      <span className="grid gap-xnano"><span className="label">{title}</span><span className="caption font-semibold">{detail}</span></span>
+      {action && (action.href
+        ? <a href={action.href} onClick={action.onClick} className={cn(pressable, hitArea, 'caption rounded-xs font-bold text-text-link')}>{action.label}</a>
+        : <button type="button" onClick={action.onClick} className={cn(pressable, hitArea, 'caption rounded-xs font-bold text-text-link')}>{action.label}</button>)}
+    </div>
+  );
+}
