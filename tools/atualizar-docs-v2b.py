@@ -1,6 +1,14 @@
 # -*- coding: utf-8 -*-
 """Segunda passada nos textos de componentes: medidas e materiais da v2 (idempotente)."""
 import os, re
+def validar_pagina(path, texto):
+    """Páginas são `export default () => "<html em uma string JS>";`. Confere que a string é JSON válido (sem quebra de linha real nem aspas soltas)."""
+    import json
+    cab='export default () => '
+    if not texto.startswith(cab): return
+    try: json.loads(texto[len(cab):].rstrip().rstrip(';'))
+    except Exception as e: raise SystemExit('PÁGINA INVÁLIDA depois da edição: '+path+' ('+str(e)[:80]+'). Nada foi gravado.')
+
 root=os.path.abspath(os.path.join(os.path.dirname(__file__),'..')); pages=os.path.join(root,'design-system/site/pages')
 P={
 'Sheet':[('raio radius-xlarge no topo','raio radius-sheet (36px) no topo'),('sombra shadow-high, padding space-mini','fundo background, sombra shadow-sheet, padding space-mini')],
@@ -33,7 +41,7 @@ for name,pairs in P.items():
         s2,k=rx.subn(lambda m:nb,s,count=1)
         if k: s=s2; c+=1
         else: print('  não achei',name,a[:50])
-    open(p,'w',encoding='utf-8').write(s); n+=c
+    validar_pagina(p,s); open(p,'w',encoding='utf-8').write(s); n+=c
 print('frases atualizadas:',n,'de',sum(len(v) for v in P.values()))
 a=os.path.join(root,'design-system/files/AGENTS.md'); s=open(a,encoding='utf-8').read()
 old='| Contraste | 4,5:1 para texto, 3:1 para ícone e borda de controle |'

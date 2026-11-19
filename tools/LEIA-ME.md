@@ -20,3 +20,7 @@ Etapas (cada uma é idempotente e parte da fonte da v4 guardada em `src-v4/`, `p
 | `build.mjs` | esbuild (bundle.js) + Tailwind (bundle.css) |
 | `thumbs.mjs` | 146 miniaturas (720×450) com o Chrome instalado |
 | `gerar-telas-v2.py` | Página “Telas da v2” e cópia do protótipo em `design-system/prototipo/` (usa a pasta `../../prototipo-soma`) |
+
+## Verificação automática no GitHub
+
+Copie `tools/ci/verificar-site.yml` para `.github/workflows/` (precisa de permissão `workflow` ao dar push). Ele confere a sintaxe de todos os módulos em cada pull request.
