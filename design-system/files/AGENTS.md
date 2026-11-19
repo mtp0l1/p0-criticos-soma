@@ -40,7 +40,7 @@ Leia isto primeiro. Vale para qualquer IA (Claude, Claude Design, IA do Figma, C
 | Escala de texto | 12 · 14 · 15 · 16 · 17 · 18 · 22 · 28 · 32 · 48px, em 16 estilos (só `tab-label` tem 11px). Tracking acompanha o tamanho. |
 | Raios | 8 · 12 · 16 · 20 · 24 · 28 · 32 · 36 · pílula |
 | Alvo de toque | 44px de altura e de largura |
-| Contraste | 4,5:1 para texto, 3:1 para ícone e borda de controle |
+| Contraste | 4,5:1 para texto, 3:1 para ícone e borda de controle. Exceção documentada da v2: campo de texto (rótulo sempre visível e sombra) e interruptor/caixa laranjas (o estado também aparece na posição ou na marca) |
 | Botão `loud` | um por tela |
 | Largura de desenho | 390px (de 360 a 430: margem fixa, conteúdo estica) |
 | Fonte | Lexend |
