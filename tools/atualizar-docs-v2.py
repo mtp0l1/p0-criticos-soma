@@ -1,6 +1,14 @@
 # -*- coding: utf-8 -*-
 """Atualiza textos e previews do Campana para a v2: cores citadas, medidas dos componentes, preview do Button, AGENTS.md. Idempotente."""
 import os, re, glob
+def validar_pagina(path, texto):
+    """Páginas são `export default () => "<html em uma string JS>";`. Confere que a string é JSON válido (sem quebra de linha real nem aspas soltas)."""
+    import json
+    cab='export default () => '
+    if not texto.startswith(cab): return
+    try: json.loads(texto[len(cab):].rstrip().rstrip(';'))
+    except Exception as e: raise SystemExit('PÁGINA INVÁLIDA depois da edição: '+path+' ('+str(e)[:80]+'). Nada foi gravado.')
+
 root=os.path.abspath(os.path.join(os.path.dirname(__file__),'..')); ds=os.path.join(root,'design-system')
 HEX={'F2A545':'FFA125','1E2A3B':'21344E','5C7089':'56697F','A64B00':'9E5400','FDFEFF':'FFFFFF','F1F5F8':'F1EDE6','FDF5EA':'FFF6E8','E7EDF2':'E8E2D6','DDE4EE':'E8E2D6','7A808A':'8A8374','2A6A1B':'167A3F','E3F3D9':'E6F6EC','9B1C1C':'C62F2F','D92D20':'C62F2F','E0ECFF':'DCEBFB'}
 def sub_hex(s):
@@ -10,13 +18,13 @@ n=0
 files=[f for f in glob.glob(os.path.join(ds,'site/pages/*.js')) if '/fundamentos__' not in f]+glob.glob(os.path.join(ds,'previews/*.html'))+glob.glob(os.path.join(ds,'files/*.md'))
 for f in files:
     s=open(f,encoding='utf-8').read(); t=sub_hex(s)
-    if t!=s: open(f,'w',encoding='utf-8').write(t); n+=1
+    if t!=s: validar_pagina(f,t); open(f,'w',encoding='utf-8').write(t); n+=1
 print('arquivos com cores atualizadas:',n)
 def edit(rel,pairs,must=False):
     p=os.path.join(ds,rel); s=open(p,encoding='utf-8').read(); c=0
     for a,b in pairs:
         if a in s and b not in s: s=s.replace(a,b,1); c+=1
-    open(p,'w',encoding='utf-8').write(s); return c
+    validar_pagina(p,s); open(p,'w',encoding='utf-8').write(s); return c
 # preview do Button
 edit('previews/Button.html',[
 ("K('hierarchy: loud · quiet · transparent · destructive'),","K('hierarchy: loud · dark · quiet · transparent · destructive'),"),
@@ -26,7 +34,7 @@ edit('previews/Button.html',[
 edit('site/pages/componentes__Button.js',[
 ("quatro ênfases (<code>loud</code>, <code>quiet</code>, <code>transparent</code>, <code>destructive</code>)","cinco ênfases (<code>loud</code>, <code>dark</code>, <code>quiet</code>, <code>transparent</code>, <code>destructive</code>)"),
 ("Um <code>loud</code> por tela: <code>primary</code> com <code>primary-foreground</code> (7,07:1). Nunca texto branco sobre laranja.","Um <code>loud</code> por tela: pílula de 56px, <code>primary</code> com <code>primary-foreground</code> (6,2:1) e brilho <code>shadow-glow</code>. Nunca texto branco sobre laranja."),
-("<code>quiet</code> é a ação secundária: borda <code>interactive-border-quiet</code>, fundo <code>surface-primary</code>, ícone <code>icon-brand</code>.</li>","<code>quiet</code> é a ação secundária clara: fundo <code>surface-primary</code>, sombra <code>shadow-card</code>, ícone <code>icon-primary</code>.</li>\n<li><code>dark</code> é a ação forte secundária (\"Mostrar meu QR\", \"Compartilhar\"): fundo <code>surface-inverse</code>, texto <code>text-inverse</code>, sombra <code>shadow-dark</code>.</li>"),
+("<code>quiet</code> é a ação secundária: borda <code>interactive-border-quiet</code>, fundo <code>surface-primary</code>, ícone <code>icon-brand</code>.</li>","<code>quiet</code> é a ação secundária clara: fundo <code>surface-primary</code>, sombra <code>shadow-card</code>, ícone <code>icon-primary</code>.</li>\\n<li><code>dark</code> é a ação forte secundária (\\\"Mostrar meu QR\\\", \\\"Compartilhar\\\"): fundo <code>surface-inverse</code>, texto <code>text-inverse</code>, sombra <code>shadow-dark</code>.</li>"),
 ])
 # textos de componentes
 edit('site/pages/componentes__Button.js',[("<code>large</code> (48px, padrão), <code>compact</code> (44px, listas e cards densos)","<code>large</code> (56px, padrão), <code>compact</code> (48px, listas e cards densos)")])

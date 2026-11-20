@@ -10,3 +10,4 @@ python3 atualizar-docs-v2b.py
 node build.mjs
 [ "$1" = "--sem-miniaturas" ] || node thumbs.mjs
 python3 gerar-telas-v2.py
+./verificar.sh
