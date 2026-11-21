@@ -7,7 +7,10 @@ python3 migrar-tokens-v2.py
 python3 gerar-fundamentos.py
 python3 atualizar-docs-v2.py
 python3 atualizar-docs-v2b.py
+python3 atualizar-figma-v2.py
+python3 atualizar-guias-v2.py
 node build.mjs
 [ "$1" = "--sem-miniaturas" ] || node thumbs.mjs
 python3 gerar-telas-v2.py
+python3 empacotar.py
 ./verificar.sh

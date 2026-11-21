@@ -125,7 +125,7 @@ export interface TabBarProps {
 /** Navegação inferior fixa. É navegação (nav + aria-current), não abas: por isso não usa Radix Tabs. */
 export function TabBar({ active, onNavigate }: TabBarProps) {
   return (
-    <nav aria-label="Navegação principal" className="mx-mini mb-small flex min-h-tabbar w-[calc(100%-32px)] items-center justify-between rounded-3xl bg-surface-primary/[.86] px-nano shadow-float backdrop-blur-[24px] motion-reduce:backdrop-blur-none motion-reduce:bg-surface-primary">
+    <nav aria-label="Navegação principal" className="mx-mini mb-small flex min-h-tabbar w-[calc(100%-32px)] [contain:inline-size] items-center justify-between rounded-3xl bg-surface-primary/[.86] px-nano shadow-float backdrop-blur-[24px] motion-reduce:backdrop-blur-none motion-reduce:bg-surface-primary">
       {TAB_ITEMS.map((t) => {
         const on = t.id === active;
         return (

@@ -206,7 +206,7 @@ export function InputOTPSlot({ index, invalid, className, ...props }: InputOTPSl
     <div
       data-active={slot?.isActive || undefined}
       className={cn(
-        'relative grid h-button w-button place-items-center rounded-lg border border-border bg-surface-primary shadow-card font-sans text-[20px] font-semibold leading-7 text-foreground transition-colors motion-reduce:transition-none',
+        'relative grid h-button w-button place-items-center rounded-lg border border-border bg-surface-primary shadow-card font-sans text-[22px] font-semibold leading-7 text-foreground transition-colors motion-reduce:transition-none',
         'data-[active]:border-border-highlight data-[active]:ring-2 data-[active]:ring-ring data-[active]:ring-offset-2 data-[active]:ring-offset-background',
         invalid && 'border-feedback-text-negative data-[active]:ring-destructive',
         className,

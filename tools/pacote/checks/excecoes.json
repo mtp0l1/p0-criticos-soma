@@ -1,0 +1,27 @@
+{
+ "_leia": "Medidas e pares conhecidos fora da regra, todos da v2 (alinhamento óptico de ícone, pílula e campo com rótulo flutuante). Quem criar uma nova precisa registrar aqui com o motivo; o script reprova medida nova que não esteja nesta lista.",
+ "SPC-01": {
+  "-ml-[1.5px]": "v2: ajuste óptico (campo com rótulo flutuante, ícones, pílulas)",
+  "-mt-[1.5px]": "v2: ajuste óptico (campo com rótulo flutuante, ícones, pílulas)",
+  "gap-[2px]": "v2: ajuste óptico (campo com rótulo flutuante, ícones, pílulas)",
+  "gap-[3px]": "v2: ajuste óptico (campo com rótulo flutuante, ícones, pílulas)",
+  "gap-[6px]": "v2: ajuste óptico (campo com rótulo flutuante, ícones, pílulas)",
+  "mt-[1px]": "v2: ajuste óptico (campo com rótulo flutuante, ícones, pílulas)",
+  "p-[10px]": "v2: ajuste óptico (campo com rótulo flutuante, ícones, pílulas)",
+  "p-[14px]": "v2: ajuste óptico (campo com rótulo flutuante, ícones, pílulas)",
+  "p-[2px]": "v2: ajuste óptico (campo com rótulo flutuante, ícones, pílulas)",
+  "pr-[44px]": "v2: ajuste óptico (campo com rótulo flutuante, ícones, pílulas)",
+  "px-[10px]": "v2: ajuste óptico (campo com rótulo flutuante, ícones, pílulas)",
+  "py-[2px]": "v2: ajuste óptico (campo com rótulo flutuante, ícones, pílulas)",
+  "py-[6px]": "v2: ajuste óptico (campo com rótulo flutuante, ícones, pílulas)",
+  "pt-[26px]": "v2: ajuste óptico (campo com rótulo flutuante, ícones, pílulas)",
+  "px-[18px]": "v2: ajuste óptico (campo com rótulo flutuante, ícones, pílulas)"
+ },
+ "TOK-03": {
+  "selected-indicator sobre surface-primary": "Indicador laranja da aba e do ponto atual tem 2,0:1. O estado também vai por posição, forma e texto (a aba ativa vira pílula com o nome; o switch muda de lado; a marca do checkbox aparece).",
+  "feedback-text-negative sobre feedback-fill-negative": "4,4999:1, que arredonda para 4,50:1: falta 0,00004 para o mínimo. Sem diferença perceptível. Ajuste futuro, se quiserem fechar em 4,5 exato: feedback-fill-negative de #FBE4E4 para #FBE5E5."
+ },
+ "TOK-05": [
+  "rounded-[inherit]"
+ ]
+}

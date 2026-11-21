@@ -80,6 +80,21 @@ for s in styles:
     f,l,w,ls,up,u=TS[s['name']]; s['fontSize']=f'{f}px'; s['lineHeight']=f'{l}px'; s['fontWeight']=w; s['letterSpacing']=f'{ls/100:.2f}em'; s['uppercase']=bool(up); s['usage']=u
 styles.append({'name':'display','fontSize':'32px','lineHeight':'38px','fontWeight':700,'letterSpacing':'-0.03em','uppercase':False,'usage':'Título de tela de sucesso e estados. Display.','sample':'Doação realizada!'})
 t['version']=5
+# remove das descrições as referências ao desenho antigo (Neutral/Level, "do Figma das telas novas")
+LIMPA=[('Laranja escuro do Figma das telas novas (cor do item ativo da barra inferior).','Laranja escuro para texto de ação e link.'),
+('(valor documentado no Figma)','(cor da marca)'),('Neutro de apoio do Figma (','Neutro de apoio ('),
+('Neutral/Level 6 do Figma: divisores','Divisores'),('Neutral/Level 3 do Figma: texto e ícone principais nas telas novas.','Texto e ícone principais.'),
+('Highlight/Default do Figma: ','Destaque: '),('Neutral/Level 5 do Figma: ponto de passo pendente','Ponto de passo pendente'),
+('Azul claro do Figma: dia protegido','Azul claro: dia protegido'),('(Figma, Tela 5)','(Quiz, Tela 5)'),
+('laranjas de texto do Figma','laranjas de texto do handoff anterior'),('(20px, como no Figma)','(20px)')]
+def limpa_todos(o):
+    if isinstance(o,dict):
+        return {k:limpa_todos(v) for k,v in o.items()}
+    if isinstance(o,list): return [limpa_todos(v) for v in o]
+    if isinstance(o,str):
+        for a,b in LIMPA: o=o.replace(a,b)
+    return o
+t=limpa_todos(t)
 json.dump(t,open(os.path.join(ds,'files/tokens.json'),'w',encoding='utf-8'),ensure_ascii=False,indent=2)
 # ---- CSS ----
 def val(v): return f'var(--{v[1:-1]})' if v.startswith('{') else v

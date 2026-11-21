@@ -8,7 +8,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 
 | Componente | Usar para | Nunca |
 |---|---|---|
-| `Button` | Botão de ação em quatro ênfases (`loud`, `quiet`, `transparent`, `destructive`), construído como o Button do shadcn/ui: `buttonVariants` (CVA), `asChild` (Radix Slot) e `forwardRef`. | ter dois botões `loud` na mesma tela, nem trocar cor ou raio por `className`. |
+| `Button` | Botão de ação em cinco ênfases (`loud`, `dark`, `quiet`, `transparent`, `destructive`), construído como o Button do shadcn/ui: `buttonVariants` (CVA), `asChild` (Radix Slot) e `forwardRef`. | ter dois botões `loud` na mesma tela, nem trocar cor ou raio por `className`. |
 | `ButtonGroup` | Botões relacionados colados lado a lado, com uma borda só entre eles (shadcn ButtonGroup). | juntar ações sem relação; só opções do mesmo tipo (Dia · Semana · Mês). |
 | `Checkbox` | Caixa de seleção, sobre Radix Checkbox (shadcn Checkbox). | usar para escolha única (use `RadioList`) nem sem rótulo ao lado. |
 | `ChoiceChips` | Chips de escolha única: valores de doação, categorias de recompensa e materiais. | usar para navegação entre telas nem para marcar vários itens quando a escolha é única. |
@@ -27,8 +27,8 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `PillTabs` | Abas em pílulas soltas: a ativa cheia e as outras contornadas. | usar fora de Recompensas nem com mais de duas abas. |
 | `SectionHeader` | Título de bloco dentro da tela, com um link opcional à direita. | usar como título de tela (use `Header`) nem com mais de um link à direita. |
 | `SegmentedControl` | Controle em pílula para alternar entre duas ou três seções, como Quiz e Histórico. | ter mais de três seções (use `Tabs`). |
-| `StepDots` | Pontos de progresso do cadastro: um ponto por passo, só o atual em destaque. | mostrar mais de um ponto laranja: só o passo atual tem destaque. |
-| `TabBar` | Barra de navegação inferior fixa, com os cinco destinos do produto. | ter mais ou menos de cinco destinos, nem esconder em tela de fluxo (cadastro, QR). |
+| `StepDots` | Progresso do cadastro: um segmento por passo, o atual mais largo, com o texto "Passo X de N". | destacar mais de um segmento como atual: só o passo atual é mais largo. |
+| `TabBar` | Barra de navegação inferior flutuante, com os cinco destinos do produto. | ter mais ou menos de cinco destinos, nem esconder em tela de fluxo (cadastro, QR). |
 | `Tabs` | Abas com sublinhado para trocar o recorte de uma mesma tela, como o período do ranking. | usar para trocar de tela inteira; só recorta o mesmo conteúdo (período). |
 | `Tile` | Tile de atalho da Home: ícone em cima, rótulo embaixo, em grade de duas colunas (`TileGrid`). | usar para dado (use `StatTile`) nem sem rótulo de texto. |
 
@@ -47,7 +47,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `SearchField` | Campo de busca com lupa, texto e botão de limpar. | usar como filtro de uma lista já visível sem limpar (botão de limpar é obrigatório). |
 | `Select` | Lista suspensa de escolha única, sobre Radix Select (shadcn Select). | usar com menos de três opções nem com busca (use `Combobox`). |
 | `Slider` | Escolha de um valor, ou de uma faixa, arrastando uma alça (shadcn Slider, sobre Radix). | usar para valor exato digitado (use `Input`). |
-| `TextField` | Campo de formulário com rótulo acima, texto de ajuda e mensagem de erro. | trocar rótulo por placeholder nem apagar o que a pessoa digitou ao mostrar erro. |
+| `TextField` | Campo de formulário com rótulo flutuante dentro do campo, texto de ajuda e mensagem de erro. | trocar rótulo por placeholder nem apagar o que a pessoa digitou ao mostrar erro. |
 | `Textarea` | Campo de texto de várias linhas (shadcn Textarea). | usar para resposta curta (use `Input`). |
 
 ## Cadastro
@@ -184,7 +184,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `Card` | Contêiner de conteúdo (shadcn Card) com cabeçalho, título, descrição, conteúdo e rodapé, em quatro variantes. | aninhar card dentro de card nem mudar o raio por `className`. |
 | `Carousel` | Slides que passam por gesto, com setas e pontos (shadcn Carousel, sobre Embla). | esconder conteúdo essencial depois do primeiro slide. |
 | `Icon` | Ícones de linha do sistema: Lucide e o set vetorial (SVG), com tamanho e cor por papel. | importar ícone de fora dos dois sets do sistema (Lucide e assets/icons) ou usar PNG/máscara para ícone de linha. |
-| `Illustration` | Mostra uma das ilustrações do sistema pelo nome, no tamanho do Figma ou em outro. | desenhar ilustração nova sem registrar em 6-ilustracoes.md. |
+| `Illustration` | Mostra uma das ilustrações do sistema pelo nome, no tamanho original ou em outro. | desenhar ilustração nova sem registrar em 6-ilustracoes.md. |
 | `PointsBadge` | Pílula com os pontos de uma pergunta, de um prêmio ou de um custo. | usar para outro número que não seja pontos. |
 | `ScrollArea` | Área com rolagem própria e barra visível (shadcn ScrollArea, sobre Radix). | criar rolagem aninhada dentro da rolagem da tela. |
 | `Separator` | Linha divisória horizontal ou vertical, sobre Radix Separator (shadcn Separator). | usar só para espaçar: o espaço vem da escala. |
