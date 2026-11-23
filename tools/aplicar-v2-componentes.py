@@ -96,4 +96,18 @@ rep('soma/feedback.tsx',[
 rep('ui/controls.tsx',[("text-[20px] font-semibold leading-7","text-[22px] font-semibold leading-7")])
 rep('soma/impact.tsx',[("m-0 text-[24px] font-bold leading-8","m-0 text-[22px] font-bold leading-7")])
 rep('soma/rewards.tsx',[("select-all font-sans text-[24px] font-bold leading-8","select-all font-sans text-[22px] font-bold leading-7")])
+# ---------------- Skeleton: tom mais escuro para aparecer sobre o creme ----------------
+rep('ui/display.tsx',[("'block rounded-sm bg-muted animate-pulse motion-reduce:animate-none'","'block rounded-sm bg-surface-secondary-hover animate-pulse motion-reduce:animate-none'"),
+("'rounded-md bg-muted animate-pulse motion-reduce:animate-none'","'rounded-md bg-surface-secondary-hover animate-pulse motion-reduce:animate-none'")])
+# ---------------- achados da auditoria dos previews ----------------
+# barra de local: 44px de altura tocável na largura toda; trilha do Quiz: inicial do dia com contraste AA; OTP: slots encolhem em tela estreita
+rep('soma/navigation.tsx',[("      className={cn(\n        pressable,\n        hitArea,\n        'flex w-full items-center justify-center gap-[6px] bg-surface-primary py-0 text-center text-foreground',",
+                            "      className={cn(\n        pressable,\n        hitAreaY,\n        'flex w-full items-center justify-center gap-[6px] bg-surface-primary py-0 text-center text-foreground',")])
+rep('soma/quiz.tsx',[("(d.state === 'today' || d.state === 'future') && 'bg-surface-track text-muted-foreground',","(d.state === 'today' || d.state === 'future') && 'bg-surface-track text-foreground',")])
+rep('ui/controls.tsx',[("'relative grid h-button w-button place-items-center rounded-lg border","'relative grid h-button w-button min-w-0 shrink place-items-center rounded-lg border"),
+                       ("return <div className={cn('flex items-center gap-nano', className)} {...props} />;","return <div className={cn('flex max-w-full items-center gap-nano', className)} {...props} />;")])
+rep('ui/controls.tsx',[("containerClassName={cn('flex items-center gap-nano', containerClassName)}","containerClassName={cn('flex max-w-full min-w-0 items-center gap-nano', containerClassName)}")])
+rep('ui/display.tsx',[("'relative flex shrink-0 overflow-hidden rounded-full bg-surface-accent'","'relative flex shrink-0 overflow-hidden rounded-full bg-surface-accent-hover'")])
+# opção do QuestionCard: o rádio nativo some de verdade (a posição relative do hitArea vencia o sr-only e o círculo ficava em cima do "a)")
+rep('soma/quiz.tsx',[('<RadioGroupItem value={o} id={`${qid}-${i}`} className="sr-only" />','<RadioGroupItem value={o} id={`${qid}-${i}`} className="!sr-only" />')])
 print('ok')

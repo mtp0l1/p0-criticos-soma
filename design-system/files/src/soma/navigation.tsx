@@ -95,7 +95,7 @@ export function LocationBar({ location, onPress, sticky }: LocationBarProps) {
       onClick={onPress}
       className={cn(
         pressable,
-        hitArea,
+        hitAreaY,
         'flex w-full items-center justify-center gap-[6px] bg-surface-primary py-0 text-center text-foreground',
         sticky && 'sticky top-0 z-10 border-b border-border',
       )}

@@ -14,7 +14,7 @@ def cr(a,b):
     la,lb=sorted([lum(a),lum(b)],reverse=True); return (la+.05)/(lb+.05)
 NEW={'orange':'#FFA125','orange-deep':'#9E5400','orange-hover':'#F29200','orange-pressed':'#E08700','navy':'#21344E','ink-secondary':'#56697F','white':'#FFFFFF',
 'surface-tile':'#F1EDE6','surface-warm':'#FFF6E8','warm-pressed':'#FFEBD0','tile-pressed':'#E8E2D6','line':'#E8E2D6','line-strong':'#8A8374',
-'danger-ax':'#C62F2F','danger-soft':'#FBE4E4','danger-ink':'#C62F2F','success-soft':'#E6F6EC','success-ink':'#167A3F','ink':'#21344E','paper':'#FFFFFF','highlight':'#FFA125',
+'danger-ax':'#C62F2F','danger-soft':'#FBE5E5','danger-ink':'#C62F2F','success-soft':'#E6F6EC','success-ink':'#167A3F','ink':'#21344E','paper':'#FFFFFF','highlight':'#FFA125',
 'sky-soft':'#DCEBFB','danger-ax-hover':'#A82525','danger-ax-pressed':'#8A1F1F'}
 OLD={x['name']:x['value']['light'] for x in t['color']['tokens'] if not x['value']['light'].startswith('{')}
 hexmap={OLD[k].upper():v for k,v in NEW.items() if k in OLD and OLD[k].upper()!=v.upper()}

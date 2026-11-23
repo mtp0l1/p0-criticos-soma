@@ -385,6 +385,25 @@ def llms():
     return False
 
 
+def previews():
+    """Rótulos dos previews: números de tela do handoff anterior viram o nome da tela da v2."""
+    troca = {
+        'DeliverySummaryCard': [('(Tela 6)', '(Entrega marcada)'), ('(Tela 28)', '(Entrega marcada · calendário ok)')],
+        'EmptyState': [('(Tela 6)', '(Ranking: Meu espaço sem CEP)'), ('(Tela 8)', '(Ranking: Amigos vazio)')],
+        'ResultScreen': [('(Tela 12, Pedido enviado)', '(Ranking: Pedido enviado)'), ('(Tela 14, permissão de contatos)', '(Ranking: Permissão de contatos)'),
+                         ('Tela 19 (Recompensas)', 'Recompensas: Nova meta definida'), ('Tela 22 (Recompensas)', 'Recompensas: Recompensa resgatada')],
+        'Toast': [('(Telas 5 e 10)', '(Ranking: Subiu no ranking e Amigo entrou)')],
+    }
+    ch = False
+    for nome, pares in troca.items():
+        f = os.path.join(root, 'design-system/previews/%s.html' % nome); t = open(f, encoding='utf-8').read(); t2 = t
+        for v, n in pares:
+            if v in t2: t2 = t2.replace(v, n)
+        if t2 != t:
+            open(f, 'w', encoding='utf-8').write(t2); ch = True
+    return ch
+
+
 if __name__ == '__main__':
-    r = [primeiros_passos(), guias(), padroes_e_registro(), figma_residual(), descricoes(), frases(), nav_sem_duplicatas(), leads_padroes(), tipos(), agents_sem_repeticao(), agents_pagina(), llms()]
+    r = [primeiros_passos(), guias(), padroes_e_registro(), figma_residual(), descricoes(), frases(), nav_sem_duplicatas(), leads_padroes(), tipos(), agents_sem_repeticao(), agents_pagina(), llms(), previews()]
     print('guias alterados:', r)

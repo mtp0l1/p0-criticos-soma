@@ -6,6 +6,7 @@ import { readFileSync, existsSync, statSync, mkdirSync, writeFileSync } from 'no
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const here = path.dirname(fileURLToPath(import.meta.url));
+const CHROME = process.env.CHROME_PATH || ['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', '/usr/bin/google-chrome', '/usr/bin/google-chrome-stable', '/usr/bin/chromium'].find((p) => existsSync(p));
 const ds = path.resolve(here, '../design-system');
 const out = path.resolve(process.argv[2] || 'capturas'); const COLS = +(process.argv[3] || 3), ROWS = +(process.argv[4] || 3);
 mkdirSync(out, { recursive: true });
@@ -18,7 +19,7 @@ const srv = http.createServer((req, res) => {
 }).listen(0);
 const base = `http://localhost:${srv.address().port}/design-system/`;
 const routes = [...readFileSync(path.join(ds, 'site/nav.js'), 'utf8').matchAll(/path:"([^"]+)"/g)].map((m) => m[1]);
-const browser = await puppeteer.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: 'new', args: ['--no-sandbox'] });
+const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new', args: ['--no-sandbox'] });
 const page = await browser.newPage(); await page.setViewport({ width: 1280, height: 900 });
 await page.goto(base + '#/', { waitUntil: 'load' });
 const problemas = []; const lista = [];

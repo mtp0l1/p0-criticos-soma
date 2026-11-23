@@ -6,6 +6,7 @@ import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 const here = path.dirname(fileURLToPath(import.meta.url));
+const CHROME = process.env.CHROME_PATH || ['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', '/usr/bin/google-chrome', '/usr/bin/google-chrome-stable', '/usr/bin/chromium'].find((p) => existsSync(p));
 const ds = path.resolve(here, '../design-system');
 const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.png': 'image/png', '.woff2': 'font/woff2', '.zip': 'application/zip', '.md': 'text/plain' };
 const srv = http.createServer((req, res) => {
@@ -16,7 +17,7 @@ const srv = http.createServer((req, res) => {
 }).listen(0);
 const port = srv.address().port; const base = `http://localhost:${port}/design-system/`;
 const routes = [...readFileSync(path.join(ds, 'site/nav.js'), 'utf8').matchAll(/path:"([^"]+)"/g)].map((m) => m[1]);
-const browser = await puppeteer.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: 'new', args: ['--no-sandbox'] });
+const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new', args: ['--no-sandbox'] });
 const page = await browser.newPage(); await page.setViewport({ width: 1280, height: 900 });
 let errs = []; page.on('pageerror', (e) => errs.push('JS: ' + e.message)); page.on('response', (r) => { if (r.status() >= 400) errs.push(`HTTP ${r.status()} ${r.url().replace(base, '')}`); });
 page.on('console', (m) => { if (m.type() === 'error') errs.push('console: ' + m.text().slice(0, 140)); });
