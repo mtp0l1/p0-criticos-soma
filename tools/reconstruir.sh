@@ -9,6 +9,8 @@ python3 atualizar-docs-v2.py
 python3 atualizar-docs-v2b.py
 python3 atualizar-figma-v2.py
 python3 atualizar-guias-v2.py
+python3 organizar-previews.py
+python3 gerar-galeria.py
 node build.mjs
 [ "$1" = "--sem-miniaturas" ] || node thumbs.mjs
 python3 gerar-telas-v2.py

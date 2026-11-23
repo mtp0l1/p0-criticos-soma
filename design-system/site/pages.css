@@ -1,5 +1,5 @@
 /* Composições das páginas do site da So+ma (exemplos, cores, tipografia, ícones, ilustrações, guias). */
-.ds-input-wrap{display:flex;align-items:center;gap:var(--ds-space-100);height:var(--ds-size-control-md);padding-inline:12px;border:1px solid var(--ds-color-border-field);border-radius:var(--ds-radius-md);background:var(--ds-color-bg-field);color:var(--ds-color-fg-subtle);min-width:0;flex:1;max-width:420px;transition:border-color var(--ds-duration-fast) var(--ds-easing-standard)}
+.ds-input-wrap{display:flex;align-items:center;gap:var(--ds-space-100);height:var(--ds-size-control-md);padding-inline:12px;border:1px solid var(--ds-color-border-field);border-radius:var(--ds-radius-md);background:var(--ds-color-bg-field);color:var(--ds-color-fg-subtle);min-width:0;flex:1 1 220px;max-width:420px;transition:border-color var(--ds-duration-fast) var(--ds-easing-standard)}
 .ds-input-wrap:hover{border-color:var(--ds-color-border-field-hover)}
 .ds-input-wrap:focus-within{outline:var(--ds-focus-ring-width) solid var(--ds-color-border-focus);outline-offset:var(--ds-focus-ring-offset)}
 .ds-input-wrap input{flex:1;min-width:0;height:100%;border:0;outline:0;background:none;color:var(--ds-color-fg-default);font:var(--ds-text-body-sm)}
@@ -72,10 +72,13 @@
 .ill figcaption .code{justify-self:start;overflow-wrap:anywhere}
 /* Componentes: grade de cartões com miniatura */
 .comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--ds-space-150)}
-.comp-thumb{display:block;height:152px;margin-bottom:var(--ds-space-200);border-radius:var(--ds-radius-lg);background:#fdfeff;overflow:hidden}
-.comp-thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
-.tile .tile__preview.pv-img{display:block;padding:0;background:#fdfeff}
-.tile .tile__preview.pv-img img{width:100%;height:100%;object-fit:cover;object-position:top}
+.comp-thumb{display:block;aspect-ratio:8/5;margin-bottom:var(--ds-space-200);border-radius:var(--ds-radius-lg);background:#fdfeff;overflow:hidden}
+.comp-thumb img{width:100%;height:100%;object-fit:cover;object-position:center}
+.tile .tile__preview.pv-img{display:block;padding:0;background:var(--ds-color-bg-sunken)}
+.tile .tile__preview.pv-img::before{display:none}
+.tile .tile__preview.pv-img img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform var(--ds-duration-slow,300ms) var(--ds-easing-emphasized,ease)}
+.tile:hover .tile__preview.pv-img img{transform:scale(1.035)}
+@media (prefers-reduced-motion:reduce){.tile:hover .tile__preview.pv-img img{transform:none}}
 /* Contrato */
 .checks{display:flex;flex-wrap:wrap;gap:var(--ds-space-075)}
 .usage-card .checks{margin-top:var(--ds-space-050)}
