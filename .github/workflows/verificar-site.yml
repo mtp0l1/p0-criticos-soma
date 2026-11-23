@@ -32,4 +32,6 @@ jobs:
         working-directory: tools
         env:
           CHROME_PATH: /usr/bin/google-chrome
-        run: node testar-site.mjs | tee /tmp/resultado.txt; ! grep -E "com problema: [1-9]" /tmp/resultado.txt
+        run: |
+          node testar-site.mjs | tee /tmp/resultado.txt
+          ! grep -E "com problema: [1-9]" /tmp/resultado.txt
