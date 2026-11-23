@@ -1,0 +1,30 @@
+/* Estágio dos previews (previews/*.html): conteúdo centralizado, rótulos como etiquetas, fundo de mesa de desenho.
+   Só organiza a apresentação. Os componentes continuam sendo os de verdade, com os tokens do sistema. */
+:root { --pv-dot: rgba(30, 42, 56, .12); }
+html { scroll-behavior: auto; }
+body {
+  background-image: radial-gradient(circle at 1px 1px, var(--pv-dot) 1px, transparent 1.4px);
+  background-size: 22px 22px;
+}
+body:not(.p-0) { padding: 32px 20px 36px; }
+#root { margin-inline: auto; width: 100%; gap: 14px; }
+
+/* Rótulos de grupo: etiqueta pequena e centralizada, com respiro entre um grupo e o seguinte */
+#root > p.caption {
+  justify-self: center; max-width: 100%; text-align: center; text-wrap: balance;
+  margin: 0; padding: 3px 12px; border-radius: 999px;
+  background: rgba(30, 42, 56, .06); color: rgb(75, 88, 104); font-weight: 500;
+}
+#root > p.caption:not(:first-child) { margin-top: 14px; }
+
+/* Linhas de exemplos: centralizadas e com espaço para a sombra e o brilho dos botões */
+#root > .flex.flex-wrap { justify-content: center; row-gap: 14px; column-gap: 12px; padding-block: 2px; }
+#root > .flex:not(.flex-wrap):not(.flex-col) { justify-content: center; }
+
+/* Peças soltas (ícone, botão pequeno, gatilho de popover) ficam no meio da coluna */
+#root > button:not([class*="w-full"]), #root > a:not([class*="w-full"]) { justify-self: center; }
+
+/* Mesa de desenho dos módulos: o cartão branco precisa se destacar do fundo */
+body.bg-background-secondary:not(.p-0) { background-color: var(--ds-color-bg-sunken, #F4F0EA); }
+
+@media (max-width: 420px) { body:not(.p-0) { padding: 24px 12px 28px; } }
