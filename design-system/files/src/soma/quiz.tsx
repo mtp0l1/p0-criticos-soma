@@ -194,7 +194,7 @@ export function QuestionCard({ points, question, options, value, onChange, onSub
             key={o}
             className="flex min-h-touch cursor-pointer items-center rounded-sm border border-input bg-surface-primary p-[10px] text-[14px] leading-5 text-foreground transition-colors hover:bg-interactive-fill-quiet-hover has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring has-[[data-state=checked]]:border-[1.5px] has-[[data-state=checked]]:border-border-highlight has-[[data-state=checked]]:bg-surface-accent has-[[data-state=checked]]:font-semibold"
           >
-            <RadioGroupItem value={o} id={`${qid}-${i}`} className="sr-only" />
+            <RadioGroupItem value={o} id={`${qid}-${i}`} className="!sr-only" />
             {String.fromCharCode(97 + i)}) {o}
           </label>
         ))}
@@ -252,7 +252,7 @@ export function StreakTrail({ days, className }: StreakTrailProps) {
                 d.state === 'done' && 'bg-feedback-fill-positive text-feedback-text-positive',
                 d.state === 'protected' && 'bg-surface-info text-icon-info',
                 d.state === 'missed' && 'bg-feedback-fill-negative text-feedback-text-negative',
-                (d.state === 'today' || d.state === 'future') && 'bg-surface-track text-muted-foreground',
+                (d.state === 'today' || d.state === 'future') && 'bg-surface-track text-foreground',
                 ring && 'border-[3px] border-border-highlight',
               )}
             >

@@ -1,0 +1,37 @@
+name: Verificar site
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  sintaxe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Sintaxe de todos os módulos do site
+        working-directory: design-system
+        run: |
+          erro=0
+          for f in site/pages/*.js site/nav.js site/app.js site/search-index.js site/aliases.js ds/js/*.js; do
+            node --check --input-type=module < "$f" > /dev/null 2>&1 || { echo "::error file=design-system/$f::erro de sintaxe"; erro=1; }
+          done
+          exit $erro
+  rotas:
+    # abre todas as rotas e todos os previews no Chrome e reprova 404, erro de script e página vazia
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Instalar o puppeteer-core
+        working-directory: tools
+        run: npm install --no-save --no-package-lock puppeteer-core@24
+      - name: Testar rotas e previews
+        working-directory: tools
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: |
+          node testar-site.mjs | tee /tmp/resultado.txt
+          ! grep -E "com problema: [1-9]" /tmp/resultado.txt

@@ -27,7 +27,7 @@ Etapas (cada uma é idempotente e parte da fonte da v4 guardada em `src-v4/`, `p
 
 ## Verificação automática no GitHub
 
-Copie `tools/ci/verificar-site.yml` para `.github/workflows/` (precisa de permissão `workflow` ao dar push). Ele confere a sintaxe de todos os módulos em cada pull request.
+`.github/workflows/verificar-site.yml` roda em cada pull request e em cada push na `main`: confere a sintaxe de todos os módulos e abre todas as rotas e previews no Chrome (`tools/testar-site.mjs`). Reprova 404, erro de script e página vazia.
 
 ## Revisão visual
 
@@ -36,3 +36,9 @@ node capturar-site.mjs ../capturas 3 3   # uma imagem por rota e folhas de conta
 ```
 
 Além das imagens, o script avisa: rolagem horizontal da página, imagem quebrada, preview vazio ou mais largo que a moldura e elementos fora da coluna de conteúdo.
+
+```bash
+node auditar-previews.mjs 390   # contraste, alvo de toque, texto cortado e rolagem horizontal em cada preview (use 360 também)
+```
+
+Alertas conhecidos que não são defeito: textos desabilitados (isentos de contraste), perguntas truncadas por desenho no histórico do Quiz e controles cobertos pela película dos previews de folha.

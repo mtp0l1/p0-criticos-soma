@@ -190,10 +190,10 @@ export const InputOTP = React.forwardRef<React.ElementRef<typeof OTPInput>, Reac
   { className, containerClassName, ...props },
   ref,
 ) {
-  return <OTPInput ref={ref} containerClassName={cn('flex items-center gap-nano', containerClassName)} className={cn('disabled:cursor-not-allowed', className)} {...props} />;
+  return <OTPInput ref={ref} containerClassName={cn('flex max-w-full min-w-0 items-center gap-nano', containerClassName)} className={cn('disabled:cursor-not-allowed', className)} {...props} />;
 });
 export function InputOTPGroup({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn('flex items-center gap-nano', className)} {...props} />;
+  return <div className={cn('flex max-w-full items-center gap-nano', className)} {...props} />;
 }
 export interface InputOTPSlotProps extends React.HTMLAttributes<HTMLDivElement> {
   index: number;
@@ -206,7 +206,7 @@ export function InputOTPSlot({ index, invalid, className, ...props }: InputOTPSl
     <div
       data-active={slot?.isActive || undefined}
       className={cn(
-        'relative grid h-button w-button place-items-center rounded-lg border border-border bg-surface-primary shadow-card font-sans text-[22px] font-semibold leading-7 text-foreground transition-colors motion-reduce:transition-none',
+        'relative grid h-button w-button min-w-0 shrink place-items-center rounded-lg border border-border bg-surface-primary shadow-card font-sans text-[22px] font-semibold leading-7 text-foreground transition-colors motion-reduce:transition-none',
         'data-[active]:border-border-highlight data-[active]:ring-2 data-[active]:ring-ring data-[active]:ring-offset-2 data-[active]:ring-offset-background',
         invalid && 'border-feedback-text-negative data-[active]:ring-destructive',
         className,

@@ -8,4 +8,4 @@ for f in site/pages/*.js site/nav.js site/app.js site/search-index.js site/alias
 done
 [ $erro = 0 ] || exit 1
 echo "sintaxe ok"
-if [ -d "/Applications/Google Chrome.app" ] && [ -d ../tools/node_modules/puppeteer-core ]; then node ../tools/testar-site.mjs; fi
+if [ -d ../tools/node_modules/puppeteer-core ] && { [ -d "/Applications/Google Chrome.app" ] || command -v google-chrome >/dev/null 2>&1 || [ -n "$CHROME_PATH" ]; }; then node ../tools/testar-site.mjs; fi
