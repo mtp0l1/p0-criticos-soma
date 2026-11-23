@@ -23,7 +23,7 @@ export const buttonVariants = cva(
         loud: 'bg-primary text-primary-foreground shadow-glow hover:bg-interactive-fill-loud-hover active:bg-interactive-fill-loud-active',
         quiet: 'bg-surface-primary text-foreground shadow-card hover:bg-surface-accent active:bg-interactive-fill-quiet-active [&_svg]:text-icon-primary',
         /** dark = ação forte secundária (Mostrar meu QR, Compartilhar). */
-        dark: 'bg-surface-inverse text-text-inverse shadow-dark hover:bg-ink active:bg-ink [&_svg]:text-icon-brand',
+        dark: 'bg-surface-inverse text-text-inverse shadow-dark hover:bg-surface-inverse/[.9] active:bg-surface-inverse/[.8] [&_svg]:text-icon-brand',
         transparent: 'bg-transparent text-text-link hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active active:text-foreground disabled:bg-transparent aria-disabled:bg-transparent',
         destructive: 'bg-destructive text-destructive-foreground hover:bg-interactive-fill-destructive-hover active:bg-interactive-fill-destructive-active',
       },

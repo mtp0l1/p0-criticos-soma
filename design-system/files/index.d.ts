@@ -372,7 +372,7 @@ export interface IconProps extends Omit<VariantProps<typeof iconVariants>, "size
 }
 export declare function Icon({ name, size, tone, color, source, label, className }: IconProps): React$1.JSX.Element | null;
 export declare const buttonVariants: (props?: ({
-	hierarchy?: "transparent" | "loud" | "quiet" | "destructive" | null | undefined;
+	hierarchy?: "transparent" | "loud" | "quiet" | "dark" | "destructive" | null | undefined;
 	size?: "large" | "icon" | "compact" | null | undefined;
 	fullWidth?: boolean | null | undefined;
 } & ClassProp) | undefined) => string;

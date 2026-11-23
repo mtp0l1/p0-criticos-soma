@@ -131,7 +131,7 @@ export function RedeemCode({ code, validity, hint = 'Use na retirada ou no site 
     <div className={cn('grid gap-mini text-foreground', className)}>
       <div className="grid justify-items-center gap-nano rounded-lg border-2 border-dashed border-border-highlight bg-card px-mini py-small text-center">
         <p className="caption m-0 font-semibold uppercase tracking-wide text-muted-foreground">Código de resgate</p>
-        <p className="m-0 select-all font-sans text-[24px] font-bold leading-8 tracking-[0.08em] text-text-link">{code}</p>
+        <p className="m-0 select-all font-sans text-[22px] font-bold leading-7 tracking-[0.08em] text-text-link">{code}</p>
         {validity && <p className="caption m-0 text-muted-foreground">{validity}</p>}
       </div>
       <p className="body-small m-0 text-center text-muted-foreground">{hint}</p>

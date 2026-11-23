@@ -209,7 +209,7 @@ export function ImpactTiles({ title, items, onShare, className }: ImpactTilesPro
       <dl className="m-0 grid auto-cols-fr grid-flow-col gap-nano">
         {items.map((it) => (
           <div key={it.label} className={cn('grid content-between gap-xnano rounded-lg border bg-card p-micro', 'border-[1.5px]', it.highlight ? 'border-border-highlight' : 'border-border')}>
-            <dd className={cn('m-0 text-[24px] font-bold leading-8', it.highlight ? 'text-text-link' : 'text-foreground')}>{it.value}</dd>
+            <dd className={cn('m-0 text-[22px] font-bold leading-7', it.highlight ? 'text-text-link' : 'text-foreground')}>{it.value}</dd>
             <dt className={cn('caption order-last', it.highlight ? 'font-bold text-text-link' : 'text-muted-foreground')}>{it.label}</dt>
           </div>
         ))}

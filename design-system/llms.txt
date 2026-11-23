@@ -45,7 +45,6 @@
 - #/componentes/SegmentedControl: SegmentedControl
 - #/componentes/SectionHeader: SectionHeader
 - #/componentes/PillTabs: PillTabs
-- #/componentes/SegmentedControl: SegmentedControl
 - #/componentes/StepDots: StepDots
 - #/componentes/ListRow: ListRow
 - #/componentes/SearchField: SearchField
@@ -182,7 +181,7 @@
 - #/padroes/TelaDoarLista: Tela Doar Lista
 - #/padroes/TelaDoarSaldoZero: Tela Doar Saldo Zero
 - #/padroes/TelaDoarSucesso: Tela Doar Sucesso
-- #/recursos/telas-novas: Handoff de referência
+- #/recursos/telas-novas: Registro do handoff anterior (histórico)
 - #/recursos/engenharia: Para engenharia
 - #/recursos/gerar-telas: Gerar telas com IA
 - #/recursos/agents: Para IAs (AGENTS.md)

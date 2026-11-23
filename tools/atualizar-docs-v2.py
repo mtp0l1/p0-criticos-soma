@@ -49,7 +49,8 @@ s=s.replace('| Escala de espaço | 4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 ·
 s=s.replace('| Escala de texto | 12 · 14 · 16 · 18 · 20 · 24 · 32px (só `tab-label` tem 11px) |','| Escala de texto | 12 · 14 · 15 · 16 · 17 · 18 · 22 · 28 · 32 · 48px, em 16 estilos (só `tab-label` tem 11px). Tracking acompanha o tamanho. |')
 s=s.replace('| Raios | 4 · 8 · 12 · 16 · 24 · pílula |','| Raios | 8 · 12 · 16 · 20 · 24 · 28 · 32 · 36 · pílula |')
 s=s.replace('| Largura de desenho | 360px |','| Largura de desenho | 390px (de 360 a 430: margem fixa, conteúdo estica) |')
-s=s.replace('| Margem lateral da tela | 20px (`space-xsmall`) |','| Margem lateral da tela | 20px (`space-xsmall`) |\n| Botão | 56px, pílula, largura total (`size-button`) |\n| Campo de texto | 68px, rótulo flutuante (`size-input`) |\n| Bloco de ação fixo | termina 12px acima da barra inferior; nunca fica sob ela |')
+if '| Botão | 56px, pílula' not in s:
+    s=s.replace('| Margem lateral da tela | 20px (`space-xsmall`) |','| Margem lateral da tela | 20px (`space-xsmall`) |\n| Botão | 56px, pílula, largura total (`size-button`) |\n| Campo de texto | 68px, rótulo flutuante (`size-input`) |\n| Bloco de ação fixo | termina 12px acima da barra inferior; nunca fica sob ela |')
 s=s.replace('Telas marcadas `ATUAL` (produção) ou `PROPOSTA` (caso de borda sem confirmação) em um handoff do Figma. O sistema segue só o que está marcado `NOVO`.','Telas marcadas `ATUAL` (produção) ou `PROPOSTA` (caso de borda sem confirmação) em um handoff do Figma. O sistema segue a versão 2 do app (as telas marcadas `NOVO`).')
 open(a,'w',encoding='utf-8').write(s)
 print('ok')

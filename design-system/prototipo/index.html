@@ -387,11 +387,14 @@ function engine(svg,id,dir){
   if(dir&&!reduce){ svg.classList.add(dir==='back'?'in-back':'in-fwd'); }
   applyScroll();
 }
-function applyScroll(){
-  if(!ctx) return; ctx.sy=Math.max(0,Math.min(ctx.max,ctx.sy));
-  if(ctx.mover) ctx.mover.setAttribute('transform',`translate(0,${-ctx.sy})`);
-  if(ctx.ind&&ctx.max>0){ const track=ctx.Vh-(ctx.indY-ctx.oy)-190; ctx.ind.setAttribute('transform',`translate(0,${(ctx.sy/ctx.max)*track})`); }
-  if(ctx.sy>14) $('#hint').classList.add('hide');
+/* soft=true: durante o arrasto o conteúdo pode passar da borda e resiste (elástico vertical); sem ele, trava na borda */
+function applyScroll(soft){
+  if(!ctx) return; const raw=ctx.sy; const cl=Math.max(0,Math.min(ctx.max,raw));
+  if(!soft||reduce){ ctx.sy=cl; }
+  const shown=(soft&&!reduce)?rubber(raw,ctx.max,ctx.Vh||800):cl;
+  if(ctx.mover) ctx.mover.setAttribute('transform',`translate(0,${-shown})`);
+  if(ctx.ind&&ctx.max>0){ const track=ctx.Vh-(ctx.indY-ctx.oy)-190; ctx.ind.setAttribute('transform',`translate(0,${(cl/ctx.max)*track})`); }
+  if(cl>14) $('#hint').classList.add('hide');
 }
 function hcarOf(t){ const h=t.closest&&t.closest('[data-hcar]'); return h?ctx.hcars.find(c=>c.holder===h):null; }
 function scaleF(){ const r=ctx.svg.getBoundingClientRect(); return r.width/ctx.W; }
@@ -417,12 +420,15 @@ addEventListener('pointermove',e=>{
   if(!drag||!ctx) return; const dx=e.clientX-drag.x, dy=e.clientY-drag.y, k=scaleF();
   if(!drag.mode){ if(Math.hypot(dx,dy)<6) return; drag.mode=(drag.car&&Math.abs(dx)>Math.abs(dy))?'h':'v'; if(drag.mode==='v'&&ctx.max<=0){ drag.mode='none'; } ctx.dragged=true; try{screenEl.setPointerCapture(e.pointerId);}catch(_){} }
   if(drag.mode==='h'){ const now=performance.now(), dt=now-(drag.lxt||now); const nx=rubber(drag.sx0-dx/k,drag.car.max,ctx.W); if(dt>0) drag.vx=(nx-drag.car.sx)/dt; drag.lxt=now; drag.car.sx=nx; setCarX(drag.car); }
-  else if(drag.mode==='v'){ ctx.sy=drag.sy-dy/k; applyScroll(); const now=performance.now(); const dt=now-drag.lt; if(dt>0){ drag.vy=(drag.ly-e.clientY)/k/dt; } drag.ly=e.clientY; drag.lt=now; }
+  else if(drag.mode==='v'){ ctx.sy=drag.sy-dy/k; applyScroll(true); const now=performance.now(); const dt=now-drag.lt; if(dt>0){ drag.vy=(drag.ly-e.clientY)/k/dt; } drag.ly=e.clientY; drag.lt=now; }
 });
 addEventListener('pointerup',e=>{
   if(!drag) return; const d=drag; drag=null;
   if(d.mode==='h'&&d.car){ const c=d.car; let v=(d.vx||0)*16; const step=()=>{ const out=c.sx<0?c.sx:c.sx>c.max?c.sx-c.max:0; if(out){ c.sx-=out*.22; v*=.5; } else { c.sx+=v; v*=.95; } if(!out&&(c.sx<0||c.sx>c.max)){ /* passou do limite: o resto vira elástico */ } setCarX(c); if(Math.abs(v)>.15||Math.abs(out)>.4) inertia=requestAnimationFrame(step); else { c.sx=Math.max(0,Math.min(c.max,c.sx)); setCarX(c); } }; inertia=requestAnimationFrame(step); }
-  if(d.mode==='v'&&Math.abs(d.vy)>0.05){ let v=d.vy*16; const step=()=>{ ctx.sy+=v; v*=0.94; applyScroll(); if(Math.abs(v)>0.3&&ctx.sy>0&&ctx.sy<ctx.max) inertia=requestAnimationFrame(step); }; inertia=requestAnimationFrame(step); }
+  if(d.mode==='v'&&ctx){ /* embalo: segue a velocidade do dedo; ao passar da borda o resto vira elástico e volta */
+    let v=(d.vy||0)*16; const fora=()=>ctx.sy<0?ctx.sy:ctx.sy>ctx.max?ctx.sy-ctx.max:0;
+    if(Math.abs(v)>.8||fora()){ const step=()=>{ if(!ctx) return; const out=fora(); if(out){ ctx.sy-=out*.22; v*=.5; } else { ctx.sy+=v; v*=.94; } applyScroll(true); if(Math.abs(v)>.3&&!fora()||Math.abs(fora())>.4) inertia=requestAnimationFrame(step); else applyScroll(); }; inertia=requestAnimationFrame(step); }
+    else applyScroll(); }
   setTimeout(()=>{ if(ctx) ctx.dragged=false; },0);
 });
 screenEl.addEventListener('wheel',e=>{

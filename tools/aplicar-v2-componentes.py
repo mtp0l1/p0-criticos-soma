@@ -21,7 +21,7 @@ rep('ui/button.tsx',[
 ("'disabled:pointer-events-none disabled:border-transparent disabled:bg-interactive-fill-disabled","'disabled:pointer-events-none disabled:border-transparent disabled:shadow-none disabled:bg-interactive-fill-disabled"),
 ("'aria-disabled:pointer-events-none aria-disabled:border-transparent aria-disabled:bg-interactive-fill-disabled","'aria-disabled:pointer-events-none aria-disabled:border-transparent aria-disabled:shadow-none aria-disabled:bg-interactive-fill-disabled"),
 ("loud: 'bg-primary text-primary-foreground hover:","loud: 'bg-primary text-primary-foreground shadow-glow hover:"),
-("quiet: 'border-interactive-border-quiet bg-surface-primary text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active [&_svg]:text-icon-brand',","quiet: 'bg-surface-primary text-foreground shadow-card hover:bg-surface-accent active:bg-interactive-fill-quiet-active [&_svg]:text-icon-primary',\n        /** dark = ação forte secundária (Mostrar meu QR, Compartilhar). */\n        dark: 'bg-surface-inverse text-text-inverse shadow-dark hover:bg-ink active:bg-ink [&_svg]:text-icon-brand',"),
+("quiet: 'border-interactive-border-quiet bg-surface-primary text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active [&_svg]:text-icon-brand',","quiet: 'bg-surface-primary text-foreground shadow-card hover:bg-surface-accent active:bg-interactive-fill-quiet-active [&_svg]:text-icon-primary',\n        /** dark = ação forte secundária (Mostrar meu QR, Compartilhar). */\n        dark: 'bg-surface-inverse text-text-inverse shadow-dark hover:bg-surface-inverse/[.9] active:bg-surface-inverse/[.8] [&_svg]:text-icon-brand',"),
 ("large: 'min-h-button px-small',","large: 'min-h-button px-small',"),
 ("compact: 'min-h-touch px-mini',","compact: 'min-h-tab-item px-mini',"),
 ("/** loud = primário (um por tela) · quiet = outline · transparent = texto/link · destructive = ação que apaga ou sai. */","/** loud = primário laranja (um por tela) · dark = escuro · quiet = claro com sombra · transparent = texto/link · destructive = ação que apaga ou sai. */"),
@@ -72,7 +72,7 @@ rep('soma/navigation.tsx',[
 ("const round = variant === 'round' || variant === 'start';","const round = true;"),
 ("const shell = cn('bg-surface-primary px-xsmall py-nano text-foreground', divider && 'border-b border-border', className);","const shell = cn('bg-transparent px-xsmall py-nano text-foreground', className);"),
 ("variant === 'round' ? 'label text-muted-foreground' : variant === 'eyebrow' ? 'eyebrow uppercase tracking-wide text-muted-foreground' : 'header-title')","variant === 'round' ? 'subtitle text-foreground' : variant === 'eyebrow' ? 'eyebrow uppercase tracking-wide text-muted-foreground' : 'header-title')"),
-("className=\"grid min-h-tabbar grid-cols-5 border-t border-border bg-surface-primary\"","className=\"mx-mini mb-small flex min-h-tabbar w-[calc(100%-32px)] items-center justify-between rounded-3xl bg-surface-primary/[.86] px-nano shadow-float backdrop-blur-[24px] motion-reduce:backdrop-blur-none motion-reduce:bg-surface-primary\""),
+("className=\"grid min-h-tabbar grid-cols-5 border-t border-border bg-surface-primary\"","className=\"mx-mini mb-small flex min-h-tabbar w-[calc(100%-32px)] [contain:inline-size] items-center justify-between rounded-3xl bg-surface-primary/[.86] px-nano shadow-float backdrop-blur-[24px] motion-reduce:backdrop-blur-none motion-reduce:bg-surface-primary\""),
 ("'tab-label flex min-h-touch flex-col items-center justify-center gap-xnano py-nano text-muted-foreground hover:text-foreground',\n              'aria-[current=page]:font-semibold aria-[current=page]:text-text-link',","'flex size-tab-item items-center justify-center rounded-full text-icon-secondary hover:text-foreground',\n              'aria-[current=page]:w-auto aria-[current=page]:gap-[6px] aria-[current=page]:bg-primary aria-[current=page]:px-micro aria-[current=page]:text-text-on-loud',"),
 ("            <Icon name={t.icon} />\n            {t.label}","            <Icon name={t.icon} />\n            <span className={on ? 'caption font-bold' : 'sr-only'}>{t.label}</span>"),
 ("help: 'rounded-md bg-surface-accent px-mini py-micro hover:bg-surface-accent-hover active:bg-surface-accent-hover',","help: 'min-h-row rounded-lg bg-surface-primary px-micro py-nano shadow-card hover:bg-surface-accent active:bg-surface-accent',"),
@@ -92,4 +92,8 @@ rep('soma/feedback.tsx',[
 ("cva('flex items-center gap-nano rounded-sm px-mini py-micro text-text-inverse', {","cva('flex items-center gap-nano rounded-md px-mini py-micro text-text-inverse shadow-high', {"),
 ("className=\"flex items-center gap-micro rounded-lg border border-border bg-card py-nano pl-nano pr-mini text-card-foreground\"","className=\"flex items-center gap-micro rounded-xl bg-card py-nano pl-nano pr-mini text-card-foreground shadow-high\""),
 ])
+# ---------------- escala de texto da v2: 20 e 24px viram 22px (Title M) ----------------
+rep('ui/controls.tsx',[("text-[20px] font-semibold leading-7","text-[22px] font-semibold leading-7")])
+rep('soma/impact.tsx',[("m-0 text-[24px] font-bold leading-8","m-0 text-[22px] font-bold leading-7")])
+rep('soma/rewards.tsx',[("select-all font-sans text-[24px] font-bold leading-8","select-all font-sans text-[22px] font-bold leading-7")])
 print('ok')
