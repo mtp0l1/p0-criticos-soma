@@ -30,7 +30,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `StepDots` | Progresso do cadastro: um segmento por passo, o atual mais largo, com o texto "Passo X de N". | destacar mais de um segmento como atual: só o passo atual é mais largo. |
 | `TabBar` | Barra de navegação inferior flutuante, com os cinco destinos do produto. | ter mais ou menos de cinco destinos, nem esconder em tela de fluxo (cadastro, QR). |
 | `Tabs` | Abas com sublinhado para trocar o recorte de uma mesma tela, como o período do ranking. | usar para trocar de tela inteira; só recorta o mesmo conteúdo (período). |
-| `Tile` | Tile de atalho da Home: ícone em cima, rótulo embaixo, em grade de duas colunas (`TileGrid`). | usar para dado (use `StatTile`) nem sem rótulo de texto. |
+| `Tile` | Tile de atalho do Início: disco com o ícone em cima, rótulo embaixo, em grade de duas colunas (`TileGrid`). | usar para dado (use `StatTile`) nem sem rótulo de texto. |
 
 ## Formulário
 
@@ -59,7 +59,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `InviteCodeHelpSheet` | Bottom sheet "Onde encontro o código?": explica e mostra a mensagem de convite de exemplo. | abrir fora do passo do código de convite. |
 | `InviteMessageExample` | Simulação de conversa que mostra onde está o código dentro da mensagem de convite. | usar como mensagem real de envio; é só uma simulação. |
 | `NeighborhoodNote` | Bairro encontrado pelo CEP, com o link "Corrigir". | mostrar sem o link "Corrigir". |
-| `SignupStep` | Corpo de um passo do cadastro: título, campos, botão e pontos de progresso. | pôr mais de um dado por tela nem prender o botão no rodapé: ele segue o conteúdo. |
+| `SignupStep` | Passo do cadastro: topo com progresso, título, campos e botão fixo no pé da tela. | pôr mais de um dado por tela nem soltar o botão do pé da tela: ele fica fixo embaixo. |
 | `TermsConsent` | Aceite do regulamento e aviso de privacidade, no último passo do cadastro. | pré-marcar o aceite nem liberar o botão sem ele. |
 
 ## Início
@@ -70,9 +70,9 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `BalanceCard` | Card com o saldo de pontos e uma legenda de apoio; leva ao extrato. | mostrar saldo sem a ação que leva ao extrato. |
 | `CampaignBanner` | Campanha ativa no catálogo e no Início: uma faixa de uma linha. | passar de uma linha. |
 | `GoalSummaryCard` | Resumo da meta de pontos no Início: a recompensa escolhida e quanto falta. | aparecer sem meta definida (use `GoalCard` ou a chamada de escolher meta). |
-| `HomeGreeting` | Saudação do Início: "Olá Mônica", o botão do cartão QR e a ajuda. | trocar o nome da pessoa por texto genérico quando ele existe. |
+| `HomeGreeting` | Saudação do Início: avatar, "Olá Mônica", o espaço de recebimento e os botões do QR e da ajuda. | trocar o nome da pessoa por texto genérico quando ele existe. |
 | `QrCheckinCard` | Cartão do QR de atendimento: a pessoa mostra o QR no espaço para a equipe registrar a entrega. | usar para outro código que não seja o QR de atendimento; o cartão de membro da versão antiga saiu. |
-| `QuestionTeaser` | Card "Pergunta do dia" no Início, que chama para o Quiz. | mostrar a resposta no Início. |
+| `QuestionTeaser` | Banner "Pergunta do dia" no Início, que chama para o Quiz. | mostrar a resposta no Início. |
 
 ## Quiz
 
@@ -100,7 +100,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `ContactRow` | Linha de contato para convidar: avatar, nome, espaço e o botão "Convidar". | trocar o botão "Convidar" por outra ação. |
 | `FriendRequestSheet` | Pedido de amizade recebido: bottom sheet com "Agora não" e "Aceitar". | pôr outra ação além de "Agora não" e "Aceitar". |
 | `InviteCodeCard` | Seu código de convite, com botão de copiar. | esconder o botão de copiar. |
-| `Podium` | Os três primeiros do período: avatares sobre degraus ouro, prata e bronze. | ordenar visualmente sem manter a ordem 1 · 2 · 3 para o leitor de tela. |
+| `Podium` | Os três primeiros do período: avatares em tom claro sobre degraus laranja, areia e pêssego. | ordenar visualmente sem manter a ordem 1 · 2 · 3 para o leitor de tela. |
 | `PositionCard` | Card "Sua posição" no ranking, com o percentual de participantes que a pessoa superou. | comparar a pessoa a um indivíduo; só ao percentual de participantes. |
 | `RankingRow` | Linha da classificação depois do pódio: "#4", avatar, nome e quilos. | mostrar posição sem o nome da pessoa. |
 | `RankingStarterCard` | Card da primeira entrega no Ranking, para quem ainda não reciclou no período. | aparecer para quem já entregou no período. |

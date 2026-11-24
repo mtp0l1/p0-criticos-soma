@@ -1,8 +1,8 @@
 /* So+ma · Cadastro: SignupStep, TermsConsent, InviteCodeField, NeighborhoodNote, AccountExistsSheet, InviteMessageExample, InviteCodeHelpSheet. */
 import * as React from 'react';
-import { cn } from '../lib/utils';
-import { Button } from '../ui/button';
-import { Icon } from '../ui/icon';
+import { cn, tintBg } from '../lib/utils';
+import { Button, IconButton } from '../ui/button';
+import { Icon, type IconName } from '../ui/icon';
 import { Checkbox } from '../ui/form';
 import { Field, FieldLabel } from '../ui/controls';
 import { Sheet, SheetTrigger, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '../ui/overlay';
@@ -20,23 +20,37 @@ export interface SignupStepProps {
   step: number;
   /** Total de passos (padrão 7). */
   total?: number;
-  /** Blocos do passo (campos, aceite). Cada filho fica a 40px do próximo; agrupe campos de um mesmo bloco numa `div` com `grid gap-small`. */
+  /** Ícone do passo, em tile pêssego acima do título (user, id-card, phone…). */
+  icon?: IconName;
+  /** Volta ao passo anterior (disco à esquerda). Sem ele, o botão não aparece. */
+  onBack?: () => void;
+  /** Abre a ajuda (disco à direita). Sem ele, o botão não aparece. */
+  onHelp?: () => void;
+  /** Blocos do passo (campos, aceite). Agrupe os campos de um mesmo bloco numa `div` com `grid gap-nano`. */
   children?: React.ReactNode;
-  /** Botão "Continuar" (ou "Criar minha conta"). Fica 40px abaixo do último bloco, não preso no rodapé. */
+  /** Botão "Continuar" (ou "Criar minha conta"). Fica fixo no pé da tela, 56px de altura. */
   action?: React.ReactNode;
   className?: string;
 }
-/** Corpo de um passo do cadastro: título, campos, botão e pontos de progresso. Um dado por tela. Vai abaixo do `Header title="Cadastro"`. */
-export function SignupStep({ title, description, step, total = 7, children, action, className }: SignupStepProps) {
+const stepDisc = 'size-touch rounded-full bg-surface-primary text-foreground shadow-card hover:bg-surface-secondary active:bg-surface-secondary-hover';
+/** Passo do cadastro (v2): topo com Voltar, barra "Passo N de 7" e Ajuda; tile de ícone, título e campos; o botão fica fixo no pé da tela. Um dado por tela. Não leva `Header`. */
+export function SignupStep({ title, description, step, total = 7, icon, onBack, onHelp, children, action, className }: SignupStepProps) {
   return (
-    <main className={cn('grid content-start gap-large px-xsmall pb-large pt-small', className)}>
-      <div className="grid gap-nano">
-        <h2 className="page-title m-0">{title}</h2>
-        {description && <p className="body-small m-0 text-muted-foreground">{description}</p>}
+    <main className={cn('flex min-h-full flex-col px-xsmall pb-small pt-nano', className)}>
+      <header className="grid min-h-header grid-cols-[theme(spacing.touch)_1fr_theme(spacing.touch)] items-center gap-nano">
+        {onBack ? <IconButton icon="arrow-left" label="Voltar" onClick={onBack} className={stepDisc} /> : <span />}
+        <StepDots current={step} total={total} />
+        {onHelp ? <IconButton icon="help" label="Ajuda" onClick={onHelp} className={stepDisc} /> : <span />}
+      </header>
+      <div className="grid content-start gap-small pt-large">
+        {icon && <span aria-hidden className={cn('grid size-[52px] place-items-center rounded-lg', tintBg.peach)}><Icon name={icon} tone="brand" /></span>}
+        <div className="grid gap-nano">
+          <h2 className="page-title m-0">{title}</h2>
+          {description && <p className="body-small m-0 text-muted-foreground">{description}</p>}
+        </div>
+        {children}
       </div>
-      {children}
-      {action && <div>{action}</div>}
-      <StepDots current={step} total={total} />
+      {action && <div className="mt-auto pt-large">{action}</div>}
     </main>
   );
 }

@@ -21,6 +21,7 @@ Etapas (cada uma é idempotente e parte da fonte da v4 guardada em `src-v4/`, `p
 | `atualizar-guias-v2.py` | Páginas de guia escritas à mão (Primeiros passos, regras, AGENTS, registro do handoff), contratos e leads, menu sem duplicatas, `index.d.ts` |
 | `build.mjs` | esbuild (bundle.js) + Tailwind (bundle.css) |
 | `thumbs.mjs` | 146 miniaturas (960×600, proporção 8:5): o componente de verdade centralizado sobre um fundo tonal da categoria, sem rótulos nem película; peças altas esmaecem na base; gatilhos (menu, seleção, gaveta) saem abertos |
+| `alinhar-app-componentes.py` · `alinhar-app-paginas.py` | alinham módulos ao desenho final do app (tons de categoria, InstitutionRow, Podium e RankingRow, HomeGreeting, BalanceCard, Tile, QuestionTeaser, SignupStep): código, documentação e `index.d.ts`. O que ainda difere está em `ALINHAMENTO-APP.md` |
 | `organizar-previews.py` | liga `assets/preview.css` em todo preview (conteúdo centralizado, rótulos em etiqueta, fundo pontilhado) |
 | `gerar-galeria.py` | gera a galeria `#/componentes` (miniatura, busca e filtro Núcleo/Módulos), liga a rota no menu e o botão da home |
 | `capturar-previews.mjs` | captura cada preview na largura da moldura e monta folhas de contato (revisão visual) |

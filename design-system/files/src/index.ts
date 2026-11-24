@@ -3,7 +3,7 @@
  * Arquitetura do shadcn/ui: primitivas em ui/ (Radix + class-variance-authority + Tailwind + cn),
  * componentes de produto em soma/ montados sobre elas. Tokens: tokens.json → tokens.css → tailwind.preset.js.
  */
-export { cn, focusRing, disabledState, hitArea } from './lib/utils';
+export { cn, focusRing, disabledState, hitArea, tintBg, tintFor, type Tint } from './lib/utils';
 
 /* Primitivas (camada shadcn/ui) */
 export { Icon, ICONS, ICON_ALIASES, iconVariants, isVectorIcon, loadVectorIcons, configureVectorIcons, VECTOR_ICON_GROUPS, VECTOR_ICON_GROUP, VECTOR_ICON_NAMES, VECTOR_SHADOWED, type IconName, type LucideIconName, type VectorIconName, type VectorIconGroup, type IconProps } from './ui/icon';

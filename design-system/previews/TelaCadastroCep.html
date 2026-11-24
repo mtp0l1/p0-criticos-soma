@@ -10,8 +10,8 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ var v=useState('01545-000'); var ok=v[0].length===9; return h('div',{className:'min-h-[620px] bg-background'}, h(S.Header,{title:'Cadastro',onBack:function(){},action:{icon:'help',label:'Ajuda'}}),
-  h(S.SignupStep,{title:'Qual é o seu CEP?',description:'Assim encontramos os espaços de recebimento e o seu bairro.',step:6,action:h(S.Button,{fullWidth:true,disabled:!ok},'Continuar')},
+function Demo(){ var v=useState('01545-000'); var ok=v[0].length===9; return h('div',{className:'relative h-[720px] bg-background'},
+  h(S.SignupStep,{title:'Qual é o seu CEP?',description:'Assim encontramos os espaços de recebimento e o seu bairro.',step:6,icon:'pin',onBack:function(){},onHelp:function(){},action:h(S.Button,{fullWidth:true,disabled:!ok},'Continuar')},
     h('div',{className:'grid gap-nano'}, h(S.TextField,{label:'CEP',mask:'cep',required:true,value:v[0],onChange:v[1]}), ok&&h(S.NeighborhoodNote,{neighborhood:'Aclimação, São Paulo',onFix:function(){v[1]('');}})))); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>

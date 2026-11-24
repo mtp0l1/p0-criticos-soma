@@ -29,6 +29,12 @@
 --highlight:#FFA125;
 --mist:#ACBDD2;
 --sky-soft:#DCEBFB;
+--tint-green:#DDF3E4;
+--tint-lavender:#E9E2FB;
+--tint-pink:#FCE1E4;
+--tint-yellow:#FFF1B8;
+--podium-second:#DDD6C7;
+--podium-third:#F0C9A0;
 --sky-ink:#1D4ED8;
 --gold:#E2AF35;
 --gold-bright:#E8C43A;
@@ -81,6 +87,14 @@
 --surface-track:var(--line);
 --indicator-inactive:var(--mist);
 --surface-info:var(--sky-soft);
+--surface-tint-yellow:var(--tint-yellow);
+--surface-tint-pink:var(--tint-pink);
+--surface-tint-lavender:var(--tint-lavender);
+--surface-tint-blue:var(--sky-soft);
+--surface-tint-green:var(--tint-green);
+--surface-tint-peach:var(--warm-pressed);
+--surface-podium-3:var(--podium-third);
+--surface-podium-2:var(--podium-second);
 --icon-info:var(--sky-ink);
 --award-gold:var(--gold);
 --award-silver:var(--silver);

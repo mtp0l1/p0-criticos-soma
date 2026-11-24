@@ -38,3 +38,21 @@ export const hitAreaY = "relative after:absolute after:inset-x-0 after:top-1/2 a
 
 /** Número no padrão brasileiro (9.057). */
 export const fmt = (n: number) => n.toLocaleString('pt-BR');
+
+/** Tom de categoria (tile de ícone, avatar). Cada um aponta para um token surface-tint-*; o ícone e a inicial ficam em foreground por cima. */
+export type Tint = 'peach' | 'green' | 'blue' | 'lavender' | 'pink' | 'yellow';
+export const tintBg: Record<Tint, string> = {
+  peach: 'bg-surface-tint-peach',
+  green: 'bg-surface-tint-green',
+  blue: 'bg-surface-tint-blue',
+  lavender: 'bg-surface-tint-lavender',
+  pink: 'bg-surface-tint-pink',
+  yellow: 'bg-surface-tint-yellow',
+};
+const TINTS: Tint[] = ['lavender', 'pink', 'blue', 'green', 'yellow', 'peach'];
+/** Sempre o mesmo tom para o mesmo texto (nome da pessoa, categoria). */
+export function tintFor(seed: string): Tint {
+  let h = 0;
+  for (const c of seed) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return TINTS[h % TINTS.length]!;
+}

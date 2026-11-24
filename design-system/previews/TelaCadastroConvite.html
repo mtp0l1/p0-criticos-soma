@@ -10,8 +10,8 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ var c=useState('REC7X4KP'), t=useState(false), o=useState(false); return h('div',{className:'min-h-[840px] bg-background'}, h(S.Header,{title:'Cadastro',onBack:function(){},action:{icon:'help',label:'Ajuda'}}),
-  h(S.SignupStep,{title:'Alguém te convidou?',description:'Se um amigo te convidou, o código está na mensagem que ele enviou.',step:7,action:h(S.Button,{fullWidth:true,disabled:!t[0]},'Criar minha conta')},
+function Demo(){ var c=useState('REC7X4KP'), t=useState(false), o=useState(false); return h('div',{className:'relative h-[860px] bg-background'},
+  h(S.SignupStep,{title:'Alguém te convidou?',description:'Se um amigo te convidou, o código está na mensagem que ele enviou.',step:7,icon:'gift',onBack:function(){},onHelp:function(){},action:h(S.Button,{fullWidth:true,disabled:!t[0]},'Criar minha conta')},
     h(S.InviteCodeField,{value:c[0],onChange:c[1],applied:c[0].length>=8,onHelp:function(){ o[1](true); }}),
     h(S.TermsConsent,{checked:t[0],onCheckedChange:t[1]})),
   h(S.InviteCodeHelpSheet,{open:o[0],onOpenChange:o[1],modal:false})); }
