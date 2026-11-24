@@ -1,12 +1,12 @@
 # Campana × app: registro de alinhamento
 
-Revisão feita em 23/11/2026, comparando o Campana com as 199 telas da v2 do app (o protótipo navegável, que sai do Figma).
+Revisão feita em 23/11/2026, comparando o Campana com as 201 telas da v2 do app (o protótipo navegável, que sai do Figma).
 
 ## Como foi medido
 
-1. **Cores:** todas as cores usadas nas 199 telas (`prototipo-soma/fonte/dados/svg`) contra `tokens.css`. 57 cores; 41 fora dos tokens, quase todas em ilustrações. As que importavam eram de interface e viraram token (abaixo).
+1. **Cores:** todas as cores usadas nas 201 telas (`prototipo-soma/fonte/dados/svg`) contra `tokens.css`. 57 cores; 41 fora dos tokens, quase todas em ilustrações. As que importavam eram de interface e viraram token (abaixo).
 2. **Telas lado a lado:** as 23 telas de padrão do Campana (`previews/Tela*.html`) contra a tela oficial equivalente do protótipo, em 360px.
-3. **Protótipo:** as 199 telas montam sem erro no Chrome (`__mount` em cada uma), sem erro de console.
+3. **Protótipo:** as 201 telas montam sem erro no Chrome (`__mount` em cada uma), sem erro de console.
 
 ## O que foi alinhado ao app
 
