@@ -1,6 +1,6 @@
 /* So+ma · Doar pontos: InstitutionRow, DonationAmountCard, DonationStateCard, InstitutionDetailModal. */
 import * as React from 'react';
-import { cn, fmt, focusRing, hitArea, hitAreaY } from '../lib/utils';
+import { cn, fmt, focusRing, hitArea, hitAreaY, tintBg, tintFor, type Tint } from '../lib/utils';
 import { Icon, type IconName } from '../ui/icon';
 import { Progress } from '../ui/display';
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose } from '../ui/overlay';
@@ -13,24 +13,27 @@ import { Illustration } from './illustration';
 export interface InstitutionRowProps {
   name: string;
   description: string;
-  /** Ícone da causa (cesta, coração, talheres…). Aparece em quadro de 40px com borda. */
+  /** Ícone da causa (cesta, coração, talheres…). Aparece em tile de 60px colorido pela categoria. */
   icon?: IconName;
+  /** Tom do tile, por categoria da causa. Sem ele, o tom sai do nome (sempre o mesmo para a mesma instituição). */
+  tint?: Tint;
   href?: string;
   onPress?: () => void;
 }
-/** Instituição na lista "Escolha para quem você quer doar seus pontos": card cinza tocável com ícone, nome e causa. */
-export function InstitutionRow({ name, description, icon = 'heart', href, onPress }: InstitutionRowProps) {
+/** Instituição na lista "Escolha para quem você quer doar seus pontos": cartão branco tocável com tile de ícone em tom de categoria, nome, causa e botão redondo com seta. */
+export function InstitutionRow({ name, description, icon = 'heart', tint, href, onPress }: InstitutionRowProps) {
   return (
     <PressableBase
       href={href}
       onClick={onPress}
-      className={cn(pressable, 'grid w-full grid-cols-[auto_1fr] items-start gap-micro rounded-lg bg-surface-secondary p-mini text-left text-foreground hover:bg-surface-secondary-hover active:bg-surface-secondary-hover')}
+      className={cn(pressable, 'grid w-full grid-cols-[auto_1fr_auto] items-center gap-micro rounded-2xl bg-surface-primary p-[14px] text-left text-foreground shadow-card hover:bg-surface-secondary active:bg-surface-secondary-hover')}
     >
-      <span aria-hidden className="grid size-[40px] place-items-center rounded-md border border-foreground bg-surface-secondary"><Icon name={icon} /></span>
+      <span aria-hidden className={cn('grid size-[60px] place-items-center rounded-lg', tintBg[tint ?? tintFor(name)])}><Icon name={icon} /></span>
       <span className="grid gap-xnano">
         <span className="label">{name}</span>
         <span className="body-small text-muted-foreground">{description}</span>
       </span>
+      <span aria-hidden className="grid size-[36px] place-items-center rounded-full bg-surface-secondary"><Icon name="chevron-right" size="small" /></span>
     </PressableBase>
   );
 }

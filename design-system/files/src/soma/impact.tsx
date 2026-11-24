@@ -1,7 +1,7 @@
 /* So+ma · impacto e ranking: StatTile, StatGrid, PositionCard, Podium, RankingRow, StatsRow. */
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn, fmt } from '../lib/utils';
+import { cn, fmt, tintBg, tintFor, type Tint } from '../lib/utils';
 import { Icon, type IconName } from '../ui/icon';
 import { Card, Avatar, AvatarImage, AvatarFallback } from '../ui/display';
 import { Button } from '../ui/button';
@@ -73,14 +73,15 @@ export interface PodiumEntry {
 }
 export interface PodiumProps { entries: PodiumEntry[] }
 const initials = (n: string) => n.split(/\s+/).filter((w) => /^\p{L}/u.test(w)).slice(0, 2).map((w) => w[0]!.toUpperCase()).join('');
-const STEP: Record<1 | 2 | 3, { fill: string; h: string; avatar: string }> = {
-  1: { fill: 'bg-award-gold text-foreground', h: 'h-[46px]', avatar: 'size-[64px]' },
-  2: { fill: 'bg-award-silver text-foreground', h: 'h-[34px]', avatar: 'size-[54px]' },
-  3: { fill: 'bg-award-bronze text-text-inverse', h: 'h-[26px]', avatar: 'size-[54px]' },
+const STEP: Record<1 | 2 | 3, { fill: string; h: string; avatar: string; face: string }> = {
+  1: { fill: 'bg-primary text-foreground', h: 'h-[46px]', avatar: 'size-[64px]', face: 'bg-surface-tint-peach' },
+  2: { fill: 'bg-surface-podium-2 text-foreground', h: 'h-[34px]', avatar: 'size-[52px]', face: 'bg-surface-tint-blue' },
+  3: { fill: 'bg-surface-podium-3 text-foreground', h: 'h-[26px]', avatar: 'size-[52px]', face: 'bg-surface-tint-lavender' },
 };
 /** A própria pessoa no pódio: avatar e degrau na cor de destaque (Figma: laranja), nome "Você" e kg em cor de link. */
 const SELF_FILL = 'bg-interactive-fill-loud text-foreground';
-/** Os três primeiros: avatares sobre degraus ouro, prata e bronze (Ranking do redesign). Colunas de 100px, degraus retos com o número centralizado. */
+const SELF_FACE = 'bg-interactive-fill-loud text-foreground ring-[2.5px] ring-inset ring-foreground';
+/** Os três primeiros: avatares em tom claro sobre degraus laranja, areia e pêssego, como no Ranking da v2. Colunas de 100px, degraus retos com o número centralizado. */
 export function Podium({ entries }: PodiumProps) {
   const sorted = [...entries].sort((a, b) => a.position - b.position);
   // Ordem visual 2 · 1 · 3; a lista continua em ordem de posição para o leitor de tela.
@@ -88,11 +89,12 @@ export function Podium({ entries }: PodiumProps) {
     <ol aria-label="Os três primeiros" className="m-0 mx-auto grid max-w-[324px] list-none grid-cols-3 items-end gap-micro p-0">
       {sorted.map((e) => {
         const fill = e.self ? SELF_FILL : STEP[e.position].fill;
+        const face = e.self ? SELF_FACE : STEP[e.position].face;
         return (
           <li key={e.position} className={cn('grid justify-items-center gap-xnano text-center text-foreground', e.position === 1 && 'order-2', e.position === 2 && 'order-1', e.position === 3 && 'order-3')}>
             <Avatar className={STEP[e.position].avatar}>
               {e.photo && <AvatarImage src={e.photo} alt="" />}
-              <AvatarFallback className={cn('body-strong', fill)}>{e.anonymous ? '?' : (e.initials ?? initials(e.name))}</AvatarFallback>
+              <AvatarFallback className={cn('body-strong text-foreground', face)}>{e.anonymous ? '?' : (e.initials ?? initials(e.name))}</AvatarFallback>
             </Avatar>
             <p className={cn('label m-0 max-w-full truncate', e.self && 'font-bold')}><span className="sr-only">{e.position}º lugar: </span>{e.name}{e.self && e.name !== 'Você' && <span className="sr-only"> (você)</span>}</p>
             <p className={cn('caption m-0 font-semibold', e.self ? 'text-text-link' : 'text-muted-foreground')}>{fmt(e.kg)} kg</p>
@@ -114,19 +116,21 @@ export interface RankingRowProps {
   photo?: string;
   /** Letras do avatar quando diferem do nome exibido ("Você (Policarpo)" → "P"). */
   initials?: string;
+  /** Tom do avatar. Sem ele, sai do nome (o mesmo tom para a mesma pessoa). */
+  tint?: Tint;
   /** Linha da própria pessoa: fundo creme, borda de destaque, nome em negrito e kg em cor de link. */
   self?: boolean;
   /** Linha de apoio ("Faltam 6,5 kg para ultrapassar Ana"). Ocupa a largura da linha, alinhada ao avatar. */
   hint?: string;
 }
 /** Linha da lista do ranking, depois do pódio: "#4", avatar de 36px, nome e kg. Não é tocável. */
-export function RankingRow({ position, name, kg, photo, initials: letters, self, hint }: RankingRowProps) {
+export function RankingRow({ position, name, kg, photo, initials: letters, tint, self, hint }: RankingRowProps) {
   return (
-    <li className={cn('grid list-none grid-cols-[auto_36px_1fr_auto] items-center gap-x-micro rounded-md border p-micro', self ? 'border-border-highlight bg-surface-accent' : 'border-border bg-card')}>
+    <li className={cn('grid list-none grid-cols-[auto_36px_1fr_auto] items-center gap-x-micro rounded-lg border p-micro', self ? 'border-border-highlight bg-surface-accent' : 'border-transparent bg-card shadow-card')}>
       <span className={cn('min-w-[20px] text-[14px] font-bold leading-5', self ? 'text-text-link' : 'text-muted-foreground')}><span aria-hidden>#</span>{position}<span className="sr-only">º lugar</span></span>
       <Avatar className="size-[36px]">
         {photo && <AvatarImage src={photo} alt="" />}
-        <AvatarFallback className={cn('caption font-semibold text-foreground', self ? 'bg-interactive-fill-loud' : 'bg-surface-secondary')}>{letters ?? initials(name)}</AvatarFallback>
+        <AvatarFallback className={cn('caption font-semibold text-foreground', self ? 'bg-interactive-fill-loud' : tintBg[tint ?? tintFor(name)])}>{letters ?? initials(name)}</AvatarFallback>
       </Avatar>
       <span className={cn('label min-w-0 truncate', self && 'font-bold')}>{name}{self && <span className="sr-only"> (você)</span>}</span>
       <span className={cn('label whitespace-nowrap font-bold', self && 'text-text-link')}>{fmt(kg)} kg</span>

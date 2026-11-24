@@ -10,7 +10,10 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ return h(F,null, h(S.SectionHeader,{title:'Reciclar e ganhar pontos'}), h(S.TileGrid,null, h(S.Tile,{icon:'search',label:'Buscar material'}), h(S.Tile,{icon:'user-plus',label:'Convidar amigos'})), h(S.SectionHeader,{title:'Resultado das minhas ações'}), h(S.TileGrid,null, h(S.Tile,{icon:'chart',label:'Meu impacto'}), h(S.Tile,{icon:'star',label:'Meu ranking de reciclagem'}))); }
+function Demo(){ return h(F,null, K('tone: primary · light (padrão) · dark · peach'),
+  h(S.TileGrid,null, h(S.Tile,{tone:'primary',icon:'search',label:'Buscar material'}), h(S.Tile,{icon:'user-plus',label:'Convidar amigos'})),
+  h(S.TileGrid,null, h(S.Tile,{tone:'dark',icon:'gift',label:'Recompensas'}), h(S.Tile,{tone:'peach',icon:'envelope-open-heart',label:'Doar pontos'})),
+  h(S.SectionHeader,{title:'Resultado das minhas ações'}), h(S.TileGrid,null, h(S.Tile,{icon:'chart',label:'Meu impacto'}), h(S.Tile,{icon:'star',label:'Meu ranking de reciclagem'}))); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
 <script>(function(){function s(){parent.postMessage({soma:"h",n:"Tile",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

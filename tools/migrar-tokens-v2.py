@@ -27,6 +27,18 @@ def add_core(after,name,val,usage):
 add_core('paper','canvas','#FBF7F1','Núcleo (cor crua). Creme do fundo de toda tela da v2. Use background-primary.')
 add_core('canvas','warm-150','#E9E4DA','Núcleo (cor crua). Fundo do botão desabilitado. Use interactive-fill-disabled.')
 add_core('warm-150','ink-disabled','#8A94A3','Núcleo (cor crua). Texto de botão desabilitado (isento de contraste). Use interactive-text-disabled.')
+# tons de categoria: tile de ícone (instituições, materiais, "Como resgatar") e avatar, como nas telas da v2
+add_core('sky-soft','tint-green','#DDF3E4','Núcleo (cor crua). Verde claro do tile de categoria. Use surface-tint-green.')
+add_core('tint-green','tint-lavender','#E9E2FB','Núcleo (cor crua). Lavanda do tile de categoria. Use surface-tint-lavender.')
+add_core('tint-lavender','tint-pink','#FCE1E4','Núcleo (cor crua). Rosa claro do tile de categoria. Use surface-tint-pink.')
+add_core('tint-pink','tint-yellow','#FFF1B8','Núcleo (cor crua). Amarelo claro do tile de categoria. Use surface-tint-yellow.')
+add_core('tint-yellow','podium-second','#DDD6C7','Núcleo (cor crua). Degrau do 2º lugar no pódio. Use surface-podium-2.')
+add_core('podium-second','podium-third','#F0C9A0','Núcleo (cor crua). Degrau do 3º lugar no pódio. Use surface-podium-3.')
+def add_sem(after,name,ref,usage): add_core(after,name,ref,usage)
+add_sem('surface-info','surface-podium-2','{podium-second}','Semântico. Degrau do 2º lugar no pódio do ranking (o 1º usa o laranja da marca).')
+add_sem('surface-info','surface-podium-3','{podium-third}','Semântico. Degrau do 3º lugar no pódio do ranking.')
+for n,ref,cor in (('peach','{warm-pressed}','pêssego'),('green','{tint-green}','verde'),('blue','{sky-soft}','azul'),('lavender','{tint-lavender}','lavanda'),('pink','{tint-pink}','rosa'),('yellow','{tint-yellow}','amarelo')):
+    add_sem('surface-info','surface-tint-'+n,ref,f'Semântico. Tile de ícone de categoria e avatar em {cor}. Ícone e inicial em foreground por cima (mín. 10:1). Varia por categoria, nunca por estado.')
 SEM={'background-primary':'{canvas}','interactive-fill-disabled':'{warm-150}','interactive-text-disabled':'{ink-disabled}'}
 for x in toks:
     if x['name'] in SEM: x['value']['light']=SEM[x['name']]
@@ -86,7 +98,9 @@ LIMPA=[('Laranja escuro do Figma das telas novas (cor do item ativo da barra inf
 ('Neutral/Level 6 do Figma: divisores','Divisores'),('Neutral/Level 3 do Figma: texto e ícone principais nas telas novas.','Texto e ícone principais.'),
 ('Highlight/Default do Figma: ','Destaque: '),('Neutral/Level 5 do Figma: ponto de passo pendente','Ponto de passo pendente'),
 ('Azul claro do Figma: dia protegido','Azul claro: dia protegido'),('(Figma, Tela 5)','(Quiz, Tela 5)'),
-('laranjas de texto do Figma','laranjas de texto do handoff anterior'),('(20px, como no Figma)','(20px)')]
+('laranjas de texto do Figma','laranjas de texto do handoff anterior'),('(20px, como no Figma)','(20px)'),
+('Ouro do pódio e do nível Ouro.','Ouro do nível Ouro (Quiz).'),('Prata do pódio e do nível Prata.','Prata do nível Prata (Quiz).'),('Bronze do pódio e do nível Bronze.','Bronze do nível Bronze (Quiz).'),
+('Primeiro lugar do pódio e nível Ouro.','Nível Ouro (Quiz).'),('Segundo lugar do pódio e nível Prata.','Nível Prata (Quiz).'),('Terceiro lugar do pódio e nível Bronze.','Nível Bronze (Quiz).')]
 def limpa_todos(o):
     if isinstance(o,dict):
         return {k:limpa_todos(v) for k,v in o.items()}
@@ -113,6 +127,9 @@ open(os.path.join(ds,'assets/tokens.css'),'w',encoding='utf-8').write(ff+css)
 p=os.path.join(ds,'files/src/tailwind.preset.js'); s=open(p,encoding='utf-8').read()
 s=re.sub(r'"borderRadius": \{.*?\n    \},','"borderRadius": {\n      "none": "0px",\n      "xs": "var(--radius-xsmall)",\n      "sm": "var(--radius-small)",\n      "md": "var(--radius-medium)",\n      "lg": "var(--radius-large)",\n      "xl": "var(--radius-xlarge)",\n      "2xl": "var(--radius-2xlarge)",\n      "3xl": "var(--radius-3xlarge)",\n      "sheet": "var(--radius-sheet)",\n      "full": "var(--radius-full)"\n    },',s,count=1,flags=re.S)
 s=re.sub(r'"boxShadow": \{.*?\n    \},','"boxShadow": {\n      "none": "none",\n      "card": "var(--shadow-card)",\n      "high": "var(--shadow-high)",\n      "float": "var(--shadow-float)",\n      "sheet": "var(--shadow-sheet)",\n      "dark": "var(--shadow-dark)",\n      "glow": "var(--shadow-glow)"\n    },',s,count=1,flags=re.S)
+if '"surface-podium-3"' not in s:
+    s=re.sub(r'\n      "surface-tint-[a-z]+": "var\(--surface-tint-[a-z]+\)",?','',s)
+    s=s.replace('"surface-info": "var(--surface-info)",','"surface-info": "var(--surface-info)",\n'+''.join(f'      "surface-{n}": "var(--surface-{n})",\n' for n in ('tint-peach','tint-green','tint-blue','tint-lavender','tint-pink','tint-yellow','podium-2','podium-3')).rstrip('\n'))
 s=s.replace('"icon-small": "var(--size-icon-small)",','"icon-small": "var(--size-icon-small)",\n      "chip": "var(--size-chip)",\n      "row": "var(--size-row)",\n      "tab-item": "var(--size-tab-item)",\n      "back": "var(--size-back)",\n      "disc": "var(--size-disc)",\n      "disc-small": "var(--size-disc-small)",') if '"chip"' not in s else s
 open(p,'w',encoding='utf-8').write(s)
 print('ok cores',len(toks),'estilos',len(styles))

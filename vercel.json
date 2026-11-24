@@ -1,5 +1,9 @@
 {
   "redirects": [
     { "source": "/design-system", "destination": "/design-system/", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/soma-vantagens-campana", "destination": "/design-system/prototipo/index.html" },
+    { "source": "/soma-vantagens-campana.html", "destination": "/design-system/prototipo/index.html" }
   ]
 }

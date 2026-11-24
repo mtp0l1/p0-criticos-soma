@@ -635,22 +635,29 @@ export interface StepDotsProps {
 /** Pontos de progresso do cadastro ("Passo 1 de 7"): 8px, só o passo atual em laranja (os anteriores voltam ao cinza, como no Figma). O texto vai para o leitor de tela; os pontos são decorativos. */
 export declare function StepDots({ current, total, className }: StepDotsProps): React$1.JSX.Element;
 export interface HomeGreetingProps {
-	/** Primeiro nome. Mostra "Olá {nome}". */
+	/** Primeiro nome. Mostra "Olá {nome}" e a inicial no avatar. */
 	name: string;
-	/** Abre o cartão QR da pessoa (botão redondo ao lado do nome). Sem ele, o botão não aparece. */
+	/** Espaço de recebimento ("Casa so+ma Batel"), em linha de apoio sob o nome, com o ícone de local. */
+	location?: string;
+	/** Foto da pessoa. Sem ela, o avatar mostra a inicial. */
+	photo?: string;
+	/** Abre o cartão QR da pessoa (disco branco à direita). Sem ele, o botão não aparece. */
 	onQr?: () => void;
-	/** Abre a ajuda (ícone à direita). Sem ele, o ícone não aparece. */
+	/** Abre a ajuda (disco branco à direita). Sem ele, o botão não aparece. */
 	onHelp?: () => void;
 }
 /** Saudação do Início (Figma, Home): "Olá Mônica" em screen-title, botão do QR em círculo e ajuda à direita. */
 export declare function HomeGreeting({ name, onQr, onHelp }: HomeGreetingProps): React$1.JSX.Element;
+/** light = cartão branco (padrão) · primary = laranja da marca (a ação que gera pontos) · dark = azul-marinho · peach = pêssego. */
+export type TileTone = "light" | "primary" | "dark" | "peach";
 export interface TileProps {
 	icon: IconName;
 	label: string;
+	tone?: TileTone;
 	href?: string;
 	onClick?: () => void;
 }
-export declare function Tile({ icon, label, href, onClick }: TileProps): React$1.JSX.Element;
+export declare function Tile({ icon, label, tone, href, onClick }: TileProps): React$1.JSX.Element;
 export declare function TileGrid({ children, className }: {
 	children?: React$1.ReactNode;
 	className?: string;
@@ -661,8 +668,8 @@ export interface BalanceCardProps {
 	hint?: string;
 	href?: string;
 	onPress?: () => void;
-	/** light = card creme tocável com seta (Início) · dark = faixa escura com botão (Início com meta, Tela 17). */
-	tone?: "light" | "dark";
+	/** hero = cartão azul-marinho com o saldo em laranja (Início da v2, padrão) · light = cartão creme tocável com seta · dark = faixa escura com botão (Início com meta, Tela 17). */
+	tone?: "hero" | "light" | "dark";
 	/** Só no tone dark: o botão à direita ("Ver meta"). */
 	action?: {
 		label: string;
@@ -995,6 +1002,8 @@ export interface RankingRowProps {
 	photo?: string;
 	/** Letras do avatar quando diferem do nome exibido ("Você (Policarpo)" → "P"). */
 	initials?: string;
+	/** Tom do avatar. Sem ele, sai do nome (o mesmo tom para a mesma pessoa). */
+	tint?: Tint;
 	/** Linha da própria pessoa: fundo creme, borda de destaque, nome em negrito e kg em cor de link. */
 	self?: boolean;
 	/** Linha de apoio ("Faltam 6,5 kg para ultrapassar Ana"). Ocupa a largura da linha, alinhada ao avatar. */
@@ -1874,8 +1883,10 @@ export declare function ShareImpactModal({ stats, options, trigger, open, defaul
 export interface InstitutionRowProps {
 	name: string;
 	description: string;
-	/** Ícone da causa (cesta, coração, talheres…). Aparece em quadro de 40px com borda. */
+	/** Ícone da causa (cesta, coração, talheres…). Aparece em tile de 60px colorido pela categoria. */
 	icon?: IconName;
+	/** Tom do tile, por categoria da causa. Sem ele, o tom sai do nome (sempre o mesmo para a mesma instituição). */
+	tint?: Tint;
 	href?: string;
 	onPress?: () => void;
 }
@@ -1937,9 +1948,15 @@ export interface SignupStepProps {
 	step: number;
 	/** Total de passos (padrão 7). */
 	total?: number;
-	/** Blocos do passo (campos, aceite). Cada filho fica a 40px do próximo; agrupe campos de um mesmo bloco numa `div` com `grid gap-small`. */
+	/** Ícone do passo, em tile pêssego acima do título (user, id-card, phone…). */
+	icon?: IconName;
+	/** Volta ao passo anterior (disco à esquerda). Sem ele, o botão não aparece. */
+	onBack?: () => void;
+	/** Abre a ajuda (disco à direita). Sem ele, o botão não aparece. */
+	onHelp?: () => void;
+	/** Blocos do passo (campos, aceite). Agrupe os campos de um mesmo bloco numa `div` com `grid gap-nano`. */
 	children?: React$1.ReactNode;
-	/** Botão "Continuar" (ou "Criar minha conta"). Fica 40px abaixo do último bloco, não preso no rodapé. */
+	/** Botão "Continuar" (ou "Criar minha conta"). Fica fixo no pé da tela, 56px de altura. */
 	action?: React$1.ReactNode;
 	className?: string;
 }
@@ -2306,3 +2323,8 @@ declare global {
 		};
 	}
 }
+
+/** Tom de categoria (tile de ícone, avatar). Cada um aponta para um token surface-tint-*. */
+export type Tint = "peach" | "green" | "blue" | "lavender" | "pink" | "yellow";
+export declare const tintBg: Record<Tint, string>;
+export declare function tintFor(seed: string): Tint;

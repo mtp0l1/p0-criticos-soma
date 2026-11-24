@@ -10,8 +10,8 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ return h('div',{className:'min-h-[620px] bg-background'}, h(S.Header,{title:'Cadastro',onBack:function(){},action:{icon:'help',label:'Ajuda'}}),
-  h(S.SignupStep,{title:'Qual é o seu celular?',step:4,action:h(S.Button,{fullWidth:true},'Continuar')},
+function Demo(){ return h('div',{className:'relative h-[720px] bg-background'},
+  h(S.SignupStep,{title:'Qual é o seu celular?',step:4,icon:'phone',onBack:function(){},onHelp:function(){},action:h(S.Button,{fullWidth:true},'Continuar')},
     h(S.TextField,{label:'Celular',mask:'phone',required:true,value:'(11) 98765-4321',onChange:function(){}})),
   h(Scrim), h(S.AccountExistsSheet,{phone:'(11) 98765-4321',defaultOpen:true,modal:false})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
