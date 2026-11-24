@@ -330,3 +330,45 @@ j = j.replace('Etapas discretas usam <code>StepDots</code> (cadastro) ; sequênc
 salvar(n, j)
 for n in ('recursos__telas-novas', 'recursos__mapa-de-decisao', 'recursos__gerar-telas', 'padroes__padroes-de-tela', 'recursos__engenharia', 'componentes__Progress'):
     if 'StepDots' in carregar(n): sys.exit('ainda cita StepDots: ' + n)
+
+# ------------------------------------------------------------------ NeighborhoodNote: endereço encontrado (cartão neutro, sem verde nem "Corrigir" solto)
+n = 'modulos__NeighborhoodNote'; j = carregar(n)
+NOVO_USAR = 'Endereço encontrado pelo CEP: cartão neutro com a rua, "bairro · cidade" e um lápis para corrigir.'
+NOVO_NUNCA = 'mostrar como aviso de sucesso (verde, check) nem deixar o "Corrigir" solto fora do cartão.'
+j = lead(j, NOVO_USAR)
+j = uso(j, NOVO_USAR, NOVO_NUNCA)
+j = secao(j, 'fornece', '<p>O bairro (%s, "Aclimação") e, se houver, a rua (%s), a cidade e a UF (%s, "São Paulo, SP") e %s (toque no lápis).</p>' % (c('neighborhood'), c('street'), c('city'), c('onFix')))
+j = secao(j, 'especificacao', lista(
+    'Aparece 16px abaixo do campo de CEP quando a pessoa completa os 8 dígitos, subindo 6px com fade de 240ms, sem rebote (parado com %s).' % c('prefers-reduced-motion'),
+    'Cartão %s, raio %s (24px) e padding de 14px. Três colunas com %s: disco branco de 40px com o pino em %s, o texto e o lápis.' % (c('surface-secondary'), c('radius-xl'), c('space-micro'), c('icon-brand-strong')),
+    'Rua em %s e, embaixo, "bairro · cidade" em %s %s; as duas em uma linha, com reticências. Sem rua, o bairro vira o título e a cidade, a linha de baixo.' % (c('label'), c('body-small'), c('text-secondary')),
+    'O lápis é um disco branco de 44px (%s, %s) com %s em %s e o rótulo "Corrigir endereço"; leva de volta ao campo de CEP.' % (c('surface-primary'), c('shadow-card'), c('pencil'), c('icon-brand-strong')),
+    'É informação, não confirmação: nada de verde, de check nem de "encontramos!". Com o CEP completo, "Continuar" fica ativo; com o campo vazio, desabilitado (a consulta de CEP vem de um serviço de endereço).'))
+j = secao(j, 'acessibilidade', '<p><code>role="status"</code>: o leitor de tela anuncia o endereço assim que ele aparece. O lápis é um botão de 44px com o nome "Corrigir endereço".</p>')
+j = codigo(j, esc('<Soma.NeighborhoodNote street="Rua Pires da Mota" neighborhood="Aclimação" city="São Paulo, SP" onFix={limparCep} />'))
+salvar(n, j)
+n = 'recursos__mapa-de-decisao'; j = carregar(n)
+for a, b in (('Bairro encontrado pelo CEP, com o link "Corrigir".', NOVO_USAR), ('mostrar sem o link "Corrigir".', NOVO_NUNCA)):
+    j = j.replace(a, b).replace(a.replace('"', '&quot;'), b.replace('"', '&quot;'))
+salvar(n, j)
+dm = os.path.join(root, 'design-system/files/decision-map.md')
+if os.path.exists(dm):
+    tt = open(dm, encoding='utf-8').read()
+    for a, b in (('Bairro encontrado pelo CEP, com o link "Corrigir".', NOVO_USAR), ('mostrar sem o link "Corrigir".', NOVO_NUNCA)): tt = tt.replace(a, b)
+    open(dm, 'w', encoding='utf-8').write(tt)
+t = open(dts, encoding='utf-8').read()
+t = re.sub(r'export interface NeighborhoodNoteProps \{.*?\n\}\n/\*\*[^\n]*\*/\nexport declare function NeighborhoodNote\([^\n]*\n', '''export interface NeighborhoodNoteProps {
+	/** Rua do CEP ("Rua Pires da Mota"). Sem ela, o bairro vira o título. */
+	street?: string;
+	/** Bairro ("Aclimação"). */
+	neighborhood: string;
+	/** Cidade e UF ("São Paulo, SP"). */
+	city?: string;
+	/** Toque no lápis: volta ao CEP para corrigir. Sem ele, o lápis não aparece. */
+	onFix?: () => void;
+}
+/** Endereço encontrado pelo CEP: cartão neutro com o pino, a rua e "bairro · cidade", e um lápis redondo para corrigir. Aparece quando o CEP completa 8 dígitos. Informa, não comemora: não use verde nem check. */
+export declare function NeighborhoodNote({ street, neighborhood, city, onFix }: NeighborhoodNoteProps): React$1.JSX.Element;
+''', t, count=1, flags=re.S)
+open(dts, 'w', encoding='utf-8').write(t)
+if 'city?: string' not in t: sys.exit('d.ts do NeighborhoodNote não atualizado')

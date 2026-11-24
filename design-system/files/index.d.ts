@@ -1972,12 +1972,17 @@ export interface InviteCodeFieldProps {
 /** Campo opcional de código de convite com o estado "Código aplicado" e o link "Onde encontro o código?". */
 export declare function InviteCodeField({ value, onChange, applied, error, onHelp }: InviteCodeFieldProps): React$1.JSX.Element;
 export interface NeighborhoodNoteProps {
-	/** "Aclimação, São Paulo". */
+	/** Rua do CEP ("Rua Pires da Mota"). Sem ela, o bairro vira o título. */
+	street?: string;
+	/** Bairro ("Aclimação"). */
 	neighborhood: string;
+	/** Cidade e UF ("São Paulo, SP"). */
+	city?: string;
+	/** Toque no lápis: volta ao CEP para corrigir. Sem ele, o lápis não aparece. */
 	onFix?: () => void;
 }
-/** Bairro encontrado pelo CEP, com o link "Corrigir". Aparece quando o CEP completa 8 dígitos. */
-export declare function NeighborhoodNote({ neighborhood, onFix }: NeighborhoodNoteProps): React$1.JSX.Element;
+/** Endereço encontrado pelo CEP: cartão neutro com o pino, a rua e "bairro · cidade", e um lápis redondo para corrigir. Aparece quando o CEP completa 8 dígitos. Informa, não comemora: não use verde nem check. */
+export declare function NeighborhoodNote({ street, neighborhood, city, onFix }: NeighborhoodNoteProps): React$1.JSX.Element;
 export interface SignupSheetProps {
 	open?: boolean;
 	defaultOpen?: boolean;

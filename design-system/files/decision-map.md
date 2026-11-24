@@ -57,7 +57,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `InviteCodeField` | Campo opcional de código de convite, com o estado "Código aplicado" e o link "Onde encontro o código?". | bloquear o cadastro por código inválido: o campo é opcional. |
 | `InviteCodeHelpSheet` | Bottom sheet "Onde encontro o código?": explica e mostra a mensagem de convite de exemplo. | abrir fora do passo do código de convite. |
 | `InviteMessageExample` | Simulação de conversa que mostra onde está o código dentro da mensagem de convite. | usar como mensagem real de envio; é só uma simulação. |
-| `NeighborhoodNote` | Bairro encontrado pelo CEP, com o link "Corrigir". | mostrar sem o link "Corrigir". |
+| `NeighborhoodNote` | Endereço encontrado pelo CEP: cartão neutro com a rua, "bairro · cidade" e um lápis para corrigir. | mostrar como aviso de sucesso (verde, check) nem deixar o "Corrigir" solto fora do cartão. |
 | `SignupStep` | Passo do cadastro: topo com Voltar e Ajuda, título, campos e botão fixo no pé da tela. | pôr mais de um dado por tela, soltar o botão do pé da tela nem mostrar "Passo N de 7": o cadastro não tem indicador de progresso. |
 | `TermsConsent` | Aceite do regulamento e aviso de privacidade, no último passo do cadastro. | pré-marcar o aceite nem liberar o botão sem ele. |
 

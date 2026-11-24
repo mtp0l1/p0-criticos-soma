@@ -316,4 +316,33 @@ n = n[:i].rstrip('\n') + '\n'
 n = n.replace(', ListRow, StepDots.', ', ListRow.')
 gravar('soma/navigation.tsx', n)
 rep('index.ts', [("ListRow, StepDots, listRowVariants", "ListRow, listRowVariants"), ("ListRowProps, StepDotsProps }", "ListRowProps }")])
+
+# ------------------------------------------------------------------ NeighborhoodNote: endereço encontrado pelo CEP (cartão neutro, não um aviso de sucesso)
+trocar_bloco('soma/signup.tsx', 'export interface NeighborhoodNoteProps {', '/* ------------------------------------------------------------ sheet shared */', '''export interface NeighborhoodNoteProps {
+  /** Rua do CEP ("Rua Pires da Mota"). Sem ela, o bairro vira o título. */
+  street?: string;
+  /** Bairro ("Aclimação"). */
+  neighborhood: string;
+  /** Cidade e UF ("São Paulo, SP"). */
+  city?: string;
+  /** Toque no lápis: volta ao CEP para corrigir. Sem ele, o lápis não aparece. */
+  onFix?: () => void;
+}
+/** Endereço encontrado pelo CEP: cartão neutro com o pino, a rua e "bairro · cidade", e um lápis redondo para corrigir. Aparece quando o CEP completa 8 dígitos. Informa, não comemora: não use verde nem check. */
+export function NeighborhoodNote({ street, neighborhood, city, onFix }: NeighborhoodNoteProps) {
+  const title = street ?? neighborhood;
+  const sub = street ? [neighborhood, city].filter(Boolean).join(' · ') : city;
+  return (
+    <div role="status" className="flex items-center gap-micro rounded-xl bg-surface-secondary p-[14px] text-foreground motion-safe:animate-[soma-rise_.24s_cubic-bezier(.2,.8,.2,1)_both]">
+      <span aria-hidden className="grid size-[40px] shrink-0 place-items-center rounded-full bg-surface-primary shadow-card"><Icon name="pin" tone="brand-strong" /></span>
+      <span className="grid min-w-0 flex-1 gap-0">
+        <span className="label truncate">{title}</span>
+        {sub && <span className="body-small truncate text-muted-foreground">{sub}</span>}
+      </span>
+      {onFix && <IconButton icon="pencil" label="Corrigir endereço" onClick={onFix} className="size-touch shrink-0 rounded-full bg-surface-primary text-icon-brand-strong shadow-card hover:bg-surface-primary active:bg-surface-primary" />}
+    </div>
+  );
+}
+
+''')
 print('ok alinhar-app-componentes')
