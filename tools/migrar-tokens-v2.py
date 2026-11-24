@@ -100,6 +100,7 @@ LIMPA=[('Laranja escuro do Figma das telas novas (cor do item ativo da barra inf
 ('Azul claro do Figma: dia protegido','Azul claro: dia protegido'),('(Figma, Tela 5)','(Quiz, Tela 5)'),
 ('laranjas de texto do Figma','laranjas de texto do handoff anterior'),('(20px, como no Figma)','(20px)'),
 ('Busque o material desejado ou clique por cada tipo','Busque o material desejado ou toque em cada tipo'),
+('Ponto de passo pendente (StepDots). Decorativo, com o passo também em texto.','Indicador inativo. Decorativo.'),
 ('Ouro do pódio e do nível Ouro.','Ouro do nível Ouro (Quiz).'),('Prata do pódio e do nível Prata.','Prata do nível Prata (Quiz).'),('Bronze do pódio e do nível Bronze.','Bronze do nível Bronze (Quiz).'),
 ('Primeiro lugar do pódio e nível Ouro.','Nível Ouro (Quiz).'),('Segundo lugar do pódio e nível Prata.','Nível Prata (Quiz).'),('Terceiro lugar do pódio e nível Bronze.','Nível Bronze (Quiz).')]
 def limpa_todos(o):

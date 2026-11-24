@@ -18,7 +18,7 @@
   "px-[18px]": "v2: ajuste óptico (campo com rótulo flutuante, ícones, pílulas)"
  },
  "TOK-03": {
-  "selected-indicator sobre surface-primary": "Indicador laranja da aba e do ponto atual tem 2,0:1. O estado também vai por posição, forma e texto (a aba ativa vira pílula com o nome; o switch muda de lado; a marca do checkbox aparece)."
+  "selected-indicator sobre surface-primary": "Indicador laranja da aba tem 2,0:1. O estado também vai por posição, forma e texto (a aba ativa vira pílula com o nome; o switch muda de lado; a marca do checkbox aparece)."
  },
  "TOK-05": [
   "rounded-[inherit]"

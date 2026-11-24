@@ -61,7 +61,6 @@ SEC = {
     'componentes__PasswordField': lambda: f'Cadastro: {link("c05")}.',
     'componentes__PillTabs': lambda: f'Recompensas: {link("rc1")} e {link("rc9")}. O handoff anterior desenhava a aba inativa com texto laranja (#DD8613, 2,6:1); na v2 o texto fica navy.',
     'componentes__ResultScreen': lambda: f'Ranking: {link("r12")}, {link("r14")} e {link("r16")}. Doar pontos: {link("d4")} (círculo <code>xs</code> neutro com check, ilustração <code>doar-sucesso</code> e "Ir para o início"; sem cabeçalho nem voltar, a saída é o botão ou a barra inferior). Ativação: {link("a1", "a6", "a8", "a9")} (erro do calendário).',
-    'componentes__StepDots': lambda: f'Indicador de passos do Cadastro, de {link("c01")} a {link("c07")}.',
     'componentes__TabBar': lambda: f'Barra inferior de todas as telas de aba, por exemplo {link("i3")} e {link("i4")}.',
     'componentes__TextField': lambda: f'Cadastro, de {link("c01")} a {link("c07")}, e Doar pontos ({link("d3")}). Campo de 68px com rótulo flutuante; a lista completa de estados está em {link("d3A", "d3B", "d3C")}.',
     'componentes__Toast': lambda: f'Ranking: {link("r5")} e {link("r10")}.',

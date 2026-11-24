@@ -45,7 +45,6 @@
 - #/componentes/SegmentedControl: SegmentedControl
 - #/componentes/SectionHeader: SectionHeader
 - #/componentes/PillTabs: PillTabs
-- #/componentes/StepDots: StepDots
 - #/componentes/ListRow: ListRow
 - #/componentes/SearchField: SearchField
 - #/componentes/Input: Input

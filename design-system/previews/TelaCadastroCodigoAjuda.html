@@ -11,7 +11,7 @@ var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
 function Demo(){ return h('div',{className:'relative h-[860px] bg-background'},
-  h(S.SignupStep,{title:'Alguém te convidou?',description:'Se um amigo te convidou, o código está na mensagem que ele enviou.',step:7,icon:'gift',onBack:function(){},onHelp:function(){},action:h(S.Button,{fullWidth:true,disabled:true},'Criar minha conta')},
+  h(S.SignupStep,{title:'Alguém te convidou?',description:'Se um amigo te convidou, o código está na mensagem que ele enviou.',icon:'gift',onBack:function(){},onHelp:function(){},action:h(S.Button,{fullWidth:true,disabled:true},'Criar minha conta')},
     h(S.InviteCodeField,{value:'',onChange:function(){},onHelp:function(){}}),
     h(S.TermsConsent,{checked:false,onCheckedChange:function(){}})),
   h(Scrim), h(S.InviteCodeHelpSheet,{defaultOpen:true,modal:false})); }

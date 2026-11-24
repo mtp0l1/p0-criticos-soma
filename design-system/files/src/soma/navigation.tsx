@@ -1,4 +1,4 @@
-/* So+ma · navegação: Header, LocationBar, TabBar, Tabs, SegmentedControl, SectionHeader, ListRow, StepDots. */
+/* So+ma · navegação: Header, LocationBar, TabBar, Tabs, SegmentedControl, SectionHeader, ListRow. */
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn, focusRing, hitArea, hitAreaY } from '../lib/utils';
@@ -246,27 +246,5 @@ export function ListRow({ variant = 'help', title, description, icon, href, onCl
       </span>
       {variant === 'help' ? <Icon name="chevron-right" tone="brand-strong" size="small" /> : <span />}
     </PressableBase>
-  );
-}
-
-/* --------------------------------------------------------------- StepDots */
-
-export interface StepDotsProps {
-  /** Passo atual, começando em 1. */
-  current: number;
-  total: number;
-  className?: string;
-}
-/** Pontos de progresso do cadastro ("Passo 1 de 7"): 8px, só o passo atual em laranja (os anteriores voltam ao cinza, como no Figma). O texto vai para o leitor de tela; os pontos são decorativos. */
-export function StepDots({ current, total, className }: StepDotsProps) {
-  return (
-    <div className={cn('grid justify-items-center gap-[6px]', className)}>
-      <div aria-hidden className="flex items-center gap-[6px]">
-        {Array.from({ length: total }, (_, i) => (
-          <span key={i} className={cn('h-[6px] rounded-full', i + 1 === current ? 'w-[28px]' : 'w-[20px]', i + 1 <= current ? 'bg-selected-indicator' : 'bg-surface-track')} />
-        ))}
-      </div>
-      <span className="micro text-muted-foreground">Passo {current} de {total}</span>
-    </div>
   );
 }

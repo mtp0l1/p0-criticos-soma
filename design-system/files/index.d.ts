@@ -626,14 +626,6 @@ export interface ListRowProps extends Omit<VariantProps<typeof listRowVariants>,
 	onClick?: () => void;
 }
 export declare function ListRow({ variant, title, description, icon, href, onClick }: ListRowProps): React$1.JSX.Element;
-export interface StepDotsProps {
-	/** Passo atual, começando em 1. */
-	current: number;
-	total: number;
-	className?: string;
-}
-/** Pontos de progresso do cadastro ("Passo 1 de 7"): 8px, só o passo atual em laranja (os anteriores voltam ao cinza, como no Figma). O texto vai para o leitor de tela; os pontos são decorativos. */
-export declare function StepDots({ current, total, className }: StepDotsProps): React$1.JSX.Element;
 export interface HomeGreetingProps {
 	/** Primeiro nome. Mostra "Olá {nome}" e a inicial no avatar. */
 	name: string;
@@ -1944,11 +1936,7 @@ export interface SignupStepProps {
 	title: string;
 	/** Linha de apoio abaixo do título. */
 	description?: string;
-	/** Passo atual, a partir de 1. */
-	step: number;
-	/** Total de passos (padrão 7). */
-	total?: number;
-	/** Ícone do passo, em tile pêssego acima do título (user, id-card, phone…). */
+	/** Ícone do passo, em tile pêssego acima do título (user, contacts, phone…). */
 	icon?: IconName;
 	/** Volta ao passo anterior (disco à esquerda). Sem ele, o botão não aparece. */
 	onBack?: () => void;
@@ -1960,7 +1948,7 @@ export interface SignupStepProps {
 	action?: React$1.ReactNode;
 	className?: string;
 }
-/** Corpo de um passo do cadastro: título, campos, botão e pontos de progresso. Um dado por tela. Vai abaixo do `Header title="Cadastro"`. */
+/** Passo do cadastro (v2): topo com Voltar e Ajuda; tile de ícone, título e campos; o botão fica fixo no pé da tela. Um dado por tela. Não leva `Header` nem indicador de progresso. */
 export declare function SignupStep({ title, description, step, total, children, action, className }: SignupStepProps): React$1.JSX.Element;
 export interface TermsConsentProps {
 	checked: boolean;
@@ -2136,7 +2124,6 @@ declare global {
 			SectionHeader: typeof SectionHeader;
 			listRowVariants: typeof listRowVariants;
 			ListRow: typeof ListRow;
-			StepDots: typeof StepDots;
 			HomeGreeting: typeof HomeGreeting;
 			Tile: typeof Tile;
 			TileGrid: typeof TileGrid;

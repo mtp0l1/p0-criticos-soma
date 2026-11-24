@@ -36,8 +36,8 @@ export {
 } from './ui/overlay';
 
 /* Componentes So+ma (camada de produto) */
-export { Header, LocationBar, TabBar, Tabs, SegmentedControl, PillTabs, SectionHeader, ListRow, StepDots, listRowVariants, TAB_ITEMS } from './soma/navigation';
-export type { HeaderProps, LocationBarProps, TabBarProps, TabId, TabsProps, TabsItem, SectionHeaderProps, ListRowProps, StepDotsProps } from './soma/navigation';
+export { Header, LocationBar, TabBar, Tabs, SegmentedControl, PillTabs, SectionHeader, ListRow, listRowVariants, TAB_ITEMS } from './soma/navigation';
+export type { HeaderProps, LocationBarProps, TabBarProps, TabId, TabsProps, TabsItem, SectionHeaderProps, ListRowProps } from './soma/navigation';
 export { HomeGreeting, Tile, TileGrid, BalanceCard, QuestionTeaser, GoalSummaryCard, ActivityRow } from './soma/home';
 export type { HomeGreetingProps, TileProps, BalanceCardProps, QuestionTeaserProps, GoalSummaryCardProps, ActivityRowProps } from './soma/home';
 export { Trophy, LevelCard, LevelBadge, TierCard, ProtectionNotice, QuestionCard, PointsBadge, StreakTrail, StreakProgress, StreakSection, AnswerResult, DailyDone, HistorySummary, AnswerHistory, AnswerHistoryRow, MilestoneResult, TIER_NAME, TIER_LEVEL, TIER_GOAL, TIER_NEXT, TIER_STARS } from './soma/quiz';
