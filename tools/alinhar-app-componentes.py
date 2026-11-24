@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Alinha componentes do Campana ao desenho final das telas da v2 do app (protótipo, 199 telas).
+"""Alinha componentes do Campana ao desenho final das telas da v2 do app (protótipo, 201 telas).
 Rode logo depois de aplicar-v2-componentes.py (que refaz files/src a partir da v4). Cada troca confere que o trecho existe.
 
 O que muda, conforme o app:
@@ -255,6 +255,9 @@ trocar_bloco('soma/home.tsx', 'export function QuestionTeaser(', 'export interfa
 }
 
 ''')
+
+# ------------------------------------------------------------------ SectionHeader: a ação não quebra em várias linhas ("Ver todas (12)")
+rep('soma/navigation.tsx', [("className={cn(pressable, hitAreaY, 'caption rounded-xs font-semibold text-text-link')}>{action.label}</button>", "className={cn(pressable, hitAreaY, 'caption shrink-0 whitespace-nowrap rounded-xs font-semibold text-text-link')}>{action.label}</button>")])
 
 # ------------------------------------------------------------------ SignupStep
 rep('soma/signup.tsx', [

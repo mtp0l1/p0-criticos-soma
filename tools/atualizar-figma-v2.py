@@ -32,6 +32,7 @@ A = dict(
     a7='842:9688', a8='842:9771', a9='842:9867', a10='842:10084', a11='842:10156', a12='842:10230',
     a13='842:10344', a14='842:10479', a15='842:10589', a16='842:10693', a17='842:10848',
     d1='832:7334', d2='832:6524', d2A='832:7246', d3='832:6750', d4='832:6949',
+    e1='916:90001', e2='866:90001',
     d3A='832:6686', d3B='832:6819', d3C='832:6884', d3D='832:6626', d3E='832:6460',
 )
 for k, v in A.items():
@@ -55,7 +56,7 @@ def plain(*keys):
 # texto novo da seção de cada página (o que aparece depois de "Nas telas da v2")
 SEC = {
     'componentes__ChoiceChips': lambda: f'Chips de categoria em Recompensas ({link("rc1")}) e chips de material na aba Reciclar ({link("i4")}).',
-    'componentes__EmptyState': lambda: f'Ranking: {link("r6")} e {link("r8")}.',
+    'componentes__EmptyState': lambda: f'Ranking: {link("r6")} e {link("r8")}. Estados vazios de quem ainda não usou o app: {link("e1")} e {link("e2")}.',
     'componentes__Header': lambda: f'Barra superior de Doar pontos ({link("d2")}), do Quiz ({link("q1")}) e do Ranking ({link("r1")}).',
     'componentes__PasswordField': lambda: f'Cadastro: {link("c05")}.',
     'componentes__PillTabs': lambda: f'Recompensas: {link("rc1")} e {link("rc9")}. O handoff anterior desenhava a aba inativa com texto laranja (#DD8613, 2,6:1); na v2 o texto fica navy.',

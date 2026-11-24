@@ -261,3 +261,16 @@ j = secao(j, 'especificacao', lista(
     'Um só toque leva ao Quiz. Com %s, vira link.' % c('href'),
     'Texto sugerido: "Isopor é reciclável?" com "Responda para somar pontos e trocar por recompensas." Não mostre o nível nem os troféus no Início.'))
 salvar(n, j)
+
+# ------------------------------------------------------------------ pontos críticos: "Item" vira "material" (consistência com a busca)
+n = 'componentes__EmptyState'; j = carregar(n)
+j = j.replace('"Item não encontrado", sem ":(". Diga o que houve e o que fazer.', '"Nenhum material encontrado", sem ":(". Diga o que houve e o que fazer. Use a mesma palavra da busca (material), nunca "item".')
+salvar(n, j)
+n = 'recursos__gerar-telas'; j = carregar(n)
+j = j.replace('<td>"Item não encontrado" + saída</td>', '<td>"Nenhum material encontrado" + saída</td>')
+salvar(n, j)
+
+# ------------------------------------------------------------------ EmptyState: os dois estados vazios novos (conta sem entregas)
+n = 'componentes__EmptyState'; j = carregar(n)
+j = secao(j, 'figma', '<p>Ranking: <a href="prototipo/#859-10444" target="_blank" rel="noopener">Ranking do novato</a> e <a href="prototipo/#859-10752" target="_blank" rel="noopener">Amigos vazio</a>. Conta sem entregas: <a href="prototipo/#916-90001" target="_blank" rel="noopener">Meu impacto · ainda sem entregas</a> e <a href="prototipo/#866-90001" target="_blank" rel="noopener">Meus resgates · vazio</a>.</p>')
+salvar(n, j)

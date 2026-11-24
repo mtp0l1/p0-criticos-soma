@@ -201,7 +201,7 @@ export function SectionHeader({ title, action, icon, size = 'default' }: Section
     return (
       <div className={cn('flex items-center justify-between gap-nano text-foreground', action ? 'min-h-touch' : 'min-h-icon')}>
         <h2 className="label m-0 flex items-center gap-nano">{icon && <Icon name={icon} size="small" />}{title}</h2>
-        {action && <button type="button" onClick={action.onClick} className={cn(pressable, hitAreaY, 'caption rounded-xs font-semibold text-text-link')}>{action.label}</button>}
+        {action && <button type="button" onClick={action.onClick} className={cn(pressable, hitAreaY, 'caption shrink-0 whitespace-nowrap rounded-xs font-semibold text-text-link')}>{action.label}</button>}
       </div>
     );
   }
