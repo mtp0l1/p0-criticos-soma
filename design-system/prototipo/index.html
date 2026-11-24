@@ -634,12 +634,13 @@ const activeStore=()=> sheetOpen.id?stores.sheet:stores.main;
 const scopeId=()=> sheetOpen.id||cur;
 const fv=kind=>{ const f=activeStore().find(x=>x.kind===kind); return f?f.input.value:''; };
 
-function setErr(f,msg){ clearErr(f); f.err=msg; f.paint('#C62F2F',2); const b=f.bb; const fo=mk('foreignObject',{x:b.x+6,y:b.y+b.height+1,width:b.width-12,height:20},f.g); const d=document.createElementNS(XHTML,'div'); d.className='ferr'; d.textContent=msg; fo.appendChild(d); f.errEl=fo; }
-function clearErr(f){ if(f.errEl){ f.errEl.remove(); f.errEl=null; } if(f.err){ f.err=null; f.paint(document.activeElement===f.input?'#FFA125':null,2); } }
+function setErr(f,msg){ clearErr(f); f.err=msg; f.paint('#C62F2F',2); const b=f.bb; f.hid=hideHelp(f,b); const fo=mk('foreignObject',{x:b.x+6,y:b.y+b.height+1,width:b.width-12,height:20},f.g); const d=document.createElementNS(XHTML,'div'); d.className='ferr'; d.textContent=msg; fo.appendChild(d); f.errEl=fo; }
+function hideHelp(f,b){ /* o erro ocupa o lugar do texto de apoio logo abaixo do campo ("Use 6 números."): esconde o apoio enquanto o erro aparece */ const out=[]; [...f.g.children,...f.g.parentNode.children].forEach(c=>{ if(c===f.g||c===f.errEl||c.tagName!=='path') return; const k=bbox(c); if(!k) return; if(k.y>=b.y+b.height-2&&k.y<b.y+b.height+30&&k.x<b.x+b.width&&k.x+k.width>b.x&&k.height<28){ c.setAttribute('data-ajuda-oculta',c.getAttribute('display')||''); c.setAttribute('display','none'); out.push(c); } }); return out; }
+function clearErr(f){ if(f.hid){ f.hid.forEach(c=>{ const d=c.getAttribute('data-ajuda-oculta'); if(d) c.setAttribute('display',d); else c.removeAttribute('display'); c.removeAttribute('data-ajuda-oculta'); }); f.hid=null; } if(f.errEl){ f.errEl.remove(); f.errEl=null; } if(f.err){ f.err=null; f.paint(document.activeElement===f.input?'#FFA125':null,2); } }
 function validate(store,scope){
   let first=null;
   store.forEach(f=>{ const v=f.input.value; let m='';
-    if(!v.trim()){ m=f.optional?'':(f.kind==='pass'?'Digite a senha.':'Preencha este campo.'); }
+    if(!v.trim()){ m=f.optional?'':(f.kind==='pass'?(/^repita/.test(NORM(f.label))?'Repita a senha.':'Digite a senha.'):'Preencha este campo.'); }
     else if(f.kind==='pass'&&LENIENT.has(scope)) m='';
     else m=(VAL[f.kind]||VAL.text)(v);
     if(!m&&f.kind==='pass'&&/^repita/.test(NORM(f.label))){ const o=store.find(x=>x.kind==='pass'&&!/^repita/.test(NORM(x.label))); if(o&&o.input.value!==v) m='As senhas não são iguais.'; }
