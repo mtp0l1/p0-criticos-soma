@@ -11,7 +11,7 @@ var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
 function Demo(){ var a=useState(''), b=useState(''); var bad=b[0]!==''&&a[0]!==b[0]; var ok=a[0].length===6&&a[0]===b[0]; return h('div',{className:'relative h-[720px] bg-background'},
-  h(S.SignupStep,{title:'Crie sua senha',step:5,icon:'lock',onBack:function(){},onHelp:function(){},action:h(S.Button,{fullWidth:true,disabled:!ok},'Continuar')},
+  h(S.SignupStep,{title:'Crie sua senha',icon:'lock',onBack:function(){},onHelp:function(){},action:h(S.Button,{fullWidth:true,disabled:!ok},'Continuar')},
     h('div',{className:'grid gap-small'}, h(S.PasswordField,{label:'Senha',required:true,helper:'Use 6 números.',inputMode:'numeric',maxLength:6,value:a[0],onChange:function(v){a[1](v.replace(/\D/g,''));}}), h(S.PasswordField,{label:'Repita a senha',required:true,inputMode:'numeric',maxLength:6,error:bad?'As senhas precisam ser iguais.':undefined,value:b[0],onChange:function(v){b[1](v.replace(/\D/g,''));}})))); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>

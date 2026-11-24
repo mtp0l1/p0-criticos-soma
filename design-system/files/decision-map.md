@@ -27,7 +27,6 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `PillTabs` | Abas em pílulas soltas: a ativa cheia e as outras contornadas. | usar fora de Recompensas nem com mais de duas abas. |
 | `SectionHeader` | Título de bloco dentro da tela, com um link opcional à direita. | usar como título de tela (use `Header`) nem com mais de um link à direita. |
 | `SegmentedControl` | Controle em pílula para alternar entre duas ou três seções, como Quiz e Histórico. | ter mais de três seções (use `Tabs`). |
-| `StepDots` | Progresso do cadastro: um segmento por passo, o atual mais largo, com o texto "Passo X de N". | destacar mais de um segmento como atual: só o passo atual é mais largo. |
 | `TabBar` | Barra de navegação inferior flutuante, com os cinco destinos do produto. | ter mais ou menos de cinco destinos, nem esconder em tela de fluxo (cadastro, QR). |
 | `Tabs` | Abas com sublinhado para trocar o recorte de uma mesma tela, como o período do ranking. | usar para trocar de tela inteira; só recorta o mesmo conteúdo (período). |
 | `Tile` | Tile de atalho do Início: disco com o ícone em cima, rótulo embaixo, em grade de duas colunas (`TileGrid`). | usar para dado (use `StatTile`) nem sem rótulo de texto. |
@@ -59,7 +58,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `InviteCodeHelpSheet` | Bottom sheet "Onde encontro o código?": explica e mostra a mensagem de convite de exemplo. | abrir fora do passo do código de convite. |
 | `InviteMessageExample` | Simulação de conversa que mostra onde está o código dentro da mensagem de convite. | usar como mensagem real de envio; é só uma simulação. |
 | `NeighborhoodNote` | Bairro encontrado pelo CEP, com o link "Corrigir". | mostrar sem o link "Corrigir". |
-| `SignupStep` | Passo do cadastro: topo com progresso, título, campos e botão fixo no pé da tela. | pôr mais de um dado por tela nem soltar o botão do pé da tela: ele fica fixo embaixo. |
+| `SignupStep` | Passo do cadastro: topo com Voltar e Ajuda, título, campos e botão fixo no pé da tela. | pôr mais de um dado por tela, soltar o botão do pé da tela nem mostrar "Passo N de 7": o cadastro não tem indicador de progresso. |
 | `TermsConsent` | Aceite do regulamento e aviso de privacidade, no último passo do cadastro. | pré-marcar o aceite nem liberar o botão sem ele. |
 
 ## Início
@@ -151,7 +150,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `Badge` | Selo não interativo em pílula (shadcn Badge), em seis tons. | ser tocável (use `Button` ou `Tag`) nem carregar texto longo. |
 | `EmptyState` | Estado vazio centralizado com ilustração, título, explicação e um próximo passo. | mostrar sem próximo passo nem usar ilustração fora do catálogo. |
 | `Message` | Mensagem em linha que fica na tela, em quatro tons: informativa, positiva, de atenção e de erro. | usar para aviso passageiro (use `Toast`) nem sem ícone ou texto. |
-| `Progress` | Barra de progresso contínua, sobre Radix Progress (shadcn Progress). | usar para etapas discretas (use `StepDots`). |
+| `Progress` | Barra de progresso contínua, sobre Radix Progress (shadcn Progress). | usar para etapas discretas. |
 | `ProtectionNotice` | Aviso da proteção semanal da sequência: "se você perder um dia, a sequência continua". | prometer proteção que a regra semanal não dá. |
 | `ResultScreen` | Tela de resultado ou pedido: sucesso, erro ou permissão (contatos, notificação). | deixar o fluxo sem uma ação principal clara. |
 | `Skeleton` | Esqueleto de carregamento para texto, linha com miniatura e card. | ficar no lugar do erro: se a carga falhar, mostre `Message`. |

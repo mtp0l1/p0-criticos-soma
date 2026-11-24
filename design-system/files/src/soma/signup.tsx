@@ -6,7 +6,6 @@ import { Icon, type IconName } from '../ui/icon';
 import { Checkbox } from '../ui/form';
 import { Field, FieldLabel } from '../ui/controls';
 import { Sheet, SheetTrigger, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '../ui/overlay';
-import { StepDots } from './navigation';
 import { TextField } from './forms';
 
 /* -------------------------------------------------------------- SignupStep */
@@ -16,10 +15,6 @@ export interface SignupStepProps {
   title: string;
   /** Linha de apoio abaixo do título. */
   description?: string;
-  /** Passo atual, a partir de 1. */
-  step: number;
-  /** Total de passos (padrão 7). */
-  total?: number;
   /** Ícone do passo, em tile pêssego acima do título (user, id-card, phone…). */
   icon?: IconName;
   /** Volta ao passo anterior (disco à esquerda). Sem ele, o botão não aparece. */
@@ -33,13 +28,12 @@ export interface SignupStepProps {
   className?: string;
 }
 const stepDisc = 'size-touch rounded-full bg-surface-primary text-foreground shadow-card hover:bg-surface-secondary active:bg-surface-secondary-hover';
-/** Passo do cadastro (v2): topo com Voltar, barra "Passo N de 7" e Ajuda; tile de ícone, título e campos; o botão fica fixo no pé da tela. Um dado por tela. Não leva `Header`. */
-export function SignupStep({ title, description, step, total = 7, icon, onBack, onHelp, children, action, className }: SignupStepProps) {
+/** Passo do cadastro (v2): topo com Voltar e Ajuda; tile de ícone, título e campos; o botão fica fixo no pé da tela. Um dado por tela. Não leva `Header` nem indicador de progresso. */
+export function SignupStep({ title, description, icon, onBack, onHelp, children, action, className }: SignupStepProps) {
   return (
     <main className={cn('flex min-h-full flex-col px-xsmall pb-small pt-nano', className)}>
-      <header className="grid min-h-header grid-cols-[theme(spacing.touch)_1fr_theme(spacing.touch)] items-center gap-nano">
+      <header className="flex min-h-header items-center justify-between gap-nano">
         {onBack ? <IconButton icon="arrow-left" label="Voltar" onClick={onBack} className={stepDisc} /> : <span />}
-        <StepDots current={step} total={total} />
         {onHelp ? <IconButton icon="help" label="Ajuda" onClick={onHelp} className={stepDisc} /> : <span />}
       </header>
       <div className="grid content-start gap-small pt-large">

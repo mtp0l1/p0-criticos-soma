@@ -101,18 +101,18 @@ salvar(n, j)
 
 # ------------------------------------------------------------------ SignupStep
 n = 'modulos__SignupStep'; j = carregar(n)
-j = lead(j, 'Passo do cadastro: topo com Voltar, barra de progresso e Ajuda; tile de ícone, título, campos e o botão fixo no pé da tela. <strong>Um dado por tela.</strong> Não leva %s.' % c('Header'))
-j = uso(j, 'Passo do cadastro: topo com progresso, título, campos e botão fixo no pé da tela.', 'pôr mais de um dado por tela nem soltar o botão do pé da tela: ele fica fixo embaixo.')
-j = secao(j, 'fornece', '<p>O título do passo (%s), o passo atual (%s) e o total (%s, padrão 7). Opcional: %s, %s, %s, %s e %s (o botão). Os campos entram como filhos.</p>' % (c('title'), c('step'), c('total'), c('icon'), c('description'), c('onBack'), c('onHelp'), c('action')))
+j = lead(j, 'Passo do cadastro: topo com Voltar e Ajuda; tile de ícone, título, campos e o botão fixo no pé da tela. <strong>Um dado por tela.</strong> Não leva %s nem indicador de progresso.' % c('Header'))
+j = uso(j, 'Passo do cadastro: topo com Voltar e Ajuda, título, campos e botão fixo no pé da tela.', 'pôr mais de um dado por tela, soltar o botão do pé da tela nem mostrar "Passo N de 7": o cadastro não tem indicador de progresso.')
+j = secao(j, 'fornece', '<p>O título do passo (%s). Opcional: %s, %s, %s, %s e %s (o botão). Os campos entram como filhos.</p>' % (c('title'), c('icon'), c('description'), c('onBack'), c('onHelp'), c('action')))
 j = secao(j, 'especificacao', lista(
-    'Topo: Voltar em disco branco de 44px, a barra de progresso ("Passo 4 de 7", os passos já feitos em laranja) no centro e Ajuda em disco à direita. Padding lateral %s (20px).' % c('space-xsmall'),
+    'Topo: Voltar em disco branco de 44px à esquerda e Ajuda em disco à direita. Sem barra nem texto de progresso. Padding lateral %s (20px).' % c('space-xsmall'),
     'Tile de ícone de 52px (%s, ícone em %s), 40px abaixo do topo. Título em %s (28px bold) e a linha de apoio em %s %s, 8px abaixo.' % (c('surface-tint-peach'), c('icon-brand'), c('page-title'), c('body-small'), c('text-secondary')),
     'Campos a 24px do título (%s); campos do mesmo bloco, numa div com %s.' % (c('space-small'), c('grid gap-nano')),
     'O botão fica fixo no pé da tela (56px de altura, 24px da borda). Fica desabilitado até o campo obrigatório estar válido; o erro é curto, embaixo do campo, sem apagar o que a pessoa digitou.',
     'Voltar retorna ao passo anterior e mantém o que já foi preenchido. Não há botão "Voltar" no corpo.',
-    'Passos: 01 nome e data de nascimento, 02 CPF, 03 e-mail, 04 celular, 05 senha, 06 CEP, 07 código de convite e aceite (aqui o botão é "Criar minha conta").'))
-j = secao(j, 'acessibilidade', '<p>O título do passo é o h2 da tela; os botões se chamam "Voltar" e "Ajuda". A barra de progresso diz "Passo 4 de 7" ao leitor de tela.</p>')
-j = codigo(j, esc('<Soma.SignupStep title="Qual é o seu celular?" icon="phone" step={4} onBack={voltar} onHelp={ajuda} action={<Soma.Button fullWidth>Continuar</Soma.Button>}>\n  <Soma.TextField label="Celular" mask="phone" required value={v} onChange={setV} />\n</Soma.SignupStep>'))
+    'Passos: nome e data de nascimento, CPF, e-mail, celular, senha, CEP, código de convite e aceite (aqui o botão é "Criar minha conta").'))
+j = secao(j, 'acessibilidade', '<p>O título do passo é o h2 da tela; os botões se chamam "Voltar" e "Ajuda".</p>')
+j = codigo(j, esc('<Soma.SignupStep title="Qual é o seu celular?" icon="phone" onBack={voltar} onHelp={ajuda} action={<Soma.Button fullWidth>Continuar</Soma.Button>}>\n  <Soma.TextField label="Celular" mask="phone" required value={v} onChange={setV} />\n</Soma.SignupStep>'))
 salvar(n, j)
 
 # ------------------------------------------------------------------ RankingRow
@@ -206,21 +206,6 @@ tdts('''	/** Ícone da causa (cesta, coração, talheres…). Aparece em quadro 
 	/** Tom do tile, por categoria da causa. Sem ele, o tom sai do nome (sempre o mesmo para a mesma instituição). */
 	tint?: Tint;
 	href?: string;''')
-tdts('''	/** Total de passos (padrão 7). */
-	total?: number;
-	/** Blocos do passo (campos, aceite). Cada filho fica a 40px do próximo; agrupe campos de um mesmo bloco numa `div` com `grid gap-small`. */
-	children?: React$1.ReactNode;
-	/** Botão "Continuar" (ou "Criar minha conta"). Fica 40px abaixo do último bloco, não preso no rodapé. */''', '''	/** Total de passos (padrão 7). */
-	total?: number;
-	/** Ícone do passo, em tile pêssego acima do título (user, id-card, phone…). */
-	icon?: IconName;
-	/** Volta ao passo anterior (disco à esquerda). Sem ele, o botão não aparece. */
-	onBack?: () => void;
-	/** Abre a ajuda (disco à direita). Sem ele, o botão não aparece. */
-	onHelp?: () => void;
-	/** Blocos do passo (campos, aceite). Agrupe os campos de um mesmo bloco numa `div` com `grid gap-nano`. */
-	children?: React$1.ReactNode;
-	/** Botão "Continuar" (ou "Criar minha conta"). Fica fixo no pé da tela, 56px de altura. */''')
 tdts('''	/** Letras do avatar quando diferem do nome exibido ("Você (Policarpo)" → "P"). */
 	initials?: string;
 	/** Linha da própria pessoa: fundo creme''', '''	/** Letras do avatar quando diferem do nome exibido ("Você (Policarpo)" → "P"). */
@@ -274,3 +259,74 @@ salvar(n, j)
 n = 'componentes__EmptyState'; j = carregar(n)
 j = secao(j, 'figma', '<p>Ranking: <a href="prototipo/#859-10444" target="_blank" rel="noopener">Ranking do novato</a> e <a href="prototipo/#859-10752" target="_blank" rel="noopener">Amigos vazio</a>. Conta sem entregas: <a href="prototipo/#916-90001" target="_blank" rel="noopener">Meu impacto · ainda sem entregas</a> e <a href="prototipo/#866-90001" target="_blank" rel="noopener">Meus resgates · vazio</a>.</p>')
 salvar(n, j)
+
+# ------------------------------------------------------------------ StepDots ("Passo N de 7") saiu do sistema
+
+CANON = """export interface SignupStepProps {
+	/** Título do passo ("Qual é o seu celular?"), em `page-title`. */
+	title: string;
+	/** Linha de apoio abaixo do título. */
+	description?: string;
+	/** Ícone do passo, em tile pêssego acima do título (user, contacts, phone…). */
+	icon?: IconName;
+	/** Volta ao passo anterior (disco à esquerda). Sem ele, o botão não aparece. */
+	onBack?: () => void;
+	/** Abre a ajuda (disco à direita). Sem ele, o botão não aparece. */
+	onHelp?: () => void;
+	/** Blocos do passo (campos, aceite). Agrupe os campos de um mesmo bloco numa `div` com `grid gap-nano`. */
+	children?: React$1.ReactNode;
+	/** Botão "Continuar" (ou "Criar minha conta"). Fica fixo no pé da tela, 56px de altura. */
+	action?: React$1.ReactNode;
+	className?: string;
+}
+/** Passo do cadastro (v2): topo com Voltar e Ajuda; tile de ícone, título e campos; o botão fica fixo no pé da tela. Um dado por tela. Não leva `Header` nem indicador de progresso. */"""
+t = open(dts, encoding='utf-8').read()
+t = re.sub(r'export interface SignupStepProps \{.*?\n\}\n/\*\*[^\n]*\*/', lambda m: CANON, t, count=1, flags=re.S)
+open(dts, 'w', encoding='utf-8').write(t)
+t = open(dts, encoding='utf-8').read()
+t = re.sub(r'export interface StepDotsProps \{.*?\n\}\n', '', t, count=1, flags=re.S)
+t = re.sub(r'(/\*\*[^\n]*\*/\n)?export declare function StepDots\([^\n]*\n', '', t, count=1)
+t = re.sub(r'\n\t+StepDots: typeof StepDots;', '', t, count=1)
+t = re.sub(r'(export interface SignupStepProps \{.*?)\t/\*\* Passo atual, a partir de 1\. \*/\n\tstep: number;\n\t/\*\* Total de passos \(padrão 7\)\. \*/\n\ttotal\?: number;\n', r'\1', t, count=1, flags=re.S)
+open(dts, 'w', encoding='utf-8').write(t)
+if 'StepDots' in t: sys.exit('index.d.ts ainda cita StepDots')
+
+def _tr(j, texto):
+    novo, k = re.subn(r'<tr>\s*<td>' + texto, '<tr><td>' + texto, j)
+    return novo
+
+
+def tira_linha(j, inicio):
+    """Remove a <tr> cuja primeira célula começa com `inicio` (HTML)."""
+    return re.sub(r'<tr>\n?<td>' + re.escape(inicio) + r'.*?</tr>\n?', '', j, count=1, flags=re.S)
+
+
+n = 'recursos__telas-novas'; j = carregar(n)
+j = j.replace('<td><code>StepDots</code>, <code>LevelBadge</code>', '<td><code>LevelBadge</code>')
+j = j.replace(', <code>StepDots</code> só com o atual em laranja', '')
+j = j.replace(', <code>StepDots</code>, <code>SheetContent</code>', ', <code>SheetContent</code>')
+j = j.replace('<code>Button</code>, <code>StepDots</code>, <code>AccountExistsSheet</code>', '<code>Button</code>, <code>AccountExistsSheet</code>')
+salvar(n, j)
+n = 'recursos__mapa-de-decisao'; j = carregar(n)
+j = tira_linha(j, '<code>StepDots</code>')
+j = j.replace('usar para etapas discretas (use <code>StepDots</code>).', 'usar para etapas discretas.')
+salvar(n, j)
+n = 'recursos__gerar-telas'; j = carregar(n)
+j = tira_linha(j, '<code>StepDots</code>')
+j = tira_linha(j, 'progresso do cadastro, bolinhas, passo X de Y')
+j = tira_linha(j, 'progresso de etapas (cadastro)')
+salvar(n, j)
+n = 'padroes__padroes-de-tela'; j = carregar(n)
+velho = j[j.index('├── Header &quot;Cadastro&quot;'):j.index('(só o passo atual em laranja)') + len('(só o passo atual em laranja)')] if '(só o passo atual em laranja)' in j else None
+j = j.replace(velho or '\0', '└── SignupStep icon={…} onBack onHelp   (topo com Voltar e Ajuda; sem Header, sem TabBar e sem indicador de progresso)\n    ├── Tile de ícone + título do passo (page-title) + linha de apoio (body-small)\n    ├── TextField / PasswordField / InviteCodeField (campos do mesmo bloco a 8px)\n    └── Button loud fullWidth &quot;Continuar&quot;  (fixo no pé da tela, desabilitado até válido)')
+j = j.replace('<strong>Sete passos, um dado por tela</strong>, com pontos de progresso.', '<strong>Sete passos, um dado por tela</strong>, sem indicador de progresso.')
+salvar(n, j)
+n = 'recursos__engenharia'; j = carregar(n)
+j = j.replace('<code>Progress</code> / <code>StepDots</code> / <code>StreakProgress</code>', '<code>Progress</code> / <code>StreakProgress</code>')
+salvar(n, j)
+n = 'componentes__Progress'; j = carregar(n)
+j = j.replace('usar para etapas discretas (use <code>StepDots</code>).', 'usar para etapas discretas.')
+j = j.replace('Etapas discretas usam <code>StepDots</code> (cadastro) ; sequência com marcos usa <code>StreakProgress</code>.', 'Sequência com marcos usa <code>StreakProgress</code>.')
+salvar(n, j)
+for n in ('recursos__telas-novas', 'recursos__mapa-de-decisao', 'recursos__gerar-telas', 'padroes__padroes-de-tela', 'recursos__engenharia', 'componentes__Progress'):
+    if 'StepDots' in carregar(n): sys.exit('ainda cita StepDots: ' + n)

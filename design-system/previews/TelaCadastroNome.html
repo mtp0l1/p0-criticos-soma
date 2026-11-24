@@ -11,7 +11,7 @@ var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
 function Demo(){ var n=useState(''), d=useState(''); return h('div',{className:'relative h-[720px] bg-background'},
-  h(S.SignupStep,{title:'Vamos começar pelo seu nome e data de nascimento',step:1,icon:'user',onBack:function(){},onHelp:function(){},action:h(S.Button,{fullWidth:true,disabled:!n[0]||!d[0]},'Continuar')},
+  h(S.SignupStep,{title:'Vamos começar pelo seu nome e data de nascimento',icon:'user',onBack:function(){},onHelp:function(){},action:h(S.Button,{fullWidth:true,disabled:!n[0]||!d[0]},'Continuar')},
     h('div',{className:'grid gap-small'}, h(S.TextField,{label:'Nome e Sobrenome',required:true,placeholder:'Como devemos te chamar?',value:n[0],onChange:n[1],autoComplete:'name'}), h(S.TextField,{label:'Data de nascimento',required:true,placeholder:'Insira sua data de nascimento',value:d[0],onChange:d[1],inputMode:'numeric'})))); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>

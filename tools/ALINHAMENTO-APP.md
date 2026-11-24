@@ -19,7 +19,7 @@ Revisão feita em 23/11/2026, comparando o Campana com as 201 telas da v2 do app
 | `BalanceCard` | cartão creme | `tone="hero"` (azul-marinho, saldo em laranja) como padrão do Início |
 | `Tile` | cartão cinza de 80px | cartão de 128px em quatro tons (`light`, `primary`, `dark`, `peach`) |
 | `QuestionTeaser` | cartão com borda | banner pêssego com etiqueta e disco com seta |
-| `SignupStep` | `Header` "Cadastro" e pontos embaixo | barra de progresso no topo, tile de ícone e botão fixo no pé |
+| `SignupStep` | `Header` "Cadastro" e pontos de progresso embaixo | Voltar e Ajuda no topo, tile de ícone e botão fixo no pé; sem indicador "Passo N de 7" (o `StepDots` saiu do sistema) |
 | Telas de padrão | | Cadastro (8), Doar lista e Início recompostas com os módulos acima |
 
 Scripts: `alinhar-app-componentes.py` (código), `alinhar-app-paginas.py` (documentação e `index.d.ts`), tokens em `migrar-tokens-v2.py`.
