@@ -1,1 +1,4 @@
 /* CSS extra do Campana (texto, utilitários) vai aqui */
+
+/* entrada de um cartão que aparece depois de uma ação (endereço do CEP): sobe 6px e aparece, curto e sem rebote */
+@keyframes soma-rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}

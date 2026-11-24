@@ -99,16 +99,27 @@ export function InviteCodeField({ value, onChange, applied, error, onHelp }: Inv
 /* --------------------------------------------------------- NeighborhoodNote */
 
 export interface NeighborhoodNoteProps {
-  /** "Aclimação, São Paulo". */
+  /** Rua do CEP ("Rua Pires da Mota"). Sem ela, o bairro vira o título. */
+  street?: string;
+  /** Bairro ("Aclimação"). */
   neighborhood: string;
+  /** Cidade e UF ("São Paulo, SP"). */
+  city?: string;
+  /** Toque no lápis: volta ao CEP para corrigir. Sem ele, o lápis não aparece. */
   onFix?: () => void;
 }
-/** Bairro encontrado pelo CEP, com o link "Corrigir". Aparece quando o CEP completa 8 dígitos. */
-export function NeighborhoodNote({ neighborhood, onFix }: NeighborhoodNoteProps) {
+/** Endereço encontrado pelo CEP: cartão neutro com o pino, a rua e "bairro · cidade", e um lápis redondo para corrigir. Aparece quando o CEP completa 8 dígitos. Informa, não comemora: não use verde nem check. */
+export function NeighborhoodNote({ street, neighborhood, city, onFix }: NeighborhoodNoteProps) {
+  const title = street ?? neighborhood;
+  const sub = street ? [neighborhood, city].filter(Boolean).join(' · ') : city;
   return (
-    <div role="status" className="grid gap-nano justify-items-start">
-      <p className="body-small m-0 text-foreground">Bairro: {neighborhood}</p>
-      {onFix && <Button hierarchy="transparent" className="px-0" onClick={onFix}>Corrigir</Button>}
+    <div role="status" className="flex items-center gap-micro rounded-xl bg-surface-secondary p-[14px] text-foreground motion-safe:animate-[soma-rise_.24s_cubic-bezier(.2,.8,.2,1)_both]">
+      <span aria-hidden className="grid size-[40px] shrink-0 place-items-center rounded-full bg-surface-primary shadow-card"><Icon name="pin" tone="brand-strong" /></span>
+      <span className="grid min-w-0 flex-1 gap-0">
+        <span className="label truncate">{title}</span>
+        {sub && <span className="body-small truncate text-muted-foreground">{sub}</span>}
+      </span>
+      {onFix && <IconButton icon="pencil" label="Corrigir endereço" onClick={onFix} className="size-touch shrink-0 rounded-full bg-surface-primary text-icon-brand-strong shadow-card hover:bg-surface-primary active:bg-surface-primary" />}
     </div>
   );
 }

@@ -20,6 +20,7 @@ Revisão feita em 23/11/2026, comparando o Campana com as 201 telas da v2 do app
 | `Tile` | cartão cinza de 80px | cartão de 128px em quatro tons (`light`, `primary`, `dark`, `peach`) |
 | `QuestionTeaser` | cartão com borda | banner pêssego com etiqueta e disco com seta |
 | `SignupStep` | `Header` "Cadastro" e pontos de progresso embaixo | Voltar e Ajuda no topo, tile de ícone e botão fixo no pé; sem indicador "Passo N de 7" (o `StepDots` saiu do sistema) |
+| `NeighborhoodNote` (CEP) | "Bairro: …" com o link "Corrigir" solto; no protótipo, aviso verde com check | Cartão neutro com pino, rua, "bairro · cidade" e lápis redondo para corrigir; sem verde nem check |
 | Telas de padrão | | Cadastro (8), Doar lista e Início recompostas com os módulos acima |
 
 Scripts: `alinhar-app-componentes.py` (código), `alinhar-app-paginas.py` (documentação e `index.d.ts`), tokens em `migrar-tokens-v2.py`.
