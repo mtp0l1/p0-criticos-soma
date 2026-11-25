@@ -439,7 +439,7 @@ export interface SkeletonProps extends React$1.HTMLAttributes<HTMLDivElement> {
 	variant?: "text" | "row" | "card";
 	lines?: number;
 }
-/** Placeholder de carregamento. Adição intencional, inspirada no Skeleton do Andes e do shadcn. */
+/** Placeholder de carregamento. Adição intencional, inspirada no Skeleton do shadcn. */
 export declare function Skeleton({ variant, lines, className, ...props }: SkeletonProps): React$1.JSX.Element;
 export declare const alertVariants: (props?: ({
 	tone?: "positive" | "negative" | "caution" | "informative" | null | undefined;
@@ -1245,7 +1245,7 @@ export interface MessageProps {
 		onClick?: () => void;
 	};
 }
-/** Mensagem em linha que fica na tela (shadcn Alert + Message do Andes). */
+/** Mensagem em linha que fica na tela (shadcn Alert). */
 export declare function Message({ tone, title, children, action }: MessageProps): React$1.JSX.Element;
 export interface EmptyStateProps {
 	title: string;

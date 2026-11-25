@@ -149,7 +149,7 @@ export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
 const Bone = ({ className }: { className?: string }) => (
   <span className={cn('block rounded-sm bg-surface-secondary-hover animate-pulse motion-reduce:animate-none', className)} />
 );
-/** Placeholder de carregamento. Adição intencional, inspirada no Skeleton do Andes e do shadcn. */
+/** Placeholder de carregamento. Adição intencional, inspirada no Skeleton do shadcn. */
 export function Skeleton({ variant, lines = 2, className, ...props }: SkeletonProps) {
   if (!variant) return <div className={cn('rounded-md bg-surface-secondary-hover animate-pulse motion-reduce:animate-none', className)} {...props} />;
   const ls = Array.from({ length: lines }, (_, i) => <Bone key={i} className={cn('h-micro', i === lines - 1 ? 'w-[70%]' : 'w-full')} />);

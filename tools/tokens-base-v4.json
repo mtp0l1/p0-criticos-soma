@@ -738,7 +738,7 @@
     "usage": "Alias shadcn/ui → focus-ring. Anel de foco. Existe para componentes do shadcn funcionarem sem ajuste; em especificação escrita, prefira o nome So+ma."
    }
   ],
-  "note": "Três camadas: núcleo (valores do tema; o tema padrão usa as cores do primeiro produto), semântico Campana (o papel, como no Andes) e aliases shadcn/ui (background, primary, ring…) que apontam para os semânticos. Telas usam semânticos ou aliases; nunca o núcleo."
+  "note": "Três camadas: núcleo (valores do tema; o tema padrão usa as cores do primeiro produto), semântico Campana (o papel) e aliases shadcn/ui (background, primary, ring…) que apontam para os semânticos. Telas usam semânticos ou aliases; nunca o núcleo."
  },
  "type": {
   "fonts": [],
@@ -1025,7 +1025,7 @@
   ]
  },
  "shadow": {
-  "note": "O app é plano. Sombra só para o que flutua sobre a tela (Popover, Select, bottom sheet), como a elevação high do Andes.",
+  "note": "O app é plano. Sombra só para o que flutua sobre a tela (Popover, Select, bottom sheet).",
   "tokens": [
    {
     "name": "shadow-high",

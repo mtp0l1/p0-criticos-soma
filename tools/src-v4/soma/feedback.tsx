@@ -126,7 +126,7 @@ export interface MessageProps {
   action?: { label: string; onClick?: () => void };
 }
 const MSG_ICON: Record<NonNullable<MessageProps['tone']>, IconName> = { informative: 'info', positive: 'circle-check', caution: 'clock', negative: 'alert' };
-/** Mensagem em linha que fica na tela (shadcn Alert + Message do Andes). */
+/** Mensagem em linha que fica na tela (shadcn Alert). */
 export function Message({ tone = 'informative', title, children, action }: MessageProps) {
   return (
     <Alert tone={tone}>
