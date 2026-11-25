@@ -1,4 +1,4 @@
-/* Primitivas de exibição no padrão shadcn/ui: Badge, Card, Separator, Progress, Avatar, Skeleton, Alert. */
+/* Primitivas de exibição: Badge, Card, Separator, Progress, Avatar, Skeleton, Alert. */
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
@@ -30,7 +30,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement>, Varia
   /** Renderiza o filho (um link ou botão) com o visual do selo; ganha foco e hover. */
   asChild?: boolean;
 }
-/** Selo (shadcn Badge). Não interativo por padrão; com asChild vira link ou botão. Base de Tag e StatusChip. */
+/** Selo. Não interativo por padrão; com asChild vira link ou botão. Base de Tag e StatusChip. */
 export function Badge({ className, tone, asChild, ...props }: BadgeProps) {
   const Comp = asChild ? Slot : 'span';
   return <Comp className={cn(badgeVariants({ tone }), asChild && cn('cursor-pointer no-underline transition-colors hover:underline', focusRing), className)} {...props} />;
@@ -64,7 +64,7 @@ export function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHead
 export function CardDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
   return <p className={cn('caption m-0 text-muted-foreground', className)} {...props} />;
 }
-/** Ação no canto do cabeçalho do card (shadcn CardAction). Use dentro de CardHeader com `className="grid-cols-[1fr_auto]"`. */
+/** Ação no canto do cabeçalho do card. Use dentro de CardHeader com `className="grid-cols-[1fr_auto]"`. */
 export function CardAction({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return <div className={cn('col-start-2 row-span-2 row-start-1 self-start justify-self-end', className)} {...props} />;
 }
@@ -142,14 +142,14 @@ export const AvatarFallback = React.forwardRef<React.ElementRef<typeof AvatarPri
 /* ------------------------------------------------------------- Skeleton */
 
 export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Sem variant: um bloco livre (shadcn). text = parágrafo · row = linha com miniatura · card = bloco do tamanho de um tile. */
+  /** Sem variant: um bloco livre. text = parágrafo · row = linha com miniatura · card = bloco do tamanho de um tile. */
   variant?: 'text' | 'row' | 'card';
   lines?: number;
 }
 const Bone = ({ className }: { className?: string }) => (
   <span className={cn('block rounded-sm bg-surface-secondary-hover animate-pulse motion-reduce:animate-none', className)} />
 );
-/** Placeholder de carregamento. Adição intencional, inspirada no Skeleton do shadcn. */
+/** Placeholder de carregamento. Adição intencional, inspirada no Skeleton. */
 export function Skeleton({ variant, lines = 2, className, ...props }: SkeletonProps) {
   if (!variant) return <div className={cn('rounded-md bg-surface-secondary-hover animate-pulse motion-reduce:animate-none', className)} {...props} />;
   const ls = Array.from({ length: lines }, (_, i) => <Bone key={i} className={cn('h-micro', i === lines - 1 ? 'w-[70%]' : 'w-full')} />);
@@ -182,7 +182,7 @@ export const alertVariants = cva('relative grid grid-cols-[auto_1fr] gap-x-micro
   defaultVariants: { tone: 'informative' },
 });
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof alertVariants> {}
-/** shadcn Alert: base do Message. */
+/** Alert: base do Message. */
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert({ className, tone, ...props }, ref) {
   return <div ref={ref} role={tone === 'negative' ? 'alert' : 'status'} className={cn(alertVariants({ tone }), className)} {...props} />;
 });

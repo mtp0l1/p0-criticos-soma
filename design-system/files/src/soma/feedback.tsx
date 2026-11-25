@@ -25,10 +25,10 @@ export interface ModalProps {
   onOpenChange?: (open: boolean) => void;
   /** false esconde o X; use quando a única saída for a ação. */
   dismissible?: boolean;
-  /** false = sem película nem bloqueio de rolagem (Radix Dialog modal). Padrão true. */
+  /** false = sem película nem bloqueio de rolagem. Padrão true. */
   modal?: boolean;
 }
-/** Confirmação ou escolha com uma ação, sobre Radix Dialog: foco preso, Esc fecha, foco volta ao gatilho. */
+/** Confirmação ou escolha com uma ação, sobre Dialog: foco preso, Esc fecha, foco volta ao gatilho. */
 export function Modal({ title, children, art, actionLabel, onAction, actionDisabled, trigger, open, defaultOpen, onOpenChange, dismissible = true, modal = true }: ModalProps) {
   return (
     <Dialog open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange} modal={modal}>
@@ -70,7 +70,7 @@ export interface ToastProps extends VariantProps<typeof toastVariants> {
   surface?: 'inverse' | 'card';
 }
 const TOAST_ICON = { error: 'circle-x', success: 'circle-check', info: 'info' } as const;
-/** Visual do aviso passageiro. No app, renderize dentro do provedor de toast (Radix Toast ou Sonner) que cuida de tempo e fila. */
+/** Visual do aviso passageiro. No app, renderize dentro do provedor de toast que cuida de tempo e fila. */
 export function Toast({ message, kind = 'error', tone, onDismiss, icon, surface = 'inverse' }: ToastProps) {
   const k = kind ?? 'error';
   if (surface === 'card') {
@@ -94,7 +94,7 @@ export function Toast({ message, kind = 'error', tone, onDismiss, icon, surface 
 /* ------------------------------------------------------ Toaster / notify */
 
 export type ToasterProps = React.ComponentProps<typeof SonnerToaster>;
-/** Provedor de avisos (shadcn Sonner): cuida de fila, tempo, gesto de dispensar e anúncio. Monte uma vez na raiz do app. */
+/** Provedor de avisos: cuida de fila, tempo, gesto de dispensar e anúncio. Monte uma vez na raiz do app. */
 export function Toaster({ position = 'bottom-center', offset = 96, mobileOffset = 96, ...props }: ToasterProps) {
   return <SonnerToaster position={position} offset={offset} mobileOffset={mobileOffset} visibleToasts={2} containerAriaLabel="Avisos" toastOptions={{ unstyled: true, className: 'w-full' }} {...props} />;
 }
@@ -126,7 +126,7 @@ export interface MessageProps {
   action?: { label: string; onClick?: () => void };
 }
 const MSG_ICON: Record<NonNullable<MessageProps['tone']>, IconName> = { informative: 'info', positive: 'circle-check', caution: 'clock', negative: 'alert' };
-/** Mensagem em linha que fica na tela (shadcn Alert). */
+/** Mensagem em linha que fica na tela. */
 export function Message({ tone = 'informative', title, children, action }: MessageProps) {
   return (
     <Alert tone={tone}>

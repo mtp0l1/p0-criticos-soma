@@ -1,4 +1,4 @@
-/* Primitivas de controle no padrão shadcn/ui: Spinner, ButtonGroup, Toggle, ToggleGroup, Slider, NativeSelect, InputGroup, InputOTP, Field. */
+/* Primitivas de controle: Spinner, ButtonGroup, Toggle, ToggleGroup, Slider, NativeSelect, InputGroup, InputOTP, Field. */
 import * as React from 'react';
 import * as TogglePrimitive from '@radix-ui/react-toggle';
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
@@ -15,7 +15,7 @@ export interface SpinnerProps extends React.SVGAttributes<SVGSVGElement> {
   /** Texto para leitor de tela. Padrão "Carregando". */
   label?: string;
 }
-/** Indicador de espera sem duração conhecida (shadcn Spinner). Dentro de botão, use `loading` do Button. */
+/** Indicador de espera sem duração conhecida. Dentro de botão, use `loading` do Button. */
 export function Spinner({ className, label = 'Carregando', ...props }: SpinnerProps) {
   return <Loader2 role="status" aria-label={label} className={cn('size-icon animate-spin text-icon-brand-strong motion-reduce:animate-none', className)} {...props} />;
 }
@@ -32,7 +32,7 @@ export const buttonGroupVariants = cva('inline-flex [&>*]:relative [&>*:focus-vi
   defaultVariants: { orientation: 'horizontal' },
 });
 export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof buttonGroupVariants> {}
-/** Botões relacionados colados lado a lado (shadcn ButtonGroup). Dê um nome com aria-label. */
+/** Botões relacionados colados lado a lado. Dê um nome com aria-label. */
 export function ButtonGroup({ className, orientation, ...props }: ButtonGroupProps) {
   return <div role="group" data-orientation={orientation ?? 'horizontal'} className={cn(buttonGroupVariants({ orientation }), className)} {...props} />;
 }
@@ -58,7 +58,7 @@ export const toggleVariants = cva(
   },
 );
 export interface ToggleProps extends React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root>, VariantProps<typeof toggleVariants> {}
-/** Botão de liga e desliga (aria-pressed), sobre Radix Toggle. Ex.: favoritar uma recompensa. */
+/** Botão de liga e desliga (aria-pressed), sobre Toggle. Ex.: favoritar uma recompensa. */
 export const Toggle = React.forwardRef<React.ElementRef<typeof TogglePrimitive.Root>, ToggleProps>(function Toggle({ className, variant, size, ...props }, ref) {
   return <TogglePrimitive.Root ref={ref} className={cn(toggleVariants({ variant, size }), className)} {...props} />;
 });
@@ -90,7 +90,7 @@ export interface SliderProps extends React.ComponentPropsWithoutRef<typeof Slide
   /** Nome acessível de cada alça, na ordem (uma por valor). */
   thumbLabels?: string[];
 }
-/** Seleção de valor em faixa (Radix Slider). Mostre sempre o valor em texto ao lado. */
+/** Seleção de valor em faixa. Mostre sempre o valor em texto ao lado. */
 export const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.Root>, SliderProps>(function Slider(
   { className, thumbLabels, defaultValue, value, 'aria-label': ariaLabel, ...props },
   ref,
@@ -127,7 +127,7 @@ export const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.R
 /* ---------------------------------------------------------- NativeSelect */
 
 export type NativeSelectProps = React.SelectHTMLAttributes<HTMLSelectElement>;
-/** Select nativo do sistema (shadcn NativeSelect). No celular abre o seletor do aparelho: prefira-o para listas simples. */
+/** Select nativo do sistema. No celular abre o seletor do aparelho: prefira-o para listas simples. */
 export const NativeSelect = React.forwardRef<HTMLSelectElement, NativeSelectProps>(function NativeSelect({ className, children, ...props }, ref) {
   return (
     <div className="group relative w-full">
@@ -141,7 +141,7 @@ export const NativeSelect = React.forwardRef<HTMLSelectElement, NativeSelectProp
 
 /* ------------------------------------------------------------ InputGroup */
 
-/** Campo com ícone, texto ou botão dentro da mesma borda (shadcn InputGroup). O foco e o erro aparecem no grupo inteiro. */
+/** Campo com ícone, texto ou botão dentro da mesma borda. O foco e o erro aparecem no grupo inteiro. */
 export function InputGroup({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
@@ -185,7 +185,7 @@ export function InputGroupAddon({ className, align = 'start', ...props }: InputG
 
 /* -------------------------------------------------------------- InputOTP */
 
-/** Código de verificação por dígitos (shadcn InputOTP, sobre input-otp). Cola o código inteiro e lê o SMS no celular. */
+/** Código de verificação por dígitos. Cola o código inteiro e lê o SMS no celular. */
 export const InputOTP = React.forwardRef<React.ElementRef<typeof OTPInput>, React.ComponentPropsWithoutRef<typeof OTPInput>>(function InputOTP(
   { className, containerClassName, ...props },
   ref,
@@ -224,7 +224,7 @@ export function InputOTPSeparator(props: React.HTMLAttributes<HTMLDivElement>) {
 
 /* ----------------------------------------------------------------- Field */
 
-/** Grupo de campos com legenda (shadcn FieldSet). */
+/** Grupo de campos com legenda. */
 export function FieldSet({ className, ...props }: React.FieldsetHTMLAttributes<HTMLFieldSetElement>) {
   return <fieldset className={cn('m-0 grid min-w-0 gap-mini border-0 p-0', className)} {...props} />;
 }
@@ -246,7 +246,7 @@ export interface FieldProps extends React.HTMLAttributes<HTMLDivElement>, Varian
   invalid?: boolean;
   disabled?: boolean;
 }
-/** Um campo: rótulo, controle, ajuda e erro (shadcn Field). Marca data-invalid e data-disabled para os filhos. */
+/** Um campo: rótulo, controle, ajuda e erro. Marca data-invalid e data-disabled para os filhos. */
 export function Field({ className, orientation, invalid, disabled, ...props }: FieldProps) {
   return <div role="group" data-invalid={invalid || undefined} data-disabled={disabled || undefined} className={cn(fieldVariants({ orientation }), className)} {...props} />;
 }

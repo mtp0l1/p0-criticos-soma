@@ -46,7 +46,7 @@ export const buttonVariants = cva(
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  /** Renderiza o filho (ex.: um link) com o visual do botão. Padrão Radix Slot. */
+  /** Renderiza o filho (ex.: um link) com o visual do botão. Padrão Slot. */
   asChild?: boolean;
   icon?: IconName;
   iconPosition?: 'start' | 'end';

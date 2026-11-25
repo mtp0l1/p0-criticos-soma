@@ -1,4 +1,4 @@
-/* Primitivas de estrutura no padrão shadcn/ui: AspectRatio, ScrollArea, Collapsible, Table, Pagination, Carousel. */
+/* Primitivas de estrutura: AspectRatio, ScrollArea, Collapsible, Table, Pagination, Carousel. */
 import * as React from 'react';
 import * as AspectRatioPrimitive from '@radix-ui/react-aspect-ratio';
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
@@ -10,7 +10,7 @@ import { buttonVariants } from './button';
 
 /* ----------------------------------------------------------- AspectRatio */
 
-/** Mantém a proporção de imagem, vídeo ou mapa (Radix AspectRatio). Ex.: `ratio={16 / 9}`. */
+/** Mantém a proporção de imagem, vídeo ou mapa. Ex.: `ratio={16 / 9}`. */
 export const AspectRatio = AspectRatioPrimitive.Root;
 
 /* ------------------------------------------------------------ ScrollArea */
@@ -30,7 +30,7 @@ export const ScrollBar = React.forwardRef<
     </ScrollAreaPrimitive.ScrollAreaScrollbar>
   );
 });
-/** Área rolável com barra desenhada (Radix ScrollArea). A área recebe foco pelo teclado. */
+/** Área rolável com barra desenhada. A área recebe foco pelo teclado. */
 export const ScrollArea = React.forwardRef<React.ElementRef<typeof ScrollAreaPrimitive.Root>, React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>>(
   function ScrollArea({ className, children, ...props }, ref) {
     return (
@@ -47,7 +47,7 @@ export const ScrollArea = React.forwardRef<React.ElementRef<typeof ScrollAreaPri
 
 export const Collapsible = CollapsiblePrimitive.Root;
 export const CollapsibleTrigger = CollapsiblePrimitive.Trigger;
-/** Conteúdo que abre e fecha com animação de altura (Radix Collapsible). Para várias perguntas, use Accordion. */
+/** Conteúdo que abre e fecha com animação de altura. Para várias perguntas, use Accordion. */
 export const CollapsibleContent = React.forwardRef<
   React.ElementRef<typeof CollapsiblePrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.Content>
@@ -63,7 +63,7 @@ export const CollapsibleContent = React.forwardRef<
 
 /* ----------------------------------------------------------------- Table */
 
-/** Tabela de dados simples (shadcn Table), com rolagem horizontal própria. Ex.: extrato de pontos. */
+/** Tabela de dados simples, com rolagem horizontal própria. Ex.: extrato de pontos. */
 export const Table = React.forwardRef<HTMLTableElement, React.TableHTMLAttributes<HTMLTableElement>>(function Table({ className, ...props }, ref) {
   return (
     <div tabIndex={0} role="region" aria-label={props['aria-label'] ?? 'Tabela'} className={cn('w-full overflow-x-auto rounded-lg border border-border bg-card', focusRing)}>
@@ -95,7 +95,7 @@ export function TableCaption({ className, ...props }: React.HTMLAttributes<HTMLT
 
 /* ------------------------------------------------------------ Pagination */
 
-/** Navegação entre páginas (shadcn Pagination). No app, prefira "Carregar mais"; use em listas longas com posição conhecida. */
+/** Navegação entre páginas. No app, prefira "Carregar mais"; use em listas longas com posição conhecida. */
 export function Pagination({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
   return <nav aria-label="Paginação" className={cn('flex w-full justify-center', className)} {...props} />;
 }
@@ -152,7 +152,7 @@ export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
   opts?: CarouselOptions;
   setApi?: (api: CarouselApi) => void;
 }
-/** Carrossel por gesto (shadcn Carousel, sobre Embla). Sem avanço automático; setas do teclado passam os slides. */
+/** Carrossel por gesto. Sem avanço automático; setas do teclado passam os slides. */
 export function Carousel({ label, opts, setApi, className, children, ...props }: CarouselProps) {
   const [viewportRef, api] = useEmblaCarousel({ align: 'start', ...opts });
   const [state, setState] = React.useState({ canPrev: false, canNext: false, selected: 0, count: 0 });

@@ -134,7 +134,7 @@ export interface InstitutionDetailModalProps {
 }
 const infoRow = 'flex items-center gap-nano';
 const infoIcon = 'grid size-[24px] shrink-0 place-items-center rounded-full bg-border text-icon-secondary';
-/** Modal "Saber mais" da instituição (Radix Dialog): banner, nome, descrição e contatos. Fecha pelo X sobre a imagem, por Esc ou fora. */
+/** Modal "Saber mais" da instituição: banner, nome, descrição e contatos. Fecha pelo X sobre a imagem, por Esc ou fora. */
 export function InstitutionDetailModal({ name, description, address, phone, site, image, trigger, open, defaultOpen, onOpenChange, modal = true }: InstitutionDetailModalProps) {
   return (
     <Dialog open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange} modal={modal}>

@@ -1,4 +1,4 @@
-/* So+ma · preset Tailwind gerado de tokens.json. Use com shadcn/ui: presets: [require('./tailwind.preset.js')] */
+/* So+ma · preset Tailwind gerado de tokens.json. Use em presets: [require('./tailwind.preset.js')] */
 /* Cores, espaços, raios e sombra apontam para as variáveis de tokens.css: o valor muda num lugar só. */
 module.exports = {
   "darkMode": [

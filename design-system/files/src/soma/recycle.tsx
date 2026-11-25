@@ -103,7 +103,7 @@ export interface SlotPickerProps {
   onChange?: (v: string) => void;
   className?: string;
 }
-/** Escolha de data ou horário em fileira rolável, sobre Radix RadioGroup (setas do teclado, um ponto de tabulação). */
+/** Escolha de data ou horário em fileira rolável, sobre RadioGroup (setas do teclado, um ponto de tabulação). */
 export function SlotPicker({ label, slots, value, onChange, className }: SlotPickerProps) {
   const id = React.useId();
   return (

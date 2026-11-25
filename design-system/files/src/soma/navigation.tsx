@@ -115,7 +115,7 @@ export interface TabBarProps {
   active: TabId;
   onNavigate?: (id: TabId) => void;
 }
-/** Navegação inferior fixa. É navegação (nav + aria-current), não abas: por isso não usa Radix Tabs. */
+/** Navegação inferior fixa. É navegação (nav + aria-current), não abas: por isso não usa Tabs. */
 export function TabBar({ active, onNavigate }: TabBarProps) {
   return (
     <nav aria-label="Navegação principal" className="mx-mini mb-small flex min-h-tabbar w-[calc(100%-32px)] [contain:inline-size] items-center justify-between rounded-3xl bg-surface-primary/[.86] px-nano shadow-float backdrop-blur-[24px] motion-reduce:backdrop-blur-none motion-reduce:bg-surface-primary">
@@ -168,9 +168,9 @@ function TabsImpl({ items, value, onChange, label, children, className, variant 
     </TabsRoot>
   );
 }
-/** Abas com sublinhado (Radix Tabs), para filtrar o mesmo conteúdo. */
+/** Abas com sublinhado, para filtrar o mesmo conteúdo. */
 export function Tabs(props: TabsProps) { return <TabsImpl {...props} variant="underline" />; }
-/** Controle em pílula (Radix Tabs, variante segmented), para alternar seções. */
+/** Controle em pílula, para alternar seções. */
 export function SegmentedControl(props: TabsProps) { return <TabsImpl {...props} variant="segmented" />; }
 /** Abas em pílulas soltas: a ativa cheia, as outras contornadas (Recompensas: Catálogo | Meus resgates). */
 export function PillTabs(props: TabsProps) { return <TabsImpl {...props} variant="pill" />; }

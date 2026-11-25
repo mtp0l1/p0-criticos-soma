@@ -1,11 +1,10 @@
 /**
  * So+ma · design system.
- * Arquitetura do shadcn/ui: primitivas em ui/ (Radix + class-variance-authority + Tailwind + cn),
- * componentes de produto em soma/ montados sobre elas. Tokens: tokens.json → tokens.css → tailwind.preset.js.
+ * Primitivas em ui/, componentes de produto em soma/ montados sobre elas. Tokens: tokens.json → tokens.css → tailwind.preset.js.
  */
 export { cn, focusRing, disabledState, hitArea, tintBg, tintFor, type Tint } from './lib/utils';
 
-/* Primitivas (camada shadcn/ui) */
+/* Primitivas */
 export { Icon, ICONS, ICON_ALIASES, iconVariants, isVectorIcon, loadVectorIcons, configureVectorIcons, VECTOR_ICON_GROUPS, VECTOR_ICON_GROUP, VECTOR_ICON_NAMES, VECTOR_SHADOWED, type IconName, type LucideIconName, type VectorIconName, type VectorIconGroup, type IconProps } from './ui/icon';
 export { Button, IconButton, buttonVariants, type ButtonProps, type IconButtonProps } from './ui/button';
 export {
@@ -59,13 +58,13 @@ export type { DeliveryCardProps, SpaceCardProps, SpaceDetailProps, SlotPickerPro
 export { InviteCodeCard, FriendRequestSheet, ContactRow } from './soma/social';
 export type { InviteCodeCardProps, FriendRequestSheetProps, ContactRowProps } from './soma/social';
 
-/* shadcn/ui: controles */
+/* controles */
 export { Spinner, ButtonGroup, buttonGroupVariants, Toggle, ToggleGroup, ToggleGroupItem, toggleVariants, Slider, NativeSelect, InputGroup, InputGroupInput, InputGroupAddon, InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator, FieldSet, FieldLegend, FieldGroup, Field, FieldLabel, FieldContent, FieldDescription, FieldError, FieldSeparator, fieldVariants } from './ui/controls';
 export type { SpinnerProps, ButtonGroupProps, ToggleProps, ToggleGroupProps, SliderProps, NativeSelectProps, InputGroupAddonProps, InputOTPSlotProps, FieldProps } from './ui/controls';
-/* shadcn/ui: estrutura */
+/* estrutura */
 export { AspectRatio, ScrollArea, ScrollBar, Collapsible, CollapsibleTrigger, CollapsibleContent, Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption, Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis, Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, CarouselDots } from './ui/layout';
 export type { PaginationLinkProps, CarouselProps } from './ui/layout';
-/* shadcn/ui: menus e sobreposição */
+/* menus e sobreposição */
 export { DropdownMenu, DropdownMenuTrigger, DropdownMenuGroup, DropdownMenuPortal, DropdownMenuSub, DropdownMenuRadioGroup, DropdownMenuContent, DropdownMenuItem, DropdownMenuCheckboxItem, DropdownMenuRadioItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuSubTrigger, DropdownMenuSubContent, Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandSeparator, CommandItem, Combobox, Drawer, DrawerTrigger, DrawerPortal, DrawerClose, DrawerOverlay, DrawerContent, DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription } from './ui/menus';
 export type { DropdownMenuItemProps, ComboboxProps, ComboboxOption } from './ui/menus';
 export { DeliverySummaryCard, DeliveryHistoryRow, DeliveryDayCard, RewardChoiceList, GoalProgressCard, GoalNote, ReminderCard, ShareImpactModal } from './soma/delivery';

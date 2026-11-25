@@ -1,4 +1,4 @@
-/* Primitivas de sobreposição e disclosure no padrão shadcn/ui: Dialog, Sheet, AlertDialog, Popover, Accordion, Tabs. */
+/* Primitivas de sobreposição e disclosure: Dialog, Sheet, AlertDialog, Popover, Accordion, Tabs. */
 import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
@@ -106,7 +106,7 @@ export interface SheetContentProps extends React.ComponentPropsWithoutRef<typeof
   /** Alça cinza no topo do bottom sheet (padrão `true`). O Cadastro não usa alça. */
   handle?: boolean;
 }
-/** Bottom sheet (shadcn Sheet com side="bottom"): alça no topo, raio radius-xlarge, sombra high. */
+/** Bottom sheet: alça no topo, raio radius-xlarge, sombra high. */
 export const SheetContent = React.forwardRef<React.ElementRef<typeof DialogPrimitive.Content>, SheetContentProps>(function SheetContent(
   { side, className, children, showClose = false, handle = true, ...props },
   ref,

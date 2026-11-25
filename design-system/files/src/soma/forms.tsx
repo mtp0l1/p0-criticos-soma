@@ -79,7 +79,7 @@ export interface TextFieldProps extends Omit<InputProps, 'onChange' | 'value'> {
   /** Elemento dentro do campo, à direita (o botão de mostrar senha do `PasswordField`). */
   trailing?: React.ReactNode;
 }
-/** Campo completo no padrão shadcn Form: Label + Input + descrição + mensagem, ligados por id e aria. Altura de 48px (`size-input`). */
+/** Campo completo no padrão: Label + Input + descrição + mensagem, ligados por id e aria. Altura de 48px (`size-input`). */
 export function TextField({ label, value, onChange, helper, error, id, required, mask, trailing, className, placeholder, ...props }: TextFieldProps) {
   const auto = React.useId();
   const fid = id ?? auto;
@@ -146,7 +146,7 @@ export interface ChoiceChipsProps {
   /** Uma linha rolável em vez de quebrar. */
   scroll?: boolean;
 }
-/** Escolha única em pílula, sobre Radix RadioGroup (setas do teclado, um ponto de tabulação). */
+/** Escolha única em pílula, sobre RadioGroup (setas do teclado, um ponto de tabulação). */
 export function ChoiceChips({ label, options, value, onChange, variant = 'outline', scroll }: ChoiceChipsProps) {
   return (
     <RadioGroupPrimitive.Root aria-label={label} value={value} onValueChange={onChange} orientation="horizontal" className={cn('flex gap-nano', scroll ? '-mx-xsmall overflow-x-auto px-xsmall pb-xnano [scrollbar-width:none]' : 'flex-wrap')}>
@@ -215,7 +215,7 @@ export function MaterialResult({ name, image, accepted, recyclable, category }: 
 /* ----------------------------------------------------------- HelpfulVote */
 
 export interface HelpfulVoteProps { question?: string; value?: 'sim' | 'nao'; onVote?: (v: 'sim' | 'nao') => void }
-/** "Essa resposta foi útil?", sobre Radix ToggleGroup (seleção única, aria-pressed). */
+/** "Essa resposta foi útil?", sobre ToggleGroup (seleção única, aria-pressed). */
 export function HelpfulVote({ question = 'Essa resposta foi útil?', value, onVote }: HelpfulVoteProps) {
   const item = cn(
     'body min-h-touch min-w-[64px] cursor-pointer rounded-sm border-[1.5px] border-interactive-border-quiet bg-surface-primary px-mini font-semibold text-foreground transition-colors',

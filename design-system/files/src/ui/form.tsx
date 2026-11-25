@@ -1,4 +1,4 @@
-/* Primitivas de formulário no padrão shadcn/ui: Label, Input, Textarea, Checkbox, Switch, RadioGroup, Select. */
+/* Primitivas de formulário: Label, Input, Textarea, Checkbox, Switch, RadioGroup, Select. */
 import * as React from 'react';
 import * as LabelPrimitive from '@radix-ui/react-label';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
@@ -29,7 +29,7 @@ export const fieldBase = cn(
 );
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
-/** shadcn Input com a altura e a borda acessível do So+ma. */
+/** Input com a altura e a borda acessível do So+ma. */
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input({ className, type = 'text', ...props }, ref) {
   return <input ref={ref} type={type} className={cn(fieldBase, 'h-input min-w-0 file:mr-micro file:h-full file:cursor-pointer file:border-0 file:bg-transparent file:font-sans file:font-semibold file:text-text-link', className)} {...props} />;
 });

@@ -1,6 +1,6 @@
 # Campana, o design system da So+ma
 
-> Design system white label da So+ma, para qualquer produto do ecossistema: núcleo, módulos opcionais, tokens, componentes (shadcn/ui), ícones Lucide e padrões de tela.
+> Design system white label da So+ma, para qualquer produto do ecossistema: núcleo, módulos opcionais, tokens, componentes, ícones Lucide e padrões de tela.
 
 ## Para IAs
 - [AGENTS.md](files/AGENTS.md): ordem de leitura e regras

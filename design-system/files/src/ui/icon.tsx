@@ -17,7 +17,7 @@ import {
 } from '../assets/icons';
 
 /**
- * Ícones de linha do sistema: Lucide (o set do shadcn/ui), o mesmo set das telas novas no Figma.
+ * Ícones de linha do sistema: Lucide (o set/ui), o mesmo set das telas novas no Figma.
  * Os ícones "SVG fornecido" do Figma também são Lucide: Reciclar = recycle, Meu impacto = chart,
  * Pino = pin, Recompensas = gift. Nomes de camada do Figma funcionam como apelido (help-circle, map-pin, clock-3…).
  */

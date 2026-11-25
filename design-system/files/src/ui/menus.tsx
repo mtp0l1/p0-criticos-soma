@@ -1,4 +1,4 @@
-/* Primitivas de menu e sobreposição no padrão shadcn/ui: DropdownMenu, Command, Combobox, Drawer. */
+/* Primitivas de menu e sobreposição: DropdownMenu, Command, Combobox, Drawer. */
 import * as React from 'react';
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 import { Command as CommandPrimitive } from 'cmdk';
@@ -24,7 +24,7 @@ export const DropdownMenuPortal = DropdownMenuPrimitive.Portal;
 export const DropdownMenuSub = DropdownMenuPrimitive.Sub;
 export const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
 
-/** Menu de ações de um item (Radix DropdownMenu): abre no toque, setas e letras navegam, Esc fecha e devolve o foco. */
+/** Menu de ações de um item: abre no toque, setas e letras navegam, Esc fecha e devolve o foco. */
 export const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
@@ -121,7 +121,7 @@ export const DropdownMenuSubContent = React.forwardRef<
 
 /* --------------------------------------------------------------- Command */
 
-/** Lista com busca e navegação por teclado (shadcn Command, sobre cmdk). Base do Combobox. */
+/** Lista com busca e navegação por teclado. Base do Combobox. */
 export const Command = React.forwardRef<React.ElementRef<typeof CommandPrimitive>, React.ComponentPropsWithoutRef<typeof CommandPrimitive>>(
   function Command({ className, ...props }, ref) {
     return <CommandPrimitive ref={ref} className={cn('flex size-full flex-col overflow-hidden rounded-md bg-popover font-sans text-popover-foreground', className)} {...props} />;
@@ -201,7 +201,7 @@ export interface ComboboxProps {
   disabled?: boolean;
   className?: string;
 }
-/** Select com busca para listas longas, como cidade (shadcn Combobox: Popover + Command). */
+/** Select com busca para listas longas, como cidade. */
 export function Combobox({ options, value, onChange, placeholder = 'Selecione', searchPlaceholder = 'Buscar', emptyText = 'Nada encontrado', className, id, disabled, ...aria }: ComboboxProps) {
   const [open, setOpen] = React.useState(false);
   const current = options.find((o) => o.value === value);
@@ -244,7 +244,7 @@ export function Combobox({ options, value, onChange, placeholder = 'Selecione', 
 
 /* ---------------------------------------------------------------- Drawer */
 
-/** Bottom sheet com gesto de arrastar para fechar (shadcn Drawer, sobre Vaul). Sem gesto, use Sheet. */
+/** Bottom sheet com gesto de arrastar para fechar. Sem gesto, use Sheet. */
 export function Drawer({ shouldScaleBackground = false, ...props }: React.ComponentProps<typeof DrawerPrimitive.Root>) {
   return <DrawerPrimitive.Root shouldScaleBackground={shouldScaleBackground} {...props} />;
 }
