@@ -18,7 +18,7 @@ Leia isto primeiro. Vale para qualquer IA (Claude, Claude Design, IA do Figma, C
 - **CMP-02** Não crie variante. Se a necessidade não cabe nas variantes que existem, é peça nova (CMP-03).
 - **CMP-03** Peça nova entra rotulada `##Nome##` com quatro dados: nome, tarefa que resolve, motivo de não caber no que existe e origem (tela do Figma ou pedido). Sem os quatro, não entra.
 - **CMP-04** Não mude o desenho de um componente por `className` ou `style`: cor, raio, altura e espaço vêm das props e dos tokens.
-- **CMP-05** Toda tela tem um só cabeçalho (`Header`): título centralizado, mesma altura, voltar em círculo à esquerda só quando há tela anterior e no máximo uma ação à direita. Telas raiz de aba (Meu impacto, Ranking) usam o mesmo cabeçalho, sem voltar. Título grande à esquerda não existe.
+- **CMP-05** Toda tela tem um só cabeçalho (`Header`): título centralizado, mesma altura, voltar em círculo à esquerda e, à direita, só a ajuda (`?`) no Início e nas telas do cadastro; nas demais telas não há ação à direita. Título grande à esquerda não existe.
 - Prefira o núcleo. Use um módulo de produto só quando o produto tem a funcionalidade dele. Nome de peça nova vem da tarefa, nunca do produto.
 
 ## Valores que se conferem

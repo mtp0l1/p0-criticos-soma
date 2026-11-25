@@ -41,7 +41,7 @@ export interface HeaderProps {
   title: string;
   /** Voltar para a tela anterior real (nunca direto para o Início). Sem ele, a seta não aparece. */
   onBack?: () => void;
-  /** Uma ação à direita (ajuda, carrinho). Nunca um "Fechar" junto do voltar. */
+  /** Uma ação à direita: a ajuda (`?`) só no Início e no cadastro. Nunca um "Fechar" junto do voltar. */
   action?: { icon: IconName; label: string; onClick?: () => void };
   /**
    * center = título centralizado, seta solta (padrão; Doar, Cadastro, telas anteriores).

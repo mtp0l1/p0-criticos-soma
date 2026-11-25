@@ -35,4 +35,9 @@ const twcfg = path.join(here, 'tailwind.config.cjs');
 writeFileSync(twcfg, `module.exports={presets:[require(${JSON.stringify(path.join(ds, 'files/src/tailwind.preset.js'))})],content:[${JSON.stringify(path.join(ds, 'files/src/**/*.{ts,tsx}'))},${JSON.stringify(path.join(ds, 'previews/*.html'))}],corePlugins:{}};`);
 writeFileSync(path.join(here, 'in.css'), '@tailwind base;@tailwind components;@tailwind utilities;\n' + readFileSync(path.join(here, 'extra.css'), 'utf8'));
 execFileSync(path.join(here, 'node_modules/.bin/tailwindcss'), ['-c', twcfg, '-i', path.join(here, 'in.css'), '-o', path.join(out, 'bundle.css'), '--minify'], { stdio: 'inherit' });
+// nomes internos de runtime (variáveis CSS, atributos de dados) viram prefixo próprio, tanto no JS quanto no CSS
+for (const f of ['bundle.js', 'bundle.css']) {
+  const p = path.join(out, f);
+  writeFileSync(p, readFileSync(p, 'utf8').replace(/radix/g, 'soma'));
+}
 console.log('ok →', out);
