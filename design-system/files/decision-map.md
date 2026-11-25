@@ -20,7 +20,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 
 | Componente | Usar para | Nunca |
 |---|---|---|
-| `Header` | Cabeçalho de tela com voltar, título e no máximo uma ação. | pôr mais de uma ação à direita, título com mais de uma linha, nem botão "Voltar" no corpo da tela. |
+| `Header` | Cabeçalho de tela com voltar, título e no máximo uma ação. | pôr mais de uma ação à direita, título com mais de uma linha, nem botão "Voltar" no corpo da tela, nem título à esquerda: telas raiz de aba usam o mesmo cabeçalho centralizado, sem voltar. |
 | `ListRow` | Linha de lista em dois formatos: `help` (creme, com título, legenda e seta) e `menu` (ícone, rótulo e divisor). | misturar os formatos `help` e `menu` na mesma lista. |
 | `LocationBar` | Barra do topo que mostra o espaço de recebimento onde a pessoa entrega e abre a troca de local. | esconder a troca de local; sem espaço escolhido vira chamada, não some. |
 | `Pagination` | Navegação entre páginas de uma lista (shadcn Pagination). | usar em lista curta ou rolagem infinita. |

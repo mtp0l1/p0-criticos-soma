@@ -46,7 +46,7 @@ export interface HeaderProps {
   /**
    * center = título centralizado, seta solta (padrão; Doar, Cadastro, telas anteriores).
    * round = voltar em círculo creme, título centralizado em text-secondary (Quiz).
-   * start = título de tela raiz à esquerda em screen-title, botões em círculo (Ranking).
+   * start = obsoleto: vira o mesmo arranjo do center. Telas raiz de aba (Meu impacto, Ranking) usam center sem onBack.
    * eyebrow = seta solta e título pequeno em maiúsculas, apagado (QR do dia da entrega: "VILA VERDE").
    */
   variant?: 'center' | 'round' | 'start' | 'eyebrow';
@@ -55,20 +55,13 @@ export interface HeaderProps {
   className?: string;
 }
 const roundBtn = 'size-back rounded-full bg-surface-primary text-icon-primary shadow-card hover:bg-surface-accent active:bg-surface-accent';
-export function Header({ title, onBack, action, variant = 'center', divider = true, className }: HeaderProps) {
+export function Header({ title, onBack, action, variant: variantProp = 'center', divider = true, className }: HeaderProps) {
+  let variant = variantProp;
   const round = true;
   const back = onBack ? <IconButton icon={round ? 'arrow-left' : 'chevron-left'} label="Voltar" onClick={onBack} className={round ? roundBtn : 'text-foreground'} /> : null;
   const act = action ? <IconButton icon={action.icon} label={action.label} onClick={action.onClick} className={round ? roundBtn : undefined} /> : null;
   const shell = cn('bg-transparent px-xsmall py-nano text-foreground', className);
-  if (variant === 'start') {
-    return (
-      <header className={cn(shell, 'flex min-h-header items-center gap-micro')}>
-        {back}
-        <h1 className="screen-title m-0 min-w-0 flex-1 truncate">{title}</h1>
-        {act}
-      </header>
-    );
-  }
+  if (variant === 'start') variant = 'center'; // obsoleto: um só cabeçalho (título centralizado, mesma altura e mesmos slots)
   return (
     <header className={cn(shell, 'grid min-h-header grid-cols-[theme(spacing.touch)_1fr_theme(spacing.touch)] items-center')}>
       {back ?? <span />}
