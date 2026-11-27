@@ -80,6 +80,8 @@ export interface RewardTag { label: string; tone?: 'positive' | 'caution' | 'neu
 export interface RewardRowProps {
   title: string;
   points: number;
+  /** Saldo da pessoa. Com ele, a linha diz quanto falta ou que já dá para trocar. */
+  balance?: number;
   /** Etiquetas curtas ao lado dos pontos: "2× vidro" (positive). */
   tags?: RewardTag[];
   /** Prêmio da meta atual: borda de destaque e etiqueta "Sua meta atual". */
@@ -90,8 +92,9 @@ export interface RewardRowProps {
   href?: string;
   onClick?: () => void;
 }
-/** Linha do catálogo (Telas 1, 5, 9 e 23): título, pontos em cor de link e seta. Tocável inteira; abre o detalhe. Prêmios acima do saldo aparecem iguais. */
-export function RewardRow({ title, points, tags, current, image, icon, href, onClick }: RewardRowProps) {
+/** Linha do catálogo (Telas 1, 5, 9 e 23): título, pontos em cor de link e seta. Tocável inteira; abre o detalhe. Com `balance`, mostra "Faltam N pontos" ou "Você já pode trocar". */
+export function RewardRow({ title, points, balance, tags, current, image, icon, href, onClick }: RewardRowProps) {
+  const missing = balance == null ? null : Math.max(0, points - balance);
   const all: RewardTag[] = [...(current ? [{ label: 'Sua meta atual', tone: 'caution' as const }] : []), ...(tags ?? [])];
   return (
     <PressableBase
@@ -104,6 +107,8 @@ export function RewardRow({ title, points, tags, current, image, icon, href, onC
         <span className="label">{title}</span>
         <span className="flex flex-wrap items-center gap-nano">
           <span className="caption font-semibold text-text-link">{fmt(points)} pontos</span>
+          {missing === 0 && <span className="caption font-semibold text-feedback-text-positive">Você já pode trocar</span>}
+          {!!missing && <span className="caption text-muted-foreground">{missing === 1 ? 'Falta 1 ponto' : `Faltam ${fmt(missing)} pontos`}</span>}
           {all.map((t) => <Badge key={t.label} tone={(t.tone ?? 'neutral') as BadgeProps['tone']}>{t.icon && <Icon name={t.icon} />}{t.label}</Badge>)}
         </span>
       </span>
