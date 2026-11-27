@@ -23,7 +23,7 @@ function Demo(){ var e=useState('batel'), d=useState(''), t=useState(''), m=useS
   return h('div',{className:'flex min-h-[1020px] flex-col bg-background'},
   h(S.Header,{title:'',onBack:function(){},divider:false}),
   h('main',{className:'grid flex-1 content-start gap-small px-xsmall'},
-    h('h1',{className:'page-title m-0'},'Em qual espaço de recebimento você vai entregar?'),
+    h('h1',{className:'page-title m-0'},'Onde você vai entregar?'),
     h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{size:'eyebrow',title:'Escolha o espaço'}),
       ESPACOS.map(function(x){ return h(S.SpaceCard,{key:x.value,name:x.name,distance:x.distance,address:x.address,hours:x.hours,selected:e[0]===x.value,onSelect:function(){ e[1](x.value); if(x.value==='batel'&&t[0]==='08') t[1](''); },onDirections:function(){ m[1](x); }}); })),
     h(S.SlotPicker,{label:'Escolha a data',note:'Domingo fechado',wrap:true,slots:DIAS,value:d[0],onChange:d[1]}),
