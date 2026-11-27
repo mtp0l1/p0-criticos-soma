@@ -12,10 +12,9 @@ var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
 function Demo(){ return h('div',{className:'flex min-h-[880px] flex-col bg-background'},
   h('main',{className:'grid flex-1 content-start gap-small px-xsmall pb-medium pt-xsmall'},
-    h(S.LocationBar,{location:'Vila Verde'}),
-    h(S.HomeGreeting,{name:'Anna',onQr:function(){},onHelp:function(){}}),
-    h('div',{className:'grid gap-nano'}, h(S.GoalSummaryCard,{title:'Fones de ouvido Bluetooth',goal:800,remaining:656,icon:'headphones'}), h(S.BalanceCard,{tone:'dark',points:144,action:{label:'Ver meta'}})),
-    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{size:'eyebrow',title:'Atividade recente'}), h(S.ActivityRow,{title:'Entrega registrada',detail:'3,2 kg de PET · +64 pontos',action:{label:'Ver recibo'}}))),
+    h(S.HomeGreeting,{name:'Mônica',onQr:function(){},onHelp:function(){}}),
+    h('div',{className:'grid gap-nano'}, h(S.GoalSummaryCard,{title:'Fones de ouvido Bluetooth',goal:800,remaining:656,icon:'headphones'}), h(S.BalanceCard,{tone:'card',points:144,action:{label:'Ver meta'}})),
+    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{size:'eyebrow',title:'Atividade recente'}), h(S.ActivityRow,{title:'Entrega registrada',detail:'0,71 kg de PET · +64 pontos',action:{label:'Ver recibo'}}))),
   h(S.TabBar,{active:'inicio'})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>

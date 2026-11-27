@@ -33,11 +33,11 @@ export function SignupStep({ title, description, icon, onBack, onHelp, children,
   return (
     <main className={cn('flex min-h-full flex-col px-xsmall pb-small pt-nano', className)}>
       <header className="flex min-h-header items-center justify-between gap-nano">
-        {onBack ? <IconButton icon="arrow-left" label="Voltar" onClick={onBack} className={stepDisc} /> : <span />}
+        {onBack ? <IconButton icon="chevron-left" label="Voltar" onClick={onBack} className={stepDisc} /> : <span />}
         {onHelp ? <IconButton icon="help" label="Ajuda" onClick={onHelp} className={stepDisc} /> : <span />}
       </header>
       <div className="grid content-start gap-small pt-large">
-        {icon && <span aria-hidden className={cn('grid size-[52px] place-items-center rounded-lg', tintBg.peach)}><Icon name={icon} tone="brand" /></span>}
+        {icon && <span aria-hidden className={cn('grid size-[56px] place-items-center rounded-full text-text-link', tintBg.peach)}><Icon name={icon} size="large" /></span>}
         <div className="grid gap-nano">
           <h2 className="page-title m-0">{title}</h2>
           {description && <p className="body-small m-0 text-muted-foreground">{description}</p>}
@@ -87,11 +87,13 @@ export interface InviteCodeFieldProps {
 }
 /** Campo opcional de código de convite com o estado "Código aplicado" e o link "Onde encontro o código?". */
 export function InviteCodeField({ value, onChange, applied, error, onHelp }: InviteCodeFieldProps) {
+  const ok = applied && !error;
   return (
     <div className="grid gap-nano">
-      <TextField label="Código de convite (opcional)" placeholder="Ex.: REC7X4KP" autoCapitalize="characters" autoComplete="off" value={value} onChange={(v) => onChange(v.toUpperCase())} error={error} />
-      {applied && !error && <p role="status" className="body-small m-0 flex items-center gap-xnano text-foreground">Código aplicado <Icon name="check" size="small" /></p>}
-      {onHelp && <Button hierarchy="transparent" className="justify-self-start px-0" onClick={onHelp}>Onde encontro o código?</Button>}
+      <TextField label="Código de convite (opcional)" placeholder="Ex.: REC7X4KP" autoCapitalize="characters" autoComplete="off" value={value} onChange={(v) => onChange(v.toUpperCase())} error={error}
+        trailing={ok ? <span aria-hidden className="mr-nano grid size-[24px] place-items-center rounded-full bg-feedback-text-positive text-text-inverse"><Icon name="check" size="small" /></span> : undefined} />
+      {ok && <p role="status" className="body-small m-0 font-bold text-feedback-text-positive">Código aplicado</p>}
+      {onHelp && <Button hierarchy="transparent" className="justify-self-start px-0" onClick={onHelp}>Onde encontro o código? →</Button>}
     </div>
   );
 }
@@ -134,7 +136,7 @@ interface SignupSheetProps {
   modal?: boolean;
   trigger?: React.ReactNode;
 }
-const sheetCls = 'gap-small rounded-t-lg bg-surface-secondary px-xsmall pb-medium pt-small';
+const sheetCls = 'gap-small rounded-t-xl bg-background px-xsmall pb-medium pt-small';
 
 /* -------------------------------------------------------- AccountExistsSheet */
 
@@ -149,14 +151,15 @@ export function AccountExistsSheet({ phone, onSignIn, onUseOther, open, defaultO
   return (
     <Sheet open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange} modal={modal}>
       {trigger && <SheetTrigger asChild>{trigger}</SheetTrigger>}
-      <SheetContent side="bottom" handle={false} className={sheetCls}>
+      <SheetContent side="bottom" className={sheetCls}>
         <SheetHeader className="gap-nano text-left">
-          <SheetTitle className="body m-0 text-left font-bold">O {phone} já tem uma conta</SheetTitle>
+          <span aria-hidden className="grid size-[48px] place-items-center rounded-full bg-surface-tint-peach text-text-link"><Icon name="phone" /></span>
+          <SheetTitle className="screen-title !text-[18px] !font-bold !leading-6 m-0 text-left">O {phone} já tem uma conta</SheetTitle>
           <SheetDescription className="body-small m-0 text-left text-muted-foreground">Entre na sua conta ou cadastre outro número.</SheetDescription>
         </SheetHeader>
         <div className="grid gap-nano">
           <SheetClose asChild><Button fullWidth onClick={onSignIn}>Entrar na minha conta</Button></SheetClose>
-          <SheetClose asChild><Button fullWidth hierarchy="quiet" onClick={onUseOther}>Usar outro número</Button></SheetClose>
+          <SheetClose asChild><Button fullWidth hierarchy="quiet" onClick={onUseOther} className="bg-surface-secondary shadow-none">Usar outro número</Button></SheetClose>
         </div>
       </SheetContent>
     </Sheet>
@@ -175,15 +178,13 @@ export interface InviteMessageExampleProps {
 /** Simulação de conversa que mostra onde está o código dentro da mensagem de convite. Ilustração: o leitor de tela recebe a mensagem inteira. */
 export function InviteMessageExample({ sender = 'Ana', code = 'REC7X4KP', className }: InviteMessageExampleProps) {
   return (
-    <div role="img" aria-label={`Exemplo de mensagem de convite de ${sender}: Oi! Estou reciclando e ganhando pontos. Entra comigo usando meu código de convite: ${code}`} className={cn('relative h-[160px] overflow-hidden rounded-md bg-surface-secondary', className)}>
-      <span className="caption absolute left-mini top-[9px] text-muted-foreground">{sender}</span>
-      <p className="body-small absolute inset-x-mini top-[29px] m-0 grid h-[90px] content-center gap-0 rounded-md bg-surface-primary px-micro text-foreground">
-        <span>Oi! Estou reciclando e ganhando pontos.</span>
-        <span>Entra comigo usando meu código de</span>
-        <span>convite: <mark className="rounded-xs bg-surface-accent px-xnano font-semibold text-foreground">{code}</mark></span>
-      </p>
-      <svg aria-hidden viewBox="0 0 28 34" className="absolute left-[112px] top-[98px] h-[34px] w-[28px] text-text-link" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 2c0 14 8 20 22 26M19 24l6 4-3 6" /></svg>
-      <span aria-hidden className="caption absolute left-[146px] top-[132px] font-semibold text-text-link">Este é o código</span>
+    <div role="img" aria-label={`Exemplo de mensagem de convite de ${sender}: Oi! Estou reciclando e ganhando pontos. Entra comigo usando meu código de convite: ${code}`} className={cn('grid gap-nano rounded-lg bg-surface-secondary p-micro text-foreground', className)}>
+      <span className="caption text-muted-foreground">{sender}</span>
+      <div className="body-small grid justify-items-start gap-nano rounded-lg bg-surface-primary p-micro">
+        <span>Oi! Estou reciclando e ganhando pontos. Entra comigo usando meu código de convite:</span>
+        <span className="rounded-md border border-border-highlight bg-surface-tint-peach px-micro py-[6px] font-bold tracking-[0.08em] text-text-link">{code}</span>
+      </div>
+      <span aria-hidden className="caption font-bold text-text-link">↑ Este é o código</span>
     </div>
   );
 }
@@ -199,9 +200,9 @@ export function InviteCodeHelpSheet({ sender, code, open, defaultOpen, onOpenCha
   return (
     <Sheet open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange} modal={modal}>
       {trigger && <SheetTrigger asChild>{trigger}</SheetTrigger>}
-      <SheetContent side="bottom" handle={false} className={cn(sheetCls, 'pb-small')}>
+      <SheetContent side="bottom" className={sheetCls}>
         <SheetHeader className="gap-nano text-left">
-          <SheetTitle className="body m-0 text-left font-bold">Onde encontro o código?</SheetTitle>
+          <SheetTitle className="screen-title !text-[18px] !font-bold !leading-6 m-0 text-left">Onde encontro o código?</SheetTitle>
           <SheetDescription className="body-small m-0 text-left text-muted-foreground">O código vem na mensagem de convite que seu amigo compartilhou com você.</SheetDescription>
         </SheetHeader>
         <InviteMessageExample sender={sender} code={code} />

@@ -16,6 +16,8 @@ export interface GoalCardProps {
   goal: number;
   /** Quilos equivalentes ao que falta ("≈ 24 kg de recicláveis"). */
   missingKg?: number;
+  /** Material da estimativa ("PET"). Padrão: "recicláveis". */
+  material?: string;
   /** Torna o card tocável (Tela 5: leva direto ao detalhe com "Trocar recompensa"). */
   onPress?: () => void;
   href?: string;
@@ -26,23 +28,27 @@ export interface GoalCardProps {
  * embaixo, "faltam 480 pontos" e "≈ 24 kg de recicláveis". Com a meta atingida: ícone de check, "Meta atingida! Pronta para troca."
  * No Figma é um degradê laranja com texto branco (2,05:1): aqui o fundo é surface-brand com text-on-loud e o progresso em surface-inverse.
  */
-export function GoalCard({ reward, points, goal, missingKg, onPress, href, className }: GoalCardProps) {
+export function GoalCard({ reward, points, goal, missingKg, material = 'recicláveis', onPress, href, className }: GoalCardProps) {
   const missing = Math.max(0, goal - points);
   const done = goal > 0 && missing === 0;
   const pct = goal > 0 ? Math.min(100, (points / goal) * 100) : 0;
-  const base = cn('grid gap-micro rounded-lg bg-surface-brand p-mini text-primary-foreground', className);
+  const base = cn('relative grid gap-nano overflow-hidden rounded-lg bg-surface-brand p-mini text-left text-primary-foreground shadow-glow', className);
   const body = (
     <>
-      <span className="flex items-center justify-between gap-nano">
-        <span className="eyebrow uppercase tracking-wide">Minha meta</span>
-        <span className="body-strong flex items-center gap-xnano">{done && <Icon name="circle-check" size="small" />}{fmt(points)} / {fmt(goal)} pontos</span>
+      <span aria-hidden className="pointer-events-none absolute -right-[40px] -top-[60px] size-[180px] rounded-full bg-surface-primary/[.14]" />
+      <span className="relative flex items-center justify-between gap-nano">
+        <span className="flex items-center gap-nano">
+          <span aria-hidden className="grid size-[28px] place-items-center rounded-full bg-surface-inverse text-icon-brand"><Icon name="flag" size="small" /></span>
+          <span className="eyebrow uppercase tracking-wide">Minha meta</span>
+        </span>
+        <span className="body-small font-bold">{fmt(points)} / {fmt(goal)} pontos</span>
       </span>
-      <span className="subtitle block">{reward}</span>
-      <span className="grid gap-xnano">
-        <Progress value={pct} label="Progresso da meta" className="bg-surface-primary" indicatorClassName="bg-surface-inverse" />
+      <span className="screen-title relative block">{reward}</span>
+      <span className="relative grid gap-nano">
+        <Progress value={pct} label="Progresso da meta" className="bg-surface-primary/[.4]" indicatorClassName="bg-surface-inverse" />
         {done
-          ? <span className="caption font-semibold">Meta atingida! Pronta para troca.</span>
-          : <span className="caption flex justify-between gap-nano"><span>faltam {fmt(missing)} pontos</span>{missingKg != null && <span>≈ {fmt(missingKg)} kg de recicláveis</span>}</span>}
+          ? <span className="caption inline-flex items-center gap-xnano justify-self-start rounded-full bg-surface-inverse px-micro py-[6px] font-bold text-text-inverse"><Icon name="check" size="small" className="text-icon-brand" />Meta atingida! Pronta para troca.</span>
+          : <span className="caption flex justify-between gap-nano font-bold"><span>Faltam {fmt(missing)} pontos</span>{missingKg != null && <span>≈ {fmt(missingKg)} kg de {material}</span>}</span>}
       </span>
     </>
   );
@@ -59,11 +65,11 @@ export interface CampaignBannerProps {
   className?: string;
 }
 /** Campanha ativa (Telas 1 e 23): faixa compacta de uma linha, verde de sucesso com borda, ícone de 16px e frase de 12px. */
-export function CampaignBanner({ children, icon = 'bolt', className }: CampaignBannerProps) {
+export function CampaignBanner({ children, icon = 'sparkles', className }: CampaignBannerProps) {
   return (
-    <section aria-label="Campanha ativa" className={cn('flex items-center gap-nano rounded-md border border-feedback-text-positive bg-feedback-fill-positive px-micro py-nano text-foreground', className)}>
+    <section aria-label="Campanha ativa" className={cn('flex items-center gap-nano rounded-md bg-feedback-fill-positive px-micro py-micro', className)}>
       <Icon name={icon} size="small" className="shrink-0 text-feedback-text-positive" />
-      <p className="caption m-0">{children}</p>
+      <p className="caption m-0 font-bold text-feedback-text-positive">{children}</p>
     </section>
   );
 }
@@ -129,13 +135,14 @@ export function RedeemCode({ code, validity, hint = 'Use na retirada ou no site 
   };
   return (
     <div className={cn('grid gap-mini text-foreground', className)}>
-      <div className="grid justify-items-center gap-nano rounded-lg border-2 border-dashed border-border-highlight bg-card px-mini py-small text-center">
-        <p className="caption m-0 font-semibold uppercase tracking-wide text-muted-foreground">Código de resgate</p>
-        <p className="m-0 select-all font-sans text-[22px] font-bold leading-7 tracking-[0.08em] text-text-link">{code}</p>
-        {validity && <p className="caption m-0 text-muted-foreground">{validity}</p>}
+      <div className="grid justify-items-center gap-nano rounded-lg bg-surface-inverse px-mini py-small text-center text-text-inverse shadow-dark">
+        <p className="eyebrow m-0 uppercase tracking-wide">Código de resgate</p>
+        <p className="m-0 select-all font-sans text-[28px] font-bold leading-9 tracking-[0.08em] text-icon-brand">{code}</p>
+        <hr className="m-0 w-full border-0 border-t border-dashed border-surface-primary/[.4]" />
+        <p className="caption m-0">{hint}</p>
+        {validity && <p className="caption m-0">{validity}</p>}
       </div>
-      <p className="body-small m-0 text-center text-muted-foreground">{hint}</p>
-      <Button fullWidth icon={copied ? 'check' : undefined} onClick={copy}>{copied ? 'Copiado' : 'Copiar código'}</Button>
+      <Button fullWidth icon={copied ? 'check' : 'copy'} onClick={copy}>{copied ? 'Copiado' : 'Copiar código'}</Button>
       <span aria-live="polite" className="sr-only">{copied ? 'Código copiado' : ''}</span>
     </div>
   );
@@ -154,27 +161,43 @@ export interface RewardDetailProps {
   tags?: RewardTag[];
   /** "45,0 kg de vidro = 450 pontos ≈ R$ 45,00 em prêmios". */
   source: string;
+  /** Ícone do disco quando não há imagem. */
+  icon?: IconName;
+  /** "Como resgatar", em passos numerados. */
+  steps?: string[];
   className?: string;
 }
 /** Detalhe do prêmio (Telas 18, 20 e V2): foto, categoria, nome, custo e "De onde vêm os pontos". O botão fica na tela. */
-export function RewardDetail({ image, category, title, points, tags, source, className }: RewardDetailProps) {
+export function RewardDetail({ image, category, title, points, tags, source, icon = 'gift', steps, className }: RewardDetailProps) {
+  // "22,5 kg de vidro = 450 pontos ≈ R$ 45,00 em prêmios" vira três colunas; outro formato aparece como frase
+  const parts = /^(.*?) = (.*?) ≈ (.*)$/.exec(source);
   return (
-    <article className={cn('grid gap-mini', className)}>
-      <div className="grid h-[150px] place-items-center overflow-hidden rounded-lg bg-surface-secondary text-icon-brand-strong">
-        {image ? <img src={image} alt="" className="size-full object-cover" /> : <Icon name="gift" size="xlarge" />}
+    <article className={cn('grid gap-micro text-foreground', className)}>
+      <div className="grid h-[112px] place-items-center overflow-hidden rounded-lg bg-surface-tint-peach">
+        {image ? <img src={image} alt="" className="size-full object-cover" /> : <span aria-hidden className="grid size-[64px] place-items-center rounded-full bg-surface-primary"><Icon name={icon} size="large" /></span>}
       </div>
       <div className="grid gap-xnano">
         <p className="eyebrow m-0 uppercase text-text-link">{category}</p>
         <h1 className="page-title m-0">{title}</h1>
       </div>
       <div className="flex flex-wrap items-center gap-nano">
-        <span className="inline-flex min-h-small items-center rounded-full bg-surface-secondary px-nano text-[12px] font-semibold leading-4 text-foreground">{fmt(points)} pontos</span>
+        <span className="caption inline-flex min-h-small items-center gap-xnano rounded-full bg-primary px-micro font-bold text-primary-foreground"><Icon name="sparkles" size="small" />{fmt(points)} pontos</span>
         {tags?.map((t) => <Badge key={t.label} tone={(t.tone ?? 'neutral') as BadgeProps['tone']}>{t.icon && <Icon name={t.icon} />}{t.label}</Badge>)}
       </div>
-      <div className="grid gap-xnano rounded-lg bg-surface-secondary p-mini">
-        <p className="caption m-0 font-semibold uppercase tracking-wide text-muted-foreground">De onde vêm os pontos</p>
-        <p className="body-strong m-0 text-text-link">{source}</p>
+      <div className="grid gap-nano rounded-lg bg-card p-micro shadow-card">
+        <p className="eyebrow m-0 uppercase tracking-wide text-muted-foreground">De onde vêm os pontos</p>
+        {parts
+          ? <p className="m-0 grid grid-cols-3 gap-nano">{parts.slice(1).map((x, i) => <span key={i} className={cn('label', i === 1 && 'text-text-link')}>{i === 2 ? '≈ ' : i === 1 ? '→ ' : ''}{x}</span>)}</p>
+          : <p className="body-strong m-0 text-text-link">{source}</p>}
       </div>
+      {steps && (
+        <div className="grid gap-nano rounded-lg bg-card p-micro shadow-card">
+          <p className="eyebrow m-0 uppercase tracking-wide text-muted-foreground">Como resgatar</p>
+          <ol className="caption m-0 grid list-none gap-nano p-0">
+            {steps.map((t, i) => <li key={t} className="grid grid-cols-[auto_1fr] items-start gap-nano"><span aria-hidden className="grid size-[20px] place-items-center rounded-full bg-primary font-bold text-primary-foreground">{i + 1}</span>{t}</li>)}
+          </ol>
+        </div>
+      )}
     </article>
   );
 }
@@ -183,7 +206,7 @@ export function RewardDetail({ image, category, title, points, tags, source, cla
 
 export interface InstitutionCardProps {
   name: string;
-  description: string;
+  description?: string;
   image?: string;
   /** "Saber mais": abre o detalhe da instituição. */
   onMore?: () => void;
@@ -192,7 +215,7 @@ export interface InstitutionCardProps {
 }
 /** Instituição que recebe a doação de pontos. */
 export function InstitutionCard({ name, description, image, onMore, href, className }: InstitutionCardProps) {
-  const more = cn(hitAreaY, 'caption justify-self-start rounded-xs font-semibold text-text-link underline underline-offset-2');
+  const more = cn(hitAreaY, 'caption inline-flex items-center gap-[2px] justify-self-start rounded-xs border-0 bg-transparent p-0 font-bold text-text-link');
   return (
     <article className={cn('grid grid-cols-[auto_1fr] items-center gap-micro rounded-lg border border-border bg-card p-mini text-card-foreground', className)}>
       <span className="grid size-[64px] place-items-center overflow-hidden rounded-md bg-surface-secondary text-icon-brand-strong">
@@ -200,9 +223,9 @@ export function InstitutionCard({ name, description, image, onMore, href, classN
       </span>
       <div className="grid min-w-0 gap-xnano">
         <h2 className="label m-0">{name}</h2>
-        <p className="caption m-0 text-muted-foreground">{description}</p>
-        {href ? <a href={href} className={cn(pressable, more)}>Saber mais<span className="sr-only"> sobre {name}</span></a>
-          : onMore ? <button type="button" onClick={onMore} className={cn(pressable, more)}>Saber mais<span className="sr-only"> sobre {name}</span></button> : null}
+        {description && <p className="caption m-0 text-muted-foreground">{description}</p>}
+        {href ? <a href={href} className={cn(pressable, more)}>Saber mais<span className="sr-only"> sobre {name}</span><Icon name="chevron-right" size="small" /></a>
+          : onMore ? <button type="button" onClick={onMore} className={cn(pressable, more)}>Saber mais<span className="sr-only"> sobre {name}</span><Icon name="chevron-right" size="small" /></button> : null}
       </div>
     </article>
   );

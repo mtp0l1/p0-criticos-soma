@@ -10,7 +10,7 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ return h(F,null, h(S.DonationStateCard,{title:'Você ainda não tem pontos',description:'Faça uma entrega de recicláveis para ganhar pontos e doar para instituições como esta.'}), h(S.DonationStateCard,{title:'Pontos insuficientes',description:'Faltam 350 pontos para doar para esta instituição. Cada entrega de recicláveis te aproxima.',progress:{points:150,goal:500}})); }
+function Demo(){ return h(F,null, h(S.DonationStateCard,{title:'Você ainda não tem pontos',description:'Faça uma entrega de recicláveis para ganhar pontos e doar para instituições como esta.'}), h(S.DonationStateCard,{title:'Pontos insuficientes',description:'Faltam 180 pontos para doar para esta instituição. Cada entrega de recicláveis te aproxima.',progress:{points:320,goal:500}})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
 <script>(function(){function s(){parent.postMessage({soma:"h",n:"DonationStateCard",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

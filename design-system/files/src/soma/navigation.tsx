@@ -46,7 +46,7 @@ export interface HeaderProps {
   /**
    * center = título centralizado, seta solta (padrão; Doar, Cadastro, telas anteriores).
    * round = voltar em círculo creme, título centralizado em text-secondary (Quiz).
-   * start = obsoleto: vira o mesmo arranjo do center. Telas raiz de aba (Meu impacto, Ranking) usam center sem onBack.
+   * start = obsoleto: vira o mesmo arranjo do center. A tela raiz de aba (Ranking) usa center sem onBack.
    * eyebrow = seta solta e título pequeno em maiúsculas, apagado (QR do dia da entrega: "VILA VERDE").
    */
   variant?: 'center' | 'round' | 'start' | 'eyebrow';
@@ -58,7 +58,7 @@ const roundBtn = 'size-back rounded-full bg-surface-primary text-icon-primary sh
 export function Header({ title, onBack, action, variant: variantProp = 'center', divider = true, className }: HeaderProps) {
   let variant = variantProp;
   const round = true;
-  const back = onBack ? <IconButton icon={round ? 'arrow-left' : 'chevron-left'} label="Voltar" onClick={onBack} className={round ? roundBtn : 'text-foreground'} /> : null;
+  const back = onBack ? <IconButton icon="chevron-left" label="Voltar" onClick={onBack} className={round ? roundBtn : 'text-foreground'} /> : null;
   const act = action ? <IconButton icon={action.icon} label={action.label} onClick={action.onClick} className={round ? roundBtn : undefined} /> : null;
   const shell = cn('bg-transparent px-xsmall py-nano text-foreground', className);
   if (variant === 'start') variant = 'center'; // obsoleto: um só cabeçalho (título centralizado, mesma altura e mesmos slots)
@@ -102,13 +102,13 @@ export function LocationBar({ location, onPress, sticky }: LocationBarProps) {
 
 /* ---------------------------------------------------------------- TabBar */
 
-export type TabId = 'inicio' | 'reciclar' | 'recompensas' | 'impacto' | 'menu';
+export type TabId = 'inicio' | 'reciclar' | 'recompensas' | 'ranking' | 'menu';
 /** Barra de cinco itens do redesign. "Meus resgates" virou aba dentro de Recompensas. */
 export const TAB_ITEMS: Array<{ id: TabId; label: string; icon: IconName }> = [
   { id: 'inicio', label: 'Início', icon: 'home' },
-  { id: 'reciclar', label: 'Reciclar', icon: 'recycle' },
+  { id: 'reciclar', label: 'Reciclar', icon: 'refresh' },
   { id: 'recompensas', label: 'Recompensas', icon: 'gift' },
-  { id: 'impacto', label: 'Impacto', icon: 'chart' },
+  { id: 'ranking', label: 'Ranking', icon: 'trophy' },
   { id: 'menu', label: 'Menu', icon: 'menu' },
 ];
 export interface TabBarProps {

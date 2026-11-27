@@ -6,7 +6,7 @@ import {
   FileText, CircleCheck, CircleX, Bell, Settings, Lock, Calendar, MessageSquare, Minus, Plus, Trash2, History, Ticket,
   ArrowLeft, ArrowUp, ArrowLeftRight, Shield, ShieldCheck, Flame, Trophy, Award, Users, Utensils, Book, ShoppingBag,
   CalendarCheck, QrCode, Link, Headphones, MessageCircle, Phone, Globe, Crosshair, TrendingUp, BottleWine, Wine,
-  Package, Copy, Contact, MailOpen, Sparkles, Ban, Target, Navigation, Volleyball, Store, Camera, Lightbulb, Building2, Flag, Eye, EyeOff,
+  Package, Copy, Contact, MailOpen, Sparkles, Ban, Target, Navigation, Volleyball, Store, Camera, Lightbulb, Building2, Flag, Eye, EyeOff, Delete, RefreshCw,
   type LucideIcon,
 } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
@@ -27,7 +27,7 @@ export const ICONS = {
   'chevron-left': ChevronLeft, 'chevron-right': ChevronRight, 'chevron-down': ChevronDown, 'chevron-up': ChevronUp,
   'arrow-left': ArrowLeft, 'arrow-up': ArrowUp, 'arrow-left-right': ArrowLeftRight, navigation: Navigation,
   /* Ações */
-  help: CircleHelp, info: Info, search: Search, close: X, check: Check, plus: Plus, minus: Minus, trash: Trash2,
+  help: CircleHelp, info: Info, search: Search, close: X, check: Check, plus: Plus, minus: Minus, trash: Trash2, backspace: Delete, refresh: RefreshCw,
   share: Share2, copy: Copy, link: Link, 'user-plus': UserPlus, contacts: Contact, logout: LogOut, settings: Settings,
   /* Pessoa, conta e contato */
   user: User, users: Users, card: IdCard, lock: Lock, bell: Bell, mail: Mail, 'mail-open': MailOpen, phone: Phone,

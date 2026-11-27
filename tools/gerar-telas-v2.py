@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera a página 'Telas da v2' (galeria das 201 telas com miniatura e link para o protótipo) e copia o protótipo para design-system/prototipo/.
+"""Gera a página 'Telas da v2' (galeria das telas com miniatura e link para o protótipo) e copia o protótipo para design-system/prototipo/.
 Entrada: ../../prototipo-soma/fonte/dados (proto.json, miniaturas.json) e ../../prototipo-soma/prototipo-soma.html."""
 import json, os, re, base64, shutil, html
 root=os.path.abspath(os.path.join(os.path.dirname(__file__),'..')); ds=os.path.join(root,'design-system')
@@ -8,7 +8,11 @@ P=json.load(open(os.path.join(proto_dir,'fonte/dados/proto.json'),encoding='utf-
 out=os.path.join(ds,'assets/telas-v2'); os.makedirs(out,exist_ok=True)
 for k,v in TH.items():
     m=re.match(r'data:image/(\w+);base64,(.*)',v,re.S)
-    if m: open(os.path.join(out,k+'.'+('webp' if m.group(1)=='webp' else m.group(1))),'wb').write(base64.b64decode(m.group(2)))
+    if m:
+        destino=os.path.join(out,k+'.'+('webp' if m.group(1)=='webp' else m.group(1)))
+        # a galeria usa fotos do protótipo em funcionamento (com folhas e textos preenchidos);
+        # a miniatura embutida só entra para tela que ainda não tem foto
+        if not os.path.exists(destino): open(destino,'wb').write(base64.b64decode(m.group(2)))
 ext='webp'
 os.makedirs(os.path.join(ds,'prototipo'),exist_ok=True)
 shutil.copy(os.path.join(proto_dir,'prototipo-soma.html'),os.path.join(ds,'prototipo/index.html'))
@@ -29,7 +33,7 @@ page=f'<div class="page doc">{css}<header class="doc-header"><div><p class="doc-
 open(os.path.join(ds,'site/pages/padroes__telas-v2.js'),'w',encoding='utf-8').write('export default () => '+json.dumps(page,ensure_ascii=False)+';')
 # nav.js
 p=os.path.join(ds,'site/nav.js'); s=open(p,encoding='utf-8').read()
-item='{label:"Telas da v2",icon:"smartphone",path:"/padroes/telas-v2",description:"As 201 telas oficiais da versão 2, com link para o protótipo navegável.",load:()=>import("./pages/padroes__telas-v2.js")},'
+item='{label:"Telas da v2",icon:"smartphone",path:"/padroes/telas-v2",description:"As 202 telas oficiais da versão 2, com link para o protótipo navegável.",load:()=>import("./pages/padroes__telas-v2.js")},'
 if 'padroes/telas-v2' not in s:
     k='{id:"padroes",label:"Padrões",items:['; assert k in s; s=s.replace(k,k+item,1)
 s=s.replace('Lexend em quatro pesos, com os estilos de texto do Figma.','Lexend em quatro pesos, com os 16 estilos de texto da versão 2.')

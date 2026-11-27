@@ -249,6 +249,8 @@ export declare const ICONS: {
 	plus: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	minus: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	trash: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
+	backspace: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
+	refresh: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	share: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	copy: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
 	link: React$1.ForwardRefExoticComponent<Omit<import("lucide-react").LucideProps, "ref"> & React$1.RefAttributes<SVGSVGElement>>;
@@ -567,7 +569,7 @@ export interface LocationBarProps {
 	sticky?: boolean;
 }
 export declare function LocationBar({ location, onPress, sticky }: LocationBarProps): React$1.JSX.Element;
-export type TabId = "inicio" | "reciclar" | "recompensas" | "impacto" | "menu";
+export type TabId = "inicio" | "reciclar" | "recompensas" | "ranking" | "menu";
 /** Barra de cinco itens do redesign. "Meus resgates" virou aba dentro de Recompensas. */
 export declare const TAB_ITEMS: Array<{
 	id: TabId;
@@ -661,7 +663,7 @@ export interface BalanceCardProps {
 	href?: string;
 	onPress?: () => void;
 	/** hero = cartão azul-marinho com o saldo em laranja (Início da v2, padrão) · light = cartão creme tocável com seta · dark = faixa escura com botão (Início com meta, Tela 17). */
-	tone?: "hero" | "light" | "dark";
+	tone?: "hero" | "light" | "dark" | "card";
 	/** Só no tone dark: o botão à direita ("Ver meta"). */
 	action?: {
 		label: string;
@@ -1285,6 +1287,7 @@ export interface ResultScreenProps {
 		onClick?: () => void;
 		icon?: IconName;
 		done?: boolean;
+		strong?: boolean;
 	};
 	/** quiet = botão contornado (padrão) · transparent = link em texto ("Agora não", "Voltar ao ranking"). */
 	secondaryAction?: {
@@ -1311,6 +1314,8 @@ export interface ResultScreenProps {
 	/** "Ir para o início": obrigatório em tela de conclusão de fluxo. */
 	onHome?: () => void;
 	className?: string;
+	/** Comemoração: topo primário e folha clara. */
+	hero?: boolean;
 }
 export declare function ResultScreen({ tone, icon, art, title, description, children, primaryAction, secondaryAction, extraLink, iconShape, titleSize, ringOutline, ringSize, actionsPlacement, onHome, className }: ResultScreenProps): React$1.JSX.Element;
 export interface GoalCardProps {
@@ -1324,6 +1329,8 @@ export interface GoalCardProps {
 	onPress?: () => void;
 	href?: string;
 	className?: string;
+	/** Material da estimativa. */
+	material?: string;
 }
 /**
  * Minha meta no topo do catálogo (Telas 1 e 5): "Minha meta" e "320 / 800 pontos" na primeira linha, o prêmio, a barra e,
@@ -1383,12 +1390,16 @@ export interface RewardDetailProps {
 	/** "45,0 kg de vidro = 450 pontos ≈ R$ 45,00 em prêmios". */
 	source: string;
 	className?: string;
+	/** Ícone do disco quando não há imagem. */
+	icon?: IconName;
+	/** "Como resgatar". */
+	steps?: string[];
 }
 /** Detalhe do prêmio (Telas 18, 20 e V2): foto, categoria, nome, custo e "De onde vêm os pontos". O botão fica na tela. */
 export declare function RewardDetail({ image, category, title, points, tags, source, className }: RewardDetailProps): React$1.JSX.Element;
 export interface InstitutionCardProps {
 	name: string;
-	description: string;
+	description?: string;
 	image?: string;
 	/** "Saber mais": abre o detalhe da instituição. */
 	onMore?: () => void;
@@ -1415,20 +1426,22 @@ export interface DeliveryCardProps {
 export declare function DeliveryCard({ state, space, date, address, onAction, className }: DeliveryCardProps): React$1.JSX.Element;
 export interface SpaceCardProps {
 	name: string;
-	/** "0,8 km" ou "800 m". */
+	/** "1,6 km" ou "800 m". */
 	distance?: string;
 	address?: string;
-	/** "Hoje · 09h às 18h". */
+	/** "Seg a sáb, 9h às 18h". */
 	hours?: string;
-	/** Com onSelect, o card vira opção (aria-pressed) com borda de destaque quando selecionado. */
 	selected?: boolean;
+	/** Com onSelect, o card vira opção de uma lista (rádio). */
 	onSelect?: () => void;
-	/** Abre o mapa. Sem ele, "Como chegar" não aparece. */
+	/** O espaço atual, na troca: não é escolhível. */
+	current?: boolean;
+	/** Abre a folha "Como chegar". */
 	onDirections?: () => void;
 	className?: string;
 }
-/** Espaço de recebimento: perto de você (Reciclar) ou opção na escolha do agendamento. */
-export declare function SpaceCard({ name, distance, address, hours, selected, onSelect, onDirections, className }: SpaceCardProps): React$1.JSX.Element;
+/** Espaço de recebimento: perto de você, opção do agendamento e da troca, ou espaço atual. */
+export declare function SpaceCard({ name, distance, address, hours, selected, onSelect, current, onDirections, className }: SpaceCardProps): React$1.JSX.Element;
 export interface Slot {
 	value: string;
 	label: string; /** Linha de cima menor ("Seg"). */
@@ -1438,13 +1451,17 @@ export interface Slot {
 export interface SlotPickerProps {
 	/** Nome do grupo ("Escolha a data"). Aparece como eyebrow. */
 	label: string;
+	/** Aviso à direita do rótulo. */
+	note?: string;
+	/** Grade de 7 colunas. */
+	wrap?: boolean;
 	slots: Slot[];
 	value?: string;
 	onChange?: (v: string) => void;
 	className?: string;
 }
-/** Escolha de data ou horário em fileira rolável, sobre RadioGroup (setas do teclado, um ponto de tabulação). */
-export declare function SlotPicker({ label, slots, value, onChange, className }: SlotPickerProps): React$1.JSX.Element;
+/** Escolha de data ou horário, em grade ou fileira rolável, com teclado por setas. */
+export declare function SlotPicker({ label, note, wrap, slots, value, onChange, className }: SlotPickerProps): React$1.JSX.Element;
 export interface SpaceDetailProps {
 	name: string;
 	/** "Rua das Flores, 120 · Seg a sáb, 8h às 18h". */
@@ -1776,12 +1793,14 @@ export interface DeliverySummaryCardProps {
 	onDirections?: () => void;
 	/** "09h". */
 	time: string;
+	/** Horário de recebimento: "8h às 18h". */
+	openHours?: string;
 	/** Antecedência do lembrete ("1 hora antes"). Só depois de salvar no calendário. */
 	notice?: string;
 	className?: string;
 }
 /** Resumo do agendamento (Telas 6, 7, 28 e 29): Quando, Onde, Horário e, depois do calendário, Aviso. Rótulos à esquerda, valores à direita. */
-export declare function DeliverySummaryCard({ date, space, address, onDirections, time, notice, className }: DeliverySummaryCardProps): React$1.JSX.Element;
+export declare function DeliverySummaryCard({ date, space, address, onDirections, time, openHours, notice, className }: DeliverySummaryCardProps): React$1.JSX.Element;
 export interface DeliveryHistoryRowProps {
 	space: string;
 	/** "31 de agosto". */
@@ -1808,6 +1827,8 @@ export interface RewardChoice {
 	title: string;
 	points: number; /** Sem estoque: aparece cinza, com "Indisponível no momento", e não é escolhível. */
 	unavailable?: boolean;
+	/** Ícone no disco do cartão. */
+	icon?: IconName;
 }
 export interface RewardChoiceListProps {
 	/** Rótulo do grupo para leitor de tela ("Recompensa da meta"). */
@@ -1825,6 +1846,8 @@ export interface GoalProgressCardProps {
 	/** Quilos que faltam ("Faltam 36 kg de recicláveis"). */
 	missingKg?: number;
 	className?: string;
+	/** Material da estimativa. */
+	material?: string;
 }
 /** Progresso da meta escolhida (Telas 25 e 26): eyebrow, barra, "80 / 800 pontos" e quanto falta em kg. */
 export declare function GoalProgressCard({ points, goal, missingKg, className }: GoalProgressCardProps): React$1.JSX.Element;
@@ -1832,6 +1855,11 @@ export interface GoalNoteProps {
 	title?: string;
 	children: React$1.ReactNode;
 	className?: string;
+	/** Barra sob o texto. */
+	progress?: {
+		points: number;
+		goal: number;
+	};
 }
 /** Nota "Sua meta" na Entrega registrada (Tela 12): caixa tracejada com o quanto já tem e quanto falta. */
 export declare function GoalNote({ title, children, className }: GoalNoteProps): React$1.JSX.Element;
@@ -1889,28 +1917,30 @@ export declare function donationError(value: number | null, balance: number): st
 export interface DonationAmountCardProps {
 	/** Saldo da pessoa, em pontos. */
 	balance: number;
-	/** Valor digitado. `null` = campo vazio. */
+	/** `null` = campo vazio. */
 	value: number | null;
 	onChange: (v: number | null) => void;
-	/** Sobrescreve a mensagem padrão (`donationError`). */
+	/** Sobrescreve a mensagem padrão. */
 	error?: string;
+	/** Com o NumericKeypad na tela. */
+	keypad?: boolean;
 	className?: string;
 }
-/** Cartão "Quantos pontos deseja doar?": saldo, campo numérico de inteiros e mensagem de erro embaixo (Tela de doação). */
-export declare function DonationAmountCard({ balance, value, onChange, error, className }: DonationAmountCardProps): React$1.JSX.Element;
+/** Valor da doação: número grande, saldo e erro em espaço reservado. */
+export declare function DonationAmountCard({ balance, value, onChange, error, keypad, className }: DonationAmountCardProps): React$1.JSX.Element;
 export interface DonationStateCardProps {
 	title: string;
 	description: string;
-	/** Mostra a barra "150 / 500 pontos" (pontos insuficientes para a instituição). */
+	/** Anel "320 de 500 pontos". */
 	progress?: {
 		points: number;
 		goal: number;
 	};
-	/** Arte de 80px. Padrão: a ilustração `doar-saldo-insuficiente` (reciclagem em círculo cinza). */
+	/** Arte quando não há anel. */
 	art?: React$1.ReactNode;
 	className?: string;
 }
-/** Estado no lugar do campo de doação: "Você ainda não tem pontos" (saldo zero) e "Pontos insuficientes" (com barra de progresso). */
+/** Estado no lugar do valor da doação: saldo zero ou pontos insuficientes. */
 export declare function DonationStateCard({ title, description, progress, art, className }: DonationStateCardProps): React$1.JSX.Element;
 export interface InstitutionDetailModalProps {
 	name: string;
@@ -1928,6 +1958,10 @@ export interface InstitutionDetailModalProps {
 	onOpenChange?: (open: boolean) => void;
 	/** false = sem película (use só em exemplos). */
 	modal?: boolean;
+	/** Cidade. */
+	city?: string;
+	/** Mostra "Doar para esta instituição". */
+	onDonate?: () => void;
 }
 /** Modal "Saber mais" da instituição: banner, nome, descrição e contatos. Fecha pelo X sobre a imagem, por Esc ou fora. */
 export declare function InstitutionDetailModal({ name, description, address, phone, site, image, trigger, open, defaultOpen, onOpenChange, modal }: InstitutionDetailModalProps): React$1.JSX.Element;
@@ -2320,3 +2354,53 @@ declare global {
 export type Tint = "peach" | "green" | "blue" | "lavender" | "pink" | "yellow";
 export declare const tintBg: Record<Tint, string>;
 export declare function tintFor(seed: string): Tint;
+export interface NumericKeypadProps {
+	value: number | null;
+	onChange: (v: number | null) => void;
+	maxLength?: number;
+	className?: string;
+}
+/** Teclado numérico do valor da doação. */
+export declare function NumericKeypad({ value, onChange, maxLength, className }: NumericKeypadProps): React$1.JSX.Element;
+export interface SpaceMapProps {
+	className?: string;
+}
+/** Mapa ilustrativo, igual para todos os espaços. */
+export declare function SpaceMap({ className }: SpaceMapProps): React$1.JSX.Element;
+export interface SpaceMapSheetProps {
+	name: string;
+	address: string;
+	status?: string;
+	hours?: string;
+	onOpenMaps?: () => void;
+	onCopyAddress?: () => void;
+	trigger?: React$1.ReactNode;
+	open?: boolean;
+	defaultOpen?: boolean;
+	onOpenChange?: (open: boolean) => void;
+	modal?: boolean;
+}
+/** Folha "Como chegar". */
+export declare function SpaceMapSheet(props: SpaceMapSheetProps): React$1.JSX.Element;
+export interface SpaceOption {
+	value: string;
+	name: string;
+	distance?: string;
+	address?: string;
+	hours?: string;
+}
+export interface SpacePickerSheetProps {
+	spaces: SpaceOption[];
+	current: string;
+	value?: string;
+	onChange?: (v: string) => void;
+	onConfirm?: (v: string) => void;
+	note?: string;
+	trigger?: React$1.ReactNode;
+	open?: boolean;
+	defaultOpen?: boolean;
+	onOpenChange?: (open: boolean) => void;
+	modal?: boolean;
+}
+/** Folha "Escolha seu espaço". */
+export declare function SpacePickerSheet(props: SpacePickerSheetProps): React$1.JSX.Element;

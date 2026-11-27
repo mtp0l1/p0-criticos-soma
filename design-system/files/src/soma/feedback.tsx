@@ -185,9 +185,12 @@ export interface ResultScreenProps {
   /** Conteúdo extra entre o texto e as ações (resumo, código, pontos). */
   children?: React.ReactNode;
   /** done = já feito: botão cinza com check e sem toque ("Adicionado ao calendário"). */
-  primaryAction?: { label: string; onClick?: () => void; icon?: IconName; done?: boolean };
+  /** `strong` = botão escuro (`dark`), usado na tela comemorativa que só tem a volta ao início. */
+  primaryAction?: { label: string; onClick?: () => void; icon?: IconName; done?: boolean; strong?: boolean };
   /** quiet = botão contornado (padrão) · transparent = link em texto ("Agora não", "Voltar ao ranking"). */
   secondaryAction?: { label: string; onClick?: () => void; icon?: IconName; hierarchy?: 'quiet' | 'transparent' };
+  /** Comemoração: topo laranja com o ícone num disco escuro e o conteúdo numa folha clara por baixo. */
+  hero?: boolean;
   /** Segundo link em texto ao lado de "Ir para o início" ("Ver meus agendamentos"). */
   extraLink?: { label: string; onClick?: () => void };
   /** circle = círculo (padrão) · square = caixa de 56px com cantos de 16px, para telas de confirmação menores (agendamento). */
@@ -211,9 +214,33 @@ const RESULT = {
 } as const;
 /** Tela de resultado ou pedido (sucesso, erro, permissão de contatos). Ícone a space-large do cabeçalho; ações no fim. */
 const RING = { xs: 'size-[48px]', sm: 'size-[72px]', md: 'size-[88px]', lg: 'size-[96px]' } as const;
-export function ResultScreen({ tone = 'positive', icon, art, title, description, children, primaryAction, secondaryAction, extraLink, iconShape = 'circle', titleSize = 'page', ringOutline, ringSize = 'lg', actionsPlacement = 'bottom', onHome, className }: ResultScreenProps) {
+export function ResultScreen({ tone = 'positive', icon, art, title, description, children, primaryAction, secondaryAction, extraLink, iconShape = 'circle', titleSize = 'page', ringOutline, ringSize = 'lg', actionsPlacement = 'bottom', hero, onHome, className }: ResultScreenProps) {
   const r = RESULT[tone];
   const tid = React.useId();
+  if (hero) {
+    return (
+      <section aria-labelledby={tid} className={cn('flex min-h-full flex-col bg-background text-foreground', className)}>
+        <div className="relative grid justify-items-center gap-mini overflow-hidden bg-primary px-small pb-[48px] pt-[48px] text-center text-primary-foreground">
+          <span aria-hidden className="absolute -right-[64px] -top-[72px] size-[240px] rounded-full bg-surface-primary/[.14]" />
+          <span aria-hidden className="absolute -left-[88px] top-[96px] size-[200px] rounded-full bg-surface-primary/[.10]" />
+          {art ?? <span aria-hidden className="relative grid size-[88px] place-items-center rounded-full bg-surface-inverse text-icon-brand shadow-dark"><Icon name={icon ?? 'check'} size="xlarge" /></span>}
+          <h1 id={tid} className="page-title relative m-0">{title}</h1>
+          {description && <div className="body relative m-0 max-w-[300px]">{description}</div>}
+        </div>
+        <div className="relative -mt-small flex flex-1 flex-col gap-mini rounded-t-xl bg-background px-xsmall pb-small pt-small">
+          {children}
+          {(primaryAction || secondaryAction || onHome || extraLink) && (
+            <div className={cn('grid gap-nano', actionsPlacement === 'bottom' && 'mt-auto')}>
+              {primaryAction && <Button fullWidth hierarchy={primaryAction.strong ? 'dark' : 'loud'} icon={primaryAction.icon} onClick={primaryAction.onClick}>{primaryAction.label}</Button>}
+              {secondaryAction && <Button hierarchy="quiet" fullWidth icon={secondaryAction.icon} onClick={secondaryAction.onClick} className="border-2 border-primary bg-transparent shadow-none">{secondaryAction.label}</Button>}
+              {extraLink && <Button hierarchy="transparent" fullWidth onClick={extraLink.onClick}>{extraLink.label}</Button>}
+              {onHome && <Button hierarchy="quiet" fullWidth onClick={onHome} className="bg-surface-secondary shadow-none">Ir para o início</Button>}
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
   return (
     <section aria-labelledby={tid} className={cn('flex min-h-full flex-col gap-medium px-xsmall pb-small pt-large text-foreground', className)}>
       <div className="grid justify-items-center gap-mini text-center">
@@ -228,7 +255,7 @@ export function ResultScreen({ tone = 'positive', icon, art, title, description,
         <div className={cn('grid gap-nano', actionsPlacement === 'bottom' && 'mt-auto')}>
           {primaryAction && (primaryAction.done
             ? <Button fullWidth disabled icon="check" className="disabled:bg-interactive-fill-disabled disabled:text-foreground disabled:[&_svg]:text-foreground disabled:opacity-100">{primaryAction.label}</Button>
-            : <Button fullWidth icon={primaryAction.icon} onClick={primaryAction.onClick}>{primaryAction.label}</Button>)}
+            : <Button fullWidth hierarchy={primaryAction.strong ? 'dark' : 'loud'} icon={primaryAction.icon} onClick={primaryAction.onClick}>{primaryAction.label}</Button>)}
           {secondaryAction && <Button hierarchy={secondaryAction.hierarchy ?? 'quiet'} fullWidth icon={secondaryAction.icon} onClick={secondaryAction.onClick}>{secondaryAction.label}</Button>}
           {(onHome || extraLink) && (
             <div className="flex flex-wrap items-center justify-center gap-x-mini">

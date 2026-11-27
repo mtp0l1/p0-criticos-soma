@@ -70,7 +70,7 @@ export interface BalanceCardProps {
   href?: string;
   onPress?: () => void;
   /** hero = cartão azul-marinho com o saldo em laranja (Início da v2, padrão) · light = cartão creme tocável com seta · dark = faixa escura com botão (Início com meta, Tela 17). */
-  tone?: 'hero' | 'light' | 'dark';
+  tone?: 'hero' | 'light' | 'dark' | 'card';
   /** Só no tone dark: o botão à direita ("Ver meta"). */
   action?: { label: string; onClick?: () => void; href?: string };
 }
@@ -90,10 +90,24 @@ export function BalanceCard({ points, hint, href, onPress, tone = 'hero', action
           <span aria-hidden className="grid size-[32px] place-items-center rounded-full bg-surface-primary text-foreground"><Icon name="chevron-right" size="small" /></span>
         </span>
         <span className="relative grid gap-0">
-          <span className="flex items-baseline gap-nano"><span className="balance-number text-primary">{fmt(points)}</span><span className="subtitle">{points === 1 ? 'ponto' : 'pontos'}</span></span>
+          <span className="flex items-baseline gap-nano"><span className="text-[48px] font-bold leading-[56px] text-primary">{fmt(points)}</span><span className="subtitle">{points === 1 ? 'ponto' : 'pontos'}</span></span>
           {text && <span className="caption">{text}</span>}
         </span>
       </PressableBase>
+    );
+  }
+  if (tone === 'card') {
+    return (
+      <section aria-label="Saldo atual" className="grid gap-xnano rounded-lg bg-card p-mini text-card-foreground shadow-card">
+        <span className="flex items-center justify-between gap-nano">
+          <span className="eyebrow uppercase tracking-wide text-muted-foreground">Seu saldo atual</span>
+          {action && (action.href
+            ? <a href={action.href} onClick={action.onClick} className="caption inline-flex min-h-touch items-center font-bold text-text-link no-underline">{action.label}<Icon name="chevron-right" size="small" /></a>
+            : <button type="button" onClick={action.onClick} className="caption inline-flex min-h-touch cursor-pointer items-center border-0 bg-transparent font-bold text-text-link">{action.label}<Icon name="chevron-right" size="small" /></button>)}
+        </span>
+        <span className="flex items-baseline gap-nano"><b className="text-[48px] leading-[56px]">{fmt(points)}</b><span className="body-small text-muted-foreground">{points === 1 ? 'ponto' : 'pontos'}</span></span>
+        {text && <span className="caption text-muted-foreground">{text}</span>}
+      </section>
     );
   }
   if (tone === 'dark') {
@@ -164,18 +178,23 @@ export interface GoalSummaryCardProps {
   onPress?: () => void;
 }
 /** Meta ativa no topo do Início (Tela 17): prêmio, custo e quanto falta. Para o card laranja do catálogo use GoalCard. */
-export function GoalSummaryCard({ title, goal, remaining, icon = 'gift', href, onPress }: GoalSummaryCardProps) {
+export function GoalSummaryCard({ title, goal, remaining, href, onPress }: GoalSummaryCardProps) {
+  const pct = goal > 0 ? Math.max(0, Math.min(100, ((goal - remaining) / goal) * 100)) : 0;
   return (
     <PressableBase
       href={href}
       onClick={onPress}
-      className={cn(pressable, 'grid w-full gap-nano rounded-lg border-2 border-border-highlight bg-surface-primary p-mini text-foreground hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active')}
+      className={cn(pressable, 'relative grid w-full gap-nano overflow-hidden rounded-lg bg-surface-inverse p-mini text-left text-text-inverse shadow-dark')}
     >
-      <span className="grid grid-cols-[auto_1fr] items-center gap-micro">
-        <span aria-hidden className="grid size-[40px] place-items-center rounded-md bg-surface-accent text-icon-brand-strong"><Icon name={icon} /></span>
-        <span className="grid gap-xnano"><span className="body-strong">{title}</span><span className="caption text-muted-foreground">Meta: {fmt(goal)} pontos</span></span>
+      <span aria-hidden className="pointer-events-none absolute -right-[40px] -top-[60px] size-[180px] rounded-full bg-surface-primary/[.07]" />
+      <span className="flex items-center gap-nano">
+        <span aria-hidden className="grid size-[28px] place-items-center rounded-full bg-primary text-primary-foreground"><Icon name="flag" size="small" /></span>
+        <span className="eyebrow uppercase tracking-wide">Sua meta</span>
       </span>
-      <span className="flex items-center gap-xnano rounded-sm bg-surface-accent px-nano py-xnano caption font-medium text-foreground"><Icon name="flag" size="small" tone="brand-strong" />Faltam {fmt(remaining)} pontos para a meta</span>
+      <span className="subtitle font-bold">{title}</span>
+      <span className="caption">Meta: {fmt(goal)} pontos</span>
+      <span aria-hidden className="block h-nano overflow-hidden rounded-full bg-surface-primary/[.2]"><span className="block h-full rounded-full bg-primary" style={{ width: `${pct}%` }} /></span>
+      <span className="caption font-bold text-icon-brand">Faltam {fmt(remaining)} pontos para a meta</span>
     </PressableBase>
   );
 }
@@ -189,10 +208,10 @@ export interface ActivityRowProps {
   action?: { label: string; onClick?: () => void; href?: string };
 }
 /** Linha de "Atividade recente" do Início (Tela 17). */
-export function ActivityRow({ title, detail, icon = 'recycle', action }: ActivityRowProps) {
+export function ActivityRow({ title, detail, icon = 'check', action }: ActivityRowProps) {
   return (
-    <div className="grid grid-cols-[auto_1fr_auto] items-center gap-micro rounded-lg border border-border bg-card p-mini text-card-foreground">
-      <span aria-hidden className="grid size-[32px] place-items-center rounded-full bg-feedback-fill-positive text-feedback-text-positive"><Icon name={icon} size="small" /></span>
+    <div className="grid grid-cols-[auto_1fr_auto] items-center gap-micro rounded-lg bg-card p-micro text-card-foreground shadow-card">
+      <span aria-hidden className="grid size-[40px] place-items-center rounded-full bg-feedback-fill-positive text-feedback-text-positive"><Icon name={icon} size="small" /></span>
       <span className="grid gap-xnano"><span className="label">{title}</span><span className="caption font-semibold">{detail}</span></span>
       {action && (action.href
         ? <a href={action.href} onClick={action.onClick} className={cn(pressable, hitArea, 'caption rounded-xs font-bold text-text-link')}>{action.label}</a>

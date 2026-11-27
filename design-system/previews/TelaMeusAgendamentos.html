@@ -11,13 +11,15 @@ var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
 function Demo(){ return h('div',{className:'flex min-h-[880px] flex-col bg-background'},
-  h(S.Header,{variant:'start',title:'Meus agendamentos',onBack:function(){}}),
+  h(S.Header,{title:'Meus agendamentos',onBack:function(){},divider:false}),
   h('main',{className:'grid flex-1 content-start gap-small px-xsmall pt-small'},
     h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{size:'eyebrow',title:'Próximas entregas'}),
       h(S.DeliverySummaryCard,{date:'Segunda, 7 de setembro',space:'Vila Verde',address:'Rua das Flores, 120 · 800 m',onDirections:function(){},time:'09h'}),
-      h(S.Button,{hierarchy:'quiet',fullWidth:true},'Adicionar ao calendário')),
+      h(S.Button,{hierarchy:'quiet',fullWidth:true,icon:'calendar'},'Adicionar ao calendário'),
+      h('div',{className:'grid grid-cols-2 gap-nano'}, h(S.Button,{hierarchy:'quiet',size:'compact',fullWidth:true,icon:'calendar'},'Reagendar'), h(S.Button,{hierarchy:'transparent',size:'compact',fullWidth:true,icon:'close',className:'text-feedback-text-negative'},'Cancelar entrega'))),
     h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{size:'eyebrow',title:'Entregas anteriores'}),
-      h(S.DeliveryHistoryRow,{space:'Vila Verde',date:'31 de agosto',status:'Entrega registrada às 09h'})))); }
+      h(S.DeliveryHistoryRow,{space:'Vila Verde',date:'31 de agosto',status:'Entrega registrada às 09h'}))),
+  h(S.TabBar,{active:'reciclar'})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
 <script>(function(){function s(){parent.postMessage({soma:"h",n:"TelaMeusAgendamentos",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

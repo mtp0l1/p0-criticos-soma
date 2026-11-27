@@ -128,6 +128,8 @@
 - #/modulos/SpaceCard: SpaceCard
 - #/modulos/SlotPicker: SlotPicker
 - #/modulos/SpaceDetail: SpaceDetail
+- #/modulos/SpaceMapSheet: SpaceMapSheet
+- #/modulos/SpacePickerSheet: SpacePickerSheet
 - #/modulos/DeliverySummaryCard: DeliverySummaryCard
 - #/modulos/DeliveryHistoryRow: DeliveryHistoryRow
 - #/modulos/DeliveryDayCard: DeliveryDayCard
@@ -155,7 +157,7 @@
 - #/modulos/InviteMessageExample: InviteMessageExample
 - #/modulos/AccountExistsSheet: AccountExistsSheet
 - #/modulos/InviteCodeHelpSheet: InviteCodeHelpSheet
-- #/padroes/telas-v2: Telas da v2 (as 201 telas oficiais, com link para o protótipo navegável)
+- #/padroes/telas-v2: Telas da v2 (as 202 telas oficiais, com link para o protótipo navegável)
 - #/padroes/padroes-de-tela: Padrões de tela
 - #/padroes/TelaCadastroCelular: Tela Cadastro Celular
 - #/padroes/TelaCadastroCelularCadastrado: Tela Cadastro Celular Cadastrado

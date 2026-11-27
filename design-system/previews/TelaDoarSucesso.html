@@ -11,7 +11,7 @@ var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
 function Demo(){ return h('div',{className:'flex min-h-[840px] flex-col bg-background'},
-  h('div',{className:'flex-1 pt-[84px]'}, h(S.ResultScreen,{tone:'neutral',icon:'check',ringSize:'xs',title:'Doação realizada!',description:'Seus 500 pontos foram enviados para a Associação S. Francisco de Assis',primaryAction:{label:'Ir para o início'}}, h('div',{className:'grid justify-items-center'}, h(S.Illustration,{name:'doar-sucesso'})))),
+  h('div',{className:'flex-1'}, h(S.ResultScreen,{hero:true,icon:'check',title:'Doação realizada!',description:'Seus 200 pontos foram enviados para a Associação S. Francisco de Assis.',primaryAction:{label:'Ir para o início',strong:true}}, h('div',{className:'grid justify-items-center pt-mini'}, h(S.Illustration,{name:'doar-sucesso'})))),
   h(S.TabBar,{active:'inicio'})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>

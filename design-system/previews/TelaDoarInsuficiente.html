@@ -10,12 +10,12 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ return h('div',{className:'flex min-h-[680px] flex-col bg-background-secondary'},
-  h(S.Header,{title:'Doar pontos',onBack:function(){},action:{icon:'help',label:'Ajuda'}}),
-  h('main',{className:'grid flex-1 content-start gap-small px-xsmall pt-mini'},
-    h(S.InstitutionCard,{name:'Associação S. Francisco de Assis para Proteção aos Animais',description:'Abrigo, cuidados veterinários e adoção responsável de animais resgatados.',onMore:function(){}}),
-    h(S.DonationStateCard,{title:'Pontos insuficientes',description:'Faltam 350 pontos para doar para esta instituição. Cada entrega de recicláveis te aproxima.',progress:{points:150,goal:500}}),
-    h('div',{className:'pt-nano'}, h(S.Button,{fullWidth:true},'Fazer uma entrega'))),
+function Demo(){ return h('div',{className:'flex min-h-[780px] flex-col bg-background'},
+  h(S.Header,{title:'Doar pontos',onBack:function(){},divider:false}),
+  h('main',{className:'grid flex-1 content-start gap-small px-xsmall'},
+    h(S.InstitutionCard,{name:'Associação S. Francisco de Assis para Proteção aos Animais',image:'../assets/illustrations/exemplo-instituicao.webp',onMore:function(){  }}),
+    h(S.DonationStateCard,{title:'Pontos insuficientes',description:'Faltam 180 pontos para doar para esta instituição. Cada entrega de recicláveis te aproxima.',progress:{points:320,goal:500}})),
+  h('div',{className:'px-xsmall pb-nano'}, h(S.Button,{fullWidth:true},'Fazer uma entrega')),
   h(S.TabBar,{active:'recompensas'})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>

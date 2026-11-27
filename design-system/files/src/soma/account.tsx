@@ -82,7 +82,7 @@ export interface QrCheckinCardProps {
   description?: string;
   className?: string;
 }
-/** QR de identificação na entrega (Tela 11): cartão branco com título, QR, nome e os três passos. Aparece no dia da entrega, não escondido no Menu. */
+/** QR de identificação na entrega: título, QR sobre fundo escuro com o nome e os três passos. Aparece no dia da entrega, não escondido no Menu. */
 export function QrCheckinCard({
   qr, name, className,
   title = 'Chegou? Mostre este QR no atendimento',
@@ -90,15 +90,21 @@ export function QrCheckinCard({
   steps = ['Mostre o QR', 'A equipe pesa seus recicláveis', 'Seus pontos aparecem aqui'],
 }: QrCheckinCardProps) {
   return (
-    <section aria-label="Meu QR de entrega" className={cn('grid justify-items-center gap-mini rounded-lg border border-border bg-card p-small text-center text-card-foreground', className)}>
-      <div className="grid gap-xnano">
-        <h2 className="screen-title m-0 text-left">{title}</h2>
-        <p className="body-small m-0 text-left text-muted-foreground">{description}</p>
+    <section aria-label="Meu QR de entrega" className={cn('grid gap-mini text-foreground', className)}>
+      <div className="grid gap-nano">
+        <h2 className="screen-title m-0">{title}</h2>
+        <p className="body-small m-0 text-muted-foreground">{description}</p>
       </div>
-      <div className="grid size-qr place-items-center rounded-lg border border-border bg-surface-primary p-mini [&>*]:size-full">{qr}</div>
-      <p className="body-strong m-0 uppercase tracking-[0.5px]">{name}</p>
-      <ol className="caption m-0 grid list-none gap-xnano p-0 text-muted-foreground">
-        {steps.map((t, i) => <li key={t}>{i + 1}. {t}</li>)}
+      <div className="grid justify-items-center gap-mini rounded-lg bg-surface-inverse p-small text-text-inverse shadow-dark">
+        <div className="grid size-qr place-items-center rounded-lg bg-surface-primary p-mini text-foreground [&>*]:size-full">{qr}</div>
+        <p className="body-strong m-0 uppercase tracking-[0.5px]">{name}</p>
+      </div>
+      <ol className="body-small m-0 grid list-none gap-micro rounded-lg bg-card p-mini text-card-foreground shadow-card">
+        {steps.map((t, i) => (
+          <li key={t} className="flex items-center gap-micro">
+            <span aria-hidden className="grid size-[28px] shrink-0 place-items-center rounded-full bg-surface-tint-peach font-bold text-text-link">{i + 1}</span>{t}
+          </li>
+        ))}
       </ol>
     </section>
   );

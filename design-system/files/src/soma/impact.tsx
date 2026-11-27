@@ -1,7 +1,8 @@
 /* So+ma · impacto e ranking: StatTile, StatGrid, PositionCard, Podium, RankingRow, StatsRow. */
 import * as React from 'react';
+import { pressable } from './navigation';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn, fmt, tintBg, tintFor, type Tint } from '../lib/utils';
+import { focusRing, cn, fmt, tintBg, tintFor, type Tint } from '../lib/utils';
 import { Icon, type IconName } from '../ui/icon';
 import { Card, Avatar, AvatarImage, AvatarFallback } from '../ui/display';
 import { Button } from '../ui/button';
@@ -48,13 +49,17 @@ export interface PositionCardProps {
 /** Aba Geral do ranking: uma frase de comparação com quem entrega no mesmo espaço (Figma: ícone de tendência em círculo laranja). */
 export function PositionCard({ percent, className }: PositionCardProps) {
   return (
-    <div role="group" aria-label="Sua posição" className={cn('grid grid-cols-[auto_1fr] items-center gap-micro rounded-lg border border-border bg-card p-mini text-card-foreground', className)}>
-      <span aria-hidden className="grid size-[40px] place-items-center rounded-full border border-border-highlight bg-surface-accent text-icon-brand-strong"><Icon name="trending-up" /></span>
-      <p className="label m-0">
-        {percent == null
-          ? 'Faça sua primeira entrega para entrar no ranking do seu espaço de recebimento.'
-          : `Você reciclou mais que ${fmt(percent)}% dos participantes do seu espaço de recebimento.`}
-      </p>
+    <div role="group" aria-label="Sua posição" className={cn('relative grid gap-xnano overflow-hidden rounded-lg bg-surface-inverse p-mini text-text-inverse shadow-dark', className)}>
+      <span aria-hidden className="pointer-events-none absolute -right-[40px] -top-[60px] size-[180px] rounded-full bg-surface-primary/[.07]" />
+      {percent == null
+        ? <p className="label m-0">Faça sua primeira entrega para entrar no ranking do seu espaço de recebimento.</p>
+        : (
+          <>
+            <p aria-hidden className="eyebrow m-0 uppercase tracking-wide">Seu desempenho</p>
+            <p aria-hidden className="m-0 text-[48px] font-bold leading-[56px] text-icon-brand">{fmt(percent)}%</p>
+            <p className="body-small m-0">Você reciclou mais que {fmt(percent)}% dos participantes do seu espaço de recebimento.</p>
+          </>
+        )}
     </div>
   );
 }
@@ -74,9 +79,9 @@ export interface PodiumEntry {
 export interface PodiumProps { entries: PodiumEntry[] }
 const initials = (n: string) => n.split(/\s+/).filter((w) => /^\p{L}/u.test(w)).slice(0, 2).map((w) => w[0]!.toUpperCase()).join('');
 const STEP: Record<1 | 2 | 3, { fill: string; h: string; avatar: string; face: string }> = {
-  1: { fill: 'bg-primary text-foreground', h: 'h-[46px]', avatar: 'size-[64px]', face: 'bg-surface-tint-peach' },
-  2: { fill: 'bg-surface-podium-2 text-foreground', h: 'h-[34px]', avatar: 'size-[52px]', face: 'bg-surface-tint-blue' },
-  3: { fill: 'bg-surface-podium-3 text-foreground', h: 'h-[26px]', avatar: 'size-[52px]', face: 'bg-surface-tint-lavender' },
+  1: { fill: 'bg-primary text-foreground', h: 'h-[72px] rounded-t-lg', avatar: 'size-[64px]', face: 'bg-surface-tint-peach' },
+  2: { fill: 'bg-surface-podium-2 text-foreground', h: 'h-[56px] rounded-t-lg', avatar: 'size-[52px]', face: 'bg-surface-tint-blue' },
+  3: { fill: 'bg-surface-podium-3 text-foreground', h: 'h-[44px] rounded-t-lg', avatar: 'size-[52px]', face: 'bg-surface-tint-lavender' },
 };
 /** A própria pessoa no pódio: avatar e degrau na cor de destaque (Figma: laranja), nome "Você" e kg em cor de link. */
 const SELF_FILL = 'bg-interactive-fill-loud text-foreground';
@@ -159,12 +164,13 @@ export function RankingStarterCard({
   className,
 }: RankingStarterCardProps) {
   return (
-    <section aria-label="Sua jornada" className={cn('grid gap-micro rounded-lg border border-border-highlight bg-surface-accent p-mini text-foreground', className)}>
-      <div className="grid gap-xnano">
-        <p className="label m-0 font-bold">{title}</p>
-        <p className="caption m-0 text-muted-foreground">{description}</p>
+    <section aria-label={title} className={cn('grid gap-nano rounded-lg bg-surface-tint-peach p-mini text-foreground', className)}>
+      <div className="flex items-center gap-nano">
+        <span aria-hidden className="grid size-[32px] shrink-0 place-items-center rounded-full bg-surface-primary text-text-link"><Icon name="calendar" size="small" /></span>
+        <h3 className="body-strong m-0">{title}</h3>
       </div>
-      <Button size="compact" fullWidth onClick={onAction}>{actionLabel}</Button>
+      <p className="body-small m-0">{description}</p>
+      <Button fullWidth size="compact" onClick={onAction}>{actionLabel}</Button>
     </section>
   );
 }
@@ -203,18 +209,22 @@ export interface ImpactTilesProps {
 /** Resultado da entrega em três cartões (kg, pontos, água), como na tela "Entrega registrada". */
 export function ImpactTiles({ title, items, onShare, className }: ImpactTilesProps) {
   return (
-    <section aria-label={title ?? 'Seu impacto'} className={cn('grid gap-nano', className)}>
+    <section aria-label={title ?? 'Seu impacto'} className={cn('grid gap-micro rounded-lg bg-surface-inverse p-mini text-text-inverse shadow-dark', className)}>
       {(title || onShare) && (
         <div className="flex items-center justify-between gap-nano">
           {title && <h2 className="label m-0">{title}</h2>}
-          {onShare && <Button hierarchy="transparent" size="compact" icon="share" onClick={onShare} className="rounded-full bg-surface-accent">Compartilhar</Button>}
+          {onShare && (
+            <button type="button" onClick={onShare} className={cn(pressable, focusRing, 'caption inline-flex min-h-touch items-center gap-xnano whitespace-nowrap rounded-xs border-0 bg-transparent font-bold text-icon-brand')}>
+              <Icon name="share" size="small" />Compartilhar
+            </button>
+          )}
         </div>
       )}
       <dl className="m-0 grid auto-cols-fr grid-flow-col gap-nano">
         {items.map((it) => (
-          <div key={it.label} className={cn('grid content-between gap-xnano rounded-lg border bg-card p-micro', 'border-[1.5px]', it.highlight ? 'border-border-highlight' : 'border-border')}>
-            <dd className={cn('m-0 text-[22px] font-bold leading-7', it.highlight ? 'text-text-link' : 'text-foreground')}>{it.value}</dd>
-            <dt className={cn('caption order-last', it.highlight ? 'font-bold text-text-link' : 'text-muted-foreground')}>{it.label}</dt>
+          <div key={it.label} className="grid content-start gap-xnano">
+            <dd className="m-0 whitespace-nowrap text-[22px] font-bold leading-7 text-icon-brand">{it.value}</dd>
+            <dt className={cn('caption order-last', it.highlight && 'font-bold')}>{it.label}</dt>
           </div>
         ))}
       </dl>
