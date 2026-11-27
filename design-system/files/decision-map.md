@@ -116,7 +116,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `RedemptionItem` | Item do histórico de resgates: logo do parceiro, nome da recompensa, pontos e hora, e o status. | escrever o status em texto livre: use `StatusChip`. |
 | `RewardChoiceList` | Lista de recompensas para escolher a meta durante o cadastro. | usar fora do cadastro (no catálogo use `RewardRow`). |
 | `RewardDetail` | Detalhe de uma recompensa: imagem, categoria, nome, custo, etiquetas e "De onde vêm os pontos". | esconder "De onde vêm os pontos". |
-| `RewardRow` | Linha do catálogo de recompensas: título, pontos e seta. | ter área tocável menor que a linha inteira. |
+| `RewardRow` | Linha do catálogo de recompensas: título, pontos, quanto falta e seta. | ter área tocável menor que a linha inteira. |
 | `StatusChip` | Chip em pílula com o estado de um resgate: Concluído, Aguardando retirada ou Expirado. | criar um quarto estado: são três (Concluído, Aguardando retirada, Expirado). |
 
 ## Reciclar e entrega

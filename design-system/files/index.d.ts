@@ -1354,6 +1354,8 @@ export interface RewardTag {
 export interface RewardRowProps {
 	title: string;
 	points: number;
+	/** Saldo da pessoa: mostra quanto falta ou que já dá para trocar. */
+	balance?: number;
 	/** Etiquetas curtas ao lado dos pontos: "2× vidro" (positive). */
 	tags?: RewardTag[];
 	/** Prêmio da meta atual: borda de destaque e etiqueta "Sua meta atual". */
@@ -1364,8 +1366,8 @@ export interface RewardRowProps {
 	href?: string;
 	onClick?: () => void;
 }
-/** Linha do catálogo (Telas 1, 5, 9 e 23): título, pontos em cor de link e seta. Tocável inteira; abre o detalhe. Prêmios acima do saldo aparecem iguais. */
-export declare function RewardRow({ title, points, tags, current, image, icon, href, onClick }: RewardRowProps): React$1.JSX.Element;
+/** Linha do catálogo (Telas 1, 5, 9 e 23): título, pontos em cor de link e seta. Tocável inteira; abre o detalhe. Com `balance`, mostra quanto falta ou que já dá para trocar. */
+export declare function RewardRow({ title, points, balance, tags, current, image, icon, href, onClick }: RewardRowProps): React$1.JSX.Element;
 export interface RedeemCodeProps {
 	code: string;
 	/** "Válido até 5 de nov de 2026". */
