@@ -5,7 +5,7 @@ import * as React from 'react';
 import { cn, fmt } from '../lib/utils';
 import { Icon } from '../ui/icon';
 import { Button, IconButton } from '../ui/button';
-import { Card } from '../ui/display';
+import { Card, Progress } from '../ui/display';
 import { RadioGroup, RadioGroupItem } from '../ui/form';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/overlay';
 import { ILLUSTRATIONS } from '../assets/illustrations';
@@ -53,7 +53,7 @@ export function Trophy({ tier, size = 'md', src, className }: TrophyProps) {
 /* ------------------------------------------------------------ LevelBadge */
 
 const TIER_FILL: Record<Tier, string> = {
-  bronze: 'bg-award-bronze font-semibold text-text-inverse',
+  bronze: 'bg-primary font-bold text-primary-foreground',
   prata: 'bg-surface-track font-bold text-foreground',
   ouro: 'bg-tier-gold-border font-bold text-foreground',
 };
@@ -66,7 +66,7 @@ export interface LevelBadgeProps {
 /** Etiqueta do nível em maiúsculas, 10px. A cor segue o nível nas duas formas: marrom, cinza-azulado e amarelo. */
 export function LevelBadge({ tier, kind = 'name', className }: LevelBadgeProps) {
   return (
-    <span className={cn('inline-flex items-center rounded-xs px-nano py-[2px] font-sans text-[12px] uppercase leading-4 tracking-[0.5px]', TIER_FILL[tier], className)}>
+    <span className={cn('inline-flex items-center rounded-full px-nano py-[2px] font-sans text-[11px] uppercase leading-4 tracking-[0.5px]', TIER_FILL[tier], className)}>
       {kind === 'name' ? TIER_NAME[tier] : TIER_LEVEL[tier]}
     </span>
   );
@@ -84,17 +84,20 @@ export interface LevelCardProps {
 /** Topo do Quiz (Telas 1 e 3): troféu do nível, etiqueta e quantas perguntas faltam. Sem barra nem percentual. Mostra Bronze, Prata ou Ouro. */
 export function LevelCard({ tier, remaining = 0, src, className }: LevelCardProps) {
   const next = TIER_NEXT[tier];
+  const goal = next ? TIER_GOAL[next] : 0;
+  const pct = next ? Math.max(0, Math.min(100, ((goal - remaining) / goal) * 100)) : 100;
   return (
-    <div role="group" aria-label={`Nível ${TIER_NAME[tier]}`} className={cn('grid justify-items-center gap-nano py-nano text-center', className)}>
-      <div className="grid justify-items-center gap-[6px]">
-        <div className="flex h-[145px] w-[130px] items-end justify-center">
-          <Trophy tier={tier} size="lg" src={src} />
+    <div role="group" aria-label={`Nível ${TIER_NAME[tier]}`} className={cn('grid gap-micro rounded-lg bg-surface-inverse p-mini text-text-inverse shadow-dark', className)}>
+      <div className="flex items-center gap-micro">
+        <span className="grid size-[72px] shrink-0 place-items-center rounded-full bg-surface-tint-peach"><Trophy tier={tier} src={src} className="size-[64px]" /></span>
+        <div className="grid justify-items-start gap-xnano">
+          <LevelBadge tier={tier} />
+          <p className="body-small m-0 font-semibold">
+            {next ? `${remaining === 1 ? 'Falta 1 pergunta' : `Faltam ${remaining} perguntas`} para ${TIER_NAME[next]}` : 'Você chegou ao nível mais alto'}
+          </p>
         </div>
-        <LevelBadge tier={tier} />
       </div>
-      <p className="m-0 text-[12px] font-medium leading-[15px] text-muted-foreground">
-        {next ? `${remaining === 1 ? 'Falta 1 pergunta' : `Faltam ${remaining} perguntas`} para ${TIER_NAME[next]}` : 'Você chegou ao nível mais alto'}
-      </p>
+      <Progress value={pct} label="Progresso para o próximo nível" />
     </div>
   );
 }
@@ -117,14 +120,14 @@ export interface TierCardProps {
 /** Um nível na tela "Campeão da Reciclagem" (Tela 5): troféu, nome, etiqueta de dificuldade e quantas perguntas. Cada nível tem fundo e contorno próprios. Use dentro de <ul>. */
 export function TierCard({ tier, current, questions = TIER_GOAL[tier], src }: TierCardProps) {
   return (
-    <li aria-current={current ? 'true' : undefined} className={cn('grid list-none grid-cols-[auto_1fr] items-center gap-mini rounded-lg border p-mini', TIER_CARD[tier])}>
-      <Trophy tier={tier} src={src} />
+    <li aria-current={current ? 'true' : undefined} className={cn('grid list-none grid-cols-[auto_1fr] items-center gap-mini rounded-lg border-[1.5px] p-micro', current ? 'border-border-highlight bg-surface-accent' : 'border-transparent bg-card shadow-card')}>
+      <span className="grid size-[56px] place-items-center rounded-full bg-surface-tint-peach"><Trophy tier={tier} src={src} className="size-[48px]" /></span>
       <div className="grid gap-xnano">
         <div className="flex flex-wrap items-center gap-nano">
-          <p className="m-0 text-[18px] font-extrabold leading-6 text-foreground">{TIER_NAME[tier]}</p>
-          <LevelBadge tier={tier} kind="level" />
+          <p className="m-0 text-[18px] font-bold leading-6 text-foreground">{TIER_NAME[tier]}</p>
+          <span className={cn('rounded-full px-nano py-[2px] text-[11px] font-bold leading-4', current ? 'bg-primary text-primary-foreground' : 'bg-surface-secondary text-foreground')}>{TIER_LEVEL[tier]}</span>
         </div>
-        <p className="m-0 text-[12px] leading-[15px] text-muted-foreground">Responda {questions} perguntas</p>
+        <p className="m-0 text-[13px] leading-5 text-muted-foreground">Responda {questions} perguntas</p>
       </div>
     </li>
   );
@@ -143,15 +146,15 @@ export interface ProtectionNoticeProps {
 export function ProtectionNotice({ children, variant = 'inline', onInfo }: ProtectionNoticeProps) {
   if (variant === 'inline') {
     return (
-      <p className="m-0 flex items-center gap-nano text-[12px] font-medium leading-[15px] text-foreground">
-        <Icon name="shield" tone="info" className="size-[12px]" />{children}
+      <p className="caption m-0 flex items-center gap-nano rounded-full bg-surface-info px-micro py-nano font-medium text-foreground">
+        <Icon name="shield" tone="info" size="small" />{children}
       </p>
     );
   }
   return (
-    <div className="grid grid-cols-[auto_1fr_auto] items-center gap-micro rounded-md bg-surface-accent p-[14px]">
-      <span aria-hidden className="grid size-[32px] place-items-center rounded-full bg-surface-brand text-text-on-loud"><Icon name="shield" size="small" /></span>
-      <p className="m-0 text-[14px] leading-5 text-muted-foreground">{children}</p>
+    <div className="grid grid-cols-[auto_1fr_auto] items-center gap-micro rounded-md bg-surface-info p-micro text-foreground">
+      <span aria-hidden className="grid size-[32px] place-items-center rounded-full bg-surface-primary text-icon-info"><Icon name="shield" size="small" /></span>
+      <p className="body-small m-0">{children}</p>
       {onInfo && <IconButton icon="info" label="Como funciona a proteção da sequência" onClick={onInfo} />}
     </div>
   );
@@ -176,31 +179,35 @@ export interface QuestionCardProps {
 export function QuestionCard({ points, question, options, value, onChange, onSubmit, info, submitting }: QuestionCardProps) {
   const qid = React.useId();
   return (
-    <Card aria-labelledby={qid} role="group" className="gap-micro border-[1.5px] border-border-highlight p-mini">
+    <div aria-labelledby={qid} role="group" className="grid gap-micro rounded-lg border-[1.5px] border-border-highlight bg-surface-accent p-mini text-foreground">
       <div className="flex items-center gap-xnano text-text-link">
-        <span id={qid} className="text-[12px] font-bold leading-[15px]">Pergunta do dia</span>
+        <span id={qid} className="eyebrow uppercase tracking-wide">Pergunta do dia</span>
         {info && (
           <Popover>
             <PopoverTrigger asChild><IconButton icon="info" label="Como funciona o quiz" className="-my-micro" /></PopoverTrigger>
             <PopoverContent aria-label="Como funciona o quiz">{info}</PopoverContent>
           </Popover>
         )}
-        {points != null && <PointsBadge points={points} className="ml-auto min-h-0 px-nano py-[2px] text-[12px] leading-4" />}
+        {points != null && <span className="ml-auto whitespace-nowrap rounded-full bg-primary px-micro py-[2px] text-[12px] font-bold leading-4 text-primary-foreground">+{fmt(points)} pontos</span>}
       </div>
-      <p className="m-0 text-[16px] font-bold leading-6 text-foreground" id={`${qid}-q`}>{question}</p>
+      <p className="m-0 text-[18px] font-bold leading-6" id={`${qid}-q`}>{question}</p>
       <RadioGroup value={value} onValueChange={onChange} aria-labelledby={`${qid}-q`} className="gap-nano">
-        {options.map((o, i) => (
-          <label
-            key={o}
-            className="flex min-h-touch cursor-pointer items-center rounded-sm border border-input bg-surface-primary p-[10px] text-[14px] leading-5 text-foreground transition-colors hover:bg-interactive-fill-quiet-hover has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring has-[[data-state=checked]]:border-[1.5px] has-[[data-state=checked]]:border-border-highlight has-[[data-state=checked]]:bg-surface-accent has-[[data-state=checked]]:font-semibold"
-          >
-            <RadioGroupItem value={o} id={`${qid}-${i}`} className="!sr-only" />
-            {String.fromCharCode(97 + i)}) {o}
-          </label>
-        ))}
+        {options.map((o, i) => {
+          const on = value === o;
+          return (
+            <label
+              key={o}
+              className="flex min-h-button cursor-pointer items-center gap-micro rounded-md border-[1.5px] border-transparent bg-surface-primary px-micro py-nano text-[14px] leading-5 transition-colors hover:bg-interactive-fill-quiet-hover has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring has-[[data-state=checked]]:border-border-highlight has-[[data-state=checked]]:font-semibold"
+            >
+              <RadioGroupItem value={o} id={`${qid}-${i}`} className="!sr-only" />
+              <span aria-hidden className={cn('grid size-[22px] shrink-0 place-items-center rounded-full border-2', on ? 'border-primary bg-primary text-primary-foreground' : 'border-icon-secondary')}>{on && <Icon name="check" size="small" />}</span>
+              {String.fromCharCode(97 + i)}) {o}
+            </label>
+          );
+        })}
       </RadioGroup>
       <Button fullWidth disabled={!value} loading={submitting} onClick={onSubmit}>Enviar resposta</Button>
-    </Card>
+    </div>
   );
 }
 
@@ -240,28 +247,27 @@ const DAY_NAME: Record<StreakDayState, string> = { done: 'respondido', protected
 /** "Sua trilha": check (feito), escudo (protegido) e a inicial do dia ainda sem resposta. Hoje leva anel laranja de 3px. O estado "missed" não aparece no Figma. */
 export function StreakTrail({ days, className }: StreakTrailProps) {
   return (
-    <ol aria-label="Sua semana no quiz" className={cn('m-0 flex list-none justify-between p-0 py-nano', className)}>
+    <ol aria-label="Sua semana no quiz" className={cn('m-0 flex list-none justify-between p-0 py-xnano', className)}>
       {days.map((d, i) => {
-        const ring = d.state === 'today' || d.today;
+        const open = d.state === 'today';
         return (
           <li key={i} className="grid w-[36px] justify-items-center gap-xnano">
             <span
               aria-hidden
               className={cn(
-                'grid size-[36px] place-items-center rounded-full text-[12px] font-bold leading-[15px]',
-                d.state === 'done' && 'bg-feedback-fill-positive text-feedback-text-positive',
+                'grid size-[32px] place-items-center rounded-full',
+                d.state === 'done' && 'bg-primary text-primary-foreground',
                 d.state === 'protected' && 'bg-surface-info text-icon-info',
                 d.state === 'missed' && 'bg-feedback-fill-negative text-feedback-text-negative',
-                (d.state === 'today' || d.state === 'future') && 'bg-surface-track text-foreground',
-                ring && 'border-[3px] border-border-highlight',
+                d.state === 'future' && 'bg-surface-secondary',
+                open && 'border-2 border-border-highlight bg-surface-primary',
               )}
             >
-              {d.state === 'done' && <Icon name="check" className="size-[12px]" />}
-              {d.state === 'protected' && <Icon name="shield" className="size-[12px]" />}
-              {d.state === 'missed' && <Icon name="close" className="size-[12px]" />}
-              {(d.state === 'today' || d.state === 'future') && d.label}
+              {d.state === 'done' && <Icon name="check" size="small" />}
+              {d.state === 'protected' && <Icon name="shield" size="small" />}
+              {d.state === 'missed' && <Icon name="close" size="small" />}
             </span>
-            <span className="text-[12px] leading-4 text-muted-foreground">
+            <span className={cn('text-[12px] leading-4', open || d.today ? 'font-bold text-foreground' : 'text-muted-foreground')}>
               {d.label}<span className="sr-only">: {DAY_NAME[d.state]}{d.today && d.state !== 'today' ? ', hoje' : ''}</span>
             </span>
           </li>
@@ -288,37 +294,16 @@ const wk = (n: number) => (n === 1 ? 'semana' : 'semanas');
 /** Barra da sequência em semanas (Tela 1): trilho de 8px, marcos de prêmio em 1, 5, 10 e 20 semanas. Marco alcançado: bolinha laranja de 10px com check. Os outros: bolinha de 6px. */
 export function StreakProgress({ weeks, milestones = [1, 5, 10, 20], nextReward, hideLabel, className }: StreakProgressProps) {
   const max = Math.max(...milestones);
-  const pct = Math.min(100, (weeks / max) * 100);
+  const next = milestones.find((m) => m > weeks) ?? max;
+  const pct = Math.min(100, (weeks / next) * 100);
   return (
     <div className={cn('grid gap-nano', className)}>
-      {!hideLabel && <p className="m-0 text-[12px] font-semibold leading-[15px] text-foreground">Sequência: {weeks} {wk(weeks)}</p>}
-      <div className="grid gap-[6px]">
-        <div className="relative h-[8px] rounded-full bg-surface-track" role="progressbar" aria-label="Progresso da sequência" aria-valuemin={0} aria-valuemax={max} aria-valuenow={Math.min(weeks, max)} aria-valuetext={`${weeks} ${wk(weeks)} seguidas`}>
-          <div className="h-full rounded-full bg-selected-indicator" style={{ width: `${pct}%` }} />
-          {milestones.map((m) => {
-            const reached = weeks >= m;
-            return (
-              <span
-                key={m}
-                aria-hidden
-                className={cn('absolute top-1/2 grid -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full', reached ? 'size-[10px] border border-background bg-selected-indicator text-text-on-loud' : 'size-[6px] bg-text-secondary')}
-                style={{ left: `${(m / max) * 100}%` }}
-              >
-                {reached && <svg viewBox="0 0 12 12" className="size-[7px]" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 6.5l2.2 2.2 4.8-5" /></svg>}
-              </span>
-            );
-          })}
-        </div>
-        <div aria-hidden className="relative h-[12px]">
-          {milestones.map((m) => {
-            const half = String(m).length > 1 ? 18 : 15;
-            return (
-              <span key={m} className="absolute -translate-x-1/2 whitespace-nowrap text-[12px] font-semibold leading-4 text-muted-foreground" style={{ left: `min(calc(100% - ${half}px), max(${half}px, ${(m / max) * 100}%))` }}>{m} sem</span>
-            );
-          })}
-        </div>
+      {!hideLabel && <p className="body-small m-0 flex items-center gap-xnano font-bold text-foreground"><Icon name="flame" size="small" className="text-text-link" />Sequência: {weeks} {wk(weeks)}</p>}
+      <div className="relative h-[8px] overflow-hidden rounded-full bg-surface-track" role="progressbar" aria-label="Progresso da sequência" aria-valuemin={0} aria-valuemax={next} aria-valuenow={Math.min(weeks, next)} aria-valuetext={`${weeks} ${wk(weeks)} seguidas`}>
+        <div className="h-full rounded-full bg-primary" style={{ width: `${pct}%` }} />
       </div>
-      {nextReward && <p className="m-0 text-[12px] font-medium leading-[15px] text-muted-foreground">Próximo prêmio: {fmt(nextReward.points)} pontos em {nextReward.inWeeks} {wk(nextReward.inWeeks)}</p>}
+      <p aria-hidden className="caption m-0 flex justify-between text-muted-foreground"><span>Agora: {weeks} {wk(weeks)}</span><span>{next} semanas</span></p>
+      {nextReward && <p className="caption m-0 text-muted-foreground">{nextReward.inWeeks === 1 ? 'Falta 1 semana' : `Faltam ${nextReward.inWeeks} semanas`} para ganhar {fmt(nextReward.points)} pontos.</p>}
     </div>
   );
 }
@@ -338,15 +323,18 @@ export interface StreakSectionProps {
 }
 /** Bloco "Sua trilha" das Telas 1 e 3: título, 7 dias, barra de semanas, aviso de proteção e link "Ver histórico". */
 export function StreakSection({ days, weeks, nextReward, protection, onHistory, className }: StreakSectionProps) {
+  const id = React.useId();
   return (
-    <section aria-labelledby="streak-title" className={cn('grid gap-nano px-mini', className)}>
-      <h2 id="streak-title" className="m-0 text-[14px] font-bold leading-[17px] text-foreground">Sua trilha</h2>
+    <section aria-labelledby={id} className={cn('grid gap-nano rounded-lg bg-card p-mini text-card-foreground shadow-card', className)}>
+      <div className="flex items-center justify-between gap-nano">
+        <h2 id={id} className="body-strong m-0">Sua trilha</h2>
+        {onHistory && (
+          <button type="button" onClick={onHistory} className="caption inline-flex min-h-touch items-center gap-[2px] border-0 bg-transparent font-bold text-text-link">Ver histórico<Icon name="chevron-right" size="small" /></button>
+        )}
+      </div>
       <StreakTrail days={days} />
-      <StreakProgress weeks={weeks} nextReward={nextReward} />
       {protection && <ProtectionNotice>{protection}</ProtectionNotice>}
-      {onHistory && (
-        <button type="button" onClick={onHistory} className="min-h-touch justify-self-start text-[12px] font-medium leading-[15px] text-text-link underline">Ver histórico</button>
-      )}
+      <StreakProgress weeks={weeks} nextReward={nextReward} />
     </section>
   );
 }
@@ -377,51 +365,51 @@ export function AnswerResult({ correct, answer, explanation, points, weeks, mess
   const id = React.useId();
   const mascot = ILLUSTRATIONS[correct ? 'mascote-lata-acerto' : 'mascote-lata-erro'].src;
   return (
-    <section aria-labelledby={id} className="grid min-h-full grid-rows-[auto_1fr_auto]">
-      <header className="grid justify-items-center gap-mini border-b border-border bg-surface-primary px-mini py-mini">
-        <span className={cn('rounded-full px-micro py-xnano text-[12px] font-bold uppercase leading-4', correct ? 'bg-feedback-text-positive text-text-inverse' : 'bg-destructive text-destructive-foreground')}>
-          {correct ? 'Você acertou!' : 'Não foi dessa vez'}
+    <section aria-labelledby={id} className="flex min-h-full flex-col bg-background text-foreground">
+      <header className={cn('relative grid justify-items-center gap-mini overflow-hidden px-small pb-[48px] pt-small', correct ? 'bg-primary' : 'bg-surface-inverse')}>
+        <span aria-hidden className="absolute -right-[64px] -top-[72px] size-[240px] rounded-full bg-surface-primary/[.12]" />
+        <span className={cn('eyebrow relative inline-flex items-center gap-xnano rounded-full px-micro py-[6px] uppercase', correct ? 'bg-surface-inverse text-text-inverse' : 'bg-surface-primary/[.16] text-text-inverse')}>
+          <Icon name={correct ? 'check' : 'close'} size="small" className="text-icon-brand" />{correct ? 'Você acertou!' : 'Não foi dessa vez'}
         </span>
         {typeof art === 'string' || art == null ? (
-          <img src={typeof art === 'string' ? art : mascot} alt="" width={200} height={200} className="size-[200px] object-contain" />
+          <span className="relative grid size-[128px] place-items-center rounded-full bg-surface-primary shadow-card"><img src={typeof art === 'string' ? art : mascot} alt="" width={112} height={112} className="size-[112px] object-contain" /></span>
         ) : art}
       </header>
-      <div className="grid content-start gap-xsmall p-small">
-        <div className="grid gap-nano">
-          <p className="m-0 text-[14px] font-bold leading-5 tracking-[0.5px] text-text-link">{correct ? 'A resposta certa é' : 'A resposta certa era'}</p>
-          <h2 id={id} className="m-0 text-[18px] font-bold leading-[22px] text-foreground">{answer}</h2>
+      <div className="relative -mt-small flex flex-1 flex-col gap-micro rounded-t-xl bg-background px-xsmall pb-small pt-small">
+        <div className="grid gap-xnano">
+          <p className="body-small m-0 text-muted-foreground">{correct ? 'A resposta certa é' : 'A resposta certa era'}</p>
+          <h2 id={id} className="screen-title m-0">{answer}</h2>
         </div>
-        <div className="grid gap-nano">
-          <h3 className="m-0 text-[14px] font-bold leading-5 tracking-[0.5px] text-muted-foreground">Por quê?</h3>
-          <p className="m-0 text-[14px] leading-5 text-muted-foreground">{explanation}</p>
+        <div className="grid gap-xnano rounded-lg bg-card p-micro shadow-card">
+          <h3 className="body-strong m-0 flex items-center gap-nano"><Icon name="lightbulb" size="small" className="text-text-link" />Por quê?</h3>
+          <p className="body-small m-0 text-muted-foreground">{explanation}</p>
         </div>
         {correct ? (
-          <div className="grid gap-nano">
-            <h3 className="m-0 text-[14px] font-bold leading-5 tracking-[0.5px] text-muted-foreground">Pontos ganhos</h3>
-            <p className="m-0 text-[14px] leading-5 text-muted-foreground">{message}</p>
-            <div className="mt-xnano flex flex-wrap items-center justify-center gap-nano">
+          <>
+            <div className="flex flex-wrap items-center gap-nano">
               {weeks != null && (
-                <span className={cn(PILL, 'bg-feedback-fill-positive font-bold text-feedback-text-positive')}>
-                  <Icon name="circle-check" className="size-[14px]" />{weeks} {wk(weeks)} {weeks === 1 ? 'seguida' : 'seguidas'}
+                <span className={cn(PILL, 'bg-surface-tint-peach font-bold text-text-link')}>
+                  <Icon name="flame" className="size-[14px]" />{weeks} {wk(weeks)} {weeks === 1 ? 'seguida' : 'seguidas'}
                 </span>
               )}
               {points != null && (
-                <span className={cn(PILL, 'border border-border-highlight bg-surface-accent font-extrabold text-text-link')}>
+                <span className={cn(PILL, 'bg-primary font-bold text-primary-foreground')}>
                   <Icon name="star" className="size-[14px]" />+{fmt(points)} pontos
                 </span>
               )}
             </div>
-          </div>
+            <p className="body-small m-0 text-muted-foreground">{message}</p>
+          </>
         ) : (
-          <p className="m-0 text-[14px] leading-5 text-muted-foreground">Continue aprendendo para subir de nível.</p>
+          <p className="body-small m-0 text-muted-foreground">Continue aprendendo para subir de nível.</p>
         )}
+        <footer className="mt-auto grid gap-nano pt-small">
+          <Button fullWidth onClick={onContinue}>Continuar</Button>
+          {secondary && (secondary.href
+            ? <a href={secondary.href} className="body-small inline-flex min-h-button items-center justify-center rounded-full bg-surface-secondary px-small text-center font-bold text-foreground">{secondary.label}</a>
+            : <button type="button" onClick={secondary.onClick} className="body-small min-h-button rounded-full border-0 bg-surface-secondary px-small font-bold text-foreground">{secondary.label}</button>)}
+        </footer>
       </div>
-      <footer className="grid justify-items-center gap-micro px-small pb-small pt-large">
-        <Button fullWidth onClick={onContinue}>Continuar</Button>
-        {secondary && (secondary.href
-          ? <a href={secondary.href} className="inline-flex min-h-touch items-center text-[14px] font-semibold leading-5 text-text-link underline">{secondary.label}</a>
-          : <button type="button" onClick={secondary.onClick} className="inline-flex min-h-touch items-center text-[14px] font-semibold leading-5 text-text-link underline">{secondary.label}</button>)}
-      </footer>
     </section>
   );
 }
@@ -439,13 +427,13 @@ export interface DailyDoneProps {
 /** Estado do Quiz depois de responder (Tela 3): check verde, mensagem e "Próxima pergunta em 14h 15m". */
 export function DailyDone({ title = 'Tarefa cumprida!', children = 'Você já respondeu hoje! Volte amanhã para continuar.', countdown, className }: DailyDoneProps) {
   return (
-    <section role="status" className={cn('grid justify-items-center gap-micro rounded-lg border border-border bg-surface-primary p-mini text-center', className)}>
-      <span aria-hidden className="grid size-[48px] place-items-center rounded-full bg-feedback-fill-positive text-feedback-text-positive"><Icon name="check" size="medium" /></span>
-      <div className="grid gap-xnano">
-        <h2 className="m-0 text-[16px] font-bold leading-5 text-foreground">{title}</h2>
-        <p className="m-0 text-[14px] leading-5 text-muted-foreground">{children}</p>
+    <section role="status" className={cn('grid gap-nano rounded-lg bg-feedback-fill-positive p-mini text-foreground', className)}>
+      <div className="flex items-center gap-micro">
+        <span aria-hidden className="grid size-[40px] shrink-0 place-items-center rounded-full bg-feedback-text-positive text-text-inverse"><Icon name="check" size="medium" /></span>
+        <h2 className="m-0 text-[18px] font-bold leading-6 text-feedback-text-positive">{title}</h2>
       </div>
-      {countdown && <span className="rounded-sm bg-surface-secondary px-micro py-[6px] text-[12px] font-semibold leading-[15px] text-muted-foreground">Próxima pergunta em {countdown}</span>}
+      <p className="body-small m-0">{children}</p>
+      {countdown && <span className="caption inline-flex items-center gap-xnano justify-self-start rounded-full bg-surface-primary px-micro py-[6px] font-bold"><Icon name="clock" size="small" className="text-feedback-text-positive" />Próxima pergunta em {countdown}</span>}
     </section>
   );
 }
@@ -464,19 +452,19 @@ export interface HistorySummaryProps {
 /** Topo do Histórico (Tela 4): troféu de 96px com etiqueta do nível, total de respostas e data da última. */
 export function HistorySummary({ tier, since, total, last, src }: HistorySummaryProps) {
   return (
-    <div className="grid gap-nano">
-      <div className="flex items-center gap-mini rounded-lg bg-surface-secondary p-mini">
-        <Trophy tier={tier} src={src} />
-        <div className="grid justify-items-start gap-[2px]">
+    <div className="grid gap-nano text-foreground">
+      <div className="flex items-center gap-micro rounded-lg bg-surface-inverse p-micro text-text-inverse shadow-dark">
+        <span className="grid size-[56px] shrink-0 place-items-center rounded-full bg-surface-tint-peach"><Trophy tier={tier} src={src} className="size-[48px]" /></span>
+        <div className="grid justify-items-start gap-xnano">
           <LevelBadge tier={tier} />
-          {since && <p className="m-0 text-[12px] leading-4 text-muted-foreground">Avançou de nível em {since}</p>}
+          {since && <p className="caption m-0">Avançou de nível em {since}</p>}
         </div>
       </div>
       <dl className="m-0 grid grid-cols-2 gap-nano">
         {[['Total de respostas', String(total)], ['Última resposta', last]].map(([k, v]) => (
-          <div key={k} className="grid gap-xnano rounded-md bg-surface-secondary p-[10px]">
-            <dt className="text-[12px] leading-4 text-muted-foreground">{k}</dt>
-            <dd className="m-0 text-[16px] font-bold leading-[19px] text-foreground">{v}</dd>
+          <div key={k} className="grid gap-xnano rounded-lg bg-card p-micro shadow-card">
+            <dt className="caption text-muted-foreground">{k}</dt>
+            <dd className="m-0 text-[18px] font-bold leading-6">{v}</dd>
           </div>
         ))}
       </dl>
@@ -496,14 +484,18 @@ export interface AnswerHistoryProps {
 /** Título, paginador de mês e lista de respostas (Tela 4). Filhos: AnswerHistoryRow. */
 export function AnswerHistory({ month, title = 'Histórico de respostas', onPrev, onNext, children }: AnswerHistoryProps) {
   return (
-    <section aria-label={title} className="grid gap-micro">
-      <h2 className="m-0 text-[14px] font-bold leading-[17px] text-foreground">{title}</h2>
-      <div className="flex items-center justify-between rounded-md border border-border bg-surface-primary px-micro py-nano">
-        <IconButton icon="chevron-left" label="Mês anterior" onClick={onPrev} disabled={!onPrev} className="rounded-full bg-surface-secondary" />
-        <p className="m-0 text-[14px] font-bold leading-[17px] text-foreground" aria-live="polite">{month}</p>
-        <IconButton icon="chevron-right" label="Próximo mês" onClick={onNext} disabled={!onNext} className="rounded-full bg-surface-secondary" />
+    <section aria-label={title} className="grid gap-nano text-foreground">
+      <h2 className="body-strong m-0">{title}</h2>
+      <div className="flex min-h-[24px] items-center justify-between gap-nano">
+        <p className="eyebrow m-0 uppercase tracking-wide text-muted-foreground" aria-live="polite">{month}</p>
+        {(onPrev || onNext) && (
+          <span className="flex gap-xnano">
+            <IconButton icon="chevron-left" label="Mês anterior" onClick={onPrev} disabled={!onPrev} />
+            <IconButton icon="chevron-right" label="Próximo mês" onClick={onNext} disabled={!onNext} />
+          </span>
+        )}
       </div>
-      <ul className="m-0 grid list-none overflow-hidden rounded-md border border-border p-0">{children}</ul>
+      <ul className="m-0 grid list-none gap-nano p-0">{children}</ul>
     </section>
   );
 }
@@ -517,15 +509,14 @@ export interface AnswerHistoryRowProps {
 }
 /** Uma resposta do histórico: data, pergunta em uma linha e o resultado (+15 verde, "Sequência mantida" creme ou 0 cinza). */
 export function AnswerHistoryRow({ date, question, result }: AnswerHistoryRowProps) {
+  const pill = 'inline-flex items-center gap-[3px] rounded-full px-[10px] py-[2px] text-[12px] font-bold leading-4';
   return (
-    <li className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-micro border-b border-border bg-surface-primary p-micro last:border-b-0">
-      <div className="grid min-w-0 gap-xnano">
-        <p className="m-0 text-[14px] font-semibold leading-5 text-foreground">{date}</p>
-        <p className="m-0 truncate text-[14px] leading-5 text-muted-foreground">{question}</p>
-      </div>
-      {result.kind === 'points' && <span className="inline-flex items-center rounded-full bg-feedback-fill-positive px-[10px] py-xnano text-[12px] font-bold leading-[15px] text-feedback-text-positive">+{result.points}<span className="sr-only"> pontos</span></span>}
-      {result.kind === 'kept' && <span className="inline-flex items-center gap-[3px] rounded-full bg-surface-accent px-[10px] py-xnano text-[12px] font-bold leading-[15px] text-text-link"><Icon name="shield" className="size-[12px]" />Sequência mantida</span>}
-      {result.kind === 'zero' && <span className="inline-flex items-center rounded-full bg-surface-secondary px-[10px] py-xnano text-[12px] font-bold leading-[15px] text-muted-foreground">0<span className="sr-only"> pontos</span></span>}
+    <li className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-micro gap-y-xnano rounded-md bg-card p-micro text-card-foreground shadow-card">
+      <p className="caption m-0 text-muted-foreground">{date}</p>
+      {result.kind === 'points' && <span className={cn(pill, 'bg-feedback-fill-positive text-feedback-text-positive')}>+{result.points}<span className="sr-only"> pontos</span></span>}
+      {result.kind === 'kept' && <span className={cn(pill, 'bg-surface-info text-foreground')}><Icon name="shield" className="size-[12px] text-icon-info" />Sequência mantida</span>}
+      {result.kind === 'zero' && <span className={cn(pill, 'bg-surface-secondary text-muted-foreground')}>0<span className="sr-only"> pontos</span></span>}
+      <p className="body-small col-span-2 m-0 font-semibold">{question}</p>
     </li>
   );
 }
@@ -536,24 +527,24 @@ export function AnswerHistoryRow({ date, question, result }: AnswerHistoryRowPro
 function MilestoneBlocks({ weeks, milestones }: { weeks: number; milestones: number[] }) {
   const n = milestones.length;
   const current = milestones.reduce((acc, m, i) => (weeks >= m ? i : acc), -1);
-  const at = (i: number) => `calc(14px + (100% - 28px) * ${n > 1 ? i / (n - 1) : 0})`;
+  const at = (i: number) => `calc(20px + (100% - 40px) * ${n > 1 ? i / (n - 1) : 0})`;
   return (
-    <div role="img" aria-label={`Marcos da sequência. Você está na semana ${weeks} de ${milestones[n - 1]}.`} className="relative h-[44px]">
-      <span aria-hidden className="absolute inset-x-[14px] top-[11px] h-[2px] bg-surface-track" />
-      {milestones.map((m, i) => {
-        const done = i <= current;
-        return (
-          <React.Fragment key={m}>
-            <span aria-hidden className="absolute top-[12px] grid -translate-x-1/2 -translate-y-1/2 place-items-center" style={{ left: at(i) }}>
-              {i === current && <span className="absolute size-[22px] rounded-full border-2 border-border-highlight bg-background" />}
-              <span className={cn('relative grid place-items-center rounded-full', done ? 'size-[16px] bg-selected-indicator text-text-on-loud' : 'size-[10px] bg-text-secondary')}>
-                {done && <svg viewBox="0 0 12 12" className="size-[9px]" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 6.5l2.2 2.2 4.8-5" /></svg>}
+    <div className="rounded-lg bg-card px-nano py-micro shadow-card">
+      <div role="img" aria-label={`Marcos da sequência. Você está na semana ${weeks} de ${milestones[n - 1]}.`} className="relative h-[48px]">
+        <span aria-hidden className="absolute inset-x-[20px] top-[11px] h-[2px] bg-surface-track" />
+        {current > 0 && <span aria-hidden className="absolute left-[20px] top-[11px] h-[2px] bg-primary" style={{ width: `calc((100% - 40px) * ${current / (n - 1)})` }} />}
+        {milestones.map((m, i) => {
+          const done = i <= current;
+          return (
+            <React.Fragment key={m}>
+              <span aria-hidden className={cn('absolute top-0 grid size-[24px] -translate-x-1/2 place-items-center rounded-full', done ? 'bg-primary text-primary-foreground' : 'bg-surface-secondary')} style={{ left: at(i) }}>
+                {done && <Icon name="check" size="small" />}
               </span>
-            </span>
-            <span aria-hidden className="absolute top-[30px] -translate-x-1/2 whitespace-nowrap text-[12px] font-semibold leading-4 text-muted-foreground" style={{ left: `min(calc(100% - ${String(m).length > 1 ? 18 : 15}px), max(${String(m).length > 1 ? 18 : 15}px, ${at(i)}))` }}>{m} sem</span>
-          </React.Fragment>
-        );
-      })}
+              <span aria-hidden className={cn('absolute top-[30px] -translate-x-1/2 whitespace-nowrap text-[12px] leading-4', done ? 'font-bold text-foreground' : 'text-muted-foreground')} style={{ left: at(i) }}>{m} sem</span>
+            </React.Fragment>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -581,19 +572,20 @@ export function MilestoneResult({ weeks, points, nextReward, message, milestones
       : `Próximo prêmio: ${fmt(nextReward.points)} pontos na ${nextReward.week}ª semana.`
     : 'Continue assim para manter sua sequência.');
   return (
-    <section aria-labelledby={id} className="grid min-h-full grid-rows-[auto_1fr_auto]">
-      <header className="grid justify-items-center gap-mini border-b border-border bg-surface-primary p-small">
+    <section aria-labelledby={id} className="flex min-h-full flex-col bg-background text-foreground">
+      <header className="relative grid justify-items-center gap-mini overflow-hidden bg-primary px-small pb-[48px] pt-large text-primary-foreground">
+        <span aria-hidden className="absolute -right-[64px] -top-[72px] size-[240px] rounded-full bg-surface-primary/[.14]" />
         {typeof art === 'string' || art == null ? (
-          <img src={typeof art === 'string' ? art : ILLUSTRATIONS['conquista-bronze-148'].src} alt="" width={148} height={148} className="size-[148px] object-contain" />
+          <span className="relative grid size-[112px] place-items-center rounded-full bg-surface-tint-peach shadow-card"><img src={typeof art === 'string' ? art : ILLUSTRATIONS['conquista-bronze-148'].src} alt="" width={96} height={96} className="size-[96px] object-contain" /></span>
         ) : art}
-        <p className="m-0 text-[32px] font-extrabold leading-10 text-text-link">+{fmt(points)} pontos</p>
+        <p className="relative m-0 text-[32px] font-bold leading-10">+{fmt(points)} pontos</p>
       </header>
-      <div className="grid content-start gap-xsmall p-small">
-        <h2 id={id} className="m-0 text-[18px] font-bold leading-[22px] text-foreground">Você completou {weeks} {wk(weeks)} {weeks === 1 ? 'seguida' : 'seguidas'}!</h2>
-        <p className="m-0 text-[14px] leading-5 text-muted-foreground">{text}</p>
+      <div className="relative -mt-small flex flex-1 flex-col gap-micro rounded-t-xl bg-background px-xsmall pb-small pt-small">
+        <h2 id={id} className="screen-title m-0">Você completou {weeks} {wk(weeks)} {weeks === 1 ? 'seguida' : 'seguidas'}!</h2>
+        <p className="body-small m-0 text-muted-foreground">{text}</p>
         <MilestoneBlocks weeks={weeks} milestones={milestones} />
+        <footer className="mt-auto grid pt-small"><Button fullWidth hierarchy="dark" onClick={onContinue}>Continuar</Button></footer>
       </div>
-      <footer className="px-small pb-small pt-large"><Button fullWidth onClick={onContinue}>Continuar</Button></footer>
     </section>
   );
 }

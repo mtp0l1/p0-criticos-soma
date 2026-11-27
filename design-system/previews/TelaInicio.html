@@ -10,13 +10,13 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ var go=function(){}; return h('div',{className:'flex min-h-[900px] flex-col bg-background'},
+function Demo(){ var go=function(){}; return h('div',{className:'flex min-h-[960px] flex-col bg-background'},
   h('main',{className:'grid flex-1 content-start gap-small px-xsmall pb-medium pt-xsmall'},
-    h('div',{className:'grid gap-small'}, h(S.HomeGreeting,{name:'Mônica',location:'Casa so+ma Batel',onQr:go,onHelp:go}), h(S.BalanceCard,{points:10,onPress:go})),
-    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'Reciclar e ganhar pontos'}), h(S.TileGrid,null, h(S.Tile,{tone:'primary',icon:'search',label:'Buscar material'}), h(S.Tile,{icon:'user-plus',label:'Convidar amigos'}))),
+    h('div',{className:'grid gap-small'}, h(S.HomeGreeting,{name:'Mônica',location:'Casa so+ma Batel',onQr:go,onHelp:go}), h(S.BalanceCard,{points:320,onPress:go})),
+    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'Reciclar e ganhar pontos'}), h(S.TileGrid,null, h(S.Tile,{icon:'search',label:'Buscar material'}), h(S.Tile,{icon:'users',label:'Convidar amigos'}))),
     h(S.QuestionTeaser,{question:'Isopor é reciclável?',onPress:go}),
-    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'Resultado das minhas ações'}), h(S.TileGrid,null, h(S.Tile,{icon:'chart',label:'Meu impacto'}), h(S.Tile,{icon:'star',label:'Meu ranking de reciclagem'}))),
-    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'Usar pontos'}), h(S.TileGrid,null, h(S.Tile,{tone:'dark',icon:'gift',label:'Recompensas'}), h(S.Tile,{tone:'peach',icon:'envelope-open-heart',label:'Doar pontos'})))),
+    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'Resultado das minhas ações'}), h('div',{className:'grid rounded-lg bg-card shadow-card'}, h(S.ListRow,{icon:'chart',title:'Meu impacto',onClick:go}), h(S.ListRow,{icon:'star',title:'Meu ranking de reciclagem',onClick:go}))),
+    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'Usar pontos'}), h(S.TileGrid,null, h(S.Tile,{tone:'dark',icon:'gift',label:'Recompensas'}), h(S.Tile,{tone:'peach',icon:'heart',label:'Doar pontos'})))),
   h(S.TabBar,{active:'inicio'})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>

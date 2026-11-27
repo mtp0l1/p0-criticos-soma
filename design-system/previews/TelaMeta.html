@@ -13,9 +13,9 @@ function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','ari
 function Demo(){ var s=useState('fones'); return h('div',{className:'flex min-h-[880px] flex-col bg-background'},
   h(S.Header,{title:'Cadastro',onBack:function(){},action:{icon:'help',label:'Ajuda'}}),
   h('main',{className:'grid flex-1 content-start gap-small px-xsmall pt-small'},
-    h('div',{className:'grid gap-xnano'}, h('h1',{className:'screen-title m-0'},'Qual recompensa você quer conquistar?'), h('p',{className:'body-small m-0 text-muted-foreground'},'Escolha uma recompensa para ser a sua meta. Você pode trocar depois.')),
-    h(S.RewardChoiceList,{label:'Recompensa da meta',value:s[0],onChange:s[1],options:[{value:'fones',title:'Fones de ouvido Bluetooth',points:800},{value:'cafe',title:'Kit café da manhã',points:600},{value:'pen',title:'Kit 5 canetas Fine Pen',points:800,unavailable:true}]}),
-    h(S.GoalProgressCard,{points:80,goal:800,missingKg:36})),
+    h('div',{className:'grid gap-xnano'}, h('h1',{className:'screen-title m-0'},'Qual recompensa você quer conquistar?'), h('p',{className:'body-small m-0 text-muted-foreground'},'Ela vira sua meta: você acompanha o progresso a cada entrega e troca quando juntar os pontos.')),
+    h(S.RewardChoiceList,{label:'Recompensa da meta',value:s[0],onChange:s[1],options:[{value:'fones',title:'Fones de ouvido Bluetooth',points:800,icon:'headphones'},{value:'ecobag',title:'Ecobag personalizada',points:350,icon:'shopping-bag',unavailable:true},{value:'vale',title:'Vale-compras R$ 50',points:1200,icon:'gift',unavailable:true}]}),
+    h(S.GoalProgressCard,{points:80,goal:800,missingKg:8,material:'PET'})),
   h('div',{className:'px-xsmall pb-small pt-medium'}, h(S.Button,{fullWidth:true},'Definir como meta'))); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>

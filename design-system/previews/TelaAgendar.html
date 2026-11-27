@@ -10,19 +10,26 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ var sp=useState('vila'), d=useState('07'), t=useState('09');
-  var days=[['Qui','03'],['Sex','04'],['Sáb','05'],['Dom','06',1],['Seg','07'],['Ter','08'],['Qua','09']].map(function(x){ return {value:x[1],label:x[1],sublabel:x[0],disabled:!!x[2]}; });
-  var hours=['08','09','10','11','12','13','14'].map(function(x){ return {value:x,label:x+'h'}; });
-  return h('div',{className:'flex min-h-[980px] flex-col bg-background'},
-  h(S.Header,{title:'Em qual espaço de recebimento você vai entregar?',onBack:function(){},action:{icon:'help',label:'Ajuda'},divider:false}),
-  h('main',{className:'grid flex-1 content-start gap-small px-xsmall pt-small'},
+var ESPACOS=[{value:'batel',name:'Casa so+ma Batel',distance:'1,6 km',address:'Rua dos Ipês, 45',hours:'Seg a sáb, 9h às 18h'},{value:'vila',name:'Vila Verde',distance:'800 m',address:'Rua das Flores, 120',hours:'Seg a sáb, 8h às 18h'},{value:'praca',name:'Praça Central',distance:'1,2 km',address:'Praça da Matriz, s/n',hours:'Seg a sáb, 8h às 18h'}];
+var DIAS=[['Qui','03'],['Sex','04'],['Sáb','05'],['Dom','06',1],['Seg','07'],['Ter','08'],['Qua','09']].map(function(x){ return {value:x[1],label:x[1],sublabel:x[0],disabled:!!x[2]}; });
+function horas(abre){ return ['08','09','10','11','12','13','14','15','16','17'].map(function(x){ return {value:x,label:x+'h',disabled:+x<abre}; }); }
+function folhaMapa(x,fechar){ return h(S.SpaceMapSheet,{key:x?x.value:'nada',open:!!x,onOpenChange:function(o){ if(!o) fechar(); },name:x?x.name:'',address:x?x.address+' · '+x.distance:'',status:'Aberto até 18h',hours:x?x.hours:'',onOpenMaps:fechar,onCopyAddress:fechar}); }
+var ESPACOS=[{value:'batel',name:'Casa so+ma Batel',distance:'1,6 km',address:'Rua dos Ipês, 45',hours:'Seg a sáb, 9h às 18h'},{value:'vila',name:'Vila Verde',distance:'800 m',address:'Rua das Flores, 120',hours:'Seg a sáb, 8h às 18h'},{value:'praca',name:'Praça Central',distance:'1,2 km',address:'Praça da Matriz, s/n',hours:'Seg a sáb, 8h às 18h'}];
+var DIAS=[['Qui','03'],['Sex','04'],['Sáb','05'],['Dom','06',1],['Seg','07'],['Ter','08'],['Qua','09']].map(function(x){ return {value:x[1],label:x[1],sublabel:x[0],disabled:!!x[2]}; });
+function horas(abre){ return ['08','09','10','11','12','13','14','15','16','17'].map(function(x){ return {value:x,label:x+'h',disabled:+x<abre}; }); }
+function folhaMapa(x,fechar){ return h(S.SpaceMapSheet,{key:x?x.value:'nada',open:!!x,onOpenChange:function(o){ if(!o) fechar(); },name:x?x.name:'',address:x?x.address+' · '+x.distance:'',status:'Aberto até 18h',hours:x?x.hours:'',onOpenMaps:fechar,onCopyAddress:fechar}); }
+function Demo(){ var e=useState('batel'), d=useState(''), t=useState(''), m=useState(null);
+  var esc=ESPACOS.filter(function(x){return x.value===e[0];})[0], abre=e[0]==='batel'?9:8;
+  return h('div',{className:'flex min-h-[1020px] flex-col bg-background'},
+  h(S.Header,{title:'',onBack:function(){},divider:false}),
+  h('main',{className:'grid flex-1 content-start gap-small px-xsmall'},
+    h('h1',{className:'page-title m-0'},'Em qual espaço de recebimento você vai entregar?'),
     h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{size:'eyebrow',title:'Escolha o espaço'}),
-      h(S.SpaceCard,{name:'Vila Verde',distance:'800 m',address:'Rua das Flores, 120',selected:sp[0]==='vila',onSelect:function(){sp[1]('vila');}}),
-      h(S.SpaceCard,{name:'Praça Central',distance:'1,2 km',address:'Praça da Matriz, s/n',selected:sp[0]==='praca',onSelect:function(){sp[1]('praca');}}),
-      h(S.SpaceDetail,{name:sp[0]==='vila'?'Vila Verde':'Praça Central',address:sp[0]==='vila'?'Rua das Flores, 120 · Seg a sáb, 8h às 18h':'Praça da Matriz, s/n · Seg a sáb, 8h às 18h',onDirections:function(){}})),
-    h(S.SlotPicker,{label:'Escolha a data',slots:days,value:d[0],onChange:d[1]}),
-    h(S.SlotPicker,{label:'Escolha o horário',slots:hours,value:t[0],onChange:t[1]})),
-  h('div',{className:'px-xsmall pb-small pt-medium'}, h(S.Button,{fullWidth:true},'Agendar entrega'))); }
+      ESPACOS.map(function(x){ return h(S.SpaceCard,{key:x.value,name:x.name,distance:x.distance,address:x.address,hours:x.hours,selected:e[0]===x.value,onSelect:function(){ e[1](x.value); if(x.value==='batel'&&t[0]==='08') t[1](''); },onDirections:function(){ m[1](x); }}); })),
+    h(S.SlotPicker,{label:'Escolha a data',note:'Domingo fechado',wrap:true,slots:DIAS,value:d[0],onChange:d[1]}),
+    h(S.SlotPicker,{label:'Escolha o horário',note:abre===9?esc.name+' abre às 9h':undefined,wrap:true,slots:horas(abre),value:t[0],onChange:t[1]})),
+  h('div',{className:'px-xsmall pb-nano pt-small'}, h(S.Button,{fullWidth:true,disabled:!(d[0]&&t[0])},'Agendar entrega')),
+  h(S.TabBar,{active:'reciclar'}), folhaMapa(m[0],function(){ m[1](null); })); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
 <script>(function(){function s(){parent.postMessage({soma:"h",n:"TelaAgendar",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

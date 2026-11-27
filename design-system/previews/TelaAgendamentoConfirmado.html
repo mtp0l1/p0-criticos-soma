@@ -11,12 +11,12 @@ var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
 function Demo(){ var a=useState(false); return h('div',{className:'flex min-h-[880px] flex-col bg-background'},
-  h(S.ResultScreen,{tone:'neutral',icon:'calendar-check',iconShape:'square',titleSize:'screen',actionsPlacement:'inline',
+  h('div',{className:'flex-1'}, h(S.ResultScreen,{tone:'neutral',icon:'calendar-check',iconShape:'square',titleSize:'screen',actionsPlacement:'inline',
     title:'Sua primeira entrega está marcada',
-    description:a[0]?'Salvamos no seu e-mail e no seu calendário. Você vai receber um aviso no dia.':'Guardamos os detalhes no seu e-mail.',
+    description:a[0]?'Salvamos no seu e-mail e no seu calendário. Você vai receber um aviso no dia.':'Os detalhes já estão no seu e-mail. Salve também no calendário para receber um aviso no dia.',
     primaryAction:a[0]?{label:'Adicionado ao calendário',done:true}:{label:'Adicionar ao calendário',onClick:function(){a[1](true);}},
     extraLink:a[0]?{label:'Ver meus agendamentos'}:undefined, onHome:function(){}},
-    h(S.DeliverySummaryCard,{date:'Segunda, 7 de setembro',space:'Vila Verde',address:'Rua das Flores, 120 · 800 m',onDirections:function(){},time:'09h',notice:a[0]?'1 hora antes':undefined}))); }
+    h(S.DeliverySummaryCard,{date:'Segunda, 7 de setembro',space:'Vila Verde',address:'Rua das Flores, 120 · 800 m',onDirections:function(){},time:'09h',openHours:'8h às 18h',notice:a[0]?'1 hora antes':undefined}))), h(S.TabBar,{active:'reciclar'})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
 <script>(function(){function s(){parent.postMessage({soma:"h",n:"TelaAgendamentoConfirmado",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

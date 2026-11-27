@@ -143,7 +143,7 @@ def doc_md(j, titulo):
 
 
 DOCS = [('README.md', 'primeiros-passos'), ('1-gerar-telas-com-ia.md', 'recursos__gerar-telas'), ('2-padroes-de-tela.md', 'padroes__padroes-de-tela'),
-        ('3-para-engenharia.md', 'recursos__engenharia'), ('4-registro-do-handoff-anterior.md', 'recursos__telas-novas'), ('5-auditoria-shadcn.md', 'recursos__auditoria-shadcn'),
+        ('3-para-engenharia.md', 'recursos__engenharia'),
         ('6-ilustracoes.md', 'fundamentos__ilustracoes'), ('7-regras-e-verificacoes.md', 'recursos__regras'), ('8-para-qualquer-produto.md', 'produtos')]
 
 

@@ -216,19 +216,19 @@ export function MaterialResult({ name, image, accepted, recyclable, category }: 
 
 export interface HelpfulVoteProps { question?: string; value?: 'sim' | 'nao'; onVote?: (v: 'sim' | 'nao') => void }
 /** "Essa resposta foi útil?", sobre ToggleGroup (seleção única, aria-pressed). */
-export function HelpfulVote({ question = 'Essa resposta foi útil?', value, onVote }: HelpfulVoteProps) {
+export function HelpfulVote({ question = 'Isso ajudou?', value, onVote }: HelpfulVoteProps) {
   const item = cn(
-    'body min-h-touch min-w-[64px] cursor-pointer rounded-sm border-[1.5px] border-interactive-border-quiet bg-surface-primary px-mini font-semibold text-foreground transition-colors',
+    'body-small inline-flex min-h-touch cursor-pointer items-center justify-center gap-xnano rounded-full border-[1.5px] border-transparent bg-surface-secondary px-mini font-bold text-foreground transition-colors',
     'hover:bg-interactive-fill-quiet-hover active:bg-interactive-fill-quiet-active',
     focusRing,
     'data-[state=on]:border-primary data-[state=on]:bg-primary data-[state=on]:text-primary-foreground',
   );
   return (
-    <div className="grid gap-nano border-t border-border pt-mini">
+    <div className="grid gap-nano rounded-lg bg-card p-micro shadow-card">
       <p className="label m-0">{question}</p>
-      <ToggleGroupPrimitive.Root type="single" aria-label={question} value={value ?? ''} onValueChange={(v) => v && onVote?.(v as 'sim' | 'nao')} className="flex gap-nano">
-        <ToggleGroupPrimitive.Item value="sim" className={item}>Sim</ToggleGroupPrimitive.Item>
-        <ToggleGroupPrimitive.Item value="nao" className={item}>Não</ToggleGroupPrimitive.Item>
+      <ToggleGroupPrimitive.Root type="single" aria-label={question} value={value ?? ''} onValueChange={(v) => v && onVote?.(v as 'sim' | 'nao')} className="grid grid-cols-2 gap-nano">
+        <ToggleGroupPrimitive.Item value="sim" className={item}><Icon name="check" size="small" />Sim</ToggleGroupPrimitive.Item>
+        <ToggleGroupPrimitive.Item value="nao" className={item}><Icon name="close" size="small" />Não</ToggleGroupPrimitive.Item>
       </ToggleGroupPrimitive.Root>
       {value && <p role="status" className="caption m-0 text-muted-foreground">Obrigado pela resposta.</p>}
     </div>

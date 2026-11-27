@@ -12,8 +12,8 @@ var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
 function Demo(){ var d=useState('07'), t=useState('09');
   var days=[['Qui','03'],['Sex','04'],['Sáb','05'],['Dom','06',1],['Seg','07'],['Ter','08'],['Qua','09']].map(function(x){ return {value:x[1],label:x[1],sublabel:x[0],disabled:!!x[2]}; });
-  var hours=['08','09','10','11','12','13','14'].map(function(x){ return {value:x,label:x+'h'}; });
-  return h(F,null, h(S.SlotPicker,{label:'Escolha a data',slots:days,value:d[0],onChange:d[1]}), h(S.SlotPicker,{label:'Escolha o horário',slots:hours,value:t[0],onChange:t[1]})); }
+  var hours=['08','09','10','11','12','13','14','15','16','17'].map(function(x){ return {value:x,label:x+'h',disabled:x==='08'}; });
+  return h(F,null, h(S.SlotPicker,{label:'Escolha a data',note:'Domingo fechado',wrap:true,slots:days,value:d[0],onChange:d[1]}), h(S.SlotPicker,{label:'Escolha o horário',note:'Casa so+ma Batel abre às 9h',wrap:true,slots:hours,value:t[0],onChange:t[1]}), K('Sem wrap: uma fileira rolável'), h(S.SlotPicker,{label:'Escolha o horário',slots:hours,value:t[0],onChange:t[1]})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
 <script>(function(){function s(){parent.postMessage({soma:"h",n:"SlotPicker",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

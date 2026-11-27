@@ -53,8 +53,8 @@ export { Modal, Toast, Toaster, notify, Message, EmptyState, ResultScreen, toast
 export type { ModalProps, ToastProps, ToasterProps, NotifyOptions, MessageProps, EmptyStateProps, ResultScreenProps } from './soma/feedback';
 export { GoalCard, CampaignBanner, RewardRow, RedeemCode, RewardDetail, InstitutionCard } from './soma/rewards';
 export type { GoalCardProps, CampaignBannerProps, RewardRowProps, RewardTag, RedeemCodeProps, RewardDetailProps, InstitutionCardProps } from './soma/rewards';
-export { DeliveryCard, SpaceCard, SpaceDetail, SlotPicker } from './soma/recycle';
-export type { DeliveryCardProps, SpaceCardProps, SpaceDetailProps, SlotPickerProps, Slot } from './soma/recycle';
+export { DeliveryCard, SpaceCard, SpaceDetail, SlotPicker, SpaceMap, SpaceMapSheet, SpacePickerSheet } from './soma/recycle';
+export type { DeliveryCardProps, SpaceCardProps, SpaceDetailProps, SlotPickerProps, Slot, SpaceMapProps, SpaceMapSheetProps, SpacePickerSheetProps, SpaceOption } from './soma/recycle';
 export { InviteCodeCard, FriendRequestSheet, ContactRow } from './soma/social';
 export type { InviteCodeCardProps, FriendRequestSheetProps, ContactRowProps } from './soma/social';
 
@@ -69,7 +69,7 @@ export { DropdownMenu, DropdownMenuTrigger, DropdownMenuGroup, DropdownMenuPorta
 export type { DropdownMenuItemProps, ComboboxProps, ComboboxOption } from './ui/menus';
 export { DeliverySummaryCard, DeliveryHistoryRow, DeliveryDayCard, RewardChoiceList, GoalProgressCard, GoalNote, ReminderCard, ShareImpactModal } from './soma/delivery';
 export type { DeliverySummaryCardProps, DeliveryHistoryRowProps, DeliveryDayCardProps, RewardChoice, RewardChoiceListProps, GoalProgressCardProps, GoalNoteProps, ReminderCardProps, ShareImpactModalProps } from './soma/delivery';
-export { InstitutionRow, DonationAmountCard, DonationStateCard, InstitutionDetailModal, donationError } from './soma/donate';
-export type { InstitutionRowProps, DonationAmountCardProps, DonationStateCardProps, InstitutionDetailModalProps } from './soma/donate';
+export { InstitutionRow, DonationAmountCard, NumericKeypad, DonationStateCard, InstitutionDetailModal, donationError } from './soma/donate';
+export type { InstitutionRowProps, DonationAmountCardProps, NumericKeypadProps, DonationStateCardProps, InstitutionDetailModalProps } from './soma/donate';
 export { SignupStep, TermsConsent, InviteCodeField, NeighborhoodNote, AccountExistsSheet, InviteMessageExample, InviteCodeHelpSheet } from './soma/signup';
 export type { SignupStepProps, TermsConsentProps, InviteCodeFieldProps, NeighborhoodNoteProps, AccountExistsSheetProps, InviteMessageExampleProps, InviteCodeHelpSheetProps } from './soma/signup';

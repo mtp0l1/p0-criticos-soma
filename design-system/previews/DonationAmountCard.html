@@ -10,8 +10,8 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ var a=useState(null), b=useState(0), c=useState(2000), d=useState(500);
-  return h(F,null, K('Vazio'), h(S.DonationAmountCard,{balance:1130,value:a[0],onChange:a[1]}), K('Valor zero'), h(S.DonationAmountCard,{balance:1130,value:b[0],onChange:b[1]}), K('Acima do saldo'), h(S.DonationAmountCard,{balance:1130,value:c[0],onChange:c[1]}), K('Valor válido: digite para testar'), h(S.DonationAmountCard,{balance:1130,value:d[0],onChange:d[1]})); }
+function Demo(){ var a=useState(null), b=useState(0), c=useState(2000), d=useState(200);
+  return h(F,null, K('Vazio'), h(S.DonationAmountCard,{balance:320,value:a[0],onChange:a[1]}), K('Valor zero'), h(S.DonationAmountCard,{balance:320,value:b[0],onChange:b[1]}), K('Acima do saldo'), h(S.DonationAmountCard,{balance:320,value:c[0],onChange:c[1]}), K('Com o NumericKeypad (keypad)'), h(S.DonationAmountCard,{balance:320,value:d[0],onChange:d[1],keypad:true}), h(S.NumericKeypad,{value:d[0],onChange:d[1]})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
 <script>(function(){function s(){parent.postMessage({soma:"h",n:"DonationAmountCard",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

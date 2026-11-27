@@ -8,19 +8,19 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 
 | Componente | Usar para | Nunca |
 |---|---|---|
-| `Button` | Botão de ação em cinco ênfases (`loud`, `dark`, `quiet`, `transparent`, `destructive`), construído como o Button/ui: `buttonVariants`, `asChild` e `forwardRef`. | ter dois botões `loud` na mesma tela, nem trocar cor ou raio por `className`. |
+| `Button` | Botão de ação em cinco ênfases (`loud`, `dark`, `quiet`, `transparent`, `destructive`), construído com variantes tipadas: `buttonVariants`, `asChild` e `forwardRef`. | ter dois botões `loud` na mesma tela, nem trocar cor ou raio por `className`. |
 | `ButtonGroup` | Botões relacionados colados lado a lado, com uma borda só entre eles. | juntar ações sem relação; só opções do mesmo tipo (Dia · Semana · Mês). |
-| `Checkbox` | Caixa de seleção, sobre Checkbox. | usar para escolha única (use `RadioList`) nem sem rótulo ao lado. |
+| `Checkbox` | Caixa de seleção. | usar para escolha única (use `RadioList`) nem sem rótulo ao lado. |
 | `ChoiceChips` | Chips de escolha única: valores de doação, categorias de recompensa e materiais. | usar para navegação entre telas nem para marcar vários itens quando a escolha é única. |
 | `RadioList` | Lista de opções de escolha única, como a escolha do impacto a compartilhar. | usar com mais de 5 opções (use `Select`) nem para ação imediata. |
-| `Switch` | Interruptor de liga e desliga com efeito imediato, sobre Switch. | exigir botão de salvar depois: o efeito é imediato; para aceite de regulamento use `Checkbox`. |
+| `Switch` | Interruptor de liga e desliga com efeito imediato. | exigir botão de salvar depois: o efeito é imediato; para aceite de regulamento use `Checkbox`. |
 | `Toggle` | Botão de liga e desliga, sozinho ou em grupo. | usar para enviar formulário ou navegar; só liga e desliga um estado. |
 
 ## Navegação
 
 | Componente | Usar para | Nunca |
 |---|---|---|
-| `Header` | Cabeçalho de tela com voltar, título e no máximo uma ação. | pôr ajuda (`?`) fora do Início e do cadastro, pôr mais de uma ação à direita, título com mais de uma linha, nem botão "Voltar" no corpo da tela, nem título à esquerda: todas as telas usam o mesmo cabeçalho centralizado. |
+| `Header` | Cabeçalho de tela com voltar, título e no máximo uma ação. | pôr mais de uma ação à direita, título com mais de uma linha, nem botão "Voltar" no corpo da tela. |
 | `ListRow` | Linha de lista em dois formatos: `help` (creme, com título, legenda e seta) e `menu` (ícone, rótulo e divisor). | misturar os formatos `help` e `menu` na mesma lista. |
 | `LocationBar` | Barra do topo que mostra o espaço de recebimento onde a pessoa entrega e abre a troca de local. | esconder a troca de local; sem espaço escolhido vira chamada, não some. |
 | `Pagination` | Navegação entre páginas de uma lista. | usar em lista curta ou rolagem infinita. |
@@ -44,7 +44,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `NativeSelect` | Lista suspensa que abre o seletor do próprio aparelho. | usar quando o menu precisa de ícone ou estilo próprio (use `Select`). |
 | `PasswordField` | Campo de senha com botão de mostrar e ocultar dentro do campo. | mostrar a senha por padrão nem aceitar menos que o texto de ajuda promete (6 caracteres). |
 | `SearchField` | Campo de busca com lupa, texto e botão de limpar. | usar como filtro de uma lista já visível sem limpar (botão de limpar é obrigatório). |
-| `Select` | Lista suspensa de escolha única, sobre Select. | usar com menos de três opções nem com busca (use `Combobox`). |
+| `Select` | Lista suspensa de escolha única. | usar com menos de três opções nem com busca (use `Combobox`). |
 | `Slider` | Escolha de um valor, ou de uma faixa, arrastando uma alça. | usar para valor exato digitado (use `Input`). |
 | `TextField` | Campo de formulário com rótulo flutuante dentro do campo, texto de ajuda e mensagem de erro. | trocar rótulo por placeholder nem apagar o que a pessoa digitou ao mostrar erro. |
 | `Textarea` | Campo de texto de várias linhas. | usar para resposta curta (use `Input`). |
@@ -53,7 +53,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 
 | Componente | Usar para | Nunca |
 |---|---|---|
-| `AccountExistsSheet` | Bottom sheet "O (11) 98765-4321 já tem uma conta": aparece no passo do celular quando o número já está cadastrado. | bloquear a pessoa: as duas saídas (entrar, usar outro número) sempre aparecem. |
+| `AccountExistsSheet` | Bottom sheet "O (41) 99876-4321 já tem uma conta": aparece no passo do celular quando o número já está cadastrado. | bloquear a pessoa: as duas saídas (entrar, usar outro número) sempre aparecem. |
 | `InviteCodeField` | Campo opcional de código de convite, com o estado "Código aplicado" e o link "Onde encontro o código?". | bloquear o cadastro por código inválido: o campo é opcional. |
 | `InviteCodeHelpSheet` | Bottom sheet "Onde encontro o código?": explica e mostra a mensagem de convite de exemplo. | abrir fora do passo do código de convite. |
 | `InviteMessageExample` | Simulação de conversa que mostra onde está o código dentro da mensagem de convite. | usar como mensagem real de envio; é só uma simulação. |
@@ -77,10 +77,10 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 
 | Componente | Usar para | Nunca |
 |---|---|---|
-| `AnswerHistory` | Lista de respostas do Quiz por mês, com navegação entre os meses (Tela 4). | misturar meses numa lista só: a navegação é mês a mês. |
+| `AnswerHistory` | Lista de respostas do Quiz por mês, com navegação entre os meses (Tela 4). | misturar meses numa lista só sem o nome do mês. |
 | `AnswerResult` | Tela cheia com o resultado da pergunta do dia, no acerto (2A) ou no erro (2B). | mostrar medalha: o nível é troféu (`Trophy`). |
 | `DailyDone` | Estado do Quiz depois de responder (Tela 3): "Tarefa cumprida!" e o tempo até a próxima pergunta. | tirar o contador de tempo até a próxima pergunta. |
-| `HelpfulVote` | Pergunta "Essa resposta foi útil?" com Sim e Não, ao fim de um artigo de ajuda. | usar fora do fim de um artigo de ajuda. |
+| `HelpfulVote` | Pergunta "Isso ajudou?" com Sim e Não, ao fim de um artigo de ajuda. | usar fora do fim de um artigo de ajuda. |
 | `HistorySummary` | Topo do Histórico do Quiz (Tela 4): o troféu do nível, quando subiu e os totais. | misturar medalha e troféu. |
 | `LevelBadge` | Etiqueta do nível do Quiz, em maiúsculas: o nome ("BRONZE") ou a dificuldade ("INICIANTE"). | usar para texto que não seja nível ou dificuldade. |
 | `LevelCard` | Topo do Quiz (Telas 1 e 3): o troféu do nível, a etiqueta e quantas perguntas faltam para o próximo. | mostrar Ferro ou Platina: só Bronze, Prata e Ouro existem. |
@@ -109,10 +109,10 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | Componente | Usar para | Nunca |
 |---|---|---|
 | `GoalCard` | Minha meta no topo do catálogo de recompensas: o prêmio escolhido e o quanto falta. | mostrar meta sem quanto falta. |
-| `GoalNote` | Nota "Sua meta" na tela Entrega registrada: caixa tracejada que liga o que a pessoa acabou de ganhar com a recompensa que quer. | usar fora da tela Entrega registrada. |
+| `GoalNote` | Nota "Sua meta" na tela Entrega registrada: liga o que a pessoa acabou de ganhar com a recompensa que quer. | usar fora da tela Entrega registrada. |
 | `GoalProgressCard` | Progresso da recompensa escolhida como meta: pontos atuais, o custo e quantos quilos faltam. | esconder quantos quilos faltam. |
 | `MaterialResult` | Resultado da busca de material: foto, nome, se é aceito no local, se é reciclável e a categoria. | omitir se o material é aceito no local ou se é reciclável. |
-| `RedeemCode` | Código do resgate em caixa tracejada, com botão de copiar em largura total. | mostrar o código sem o botão de copiar. |
+| `RedeemCode` | Código do resgate num bilhete azul-marinho, com botão de copiar em largura total. | mostrar o código sem o botão de copiar. |
 | `RedemptionItem` | Item do histórico de resgates: logo do parceiro, nome da recompensa, pontos e hora, e o status. | escrever o status em texto livre: use `StatusChip`. |
 | `RewardChoiceList` | Lista de recompensas para escolher a meta durante o cadastro. | usar fora do cadastro (no catálogo use `RewardRow`). |
 | `RewardDetail` | Detalhe de uma recompensa: imagem, categoria, nome, custo, etiquetas e "De onde vêm os pontos". | esconder "De onde vêm os pontos". |
@@ -130,17 +130,19 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `ImpactTiles` | Três números do impacto da entrega: quilos, pontos ganhos e água economizada. | passar de três números. |
 | `ReminderCard` | Lembrete da próxima entrega: data sugerida e botão "Adicionar ao calendário". | trocar o botão "Adicionar ao calendário" por outra ação. |
 | `SlotPicker` | Escolha de data ou horário em fileira rolável, no agendamento da entrega. | mostrar horário cheio sem marcar "indisponível" para o leitor de tela. |
-| `SpaceCard` | Espaço de recebimento: na lista "perto de você" ou como opção na escolha do agendamento. | mostrar espaço sem endereço. |
-| `SpaceDetail` | Detalhe de um espaço de recebimento: nome, endereço, horário e "Como chegar". | aparecer antes de um espaço ser escolhido. |
+| `SpaceCard` | listar espaços na aba Reciclar e oferecer a escolha no agendamento e na troca de espaço. | mostrar espaço sem endereço. |
+| `SpaceDetail` | Detalhe de um espaço de recebimento: nome, endereço, horário e "Como chegar". | usar no agendamento: ali o "Como chegar" fica dentro de cada `SpaceCard`. |
+| `SpaceMapSheet` | abrir o "Como chegar" de um espaço, sobre a tela em que a pessoa está. | mostrar outro espaço que não seja o tocado, nem desenhar rota no mapa ilustrativo. |
+| `SpacePickerSheet` | trocar o espaço de recebimento da pessoa. | confirmar a troca sem uma escolha, nem anunciar um espaço diferente do escolhido. |
 
 ## Doar
 
 | Componente | Usar para | Nunca |
 |---|---|---|
-| `DonationAmountCard` | Cartão "Quantos pontos deseja doar?" da tela de doação: saldo, campo de quantidade e mensagem de erro. | esconder o saldo: ele aparece no cartão junto do campo. |
+| `DonationAmountCard` | a tela em que a pessoa digita quantos pontos quer doar. | esconder o saldo: ele aparece no cartão junto do campo. |
 | `DonationStateCard` | Estado que toma o lugar do campo de doação quando a pessoa não pode doar ainda. | aparecer junto do campo de doação. |
 | `InstitutionCard` | Instituição que recebe a doação de pontos. | esconder o "Saber mais". |
-| `InstitutionDetailModal` | Modal "Saber mais" de uma instituição: banner, nome, texto longo e contatos. | servir de tela de doação: ele abre pelo "Saber mais", a doação fica na tela de doar. |
+| `InstitutionDetailModal` | Modal "Saber mais" de uma instituição: banner, nome, texto longo e contatos. | trocar a faixa por foto gerada: sem imagem real da instituição, fica o coração. |
 | `InstitutionRow` | Instituição na lista "Escolha para quem você quer doar seus pontos". | pôr dois alvos de toque na mesma linha. |
 
 ## Feedback e estados
@@ -150,7 +152,7 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 | `Badge` | Selo não interativo em pílula, em seis tons. | ser tocável (use `Button` ou `Tag`) nem carregar texto longo. |
 | `EmptyState` | Estado vazio centralizado com ilustração, título, explicação e um próximo passo. | mostrar sem próximo passo nem usar ilustração fora do catálogo. |
 | `Message` | Mensagem em linha que fica na tela, em quatro tons: informativa, positiva, de atenção e de erro. | usar para aviso passageiro (use `Toast`) nem sem ícone ou texto. |
-| `Progress` | Barra de progresso contínua, sobre Progress. | usar para etapas discretas. |
+| `Progress` | Barra de progresso contínua. | usar para etapas discretas. |
 | `ProtectionNotice` | Aviso da proteção semanal da sequência: "se você perder um dia, a sequência continua". | prometer proteção que a regra semanal não dá. |
 | `ResultScreen` | Tela de resultado ou pedido: sucesso, erro ou permissão (contatos, notificação). | deixar o fluxo sem uma ação principal clara. |
 | `Skeleton` | Esqueleto de carregamento para texto, linha com miniatura e card. | ficar no lugar do erro: se a carga falhar, mostre `Message`. |
@@ -163,30 +165,30 @@ Como usar: ache a necessidade da tela na coluna "Usar para". Se achar, use o com
 
 | Componente | Usar para | Nunca |
 |---|---|---|
-| `Accordion` | Lista de perguntas que abrem e fecham, sobre Accordion. | abrir tudo por padrão nem esconder regra que a pessoa precisa aceitar. |
-| `AlertDialog` | Confirmação que exige resposta antes de seguir, sobre AlertDialog. | usar para informação sem decisão (use `Modal` ou `Message`). |
+| `Accordion` | Lista de perguntas que abrem e fecham. | abrir tudo por padrão nem esconder regra que a pessoa precisa aceitar. |
+| `AlertDialog` | Confirmação que exige resposta antes de seguir. | usar para informação sem decisão (use `Modal` ou `Message`). |
 | `Collapsible` | Um trecho que abre e fecha, com animação de altura. | esconder informação obrigatória. |
 | `Dialog` | As primitivas de Dialog no estilo Campana, para montar um diálogo fora do padrão do `Modal`. | usar quando o `Modal` serve; é só para diálogo fora do padrão. |
 | `Drawer` | Bottom sheet que acompanha o dedo e fecha ao ser arrastado para baixo. | usar sem a alça de arrastar: a alça é o gesto de fechar. |
 | `DropdownMenu` | Menu de ações de um item, aberto por um botão. | esconder ação principal da tela. |
 | `Modal` | Modal de confirmação ou de escolha, com título, texto curto ou conteúdo, e uma única ação. | ter mais de uma ação principal nem esconder a saída. |
-| `Popover` | Balão de ajuda curta que abre ao tocar, sobre Popover. | guardar ação obrigatória; é só ajuda curta. |
+| `Popover` | Balão de ajuda curta que abre ao tocar. | guardar ação obrigatória; é só ajuda curta. |
 | `ShareImpactModal` | Modal "Compartilhar meu impacto": resume os números da entrega e oferece três caminhos para compartilhar. | passar de três caminhos de compartilhar. |
-| `Sheet` | Bottom sheet, sobre Dialog. | usar para confirmação destrutiva (use `AlertDialog`). |
+| `Sheet` | Bottom sheet. | usar para confirmação destrutiva (use `AlertDialog`). |
 
 ## Layout e conteúdo
 
 | Componente | Usar para | Nunca |
 |---|---|---|
 | `AspectRatio` | Mantém a proporção de uma imagem, vídeo ou mapa enquanto a largura muda. | usar sem proporção definida. |
-| `Avatar` | Foto ou iniciais da pessoa em círculo, sobre Avatar. | mostrar sem iniciais quando falta a foto. |
+| `Avatar` | Foto ou iniciais da pessoa em círculo. | mostrar sem iniciais quando falta a foto. |
 | `Card` | Contêiner de conteúdo com cabeçalho, título, descrição, conteúdo e rodapé, em quatro variantes. | aninhar card dentro de card nem mudar o raio por `className`. |
 | `Carousel` | Slides que passam por gesto, com setas e pontos. | esconder conteúdo essencial depois do primeiro slide. |
 | `Icon` | Ícones de linha do sistema: Lucide e o set vetorial (SVG), com tamanho e cor por papel. | importar ícone de fora dos dois sets do sistema (Lucide e assets/icons) ou usar PNG/máscara para ícone de linha. |
 | `Illustration` | Mostra uma das ilustrações do sistema pelo nome, no tamanho original ou em outro. | desenhar ilustração nova sem registrar em 6-ilustracoes.md. |
 | `PointsBadge` | Pílula com os pontos de uma pergunta, de um prêmio ou de um custo. | usar para outro número que não seja pontos. |
 | `ScrollArea` | Área com rolagem própria e barra visível. | criar rolagem aninhada dentro da rolagem da tela. |
-| `Separator` | Linha divisória horizontal ou vertical, sobre Separator. | usar só para espaçar: o espaço vem da escala. |
+| `Separator` | Linha divisória horizontal ou vertical. | usar só para espaçar: o espaço vem da escala. |
 | `StatTile` | Indicador de impacto: ícone, frase de entrada, valor e equivalência. | usar sem equivalência quando o dado a tem. |
 | `StatsRow` | Números lado a lado (entregas, quilos, pontos) num bloco neutro. | passar de três números. |
 | `Table` | Tabela de dados simples, como o extrato de pontos. | usar para lista de itens tocáveis (use `ListRow`). |

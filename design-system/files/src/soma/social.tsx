@@ -3,7 +3,7 @@ import * as React from 'react';
 import { cn } from '../lib/utils';
 import { Button } from '../ui/button';
 import { Icon } from '../ui/icon';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '../ui/overlay';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger, SheetClose } from '../ui/overlay';
 import { Avatar, AvatarImage, AvatarFallback } from '../ui/display';
 
 const initials = (n: string) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]!.toUpperCase()).join('');
@@ -26,12 +26,12 @@ export function InviteCodeCard({ code, onCopy, className }: InviteCodeCardProps)
     window.setTimeout(() => setCopied(false), 2000);
   };
   return (
-    <div className={cn('flex items-center justify-between gap-nano rounded-lg border border-border bg-card p-mini text-card-foreground', className)}>
-      <div className="grid gap-xnano">
-        <p className="caption m-0 text-muted-foreground">Seu código</p>
-        <p className="m-0 select-all font-sans text-[18px] font-bold leading-6 tracking-[0.08em]">{code}</p>
+    <div className={cn('grid gap-xnano rounded-lg bg-surface-inverse p-mini text-text-inverse shadow-dark', className)}>
+      <div className="flex items-center justify-between gap-nano">
+        <p className="eyebrow m-0 uppercase tracking-wide">Seu código</p>
+        <Button size="compact" icon={copied ? 'check' : 'copy'} onClick={copy} className="rounded-full shadow-none">{copied ? 'Copiado' : 'Copiar'}</Button>
       </div>
-      <Button hierarchy="quiet" size="compact" onClick={copy} className="rounded-full">{copied ? 'Copiado' : 'Copiar'}</Button>
+      <p className="m-0 select-all text-center font-sans text-[28px] font-bold leading-10 tracking-[0.08em] text-icon-brand">{code}</p>
       <span aria-live="polite" className="sr-only">{copied ? 'Código copiado' : ''}</span>
     </div>
   );
@@ -58,19 +58,18 @@ export interface FriendRequestSheetProps {
  * Não é um banner no topo da lista. Pendente no handoff: o que acontece em "Agora não" e se o pedido expira.
  */
 export function FriendRequestSheet({ name, open, defaultOpen, onOpenChange, modal = true, trigger, onAccept, onDecline }: FriendRequestSheetProps) {
-  const close = (fn?: () => void) => () => { fn?.(); onOpenChange?.(false); };
   return (
     <Sheet open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange} modal={modal}>
       {trigger && <SheetTrigger asChild>{trigger}</SheetTrigger>}
-      <SheetContent side="bottom">
-        <SheetHeader className="gap-micro text-left">
-          <span aria-hidden className="grid size-[56px] place-items-center rounded-full bg-surface-accent text-icon-brand-strong"><Icon name="user-plus" size="large" /></span>
-          <SheetTitle className="text-left">{name} quer adicionar você como amigo no ranking.</SheetTitle>
+      <SheetContent side="bottom" className="rounded-t-xl bg-background">
+        <SheetHeader className="justify-items-center gap-micro text-center">
+          <span aria-hidden className="grid size-[56px] place-items-center rounded-full bg-surface-info text-[18px] font-bold text-foreground">{initials(name).slice(0, 1)}</span>
+          <SheetTitle className="screen-title !text-[18px] !font-bold !leading-6 text-center">{name} quer adicionar você como amigo no ranking.</SheetTitle>
           <SheetDescription className="sr-only">Aceite para aparecer no ranking de amigos um do outro.</SheetDescription>
         </SheetHeader>
         <div className="mt-small grid grid-cols-2 gap-micro">
-          <Button hierarchy="quiet" fullWidth onClick={close(onDecline)}>Agora não</Button>
-          <Button fullWidth onClick={close(onAccept)}>Aceitar</Button>
+          <SheetClose asChild><Button hierarchy="quiet" fullWidth onClick={onDecline} className="bg-surface-secondary shadow-none">Agora não</Button></SheetClose>
+          <SheetClose asChild><Button fullWidth onClick={onAccept}>Aceitar</Button></SheetClose>
         </div>
       </SheetContent>
     </Sheet>
@@ -91,19 +90,19 @@ export interface ContactRowProps {
 /** Contato que já participa (Tela 15). Use dentro de <ul>. Convidar envia o pedido e vira "Convite enviado". */
 export function ContactRow({ name, space, photo, status = 'idle', onInvite }: ContactRowProps) {
   return (
-    <li className="grid list-none grid-cols-[auto_1fr_auto] items-center gap-micro rounded-lg border border-border bg-card p-micro text-card-foreground">
+    <li className="grid list-none grid-cols-[auto_1fr_auto] items-center gap-micro rounded-lg bg-card p-micro text-card-foreground shadow-card">
       <Avatar className="size-[40px]">
         {photo && <AvatarImage src={photo} alt="" />}
-        <AvatarFallback className="bg-surface-secondary text-foreground">{initials(name)}</AvatarFallback>
+        <AvatarFallback className="bg-surface-tint-peach text-foreground">{initials(name)}</AvatarFallback>
       </Avatar>
       <span className="grid min-w-0 gap-xnano">
         <span className="body-strong truncate">{name}</span>
         {space && <span className="caption truncate text-muted-foreground">{space}</span>}
       </span>
       {status === 'sent' ? (
-        <span className="inline-flex min-h-touch items-center rounded-full bg-surface-secondary px-mini caption font-semibold text-muted-foreground">Convite enviado</span>
+        <span className="caption inline-flex min-h-small items-center gap-xnano rounded-full bg-feedback-fill-positive px-micro font-bold text-feedback-text-positive"><Icon name="check" size="small" />Enviado<span className="sr-only">: convite enviado</span></span>
       ) : (
-        <Button hierarchy="quiet" size="compact" onClick={onInvite} className="rounded-full">Convidar<span className="sr-only"> {name}</span></Button>
+        <Button hierarchy="quiet" size="compact" onClick={onInvite} className="rounded-full border-[1.5px] border-primary shadow-none">Convidar<span className="sr-only"> {name}</span></Button>
       )}
     </li>
   );

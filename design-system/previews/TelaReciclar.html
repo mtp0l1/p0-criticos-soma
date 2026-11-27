@@ -10,16 +10,24 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ var m=useState(''); return h('div',{className:'flex min-h-[880px] flex-col bg-background'},
-  h('main',{className:'grid flex-1 content-start gap-small px-xsmall pb-medium pt-xsmall'},
-    h('h1',{className:'screen-title m-0'},'Reciclar'),
-    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'Sua próxima entrega'}), h(S.DeliveryCard,{state:'scheduled',space:'Vila Verde',date:'Seg, 07 set · 09h',address:'R. Nunes Machado, 620 · Batel'})),
-    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'O que posso reciclar'}), h(S.SearchField,{label:'Buscar um material',placeholder:'Buscar um material',value:''}),
+var ESPACOS=[{value:'batel',name:'Casa so+ma Batel',distance:'1,6 km',address:'Rua dos Ipês, 45',hours:'Seg a sáb, 9h às 18h'},{value:'vila',name:'Vila Verde',distance:'800 m',address:'Rua das Flores, 120',hours:'Seg a sáb, 8h às 18h'},{value:'praca',name:'Praça Central',distance:'1,2 km',address:'Praça da Matriz, s/n',hours:'Seg a sáb, 8h às 18h'}];
+var DIAS=[['Qui','03'],['Sex','04'],['Sáb','05'],['Dom','06',1],['Seg','07'],['Ter','08'],['Qua','09']].map(function(x){ return {value:x[1],label:x[1],sublabel:x[0],disabled:!!x[2]}; });
+function horas(abre){ return ['08','09','10','11','12','13','14','15','16','17'].map(function(x){ return {value:x,label:x+'h',disabled:+x<abre}; }); }
+function folhaMapa(x,fechar){ return h(S.SpaceMapSheet,{key:x?x.value:'nada',open:!!x,onOpenChange:function(o){ if(!o) fechar(); },name:x?x.name:'',address:x?x.address+' · '+x.distance:'',status:'Aberto até 18h',hours:x?x.hours:'',onOpenMaps:fechar,onCopyAddress:fechar}); }
+var ESPACOS=[{value:'batel',name:'Casa so+ma Batel',distance:'1,6 km',address:'Rua dos Ipês, 45',hours:'Seg a sáb, 9h às 18h'},{value:'vila',name:'Vila Verde',distance:'800 m',address:'Rua das Flores, 120',hours:'Seg a sáb, 8h às 18h'},{value:'praca',name:'Praça Central',distance:'1,2 km',address:'Praça da Matriz, s/n',hours:'Seg a sáb, 8h às 18h'}];
+var DIAS=[['Qui','03'],['Sex','04'],['Sáb','05'],['Dom','06',1],['Seg','07'],['Ter','08'],['Qua','09']].map(function(x){ return {value:x[1],label:x[1],sublabel:x[0],disabled:!!x[2]}; });
+function horas(abre){ return ['08','09','10','11','12','13','14','15','16','17'].map(function(x){ return {value:x,label:x+'h',disabled:+x<abre}; }); }
+function folhaMapa(x,fechar){ return h(S.SpaceMapSheet,{key:x?x.value:'nada',open:!!x,onOpenChange:function(o){ if(!o) fechar(); },name:x?x.name:'',address:x?x.address+' · '+x.distance:'',status:'Aberto até 18h',hours:x?x.hours:'',onOpenMaps:fechar,onCopyAddress:fechar}); }
+function Demo(){ var q=useState(''), m=useState(''), mp=useState(null);
+  return h('div',{className:'flex min-h-[960px] flex-col bg-background'},
+  h(S.Header,{title:'Reciclar',divider:false}),
+  h('main',{className:'grid flex-1 content-start gap-small px-xsmall pb-medium'},
+    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'Sua próxima entrega'}), h(S.DeliveryCard,{state:'empty'})),
+    h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'O que posso reciclar'}), h(S.SearchField,{label:'Buscar um material',placeholder:'Buscar um material',value:q[0],onChange:q[1]}),
       h(S.ChoiceChips,{label:'Material',variant:'soft',scroll:true,value:m[0],onChange:m[1],options:[{value:'p',label:'Plástico',icon:'bottle'},{value:'pa',label:'Papel',icon:'doc'},{value:'v',label:'Vidro',icon:'wine'},{value:'m',label:'Metal',icon:'package'},{value:'o',label:'Óleo',icon:'drop'}]})),
     h('div',{className:'grid gap-nano'}, h(S.SectionHeader,{title:'Espaços de recebimento perto de você'}),
-      h(S.SpaceCard,{name:'Casa so+ma Batel',distance:'0,8 km',hours:'Hoje · 09h às 18h',onDirections:function(){}}),
-      h(S.SpaceCard,{name:'Vila Verde',distance:'1,6 km',hours:'Seg a Sáb · 08h às 17h',onDirections:function(){}}))),
-  h(S.TabBar,{active:'reciclar'})); }
+      [ESPACOS[1],ESPACOS[2],ESPACOS[0]].map(function(x){ return h(S.SpaceCard,{key:x.value,name:x.name,distance:x.distance,hours:x.hours,onDirections:function(){ mp[1](x); }}); }))),
+  h(S.TabBar,{active:'reciclar'}), folhaMapa(mp[0],function(){ mp[1](null); })); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
 <script>(function(){function s(){parent.postMessage({soma:"h",n:"TelaReciclar",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>

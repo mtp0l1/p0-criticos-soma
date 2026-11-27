@@ -10,9 +10,9 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ var v=useState([500]), r=useState([2,8]); return h(F,null,
+function Demo(){ var v=useState([200]), r=useState([2,8]); return h(F,null,
   h('div',{className:'flex items-baseline justify-between'}, h(S.Label,{id:'sl'},'Pontos para doar'), h('span',{className:'label text-text-link'},v[0][0].toLocaleString('pt-BR')+' pontos')),
-  h(S.Slider,{value:v[0],onValueChange:v[1],min:0,max:1130,step:10,'aria-label':'Pontos para doar'}),
+  h(S.Slider,{value:v[0],onValueChange:v[1],min:0,max:320,step:10,'aria-label':'Pontos para doar'}),
   K('Faixa com duas alças'), h(S.Slider,{value:r[0],onValueChange:r[1],min:0,max:10,step:1,thumbLabels:['Distância mínima em km','Distância máxima em km']}),
   K('Desabilitado'), h(S.Slider,{defaultValue:[40],disabled:true,'aria-label':'Indisponível'})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));

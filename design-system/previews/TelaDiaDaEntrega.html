@@ -10,11 +10,13 @@ function Row(){ return h.apply(null, ['div', {className:'flex flex-wrap items-ce
 var noFocus = { onOpenAutoFocus: function(e){ e.preventDefault(); } };
 // Na página do sistema, os previews abrem sem modal (sem trava de rolagem) e com a película desenhada à parte.
 function Scrim(){ return h('div',{className:'fixed inset-0 z-40 bg-overlay','aria-hidden':true}); }
-function Demo(){ return h('div',{className:'flex min-h-[680px] flex-col bg-background'},
-  h('main',{className:'grid flex-1 content-start gap-mini px-xsmall pt-large'},
+function Demo(){ return h('div',{className:'flex min-h-[780px] flex-col bg-background'},
+  h(S.Header,{variant:'eyebrow',title:'Vila Verde',onBack:function(){}}),
+  h('main',{className:'grid flex-1 content-start gap-mini px-xsmall pt-nano'},
     h(S.DeliveryDayCard,{address:'Rua das Flores, 120 · 800 m',hours:'Vila Verde recebe até 18h'}),
-    h(S.Button,{hierarchy:'quiet',fullWidth:true,icon:'pin'},'Como chegar')),
-  h('div',{className:'px-xsmall pb-small pt-medium'}, h(S.Button,{fullWidth:true},'Cheguei ao espaço'))); }
+    h(S.Button,{fullWidth:true,icon:'flag'},'Cheguei ao espaço'),
+    h(S.Button,{hierarchy:'quiet',fullWidth:true,icon:'navigation'},'Como chegar')),
+  h(S.TabBar,{active:'reciclar'})); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
 <script>(function(){function s(){parent.postMessage({soma:"h",n:"TelaDiaDaEntrega",h:document.documentElement.scrollHeight},"*")}new ResizeObserver(s).observe(document.body);addEventListener("load",s);setTimeout(s,400)})();</script></body></html>
